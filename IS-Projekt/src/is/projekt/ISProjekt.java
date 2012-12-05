@@ -4,10 +4,7 @@
  */
 package is.projekt;
 
-/**
- *
- * @author Eric
- */
+
 public class ISProjekt {
 
     /**
