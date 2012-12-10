@@ -46,5 +46,9 @@ public class Customer {
    public int getCustomerNumber() {
         return customerNumber;
     }
+   
+   public String getCustomerNumberString() {
+        return Integer.toString(customerNumber);
+    }
     
 }

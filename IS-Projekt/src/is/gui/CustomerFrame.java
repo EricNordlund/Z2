@@ -15,21 +15,23 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private Controller controller;
     Customer customer;
-    
+
     public CustomerFrame(Controller controller, String title, GUIMode mode) {
-        
+
         this.controller = controller;
-        
+
         this.setTitle(title);
-   
+
         initComponents();
-        
+
         this.setLocationRelativeTo(null);
-        
+
         if (mode == GUIMode.ADD) {
-            
+
             customer = controller.getNewCustomer();
-                      
+
+            this.txtCustomerNumber.setText(customer.getCustomerNumberString());
+
         }
     }
 
@@ -206,16 +208,12 @@ public class CustomerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCustomerPostCodeActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-this.setVisible(false);// TODO add your handling code here:
+        this.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
-        
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSaveActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
