@@ -33,6 +33,6 @@ public class Controller {
         mainWindow.setVisible(true);
 
     }
-    public
+   
     
 }
