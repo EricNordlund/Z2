@@ -17,12 +17,12 @@ public class Boat {
     
     
     //Constructor
-    public Boat(String iniregnr, String inimodel, String inilocation, String inipriceInfo, String inidescription)
+    public Boat(String iniregnr, String inimodel, String inilocation, String iniPriceInfo, String inidescription)
     {
         regnr = iniregnr;
         model = inimodel;
         location = inilocation;
-        priceInfo = inipriceInfo;
+        priceInfo = iniPriceInfo;
         description = inidescription;
     }
     
