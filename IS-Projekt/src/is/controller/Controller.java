@@ -2,6 +2,8 @@
 package is.controller;
 
 import is.gui.MainWindow;
+import is.projekt.Boat;
+import is.projekt.BoatRegistry;
 import is.projekt.Customer;
 import is.projekt.CustomerRegistry;
 
@@ -15,11 +17,13 @@ import is.projekt.CustomerRegistry;
 public class Controller {
 
     CustomerRegistry customerRegistry;
+    BoatRegistry boatRegistry;
     MainWindow mainWindow;
 
-    public Controller(CustomerRegistry customerRegistry, MainWindow mainWindow) {
+    public Controller(CustomerRegistry customerRegistry,BoatRegistry boatRegistry, MainWindow mainWindow) {
 
         this.customerRegistry = customerRegistry;
+        this.boatRegistry = boatRegistry;
         this.mainWindow = mainWindow;
         
     }
