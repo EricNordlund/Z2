@@ -12,18 +12,14 @@ public class Boat {
     private String description;
     
    
-    private String dbID;
+    private int boatIdNumber;
     private String[] dataArray = new String[5];
     
     
     //Constructor
-    public Boat(String iniregnr, String inimodel, String inilocation, String iniPriceInfo, String inidescription)
+    public Boat(int boatIdNumber)
     {
-        regnr = iniregnr;
-        model = inimodel;
-        location = inilocation;
-        priceInfo = iniPriceInfo;
-        description = inidescription;
+        this.boatIdNumber = boatIdNumber;
     }
     
     //Metod för att ändra på båtens data.
@@ -91,6 +87,11 @@ public class Boat {
         dataArray[3] = priceInfo;
         dataArray[4] = description;
         return dataArray;
+    }
+    
+    //Retunerar båtens regnr.
+    public int getBoatNumber() {
+        return boatIdNumber;
     }
     
 }

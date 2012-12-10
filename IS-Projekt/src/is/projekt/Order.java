@@ -9,7 +9,7 @@ public class Order {
     private int idNumber;
     private int billingDate; 
     private String billingAdress;
-    private List orderrader = new ArrayList();
+    private List orderRows = new ArrayList();
     
     //Constructor...
     public Order(int idNumber, int billingDate, String billingAdress)
@@ -19,7 +19,7 @@ public class Order {
         this.billingAdress = billingAdress;
     }
     
-
+    //Alla set.
     public void setIdNumber(int idNumber) {
         this.idNumber = idNumber;
     }
@@ -32,6 +32,7 @@ public class Order {
         this.billingAdress = billingAdress;
     }
 
+    //Alla get. 
     public int getIdNumber() {
         return idNumber;
     }
@@ -44,11 +45,17 @@ public class Order {
         return billingAdress;
     }
     
-    
+    //Skapar de olika orderraderna, körs en gång för varje ny rad. 
     public void createOrderrad(float price, int number)
     {
-       OrderRow newOrderrad = new OrderRow(price, number);
-        orderrader.add(newOrderrad);
+       OrderRow newOrderRow = new OrderRow(price, number);
+        orderRows.add(newOrderRow);
+    }
+    
+    //Retunerar listan med orderraderna
+    public List getOrderrows()
+    {
+        return orderRows;
     }
     
 }
