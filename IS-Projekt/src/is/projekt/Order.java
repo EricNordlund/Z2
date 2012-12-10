@@ -47,7 +47,7 @@ public class Order {
     
     public void createOrderrad(float price, int number)
     {
-       Orderrad newOrderrad = new Orderrad(price, number);
+       OrderRow newOrderrad = new OrderRow(price, number);
         orderrader.add(newOrderrad);
     }
     

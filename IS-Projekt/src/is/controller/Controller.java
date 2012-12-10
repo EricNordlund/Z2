@@ -9,25 +9,30 @@ import is.projekt.CustomerRegistry;
 
 /**
  * Detta är en klass som kör gui samt applikation och samordnar dessa.
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
  */
 public class Controller {
-    
+
     CustomerRegistry customerRegistry;
     MainWindow mainWindow;
-    
-    public Controller(CustomerRegistry customerRegistry, MainWindow mainWindow){
-    
+
+    public Controller(CustomerRegistry customerRegistry, MainWindow mainWindow) {
+
         this.customerRegistry = customerRegistry;
         this.mainWindow = mainWindow;
+
+
+    }
+
+    public void configureMainWindow() {
+
         mainWindow.setController(this);
         mainWindow.setVisible(true);
-            
+
     }
-    
     public
     
 }

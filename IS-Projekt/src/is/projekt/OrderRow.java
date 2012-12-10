@@ -1,11 +1,11 @@
 package is.projekt;
 
 
-public class Orderrad {
+public class OrderRow {
 float pris;
 int antal;
 
-    public Orderrad(float pris, int antal) {
+    public OrderRow(float pris, int antal) {
         this.pris = pris;
         this.antal = antal;
     }
