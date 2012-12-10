@@ -13,34 +13,40 @@ import java.util.List;
  * @author svalan
  */
 public class CustomerManager {
-    
+
     private List<Customer> customerList;
-    
-    public CustomerManager(){
-        
+
+    public CustomerManager() {
+
         customerList = new ArrayList();
-    
-}
-    
-    private void addCustomer(Customer customerIn){
-        
+
+    }
+
+    public void addCustomer(Customer customerIn) {
+
         customerList.add(customerIn);
-        
+
     }
-    
-    private void getCustomer(int customerNr){
-        
-        
+
+    private Customer getCustomer(int customerNr) {
+
+
         Iterator<Customer> iter = customerList.iterator();
-        
-        while (iter.hasNext()){
-            
-            
-            
+
+        while (iter.hasNext()) {
+
+
+            if (iter.next().getCustomerNumber() == customerNr) {
+
+                return iter.next();
+            }
+
+
+
+
+
         }
-        
-        
-        
+        return null;
+
     }
-    
 }
