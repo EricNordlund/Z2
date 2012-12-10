@@ -71,7 +71,7 @@ public class Boat {
         return location;
     }
     
-    public String getpriceInfo()
+    public String getPriceInfo()
     {
         return priceInfo;
     }
