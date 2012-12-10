@@ -16,6 +16,7 @@ public class Main {
     public static void main(String[] args){
         
         Controller controller = new Controller(new CustomerRegistry(), new MainWindow());
+        controller.startMainWindow();
         
     }
     

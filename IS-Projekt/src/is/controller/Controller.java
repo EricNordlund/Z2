@@ -27,7 +27,7 @@ public class Controller {
 
     }
 
-    public void configureMainWindow() {
+    public void startMainWindow() {
 
         mainWindow.setController(this);
         mainWindow.setVisible(true);
