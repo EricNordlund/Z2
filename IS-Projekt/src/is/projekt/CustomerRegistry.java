@@ -41,6 +41,7 @@ public class CustomerRegistry {
     private Customer getCustomer(int customerNr) {
 
         Iterator<Customer> iter = customerList.iterator();
+        
 
         while (iter.hasNext()) {
 
@@ -59,12 +60,13 @@ public class CustomerRegistry {
         
         int newNumber = 1;
         
-        Iterator<Customer> iter = customerList.iterator();
-        
+        Iterator<Customer> iter = customerList.iterator();       
 
         while (iter.hasNext()) {
+            
+            Customer c = iter.next();
 
-            if (iter.next().getCustomerNumber() > newNumber) {
+            if (c.getCustomerNumber() > newNumber) {
                 
                 newNumber = iter.next().getCustomerNumber() + 1;
             }

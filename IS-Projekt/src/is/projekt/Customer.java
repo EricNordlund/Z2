@@ -17,6 +17,8 @@ public class Customer {
     
     public Customer (int customerNumber){
         
+        this.customerNumber = customerNumber;
+        
     }
 
     public Address getAddress() {
