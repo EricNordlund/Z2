@@ -1,12 +1,6 @@
 package is.projekt;
 
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 public class Orderrad {
 float pris;
 int antal;
