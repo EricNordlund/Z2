@@ -1,18 +1,22 @@
 
 package is.projekt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Order {
     private int idNumber;
     private int billingDate; 
     private String billingAdress;
+    private List orderrader = new ArrayList();
     
     //Constructor...
-    public Order(int iniIdNumber, int iniBillingDate, String iniBillingAdress)
+    public Order(int idNumber, int billingDate, String billingAdress)
     {
-        idNumber = iniIdNumber;
-        billingDate = iniBillingDate;
-        billingAdress = iniBillingAdress;
+        this.idNumber = idNumber;
+        this.billingDate = billingDate;
+        this.billingAdress = billingAdress;
     }
     
 
@@ -41,7 +45,10 @@ public class Order {
     }
     
     
-    
-    
+    public void createOrderrad(float price, int number)
+    {
+        private Orderrad newOrderrad = new Orderrad(price, number);
+        //orderrader.add(newOrderrad);
+    }
     
 }
