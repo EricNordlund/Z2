@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.3" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="alwaysOnTop" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -23,37 +24,33 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="-2147483648" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="105" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="105" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jLabel2" alignment="0" pref="61" max="32767" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblCustomerPhoneNumber" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblCustomerNumber" alignment="0" pref="61" max="32767" attributes="0"/>
+                              <Component id="lclCustomerName" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jLabel5" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Component id="lblCustomerMail" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtCustomerName" max="32767" attributes="0"/>
                           <Component id="txtCustomerNumber" max="32767" attributes="0"/>
-                          <Component id="txtCustomerPhone" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
-                          <Component id="txtCustomerAdress" min="-2" pref="198" max="-2" attributes="0"/>
+                          <Component id="txtCustomerPhone" alignment="0" pref="198" max="32767" attributes="0"/>
+                          <Component id="txtCustomerAddress" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnSave" min="-2" pref="105" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="btnCancel" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="141" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,82 +59,163 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="lblCustomerNumber" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="txtCustomerNumber" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="lclCustomerName" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="txtCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="lblCustomerPhoneNumber" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="txtCustomerPhone" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCustomerAdress" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                  <Component id="txtCustomerAddress" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCustomerMail" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" pref="25" max="-2" attributes="0"/>
-              <EmptySpace pref="181" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblCustomerPhoneNumber">
       <Properties>
         <Property name="text" type="java.lang.String" value="Telenr:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblCustomerNumber">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nummer:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lclCustomerName">
       <Properties>
         <Property name="text" type="java.lang.String" value="Namn:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Adress:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="txtCustomerNumber">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCustomerNumberActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCustomerName">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCustomerAdress">
+    <Component class="javax.swing.JTextField" name="txtCustomerAddress">
     </Component>
     <Component class="javax.swing.JTextField" name="txtCustomerPhone">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnSave">
       <Properties>
         <Property name="text" type="java.lang.String" value="Spara"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Avbryt"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="lblCustomerMail">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mail:"/>
       </Properties>
     </Component>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Adress"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="lblCustomerPostCode" alignment="0" pref="68" max="32767" attributes="0"/>
+                      <Component id="lblCustomerCity" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jLabel4" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtCustomerPostCode" alignment="0" pref="198" max="32767" attributes="0"/>
+                      <Component id="lblCustomerStreet" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtCustomerCity" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="lblCustomerStreet" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCustomerPostCode" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="txtCustomerPostCode" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblCustomerCity" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="txtCustomerCity" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="txtCustomerCity">
+        </Component>
+        <Component class="javax.swing.JTextField" name="lblCustomerStreet">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gatuadress:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCustomerPostCode">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Postnummer:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblCustomerCity">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Stad:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtCustomerPostCode">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCustomerPostCodeActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

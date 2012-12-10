@@ -5,6 +5,7 @@
 package is.controller;
 
 import is.gui.MainWindow;
+import is.projekt.Customer;
 import is.projekt.CustomerRegistry;
 
 /**
@@ -23,8 +24,7 @@ public class Controller {
 
         this.customerRegistry = customerRegistry;
         this.mainWindow = mainWindow;
-
-
+        
     }
 
     public void startMainWindow() {
@@ -33,6 +33,13 @@ public class Controller {
         mainWindow.setVisible(true);
 
     }
+    
+    public Customer getNewCustomer(){
+        
+        return customerRegistry.getNewCustomer();
+        
+    }
+
    
     
 }

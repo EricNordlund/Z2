@@ -27,6 +27,16 @@ public class CustomerRegistry {
         customerList.add(customerIn);
 
     }
+    
+    public Customer getNewCustomer(){
+        
+        Customer newCustomer = new Customer(createCustomerNumber());
+        
+        addCustomer(newCustomer);
+        
+        return newCustomer;
+        
+    }
 
     private Customer getCustomer(int customerNr) {
 
@@ -40,7 +50,27 @@ public class CustomerRegistry {
             }
 
         }
+        
         return null;
 
+    }
+
+    private int createCustomerNumber() {
+        
+        int newNumber = 1;
+        
+        Iterator<Customer> iter = customerList.iterator();
+        
+
+        while (iter.hasNext()) {
+
+            if (iter.next().getCustomerNumber() > newNumber) {
+                
+                newNumber = iter.next().getCustomerNumber() + 1;
+            }
+
+        }
+        
+        return newNumber;
     }
 }
