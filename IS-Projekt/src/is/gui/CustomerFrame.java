@@ -5,6 +5,7 @@
 package is.gui;
 
 import is.controller.Controller;
+import is.projekt.Address;
 import is.projekt.Customer;
 
 /**
@@ -49,14 +50,14 @@ public class CustomerFrame extends javax.swing.JFrame {
         lclCustomerName = new javax.swing.JLabel();
         txtCustomerNumber = new javax.swing.JTextField();
         txtCustomerName = new javax.swing.JTextField();
-        txtCustomerAddress = new javax.swing.JTextField();
+        txtCustomerMail = new javax.swing.JTextField();
         txtCustomerPhone = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblCustomerMail = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtCustomerCity = new javax.swing.JTextField();
-        lblCustomerStreet = new javax.swing.JTextField();
+        txtCustomerStreet = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         lblCustomerPostCode = new javax.swing.JLabel();
         lblCustomerCity = new javax.swing.JLabel();
@@ -121,7 +122,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(txtCustomerPostCode, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                    .add(lblCustomerStreet)
+                    .add(txtCustomerStreet)
                     .add(txtCustomerCity))
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -130,7 +131,7 @@ public class CustomerFrame extends javax.swing.JFrame {
             .add(jPanel1Layout.createSequentialGroup()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(lblCustomerStreet, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtCustomerStreet, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(lblCustomerPostCode, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -160,7 +161,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                             .add(txtCustomerName)
                             .add(txtCustomerNumber)
                             .add(txtCustomerPhone, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                            .add(txtCustomerAddress)))
+                            .add(txtCustomerMail)))
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
                         .add(btnSave, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 105, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +186,7 @@ public class CustomerFrame extends javax.swing.JFrame {
                     .add(txtCustomerPhone, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(txtCustomerAddress, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(txtCustomerMail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(lblCustomerMail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -208,11 +209,23 @@ public class CustomerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCustomerPostCodeActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        this.setVisible(false);// TODO add your handling code here:
+        
+        controller.deleteCustomer(customer.getCustomerNumber());
+        this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        
+        customer.setName(txtCustomerName.getText());
+        customer.setPhoneNumber(txtCustomerPhone.getText());
+        customer.seteMail(txtCustomerMail.getText());
+        Address a = new Address();
+        a.setStreetName(txtCustomerStreet.getText());
+        a.setPostCode(txtCustomerPostCode.getText());
+        a.setCity(txtCustomerCity.getText());
+        customer.setAddress(a);
+        this.dispose();
+        
     }//GEN-LAST:event_btnSaveActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
@@ -224,13 +237,13 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblCustomerNumber;
     private javax.swing.JLabel lblCustomerPhoneNumber;
     private javax.swing.JLabel lblCustomerPostCode;
-    private javax.swing.JTextField lblCustomerStreet;
     private javax.swing.JLabel lclCustomerName;
-    private javax.swing.JTextField txtCustomerAddress;
     private javax.swing.JTextField txtCustomerCity;
+    private javax.swing.JTextField txtCustomerMail;
     private javax.swing.JTextField txtCustomerName;
     private javax.swing.JTextField txtCustomerNumber;
     private javax.swing.JTextField txtCustomerPhone;
     private javax.swing.JTextField txtCustomerPostCode;
+    private javax.swing.JTextField txtCustomerStreet;
     // End of variables declaration//GEN-END:variables
 }

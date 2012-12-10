@@ -40,6 +40,10 @@ public class Controller {
         
     }
 
+    public void deleteCustomer(int customerNumber) {
+        customerRegistry.deleteCustomer(customerNumber);
+    }
+
    
     
 }
