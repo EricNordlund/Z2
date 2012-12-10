@@ -186,7 +186,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField1" max="32767" attributes="0"/>
+                              <Component id="txtSearchCustomer" max="32767" attributes="0"/>
                               <Component id="btnSearchCustomer" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -196,7 +196,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSearchCustomer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnSearchCustomer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="22" max="32767" attributes="0"/>
@@ -210,9 +210,9 @@
                     <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="txtSearchCustomer">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSearchCustomerActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -285,8 +285,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jTextField2" max="32767" attributes="0"/>
-                              <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtSearchBoat" max="32767" attributes="0"/>
+                              <Component id="btnSearchBoat" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -295,21 +295,21 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtSearchBoat" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" max="32767" attributes="0"/>
+                          <Component id="btnSearchBoat" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="jTextField2">
+                <Component class="javax.swing.JTextField" name="txtSearchBoat">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSearchBoatActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton1">
+                <Component class="javax.swing.JButton" name="btnSearchBoat">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="S&#xf6;k"/>
                   </Properties>
@@ -335,12 +335,12 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnShowBoat" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnEditBoat" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnShowBoat" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnAddBoat" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnEditBoat" min="-2" pref="23" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnAddBoat" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

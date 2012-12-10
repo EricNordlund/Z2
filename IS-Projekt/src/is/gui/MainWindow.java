@@ -45,13 +45,13 @@ public class MainWindow extends javax.swing.JFrame {
         btnEditCustomer = new javax.swing.JButton();
         jPanelSearchCustomer = new javax.swing.JPanel();
         btnSearchCustomer = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearchCustomer = new javax.swing.JTextField();
         jPanelBåtar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstBoats = new javax.swing.JList();
         jPanel1 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtSearchBoat = new javax.swing.JTextField();
+        btnSearchBoat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnShowBoat = new javax.swing.JButton();
         btnEditBoat = new javax.swing.JButton();
@@ -119,9 +119,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         btnSearchCustomer.setText("Sök");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtSearchCustomerActionPerformed(evt);
             }
         });
 
@@ -132,14 +132,14 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanelSearchCustomerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
+                    .addComponent(txtSearchCustomer)
                     .addComponent(btnSearchCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelSearchCustomerLayout.setVerticalGroup(
             jPanelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSearchCustomerLayout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearchCustomer)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -180,13 +180,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(lstBoats);
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtSearchBoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtSearchBoatActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Sök");
+        btnSearchBoat.setText("Sök");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -195,16 +195,16 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtSearchBoat)
+                    .addComponent(btnSearchBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSearchBoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSearchBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(22, 22, 22))
         );
 
@@ -234,12 +234,12 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnShowBoat)
+                .addContainerGap()
+                .addComponent(btnShowBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditBoat)
+                .addComponent(btnEditBoat, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddBoat))
+                .addComponent(btnAddBoat, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanelBåtarLayout = new javax.swing.GroupLayout(jPanelBåtar);
@@ -316,9 +316,9 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
 
@@ -326,9 +326,9 @@ public class MainWindow extends javax.swing.JFrame {
          customerFrame.setVisible(true);
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtSearchBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchBoatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtSearchBoatActionPerformed
 
     private void btnShowBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowBoatActionPerformed
         // TODO add your handling code here:
@@ -343,10 +343,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnAddCustomer;
     private javax.swing.JButton btnEditBoat;
     private javax.swing.JButton btnEditCustomer;
+    private javax.swing.JButton btnSearchBoat;
     private javax.swing.JButton btnSearchCustomer;
     private javax.swing.JButton btnShowBoat;
     private javax.swing.JButton btnShowCustomer;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -358,11 +358,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTillbehör;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JList lstBoats;
     private javax.swing.JList lstCustomer;
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
+    private javax.swing.JTextField txtSearchBoat;
+    private javax.swing.JTextField txtSearchCustomer;
     // End of variables declaration//GEN-END:variables
 
     public void setController(Controller aThis) {
