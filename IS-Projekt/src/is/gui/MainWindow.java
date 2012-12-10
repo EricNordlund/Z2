@@ -4,15 +4,17 @@
  */
 package is.gui;
 
+import is.controller.Controller;
+
 /**
  *
  * @author svalan
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Mainwindow
-     */
+    Controller controller;
+    
+    
     public MainWindow() {
         initComponents();
     }
@@ -245,4 +247,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
     // End of variables declaration//GEN-END:variables
+
+    public void setController(Controller aThis) {
+        this.controller = aThis;
+    }
 }

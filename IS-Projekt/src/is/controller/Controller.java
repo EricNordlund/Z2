@@ -25,9 +25,9 @@ public class Controller {
         this.mainWindow = mainWindow;
         mainWindow.setController(this);
         mainWindow.setVisible(true);
-        
-        
-        
+            
     }
+    
+    public
     
 }
