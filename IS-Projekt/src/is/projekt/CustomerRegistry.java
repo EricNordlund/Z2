@@ -12,11 +12,11 @@ import java.util.List;
  *
  * @author svalan
  */
-public class CustomerManager {
+public class CustomerRegistry {
 
     private List<Customer> customerList;
 
-    public CustomerManager() {
+    public CustomerRegistry() {
 
         customerList = new ArrayList();
 
@@ -30,20 +30,14 @@ public class CustomerManager {
 
     private Customer getCustomer(int customerNr) {
 
-
         Iterator<Customer> iter = customerList.iterator();
 
         while (iter.hasNext()) {
-
 
             if (iter.next().getCustomerNumber() == customerNr) {
 
                 return iter.next();
             }
-
-
-
-
 
         }
         return null;
