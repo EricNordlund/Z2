@@ -10,4 +10,8 @@ package is.projekt;
  */
 public class Customer {
     
+    private Address address;
+    private String phoneNumber;
+    private String eMail;
+    
 }
