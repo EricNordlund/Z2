@@ -11,6 +11,7 @@ public class Boat {
     private String priceInfo;
     private String description;
     
+   
     private String dbID;
     private String[] dataArray = new String[5];
     
