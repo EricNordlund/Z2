@@ -58,10 +58,10 @@ public class CustomerRegistry {
 
     }
 
-    //Skapar ett nytt kundnummer genom att räkna antalet objekt i arraylist och sedan lägga till en siffra. 
+    //Skapar tidigare oanvänt kundnummer genom att hitta det största numret i arraylist och sedan lägga till en siffra. 
     private int createCustomerNumber() {
 
-        int newNumber = 1;
+        int biggestNumber = 0;
 
         Iterator<Customer> iter = customerList.iterator();
 
@@ -69,14 +69,14 @@ public class CustomerRegistry {
 
             Customer c = iter.next();
 
-            if (c.getCustomerNumber() == newNumber) {
+            if (c.getCustomerNumber() > biggestNumber) {
 
-                newNumber = c.getCustomerNumber() + 1;
+                biggestNumber = c.getCustomerNumber();
             }
 
         }
 
-        return newNumber;
+        return biggestNumber + 1;
     }
     
  
