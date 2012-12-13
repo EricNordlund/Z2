@@ -1,30 +1,38 @@
 package is.projekt;
 
-
 public class OrderRow {
-float pris;
-int antal;
 
-    public OrderRow(float pris, int antal) {
-        this.pris = pris;
-        this.antal = antal;
+    private double price;
+    private int quantity;
+    private Product product;
+
+    public OrderRow(Product product, float price, int quantity) {
+        this.product = product;
+        this.price = price;
+        this.quantity = quantity;
     }
 
-    public void setPris(float pris) {
-        this.pris = pris;
+    public double getPrice() {
+        return price;
     }
 
-    public void setAntal(int antal) {
-        this.antal = antal;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public float getPris() {
-        return pris;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public int getAntal() {
-        return antal;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
+    public Product getProduct() {
+        return product;
+    }
 
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

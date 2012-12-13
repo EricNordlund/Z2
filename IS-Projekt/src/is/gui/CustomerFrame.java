@@ -29,12 +29,14 @@ public class CustomerFrame extends javax.swing.JFrame {
 
         if (mode == GUIMode.ADD) {
 
-            customer = controller.getNewCustomer();
+            customer = controller.getCustomerRegistry().getNewCustomer();
 
-            this.txtCustomerNumber.setText(customer.getCustomerNumberString());
+            this.txtCustomerNumber.setText(customer.customerNumberString());
 
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

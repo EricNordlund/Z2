@@ -1,22 +1,31 @@
-
 package is.projekt;
 
+import java.util.ArrayList;
 
 public class Customer {
-    
+
+    private final int customerNumber;
     private String name;
     private Address address;
-    private int customerNumber;
     private String phoneNumber;
     private String eMail;
-    
-    public Customer (int customerNumber){
-        
+    private ArrayList<Order> orderList;
+
+    public Customer(int customerNumber) {
+
         this.customerNumber = customerNumber;
-        
+
     }
-    
-        public String getName() {
+
+    public ArrayList<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(ArrayList<Order> orderList) {
+        this.orderList = orderList;
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -47,13 +56,21 @@ public class Customer {
     public void seteMail(String eMail) {
         this.eMail = eMail;
     }
-    
-   public int getCustomerNumber() {
+
+    public int getCustomerNumber() {
         return customerNumber;
     }
-   
-   public String getCustomerNumberString() {
-        return Integer.toString(customerNumber);
+
+    public String customerNumberString() {
+        return Integer.toString(getCustomerNumber());
     }
-    
+
+    public void addOrder(Order order) {
+        getOrderList().add(order);
+    }
+
+    public void removeOrder(Order order) {
+
+        getOrderList().remove(order);
+    }
 }

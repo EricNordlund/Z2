@@ -2,7 +2,7 @@
 package is.projekt;
 
 
-public class Boat {
+public class Boat extends Product {
     
     //Variabler
     private String regnr;
