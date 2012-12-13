@@ -4,9 +4,7 @@
  */
 package is.gui;
 
-import is.controller.Controller;
-import is.projekt.Address;
-import is.projekt.Customer;
+import is.projekt.Model;
 
 /**
  *
@@ -14,12 +12,11 @@ import is.projekt.Customer;
  */
 public class CustomerFrame extends javax.swing.JFrame {
 
-    private Controller controller;
-    Customer customer;
+    private Model model;
 
-    public CustomerFrame(Controller controller, String title, GUIMode mode) {
+    public CustomerFrame(Model model, String title, GUIMode mode) {
 
-        this.controller = controller;
+        this.model = model;
 
         this.setTitle(title);
 
@@ -29,12 +26,10 @@ public class CustomerFrame extends javax.swing.JFrame {
 
         if (mode == GUIMode.ADD) {
 
-            customer = controller.getCustomerRegistry().getNewCustomer();
-
-            this.txtCustomerNumber.setText(customer.customerNumberString());
-
         }
     }
+    
+ 
     
     
 
@@ -212,21 +207,12 @@ public class CustomerFrame extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         
-        controller.deleteCustomer(customer.getCustomerNumber());
-        this.dispose();
+
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         
-        customer.setName(txtCustomerName.getText());
-        customer.setPhoneNumber(txtCustomerPhone.getText());
-        customer.seteMail(txtCustomerMail.getText());
-        Address a = new Address();
-        a.setStreetName(txtCustomerStreet.getText());
-        a.setPostCode(txtCustomerPostCode.getText());
-        a.setCity(txtCustomerCity.getText());
-        customer.setAddress(a);
-        this.dispose();
+
         
     }//GEN-LAST:event_btnSaveActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

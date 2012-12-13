@@ -2,21 +2,16 @@
 package is.controller;
 
 import is.gui.MainWindow;
-import is.projekt.BoatRegistry;
-import is.projekt.CustomerRegistry;
-import is.projekt.OrderRegistry;
+import is.projekt.Model;
 
 
 public class Main {
     
     public static void main(String[] args){
         
-        Controller controller = new Controller();
-        
-        controller.setBoatRegistry(new BoatRegistry());
-        controller.setCustomerRegistry(new CustomerRegistry());
-        controller.setOrderRegistry(new OrderRegistry());
-        controller.setMainWindow(new MainWindow());
+        Model model = new Model();
+        MainWindow view = new MainWindow(model);
+        Controller controller = new Controller (model, view);
         controller.getMainWindow().setVisible(true);
     }
     

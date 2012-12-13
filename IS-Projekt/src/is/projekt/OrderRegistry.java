@@ -7,6 +7,8 @@ package is.projekt;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import javax.swing.ListModel;
+import javax.swing.event.ListDataListener;
 
 /**
  * @author svalan
@@ -65,4 +67,5 @@ public class OrderRegistry {
 
         return newOrder;
     }
+
 }
