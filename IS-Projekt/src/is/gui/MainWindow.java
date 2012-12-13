@@ -4,8 +4,8 @@
  */
 package is.gui;
 
+import is.controller.Controller;
 import is.projekt.Model;
-import java.util.List;
 
 /**
  *
@@ -14,6 +14,7 @@ import java.util.List;
 public class MainWindow extends javax.swing.JFrame {
 
     Model model;
+    Controller listener;
     CustomerFrame customerFrame;
     BoatFrame boatFrame;
     OrderFrame orderFrame;
@@ -30,13 +31,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         return model;
 
-    }
-
-    public List bindOrderList() {
-
-
-        return getModel().getOrderRegistry().getOrderList();
-    
     }
 
     @SuppressWarnings("unchecked")
@@ -450,7 +444,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
 
-        customerFrame = new CustomerFrame(getModel(), "Lägg till kund", GUIMode.ADD);// TODO add your handling code here:
+        customerFrame = new CustomerFrame(this, GUIMode.ADD);// TODO add your handling code here:
         customerFrame.setVisible(true);
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
@@ -515,4 +509,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearchCustomer;
     // End of variables declaration//GEN-END:variables
 
+    public void setListener(Controller aThis) {
+        this.listener = aThis;
+    }
 }

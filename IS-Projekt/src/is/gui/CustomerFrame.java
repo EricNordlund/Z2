@@ -12,21 +12,28 @@ import is.projekt.Model;
  */
 public class CustomerFrame extends javax.swing.JFrame {
 
-    private Model model;
+    private MainWindow parentFrame;
 
-    public CustomerFrame(Model model, String title, GUIMode mode) {
+    public CustomerFrame(MainWindow parentFrame, GUIMode mode) {
 
-        this.model = model;
-
-        this.setTitle(title);
+        this.parentFrame = parentFrame;
 
         initComponents();
 
         this.setLocationRelativeTo(null);
 
         if (mode == GUIMode.ADD) {
+            
+            this.setTitle("Lägg till kund.");
+            
 
         }
+    }
+    
+  
+    private MainWindow getParentFrame(){
+        
+        return parentFrame;
     }
     
  
