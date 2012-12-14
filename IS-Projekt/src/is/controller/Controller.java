@@ -2,7 +2,7 @@ package is.controller;
 
 import is.gui.MainWindow;
 import is.projekt.Model;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;  
 import java.awt.event.ActionListener;
 
 /**
@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
  * @param mainWindow The user interface.
  * @param model The model.
  */
-public class Controller implements ActionListener {
+public class Controller {
 
     private MainWindow view;
     private Model model;
@@ -30,14 +30,7 @@ public class Controller implements ActionListener {
     private MainWindow getView() {
         return view;
     }
+  
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        System.out.println("");
-        System.out.println("Incoming event from: " + e.getSource().getClass().getSimpleName());
-        System.out.println("Action command:      " + e.getActionCommand());
-        System.out.println("Parameter string:    " + e.paramString());
-        
-        }
+
     }
