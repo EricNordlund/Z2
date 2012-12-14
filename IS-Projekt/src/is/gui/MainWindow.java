@@ -14,7 +14,6 @@ import is.projekt.Model;
 public class MainWindow extends javax.swing.JFrame {
 
     Model model;
-    Controller listener;
     CustomerFrame customerFrame;
     BoatFrame boatFrame;
     OrderFrame orderFrame;
@@ -23,6 +22,8 @@ public class MainWindow extends javax.swing.JFrame {
 
 
         initComponents();
+        
+        initFrames();
 
         this.setLocationRelativeTo(null);
     }
@@ -32,6 +33,33 @@ public class MainWindow extends javax.swing.JFrame {
         return model;
 
     }
+    
+    
+/**
+ * Registers the Controller in all JButtons.
+ * @param controller 
+ */
+    public void addControllerToComponents(Controller controller) {
+
+    btnAddBoat.addActionListener(controller);
+    btnAddCustomer.addActionListener(controller);
+    btnAddOrder.addActionListener(controller);
+    btnEditBoat.addActionListener(controller);
+    btnEditCustomer.addActionListener(controller);
+    btnEditOrder.addActionListener(controller);
+    btnOrderSearch.addActionListener(controller);
+    btnSearchBoat.addActionListener(controller);
+    btnSearchCustomer.addActionListener(controller);
+    btnShowBoat.addActionListener(controller);
+    btnShowCustomer.addActionListener(controller);
+    btnShowOrder.addActionListener(controller);
+    
+    customerFrame.addControllerToComponents(controller);
+    boatFrame.addControllerToComponents(controller);
+    orderFrame.addControllerToComponents(controller);
+           
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -74,6 +102,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnOrderSearch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Seghel & Bååth");
 
         tabbedPaneMainWindow.setName("asdds"); // NOI18N
 
@@ -89,6 +118,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
 
         btnShowCustomer.setText("Visa");
+        btnShowCustomer.setActionCommand("showCustomer");
         btnShowCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowCustomerActionPerformed(evt);
@@ -438,14 +468,19 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initFrames(){
+        
+    customerFrame = new CustomerFrame();
+    boatFrame = new BoatFrame();
+    orderFrame = new OrderFrame();
+    
+    }
+    
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
-
-        customerFrame = new CustomerFrame(this, GUIMode.ADD);// TODO add your handling code here:
-        customerFrame.setVisible(true);
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void txtSearchBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchBoatActionPerformed
@@ -508,8 +543,4 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearchBoat;
     private javax.swing.JTextField txtSearchCustomer;
     // End of variables declaration//GEN-END:variables
-
-    public void setListener(Controller aThis) {
-        this.listener = aThis;
-    }
 }

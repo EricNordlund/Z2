@@ -1,4 +1,3 @@
-
 package is.controller;
 
 import is.gui.MainWindow;
@@ -6,40 +5,39 @@ import is.projekt.Model;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 /**
  * This class handles input from the user interface to the model.
+ *
  * @param mainWindow The user interface.
  * @param model The model.
  */
 public class Controller implements ActionListener {
 
-    private MainWindow mainWindow;
+    private MainWindow view;
     private Model model;
 
-    public Controller (Model model, MainWindow view) {
-        
+    public Controller(Model model, MainWindow view) {
+
         this.model = model;
-        this.mainWindow = view;
-        mainWindow.setListener(this);
-        
+        this.view = view;
+
     }
 
-    public Model getModel() {
+    private Model getModel() {
         return model;
     }
 
-    public MainWindow getMainWindow() {
-        return mainWindow;
-    }
-
-    public void setMainWindow(MainWindow mainWindow) {
-        this.mainWindow = mainWindow;
+    private MainWindow getView() {
+        return view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        System.out.println("");
+        System.out.println("Incoming event from: " + e.getSource().getClass().getSimpleName());
+        System.out.println("Action command:      " + e.getActionCommand());
+        System.out.println("Parameter string:    " + e.paramString());
+        
+        }
     }
-    
-}

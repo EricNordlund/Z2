@@ -4,6 +4,8 @@
  */
 package is.gui;
 
+import is.controller.Controller;
+
 /**
  *
  * @author svalan
@@ -14,7 +16,9 @@ public class BoatFrame extends javax.swing.JFrame {
      * Creates new form EditBoat
      */
     public BoatFrame() {
+        
         initComponents();
+        
     }
 
     /**
@@ -41,6 +45,10 @@ public class BoatFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    void addControllerToComponents(Controller controller) {
+       
+    }
 
     /**
      * @param args the command line arguments

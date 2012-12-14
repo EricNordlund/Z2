@@ -15,14 +15,9 @@ public class OrderFrame extends javax.swing.JFrame {
     /**
      * Creates new form OrderFrame
      */
-    public OrderFrame(Controller controller, GUIMode mode) {
-        
-        
+    OrderFrame() {
         
         initComponents();
-        
-        
-        
     }
 
     /**
@@ -76,11 +71,14 @@ public class OrderFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOK;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPanelOrderRows;
     private javax.swing.JList lstOrderRows;
     // End of variables declaration//GEN-END:variables
+
+    void addControllerToComponents(Controller controller) {
+
+    }
 }

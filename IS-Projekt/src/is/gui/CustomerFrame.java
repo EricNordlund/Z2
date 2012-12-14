@@ -4,7 +4,7 @@
  */
 package is.gui;
 
-import is.projekt.Model;
+import is.controller.Controller;
 
 /**
  *
@@ -12,29 +12,12 @@ import is.projekt.Model;
  */
 public class CustomerFrame extends javax.swing.JFrame {
 
-    private MainWindow parentFrame;
-
-    public CustomerFrame(MainWindow parentFrame, GUIMode mode) {
-
-        this.parentFrame = parentFrame;
-
+    public CustomerFrame() {
+        
         initComponents();
 
-        this.setLocationRelativeTo(null);
-
-        if (mode == GUIMode.ADD) {
-            
-            this.setTitle("Lägg till kund.");
-            
-
-        }
     }
     
-  
-    private MainWindow getParentFrame(){
-        
-        return parentFrame;
-    }
     
  
     
@@ -241,4 +224,10 @@ public class CustomerFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtCustomerPostCode;
     private javax.swing.JTextField txtCustomerStreet;
     // End of variables declaration//GEN-END:variables
+
+    void addControllerToComponents(Controller controller) {
+        
+        btnSave.addActionListener(controller);
+
+    }
 }
