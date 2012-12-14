@@ -10,6 +10,7 @@ public class Customer {
     private String phoneNumber;
     private String eMail;
     private ArrayList<Order> orderList;
+    
 
     public Customer(int customerNumber) {
 
@@ -29,6 +30,8 @@ public class Customer {
         return name;
     }
 
+    
+    //Setters
     public void setName(String name) {
         this.name = name;
     }
@@ -41,13 +44,15 @@ public class Customer {
         this.address = address;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    
+    
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    
 
     public String geteMail() {
         return eMail;

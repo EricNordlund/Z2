@@ -10,7 +10,7 @@ import java.util.List;
  */
 public abstract class Order {
 
-    private int idNumber;
+    private int orderID;
     private Date billingDate;
     private Address billingAddress;
     private List<OrderRow> orderRows = new ArrayList();
@@ -23,7 +23,7 @@ public abstract class Order {
      * @param billingAddress Our own address class.
      */
     public Order(int idNumber) {
-        this.idNumber = idNumber;
+        this.orderID = idNumber;
 
     }
 
@@ -56,7 +56,7 @@ public abstract class Order {
 
 
     public void setIdNumber(int idNumber) {
-        this.idNumber = idNumber;
+        this.orderID = idNumber;
     }
 
     public void setBillingDate(Date billingDate) {
@@ -64,7 +64,7 @@ public abstract class Order {
     }
 
     public int getIdNumber() {
-        return idNumber;
+        return orderID;
     }
 
     public Date getBillingDate() {
