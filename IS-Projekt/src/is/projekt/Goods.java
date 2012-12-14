@@ -5,8 +5,7 @@
 package is.projekt;
 
 /**
- *
- * @author svalan
+ * En klass som representerar likformiga varor som tillbehör och reservdelar.
  */
 public class Goods extends Product{
     

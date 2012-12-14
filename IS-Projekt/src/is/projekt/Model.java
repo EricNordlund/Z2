@@ -4,39 +4,34 @@
  */
 package is.projekt;
 
+import java.io.Serializable;
+import java.util.HashMap;
+
 /**
  *
  * @author svalan
  */
-public class Model {
+public class Model implements Serializable {
     
-    private OrderRegistry orderRegistry = new OrderRegistry();
-    private CustomerRegistry customerRegistry = new CustomerRegistry();
-    private BoatRegistry boatRegistry = new BoatRegistry();
+    private HashMap <Integer, Order>     orderRegistry    = new HashMap<>();
+    private HashMap <Integer, Customer>  customerRegistry = new HashMap<>();
+    private HashMap <Integer, Boat>      boatRegistry     = new HashMap<>();
+    private HashMap <Integer, Goods>     goodsRegistry    = new HashMap<>();
 
-    public OrderRegistry getOrderRegistry() {
+    public HashMap<Integer, Order> getOrderRegistry() {
         return orderRegistry;
     }
 
-    public void setOrderRegistry(OrderRegistry orderRegistry) {
-        this.orderRegistry = orderRegistry;
-    }
-
-    public CustomerRegistry getCustomerRegistry() {
+    public HashMap<Integer, Customer> getCustomerRegistry() {
         return customerRegistry;
     }
 
-    public void setCustomerRegistry(CustomerRegistry customerRegistry) {
-        this.customerRegistry = customerRegistry;
-    }
-
-    public BoatRegistry getBoatRegistry() {
+    public HashMap<Integer, Boat> getBoatRegistry() {
         return boatRegistry;
     }
 
-    public void setBoatRegistry(BoatRegistry boatRegistry) {
-        this.boatRegistry = boatRegistry;
+    public HashMap<Integer, Goods> getGoodsRegistry() {
+        return goodsRegistry;
     }
-    
-    
+ 
 }
