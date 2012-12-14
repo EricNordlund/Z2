@@ -11,6 +11,8 @@ import is.controller.Controller;
  * @author svalan
  */
 public class BoatFrame extends javax.swing.JFrame {
+    
+    Controller controller;
 
     /**
      * Creates new form EditBoat
@@ -20,6 +22,8 @@ public class BoatFrame extends javax.swing.JFrame {
         initComponents();
         
     }
+    
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +52,10 @@ public class BoatFrame extends javax.swing.JFrame {
 
     void addControllerToComponents(Controller controller) {
        
+    }
+
+    void setController(Controller controller) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     /**

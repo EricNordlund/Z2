@@ -5,7 +5,6 @@
 package is.gui;
 
 import is.controller.Controller;
-import is.projekt.Model;
 
 /**
  *
@@ -13,12 +12,13 @@ import is.projekt.Model;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    Model model;
+
     CustomerFrame customerFrame;
     BoatFrame boatFrame;
     OrderFrame orderFrame;
+    Controller controller;
 
-    public MainWindow(Model model) {
+    public MainWindow() {
 
 
         initComponents();
@@ -27,39 +27,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null);
     }
-
-    public Model getModel() {
-
-        return model;
-
-    }
-    
-    
-/**
- * Registers the Controller in all JButtons.
- * @param controller 
- */
-    public void addControllerToComponents(Controller controller) {
-
-    btnAddBoat.addActionListener(controller);
-    btnAddCustomer.addActionListener(controller);
-    btnAddOrder.addActionListener(controller);
-    btnEditBoat.addActionListener(controller);
-    btnEditCustomer.addActionListener(controller);
-    btnEditOrder.addActionListener(controller);
-    btnOrderSearch.addActionListener(controller);
-    btnSearchBoat.addActionListener(controller);
-    btnSearchCustomer.addActionListener(controller);
-    btnShowBoat.addActionListener(controller);
-    btnShowCustomer.addActionListener(controller);
-    btnShowOrder.addActionListener(controller);
-    
-    customerFrame.addControllerToComponents(controller);
-    boatFrame.addControllerToComponents(controller);
-    orderFrame.addControllerToComponents(controller);
-           
-    }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -474,6 +441,15 @@ public class MainWindow extends javax.swing.JFrame {
     boatFrame = new BoatFrame();
     orderFrame = new OrderFrame();
     
+    }
+    
+    private void setController(Controller controller){
+        
+        this.controller = controller;
+        customerFrame.setController(controller);
+        boatFrame.setController(controller);
+        orderFrame.setController(controller);
+        
     }
     
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed

@@ -81,4 +81,8 @@ public class OrderFrame extends javax.swing.JFrame {
     void addControllerToComponents(Controller controller) {
 
     }
+
+    void setController(Controller controller) {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }
