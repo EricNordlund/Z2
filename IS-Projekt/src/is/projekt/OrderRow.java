@@ -1,5 +1,5 @@
 package is.projekt;
-
+ 
 public class OrderRow {
 
     private double price;
