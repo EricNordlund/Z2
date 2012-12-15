@@ -4,13 +4,14 @@ import is.gui.MainWindow;
 import is.projekt.Address;
 import is.projekt.Customer;
 import is.projekt.Model;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
-
 
 /**
  * This class handles input from the user interface to the model.
@@ -40,43 +41,60 @@ public class Controller implements DataInterface {
 
     @Override
     public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-        System.out.println ("Creating customer " + name);
+        System.out.println("Creating customer " + name);
         Address address = new Address(addressStreet, addressPostCode, addressCity);
-        Customer c = new Customer (name, eMail, phoneNumber, address);
+        Customer c = new Customer(name, eMail, phoneNumber, address);
         getModel().addCustomer(c);
-        getView().UpdateLists();
     }
 
     @Override
-    public void editCustomer(String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail) {
+    public void editCustomer(Integer customerID, String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List getCustomer(Integer customerID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public ArrayList<String> getCustomerData(Integer customerID) {
+
+        ArrayList<String> customerData = getModel().getCustomerRegistry().get(customerID).getDataAsList();
+
+        return customerData;
+
     }
 
     @Override
     public void removeCustomer(Integer customerID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    /**
+     * Denna metod returnerar en DefaultListModel som håller värden från
+     * den HashMap som lagrar kunderna. En DefaultListModel kan användas av 
+     * en JList.
+     * @param it En iterator går igenom samtliga objekt i HashMap för kunderna.
+     * @param e Ett objekt som plockas fram ur HashMap som innehåller nyckeln
+     * och kundobjektet.
+     * 
+     * 
+     */
     @Override
     public DefaultListModel getCustomerListModel() {
-        
+
         DefaultListModel lm = new DefaultListModel();
-        
+
         HashMap<Integer, Customer> hm = getModel().getCustomerRegistry();
-        
+
         Iterator it = hm.entrySet().iterator();
-        
+
         while (it.hasNext()) {
+
+            Map.Entry<Integer, Customer> e = (Map.Entry<Integer, Customer>) it.next();
             
-            Map.Entry<Integer, Customer> entry = (Map.Entry<Integer, Customer>) it.next();
-            lm.addElement(entry.getValue().getName());       
+            ListItem item = new ListItem(e.getKey(), e.getValue().toString());
+                    
+            lm.addElement(item);
+            
         }
-        
+
         return lm;
     }
 
@@ -139,7 +157,4 @@ public class Controller implements DataInterface {
     public void removeGoods(Integer goodsID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-
-
-    }
+}

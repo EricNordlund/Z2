@@ -2,10 +2,10 @@
 package is.controller;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 
 /**
  * Interface som kontrollerar alla in och ut-metoder mellan controller och model.
@@ -14,9 +14,9 @@ import javax.swing.ListModel;
 public interface DataInterface 
 {
     
-    public abstract void addCustomer(String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail);
-    public abstract void editCustomer(String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail);
-    public abstract List getCustomer(Integer customerID);
+    public abstract void addCustomer(String name, String addressStreet, String adressLn2, String adressLn3, String phoneNumber, String eMail);
+    public abstract void editCustomer(Integer customerID, String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail);
+    public abstract ArrayList<String> getCustomerData(Integer customerID);
     public abstract void removeCustomer(Integer customerID);
     public abstract DefaultListModel getCustomerListModel();
     

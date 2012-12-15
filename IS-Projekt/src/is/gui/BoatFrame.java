@@ -11,15 +11,18 @@ import is.controller.Controller;
  * @author svalan
  */
 public class BoatFrame extends javax.swing.JFrame {
-    
+   
+    MainWindow parent;
     Controller controller;
 
     /**
      * Creates new form EditBoat
      */
-    public BoatFrame() {
+    public BoatFrame(MainWindow parent) {
         
         initComponents();
+        
+        this.parent = parent;
         
     }
     

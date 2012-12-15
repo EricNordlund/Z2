@@ -6,15 +6,15 @@ public class Customer {
 
     private String name;
     private Address address;
-    private String phoneNumber;
-    private String eMail;
+    private String phone;
+    private String mail;
     private ArrayList<Order> orderList;
 
-    public Customer(String name, String eMail, String phoneNumber, Address address) {
+    public Customer(String name, String eMail, String phone, Address address) {
 
         this.name = name;
-        this.eMail = eMail;
-        this.phoneNumber = phoneNumber;
+        this.mail = eMail;
+        this.phone = phone;
         this.address = address;
     }
 
@@ -43,20 +43,20 @@ public class Customer {
         this.address = address;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getMail() {
+        return mail;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public void addOrder(Order order) {
@@ -66,5 +66,29 @@ public class Customer {
     public void removeOrder(Order order) {
 
         getOrderList().remove(order);
+    }
+    
+    public ArrayList<String> getDataAsList(){
+        
+        ArrayList<String> l = new ArrayList<>();
+        
+        l.add(getName());
+        l.add(getPhone());
+        l.add(getMail());
+        l.add(getAddress().getStreetName());
+        l.add(getAddress().getPostCode());
+        l.add(getAddress().getCity());
+        
+        
+        return l;
+        
+    }
+    
+    
+    @Override
+    public String toString(){
+        
+        return getName() + " (" + getMail() + ")";
+          
     }
 }

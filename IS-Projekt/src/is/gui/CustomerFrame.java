@@ -7,6 +7,7 @@ package is.gui;
 import is.controller.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,16 +16,23 @@ import java.awt.event.ActionListener;
 public class CustomerFrame extends javax.swing.JFrame implements ActionListener {
 
     private Controller controller;
+    private MainWindow parent;
+    private int customerKey;
+    private boolean newCustomer;
 
-    public CustomerFrame() {
+    public CustomerFrame(MainWindow parent) {
 
         initComponents();
 
         addActionListenerToButtons();
         
+        this.parent = parent;
+        
         this.setLocationRelativeTo(null);
 
     }
+
+
 
     public void setController(Controller controller) {
 
@@ -250,6 +258,8 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
         System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
 
         if (e.getSource() == this.btnSave) {
+            
+            if (newCustomer){
 
             getController().addCustomer(
                     this.txtCustomerName.getText(),
@@ -258,6 +268,19 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
                     this.txtCustomerCity.getText(),
                     this.txtCustomerPhone.getText(),
                     this.txtCustomerMail.getText());
+            }
+            else{
+            getController().editCustomer(
+                    this.customerKey,
+                    this.txtCustomerName.getText(),
+                    this.txtCustomerStreet.getText(),
+                    this.txtCustomerPostCode.getText(),
+                    this.txtCustomerCity.getText(),
+                    this.txtCustomerPhone.getText(),
+                    this.txtCustomerMail.getText());
+            }
+            
+            parent.updateLists();
 
             this.setVisible(false);
         }
@@ -268,5 +291,19 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
         }
 
+    }
+
+    void fillTextBoxes(ArrayList<String> customerData) {
+        this.txtCustomerName.setText(customerData.get(0));        
+        this.txtCustomerStreet.setText(customerData.get(1));
+        this.txtCustomerPostCode.setText(customerData.get(2));
+        this.txtCustomerCity.setText(customerData.get(3));
+        this.txtCustomerPhone.setText(customerData.get(4));
+        this.txtCustomerMail.setText(customerData.get(5));
+    }
+
+    void setCustomerKey(Integer key) {
+        this.customerKey = key;
+        this.txtCustomerNumber.setText(Integer.toString(key));
     }
 }
