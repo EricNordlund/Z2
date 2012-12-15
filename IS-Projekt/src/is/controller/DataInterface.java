@@ -4,10 +4,12 @@ package is.controller;
 
 import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  * Interface som kontrollerar alla in och ut-metoder mellan controller och model.
- * @author Lärkan, Svalan och Thernan
+ * @author Lärkan, Svalan och Thernan och Tratten och Finken
  */
 public interface DataInterface 
 {
@@ -16,6 +18,7 @@ public interface DataInterface
     public abstract void editCustomer(String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail);
     public abstract List getCustomer(Integer customerID);
     public abstract void removeCustomer(Integer customerID);
+    public abstract DefaultListModel getCustomerListModel();
     
     public abstract void addBoat(String regnr, String model, String location, String priceInfo, String description);
     public abstract void editBoat(String regnr, String model, String location, String priceInfo, String description);

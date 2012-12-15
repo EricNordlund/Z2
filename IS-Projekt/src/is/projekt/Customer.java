@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class Customer {
 
-    private final int customerNumber;
     private String name;
     private Address address;
     private String phoneNumber;
     private String eMail;
     private ArrayList<Order> orderList;
-    
 
-    public Customer(int customerNumber) {
+    public Customer(String name, String eMail, String phoneNumber, Address address) {
 
-        this.customerNumber = customerNumber;
-
+        this.name = name;
+        this.eMail = eMail;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     public ArrayList<Order> getOrderList() {
@@ -30,7 +30,6 @@ public class Customer {
         return name;
     }
 
-    
     //Setters
     public void setName(String name) {
         this.name = name;
@@ -47,12 +46,10 @@ public class Customer {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
-    
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
-    
 
     public String geteMail() {
         return eMail;
@@ -60,14 +57,6 @@ public class Customer {
 
     public void seteMail(String eMail) {
         this.eMail = eMail;
-    }
-
-    public int getCustomerNumber() {
-        return customerNumber;
-    }
-
-    public String customerNumberString() {
-        return Integer.toString(getCustomerNumber());
     }
 
     public void addOrder(Order order) {

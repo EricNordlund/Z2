@@ -5,37 +5,41 @@
 package is.projekt;
 
 /**
- *
- * @author svalan
+ * Klassen saknar setmetoder. Vill man ändra en address skapar man en ny och skriver över den gamla.
+ * 
+ * @param street Gatuadress inklusive jus/lägenehetsnummer.
+ * @param postCode Postnummer.
+ * @param city Stad.
+ * 
+ * @author Viktor Voigt
+ * @author Eric Nordlund
+ * @author Anna Thernfrid
  */
 public class Address {
+    
+    private String street;
+    private String postCode;
+    private String city;
+    
+
+    public Address(String street, String postCode, String city) {
+        this.street = street;
+        this.postCode = postCode;
+        this.city = city;
+    }
 
     public String getStreetName() {
-        return streetName;
+        return street;
     }
-
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
-    }
-
+    
     public String getPostCode() {
         return postCode;
-    }
-
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
     
-    private String streetName;
-    private String postCode;
-    private String city;
-    
+ 
 }

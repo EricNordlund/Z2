@@ -5,25 +5,34 @@
 package is.gui;
 
 import is.controller.Controller;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
 
 /**
  *
  * @author svalan
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
-
-    CustomerFrame customerFrame;
-    BoatFrame boatFrame;
-    OrderFrame orderFrame;
     Controller controller;
+    CustomerFrame customerFrame;
+    DefaultListModel customerListModel;
+    BoatFrame boatFrame;
+    DefaultListModel boatListModel;
+    OrderFrame orderFrame;
+    DefaultListModel orderListModel;
 
     public MainWindow() {
 
 
         initComponents();
-        
+
         initFrames();
+
+        setListModels();
+        
+        addActionListenerToButtons();
 
         this.setLocationRelativeTo(null);
     }
@@ -435,25 +444,55 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initFrames(){
-        
-    customerFrame = new CustomerFrame();
-    boatFrame = new BoatFrame();
-    orderFrame = new OrderFrame();
-    
+    private void initFrames() {
+
+        customerFrame = new CustomerFrame();
+        boatFrame = new BoatFrame();
+        orderFrame = new OrderFrame();
+
     }
-    
-    private void setController(Controller controller){
-        
+
+    private void setListModels() {
+
+        this.boatListModel = new DefaultListModel();
+        this.customerListModel = new DefaultListModel();
+        this.orderListModel = new DefaultListModel();
+
+        this.lstBoats.setModel(boatListModel);
+        this.lstCustomer.setModel(customerListModel);
+        this.lstOrders.setModel(orderListModel);
+    }
+
+    public void setController(Controller controller) {
+
         this.controller = controller;
         customerFrame.setController(controller);
         boatFrame.setController(controller);
         orderFrame.setController(controller);
+
+    }
+
+    private Controller getController() {
+
+        return controller;
+
+    }
+
+    public void UpdateLists() {
+
+        System.out.println("Updating JLists.");
+        customerListModel = getController().getCustomerListModel();
+        this.lstCustomer.setModel(customerListModel);
         
+
     }
     
+    private void addActionListenerToButtons() {
+        this.btnAddCustomer.addActionListener(this);
+        this.btnAddOrder.addActionListener(this);
+    }
+
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
-        
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
@@ -519,4 +558,18 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearchBoat;
     private javax.swing.JTextField txtSearchCustomer;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
+
+        if (e.getSource() == this.btnAddCustomer) {
+            customerFrame.clearTextFields();
+            customerFrame.setTitle("Lägg till kund");
+            customerFrame.setVisible(true);
+        }
+
+    }
+
+
 }

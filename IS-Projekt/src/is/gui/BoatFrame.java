@@ -55,7 +55,7 @@ public class BoatFrame extends javax.swing.JFrame {
     }
 
     void setController(Controller controller) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        this.controller = controller;
     }
 
     /**

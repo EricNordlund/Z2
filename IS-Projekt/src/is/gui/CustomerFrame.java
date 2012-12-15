@@ -13,18 +13,45 @@ import java.awt.event.ActionListener;
  * @author svalan
  */
 public class CustomerFrame extends javax.swing.JFrame implements ActionListener {
-    
-    Controller controller;
+
+    private Controller controller;
 
     public CustomerFrame() {
-        
+
         initComponents();
 
-    }
-    
-        void setController(Controller controller) {
+        addActionListenerToButtons();
         
+        this.setLocationRelativeTo(null);
+
+    }
+
+    public void setController(Controller controller) {
+
         this.controller = controller;
+    }
+
+    private Controller getController() {
+
+        return controller;
+    }
+
+    private void addActionListenerToButtons() {
+        this.btnSave.addActionListener(this);
+        this.btnCancel.addActionListener(this);
+    }
+
+    public void clearTextFields() {
+
+
+        this.txtCustomerName.setText("");
+        this.txtCustomerPhone.setText("");
+        this.txtCustomerMail.setText("");
+        this.txtCustomerStreet.setText("");
+        this.txtCustomerPostCode.setText("");
+        this.txtCustomerCity.setText("");
+
+
     }
 
     @SuppressWarnings("unchecked")
@@ -191,18 +218,12 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     }//GEN-LAST:event_txtCustomerNumberActionPerformed
 
     private void txtCustomerPostCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerPostCodeActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtCustomerPostCodeActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        
-
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
-
-        
     }//GEN-LAST:event_btnSaveActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
@@ -224,11 +245,28 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     private javax.swing.JTextField txtCustomerStreet;
     // End of variables declaration//GEN-END:variables
 
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
+
+        if (e.getSource() == this.btnSave) {
+
+            getController().addCustomer(
+                    this.txtCustomerName.getText(),
+                    this.txtCustomerStreet.getText(),
+                    this.txtCustomerPostCode.getText(),
+                    this.txtCustomerCity.getText(),
+                    this.txtCustomerPhone.getText(),
+                    this.txtCustomerMail.getText());
+
+            this.setVisible(false);
+        }
+
+        if (e.getSource() == this.btnCancel) {
+
+            this.setVisible(false);
+
+        }
+
     }
 }

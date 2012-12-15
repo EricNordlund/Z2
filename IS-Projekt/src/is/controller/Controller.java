@@ -1,11 +1,16 @@
 package is.controller;
 
 import is.gui.MainWindow;
+import is.projekt.Address;
+import is.projekt.Customer;
 import is.projekt.Model;
-import java.awt.event.ActionEvent;  
-import java.awt.event.ActionListener;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+
 
 /**
  * This class handles input from the user interface to the model.
@@ -34,8 +39,12 @@ public class Controller implements DataInterface {
     }
 
     @Override
-    public void addCustomer(String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
+        System.out.println ("Creating customer " + name);
+        Address address = new Address(addressStreet, addressPostCode, addressCity);
+        Customer c = new Customer (name, eMail, phoneNumber, address);
+        getModel().addCustomer(c);
+        getView().UpdateLists();
     }
 
     @Override
@@ -51,6 +60,24 @@ public class Controller implements DataInterface {
     @Override
     public void removeCustomer(Integer customerID) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    @Override
+    public DefaultListModel getCustomerListModel() {
+        
+        DefaultListModel lm = new DefaultListModel();
+        
+        HashMap<Integer, Customer> hm = getModel().getCustomerRegistry();
+        
+        Iterator it = hm.entrySet().iterator();
+        
+        while (it.hasNext()) {
+            
+            Map.Entry<Integer, Customer> entry = (Map.Entry<Integer, Customer>) it.next();
+            lm.addElement(entry.getValue().getName());       
+        }
+        
+        return lm;
     }
 
     @Override
@@ -113,8 +140,6 @@ public class Controller implements DataInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-   
-  
 
 
     }
