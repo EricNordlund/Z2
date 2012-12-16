@@ -3,15 +3,16 @@ package is.controller;
 import is.gui.MainWindow;
 import is.projekt.Address;
 import is.projekt.Customer;
+import is.projekt.Goods;
 import is.projekt.Model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  * This class handles input from the user interface to the model.
@@ -19,15 +20,13 @@ import javax.swing.DefaultListModel;
  * @param mainWindow The user interface.
  * @param model The model.
  */
-public class Controller implements DataInterface {
+public class Controller implements ControllerInterface {
 
-    private MainWindow view;
     private Model model;
 
-    public Controller(Model model, MainWindow view) {
+    public Controller(Model model) {
 
         this.model = model;
-        this.view = view;
 
     }
 
@@ -35,21 +34,27 @@ public class Controller implements DataInterface {
         return model;
     }
 
-    private MainWindow getView() {
-        return view;
-    }
+
+
 
     @Override
     public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-        System.out.println("Creating customer " + name);
+        
         Address address = new Address(addressStreet, addressPostCode, addressCity);
         Customer c = new Customer(name, eMail, phoneNumber, address);
         getModel().addCustomer(c);
+        
+        System.out.println("Adding customer " + c.toString() + ".");
     }
 
     @Override
-    public void editCustomer(Integer customerID, String name, String adressLn1, String adressLn2, String adressLn3, String phoneNumber, String eMail) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void editCustomer(Integer customerID, String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
+        
+        Address address = new Address(addressStreet, addressPostCode, addressCity);
+        Customer c = new Customer(name, eMail, phoneNumber, address);
+        getModel().editCustomer(customerID, c);
+        
+        System.out.println("Editing customer " + c.toString() + ".");
     }
 
     @Override
@@ -128,20 +133,14 @@ public class Controller implements DataInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public List getOrder(Integer orderID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+       
 
     @Override
     public void removeOrder(Integer orderID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void addGoods(Double price, String description, String productNr) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+
 
     @Override
     public void editGoods(Double price, String description, String productNr) {
@@ -149,12 +148,35 @@ public class Controller implements DataInterface {
     }
 
     @Override
-    public List getGoods(Integer goodsID) {
+    public void removeGoods(Integer goodsID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void removeGoods(Integer goodsID) {
+    public List<String> getOrderData(Integer orderID) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ListModel getOrderRowsListModel(Integer orderID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<String> getGoodsData(Integer goodsID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ListModel getGoodsListModel() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void addGoods(String name, Double price, String description) {
+       
+       Goods g = new Goods(name, price, description);
+       getModel().addGoods(g);
+       System.out.println("Adding goods " + g.toString() + ".");
     }
 }

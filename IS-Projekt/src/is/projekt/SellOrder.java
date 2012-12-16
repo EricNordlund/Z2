@@ -8,9 +8,8 @@ public class SellOrder extends Order {
     
     /*Calls constructor in superclass. Read documantation there.
      */
-    public SellOrder(int idNumber) {
-        
-        super(idNumber);
+    public SellOrder() {
+     
     }
     
 }

@@ -100,6 +100,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        txtOrderNr.setEditable(false);
         txtOrderNr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtOrderNrActionPerformed(evt);

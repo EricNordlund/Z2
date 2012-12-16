@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
+ * Först konstruktor, sist autogenrerad kod.
  *
  * @author svalan
  */
@@ -22,17 +23,15 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
     public CustomerFrame(MainWindow parent) {
 
-        initComponents();
+        initComponents();//Autogenererad metod
 
         addActionListenerToButtons();
-        
+
         this.parent = parent;
-        
+
         this.setLocationRelativeTo(null);
 
     }
-
-
 
     public void setController(Controller controller) {
 
@@ -42,16 +41,17 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     private Controller getController() {
 
         return controller;
-    }
+    }//Metod
 
     private void addActionListenerToButtons() {
         this.btnSave.addActionListener(this);
         this.btnCancel.addActionListener(this);
-    }
+    }//Metod
 
     public void clearTextFields() {
 
 
+        this.txtCustomerNumber.setText("");
         this.txtCustomerName.setText("");
         this.txtCustomerPhone.setText("");
         this.txtCustomerMail.setText("");
@@ -60,6 +60,64 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
         this.txtCustomerCity.setText("");
 
 
+    }//Metod
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
+
+        if (e.getSource() == this.btnSave) {
+
+            if (newCustomer) {
+
+                getController().addCustomer(
+                        this.txtCustomerName.getText(),
+                        this.txtCustomerStreet.getText(),
+                        this.txtCustomerPostCode.getText(),
+                        this.txtCustomerCity.getText(),
+                        this.txtCustomerPhone.getText(),
+                        this.txtCustomerMail.getText());
+            } else {
+                getController().editCustomer(
+                        this.customerKey,
+                        this.txtCustomerName.getText(),
+                        this.txtCustomerStreet.getText(),
+                        this.txtCustomerPostCode.getText(),
+                        this.txtCustomerCity.getText(),
+                        this.txtCustomerPhone.getText(),
+                        this.txtCustomerMail.getText());
+            }//else
+
+            parent.updateLists();
+
+            this.setVisible(false);
+        }//if e.getSource() == this.btnSave
+
+        if (e.getSource() == this.btnCancel) {
+
+            this.setVisible(false);
+
+        }//if e.getSource() == this.btnCancel
+
+    }
+
+    void fillTextBoxes(ArrayList<String> customerData) {
+        this.txtCustomerName.setText(customerData.get(0));
+        this.txtCustomerPhone.setText(customerData.get(1));
+        this.txtCustomerMail.setText(customerData.get(2));
+        this.txtCustomerStreet.setText(customerData.get(3));
+        this.txtCustomerPostCode.setText(customerData.get(4));
+        this.txtCustomerCity.setText(customerData.get(5));
+
+    }
+
+    void setCustomerKey(Integer key) {
+        this.customerKey = key;
+        this.txtCustomerNumber.setText(Integer.toString(key));
+    }
+
+    void setNewCustomer(boolean b) {
+        this.newCustomer = b;
     }
 
     @SuppressWarnings("unchecked")
@@ -252,58 +310,4 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     private javax.swing.JTextField txtCustomerPostCode;
     private javax.swing.JTextField txtCustomerStreet;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
-
-        if (e.getSource() == this.btnSave) {
-            
-            if (newCustomer){
-
-            getController().addCustomer(
-                    this.txtCustomerName.getText(),
-                    this.txtCustomerStreet.getText(),
-                    this.txtCustomerPostCode.getText(),
-                    this.txtCustomerCity.getText(),
-                    this.txtCustomerPhone.getText(),
-                    this.txtCustomerMail.getText());
-            }
-            else{
-            getController().editCustomer(
-                    this.customerKey,
-                    this.txtCustomerName.getText(),
-                    this.txtCustomerStreet.getText(),
-                    this.txtCustomerPostCode.getText(),
-                    this.txtCustomerCity.getText(),
-                    this.txtCustomerPhone.getText(),
-                    this.txtCustomerMail.getText());
-            }
-            
-            parent.updateLists();
-
-            this.setVisible(false);
-        }
-
-        if (e.getSource() == this.btnCancel) {
-
-            this.setVisible(false);
-
-        }
-
-    }
-
-    void fillTextBoxes(ArrayList<String> customerData) {
-        this.txtCustomerName.setText(customerData.get(0));        
-        this.txtCustomerStreet.setText(customerData.get(1));
-        this.txtCustomerPostCode.setText(customerData.get(2));
-        this.txtCustomerCity.setText(customerData.get(3));
-        this.txtCustomerPhone.setText(customerData.get(4));
-        this.txtCustomerMail.setText(customerData.get(5));
-    }
-
-    void setCustomerKey(Integer key) {
-        this.customerKey = key;
-        this.txtCustomerNumber.setText(Integer.toString(key));
-    }
 }

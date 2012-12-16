@@ -27,10 +27,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         initFrames();
 
-
-
         addActionListenerToButtons();
-
+        
         this.setLocationRelativeTo(null);
     }
 
@@ -466,6 +464,46 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnNewOrder.addActionListener(this);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
+
+        if (e.getSource() == this.btnAddCustomer) {
+            customerFrame.clearTextFields();
+            customerFrame.setNewCustomer(true);
+            customerFrame.setTitle("Lägg till kund");
+            customerFrame.setVisible(true);
+        }
+
+        if (e.getSource() == this.btnEditCustomer) {
+
+            if (this.lstCustomer.getSelectedValue() instanceof ListItem) {
+
+                ListItem li;
+                li = (ListItem) this.lstCustomer.getSelectedValue();
+                
+                this.customerFrame.setNewCustomer(false);
+                this.customerFrame.setCustomerKey(li.getKey());
+                this.customerFrame.fillTextBoxes(getController().getCustomerData(li.getKey()));
+
+                this.customerFrame.setVisible(true);
+            }
+
+            if (e.getSource() == this.btnNewOrder) {
+
+                orderFrame.setTitle("Skapa order");
+                orderFrame.updateList();
+                orderFrame.setVisible(true);
+
+
+            }
+
+
+
+        }
+    }
+
+    //AUTOGENERERAD KOD
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
@@ -523,41 +561,4 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtSearchBoat;
     private javax.swing.JTextField txtSearchCustomer;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
-
-        if (e.getSource() == this.btnAddCustomer) {
-            customerFrame.clearTextFields();
-            customerFrame.setTitle("Lägg till kund");
-            customerFrame.setVisible(true);
-        }
-
-        if (e.getSource() == this.btnEditCustomer) {
-
-            if (this.lstCustomer.getSelectedValue() instanceof ListItem) {
-
-                ListItem li;
-                li = (ListItem) this.lstCustomer.getSelectedValue();
-                
-                this.customerFrame.setCustomerKey(li.getKey());
-                this.customerFrame.fillTextBoxes(getController().getCustomerData(li.getKey()));
-                
-                this.customerFrame.setVisible(true);
-            }
-
-            if (e.getSource() == this.btnNewOrder) {
-
-                orderFrame.setTitle("Skapa order");
-                orderFrame.updateList();
-                orderFrame.setVisible(true);
-
-
-            }
-
-
-
-        }
-    }
 }

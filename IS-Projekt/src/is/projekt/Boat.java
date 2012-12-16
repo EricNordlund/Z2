@@ -1,97 +1,81 @@
-
 package is.projekt;
 
-
 public class Boat extends Product {
-    
+
     //Variabler
     private String regnr;
     private String model;
     private String location;
     private String priceInfo;
     private String description;
-    
-   
     private int boatIdNumber;
-    private String[] dataArray = new String[5];
-    
-    
+
     //Constructor
-    public Boat(int boatIdNumber)
-    {
-        this.boatIdNumber = boatIdNumber;
+    public Boat() {
+        
+        super(50.50, "Båt.");
     }
-    
+
     //Metod för att ändra på båtens data.
-    public void modifyData(String modregnr, String modmodel, String modlocation, String modpriceInfo, String moddescription)
-    {
+    public void modifyData(String modregnr, String modmodel, String modlocation, String modpriceInfo, String moddescription) {
         //Kontrollerar om det har skett en förändrig i den text som är satt.
-        if(modregnr.length() != 0)
-        {
+        if (modregnr.length() != 0) {
             regnr = modregnr;
         }
-        
-        if(modmodel.length() != 0)
-        {
+
+        if (modmodel.length() != 0) {
             model = modmodel;
         }
-        
-        if(modlocation.length() != 0)
-        {
+
+        if (modlocation.length() != 0) {
             location = modlocation;
         }
-        
-        if(modpriceInfo.length() != 0)
-        {
+
+        if (modpriceInfo.length() != 0) {
             priceInfo = modpriceInfo;
         }
-        
-        if(moddescription.length() != 0)
-        {
+
+        if (moddescription.length() != 0) {
             description = moddescription;
         }
     }
-    
+
     //Metoder för att hämta ut data.
-    public String getRegnr()
-    {
+    public String getRegnr() {
         return regnr;
     }
-    
-    public String getModel()
-    {
+
+    public String getModel() {
         return model;
     }
-    
-    public String getLocation()
-    {
+
+    public String getLocation() {
         return location;
     }
-    
-    public String getPriceInfo()
-    {
+
+    public String getPriceInfo() {
         return priceInfo;
     }
-    
-    public String getDescription()
-    {
+
+    public String getDescription() {
         return description;
     }
-    
+
     //Metod för att skapa en array som kan sparas i en databas
-    public String[] createArray()
-    {
-        dataArray[0] = regnr; 
+    public String[] createArray() {
+
+        String[] dataArray = new String[5];
+
+        dataArray[0] = regnr;
         dataArray[1] = model;
         dataArray[2] = location;
         dataArray[3] = priceInfo;
         dataArray[4] = description;
         return dataArray;
     }
-    
+
     //Retunerar båtens regnr.
     public int getBoatNumber() {
         return boatIdNumber;
     }
-    
 }

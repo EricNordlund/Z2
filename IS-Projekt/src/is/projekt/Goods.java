@@ -9,14 +9,20 @@ package is.projekt;
  */
 public class Goods extends Product{
     
-    private String productNr;
-
-    public String getProductNr() {
-        return productNr;
+    private String name;
+    
+    public Goods(String name, double price, String description){
+        
+        super(price, description);
+        this.name = name;
+        
+        
+        
     }
-
-    public void setProductNr(String productNr) {
-        this.productNr = productNr;
+    
+    @Override
+    public String toString(){
+        return name;
     }
     
 }
