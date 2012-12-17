@@ -161,7 +161,7 @@ public class Controller implements ControllerInterface {
        
         Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
         Integer orderID = getRegistry().getNewOrderKey();
-        Customer customerObject = get
+        //Customer customerObject = get
         Order o = new BuyOrder(billingDate, billingAdress, customerID, isBuyOrder, orderID);
         getRegistry().addBuyOrder(o, orderID);
 
