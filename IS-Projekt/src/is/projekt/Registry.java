@@ -65,6 +65,8 @@ public class Registry implements Serializable {
 
 
     }
+    
+    
 
     public void addGoods(Goods g) {
 
