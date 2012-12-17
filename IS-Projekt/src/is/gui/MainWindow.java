@@ -590,6 +590,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         System.out.println("Updating JLists.");
         this.lstCustomer.setModel(getController().getCustomerListModel());
+        this.lstGoods.setModel(getController().getGoodsListModel());
 
 
     }
@@ -599,15 +600,17 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnAddCustomer.addActionListener(this);
         this.btnEditCustomer.addActionListener(this);
         this.btnRemoveCustomer.addActionListener(this);
-        //Order
+        //Order i Customber
         this.btnNewOrder.addActionListener(this);
+        //Boats
+        this.btnAddBoat.addActionListener(this);
+        this.btnEditBoat.addActionListener(this);
+        this.btnRemoveBoat.addActionListener(this);
     }
 
     /**
      * Denna metod hämtar valt ListItem och returnerar den nyckel som finns i
      * objektet.
-     *
-     * @return
      */
     private Integer getSelectedKey(JList jlist) {
 
@@ -655,7 +658,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             } else if (e.getSource() == this.btnNewOrder) {
 
                 orderFrame.setTitle("Skapa order");
-                orderFrame.updateList();
+                orderFrame.setCustomerID(customerID);
+                orderFrame.updateInterface();
+                orderFrame.updateLists();
                 orderFrame.setVisible(true);
 
             }

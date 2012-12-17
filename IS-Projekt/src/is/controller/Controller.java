@@ -2,6 +2,7 @@ package is.controller;
 
 import is.gui.MainWindow;
 import is.projekt.Address;
+import is.projekt.Boat;
 import is.projekt.BuyOrder;
 import is.projekt.Customer;
 import is.projekt.Goods;
@@ -45,7 +46,21 @@ public class Controller implements ControllerInterface {
 
         System.out.println("Adding customer " + c.toString() + ".");
     }
+    //
+ 
+    public void addBoat(String regnr, String model, String location, int boatID, String description, double price){
+        
+        Boat b = new Boat(regnr, model, location, boatID, description, price);
+        getRegistry().addBoat(b);
+        
+        System.out.println("Adding boat " + b.toString() + ".");
+    }
+    public ArrayList<Object> getBoatData(Integer boatID) {
 
+        ArrayList<Object> boatData = getRegistry().getBoatRegistry().get(boatID).getDataAsList();
+
+        return boatData;
+    }
     @Override
     public void editCustomer(Integer customerID, String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
@@ -68,8 +83,8 @@ public class Controller implements ControllerInterface {
     @Override
     public void removeCustomer(Integer customerID) {
         getRegistry().removeCustomer(customerID);
-        
-         System.out.println("Removing customer " + customerID + ".");
+
+        System.out.println("Removing customer " + customerID + ".");
     }
 
     /**
@@ -86,32 +101,20 @@ public class Controller implements ControllerInterface {
     @Override
     public DefaultListModel getCustomerListModel() {
 
-        DefaultListModel lm = new DefaultListModel();
-
         HashMap<Integer, Customer> hm = getRegistry().getCustomerRegistry();
 
-        Iterator it = hm.entrySet().iterator();
-
-        while (it.hasNext()) {
-
-            Map.Entry<Integer, Customer> e = (Map.Entry<Integer, Customer>) it.next();
-
-            ListItem item = new ListItem(e.getKey(), e.getValue().toString());
-
-            lm.addElement(item);
-
-        }
+        DefaultListModel lm = this.createListModel(hm);
 
         return lm;
     }
 
     @Override
-    public void addBoat(String regnr, String model, String location, String priceInfo, String description) {
+    public void addBoat(String regnr, String model, String location, String priceInfo, String description, int boatID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void editBoat(String regnr, String model, String location, String priceInfo, String description) {
+    public void editBoat(String regnr, String model, String location, String priceInfo, String description, int boatID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -125,8 +128,6 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-  
-
     @Override
     public void editGoods(Double price, String description, String productNr) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -137,7 +138,6 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-
     @Override
     public List<String> getGoodsData(Integer goodsID) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -145,7 +145,12 @@ public class Controller implements ControllerInterface {
 
     @Override
     public ListModel getGoodsListModel() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        HashMap<Integer, Goods> hm = getRegistry().getGoodsRegistry();
+
+        DefaultListModel lm = this.createListModel(hm);
+
+        return lm;
     }
 
     @Override
@@ -186,5 +191,40 @@ public class Controller implements ControllerInterface {
     @Override
     public ListModel getBuyOrderRowsListModel(Integer orderID) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    
+    private DefaultListModel createListModel(HashMap hm) {
+
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+
+            Integer key = (Integer) e.getKey();
+
+            String displayString = e.getValue().toString();
+
+            ListItem item = new ListItem(key, displayString);
+
+            lm.addElement(item);
+
+        }
+
+        return lm;
+
+    }
+
+    @Override
+    public ListModel getBoatListModel() {
+        
+        HashMap<Integer, Boat> hm = getRegistry().getBoatRegistry();
+        
+        DefaultListModel lm = this.createListModel(hm);
+
+        return lm;
     }
 }

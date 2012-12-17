@@ -41,13 +41,15 @@ public interface ControllerInterface {
   
     
     //Båthantering
-    public abstract void addBoat(String regnr, String model, String location, String priceInfo, String description);
+    public abstract void addBoat(String regnr, String model, String location, String priceInfo, String description, int boatID);
 
-    public abstract void editBoat(String regnr, String model, String location, String priceInfo, String description);
+    public abstract void editBoat(String regnr, String model, String location, String priceInfo, String description, int boatID);
 
     public abstract List<String> getBoat(Integer boatID);
 
     public abstract void removeBoat(Integer boatID);
+    
+    public abstract ListModel getBoatListModel();
 
     //Varuahantering
     public abstract void addGoods(String name, Double price, String description);
