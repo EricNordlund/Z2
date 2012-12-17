@@ -43,14 +43,14 @@
                           <Component id="txtCustomerMail" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btnSave" min="-2" pref="105" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCancel" min="-2" pref="105" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -137,7 +137,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblCustomerMail">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mail:"/>
+        <Property name="text" type="java.lang.String" value="Email:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -154,18 +154,18 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="lblCustomerPostCode" alignment="0" pref="68" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="lblCustomerCity" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel4" max="32767" attributes="0"/>
+                      <Component id="lblCustomerPostCode" alignment="0" pref="100" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtCustomerPostCode" alignment="0" pref="198" max="32767" attributes="0"/>
-                      <Component id="txtCustomerStreet" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtCustomerCity" alignment="0" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="txtCustomerPostCode" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
+                      <Component id="txtCustomerStreet" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
+                      <Component id="txtCustomerCity" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -182,10 +182,11 @@
                       <Component id="txtCustomerPostCode" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblCustomerCity" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="txtCustomerCity" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblCustomerCity" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="txtCustomerCity" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

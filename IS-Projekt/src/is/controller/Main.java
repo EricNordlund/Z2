@@ -1,13 +1,13 @@
 package is.controller;
 
 import is.gui.MainWindow;
-import is.projekt.Model;
+import is.projekt.Registry;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Model model = new Model();
+        Registry model = new Registry();
 
         Controller controller = new Controller(model);
 

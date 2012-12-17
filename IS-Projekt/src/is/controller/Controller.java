@@ -2,9 +2,11 @@ package is.controller;
 
 import is.gui.MainWindow;
 import is.projekt.Address;
+import is.projekt.BuyOrder;
 import is.projekt.Customer;
 import is.projekt.Goods;
-import is.projekt.Model;
+import is.projekt.Order;
+import is.projekt.Registry;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,15 +24,15 @@ import javax.swing.ListModel;
  */
 public class Controller implements ControllerInterface {
 
-    private Model model;
+    private Registry model;
 
-    public Controller(Model model) {
+    public Controller(Registry model) {
 
         this.model = model;
 
     }
 
-    private Model getModel() {
+    private Registry getModel() {
         return model;
     }
 
@@ -65,7 +67,9 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void removeCustomer(Integer customerID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        getModel().removeCustomer(customerID);
+        
+         System.out.println("Removing customer " + customerID + ".");
     }
 
     /**
@@ -121,20 +125,7 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void addOrder(Date billingDate, String billingAdressLn1, String billingAdressLn2, String billingAdressLn3, List orderRows, String customerID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void editOrder(Date billingDate, String billingAdressLn1, String billingAdressLn2, String billingAdressLn3, List orderRows, String customerID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void removeOrder(Integer orderID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+  
 
     @Override
     public void editGoods(Double price, String description, String productNr) {
@@ -146,15 +137,6 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public List<String> getOrderData(Integer orderID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public ListModel getOrderRowsListModel(Integer orderID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public List<String> getGoodsData(Integer goodsID) {
@@ -172,5 +154,35 @@ public class Controller implements ControllerInterface {
         Goods g = new Goods(name, price, description);
         getModel().addGoods(g);
         System.out.println("Adding goods " + g.toString() + ".");
+    }
+
+    @Override
+    public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Integer orderID) {
+       
+        Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
+        Order o = new BuyOrder(billingDate, billingAdress, customerID, isBuyOrder, orderID);
+        getModel().addBuyOrder(o);
+
+        System.out.println("Adding order " + o.toString() + ".");
+    }
+
+    @Override
+    public void editBuyOrder(Date billingDate, String billingAdressLn1, String billingAdressLn2, String billingAdressLn3, List orderRows, String customerID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public List<String> getBuyOrderData(Integer orderID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void removeBuyOrder(Integer orderID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public ListModel getBuyOrderRowsListModel(Integer orderID) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
