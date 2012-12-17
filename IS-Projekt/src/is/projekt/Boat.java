@@ -8,7 +8,7 @@ public class Boat extends Product {
     private String location;
     private String priceInfo;
     private String description;
-    private int boatIdNumber;
+    private int boatID;
 
     //Konstruktor
     public Boat() {
@@ -55,12 +55,12 @@ public class Boat extends Product {
         this.description = description;
     }
 
-    public int getBoatIdNumber() {
-        return boatIdNumber;
+    public int getBoatID() {
+        return boatID;
     }
 
-    public void setBoatIdNumber(int boatIdNumber) {
-        this.boatIdNumber = boatIdNumber;
+    public void setBoatID(int boatIdNumber) {
+        this.boatID = boatIdNumber;
     }
 
   

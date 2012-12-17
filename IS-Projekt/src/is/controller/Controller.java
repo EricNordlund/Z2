@@ -106,12 +106,12 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addBoat(String regnr, String model, String location, String priceInfo, String description) {
+    public void addBoat(String regnr, String model, String location, String priceInfo, String description, int boatID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void editBoat(String regnr, String model, String location, String priceInfo, String description) {
+    public void editBoat(String regnr, String model, String location, String priceInfo, String description, int boatID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
