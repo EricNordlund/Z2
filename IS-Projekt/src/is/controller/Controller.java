@@ -157,13 +157,13 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Customer customer, boolean isBuyOrder, Integer orderID) {
+    public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Integer orderID) {
        
         Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
-        Order o = new BuyOrder(billingDate, billingAdress, customer, isBuyOrder, orderID);
+        Order o = new BuyOrder(billingDate, billingAdress, customerID, isBuyOrder, orderID);
         getModel().addBuyOrder(o);
 
-        System.out.println("Adding customer " + o.toString() + ".");
+        System.out.println("Adding order " + o.toString() + ".");
     }
 
     @Override
