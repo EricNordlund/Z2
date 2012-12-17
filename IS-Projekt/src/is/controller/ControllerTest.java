@@ -33,13 +33,17 @@ public class ControllerTest {
         or.add("123");
         
         
+        
+        
+        addBuyOrders(controller, datum, or);
+   
+        editBuyOrders(controller, datum);
+        
         HashMap<Integer, Order> CR = model.getOrderRegistry();
         
         Order ord = CR.get(1);
         
-   
-        
-        
+        System.out.println(ord.getIsBuyOrder());
     
 
     }
@@ -56,6 +60,15 @@ public class ControllerTest {
         controller.addGoods("Plastbestick", 15.50, "Ett trevligt bestickset till båten.");
         controller.addGoods("Utombordsmotor LM-500", 3700.00, "En kraftig liten motor.");
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");
+    }
+    
+    private static void addBuyOrders(Controller controller, Date datum, List orl) {
+    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true, null);
+    controller.addBuyOrder(datum, "Tomtegatan 12", "18130", "Lomma", orl, 2, true, null);
+    }
+    
+    private static void editBuyOrders(Controller controller, Date datum) {
+      controller.editBuyOrder(datum, "Lillstigen 12", "33333", "Lyssna", 2, true, 1);  
     }
    
        
