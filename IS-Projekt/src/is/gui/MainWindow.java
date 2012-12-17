@@ -591,6 +591,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         System.out.println("Updating JLists.");
         this.lstCustomer.setModel(getController().getCustomerListModel());
         this.lstGoods.setModel(getController().getGoodsListModel());
+        this.lstBoats.setModel(getController().getBoatListModel());
 
 
     }

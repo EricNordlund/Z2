@@ -73,7 +73,7 @@ public class Boat extends Product {
     
     public String toString() {
 
-        return getRegnr() + " (" + getModel() + ")";
+        return getRegnr() + ", " + getModel();
 
     }   
     }
