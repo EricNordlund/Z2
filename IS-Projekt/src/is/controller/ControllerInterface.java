@@ -30,7 +30,7 @@ public interface ControllerInterface {
     //Köporderhantering
     public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect);
 
-    public abstract void editBuyOrder(Date billingDate, String billingAdressLn1, String billingAdressLn2, String billingAdressLn3, List orderRows, String customerID);
+    public abstract void editBuyOrder(Date billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID);
 
     public abstract List<String> getBuyOrderData(Integer orderID);
 
