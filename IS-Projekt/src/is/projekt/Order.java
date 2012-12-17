@@ -14,19 +14,42 @@ public abstract class Order {
     private Address billingAddress;
     private List<OrderRow> orderRows = new ArrayList();
     private Customer customer;
+    private boolean isBuyOrder;
+    private Integer orderID;
+    
+
+
+    public Order(Date billingDate, Address billingAddress, Customer customer, boolean isBuyOrder, Integer orderID) {
+        this.billingDate = billingDate;
+        this.billingAddress = billingAddress;
+        this.customer = customer;
+        this.isBuyOrder = isBuyOrder;
+        this.orderID = orderID;
+    }
+
+    public boolean getIsBuyOrder() {
+        return isBuyOrder;
+    }
+
+    public void setIsBuyOrder(boolean isBuyOrder) {
+        this.isBuyOrder = isBuyOrder;
+    }
 
     /**
      *
      * @param billingDate The built in Date class.
      * @param billingAddress Our own address class.
      */
+    
+    
     public Order() {
     }
 
     public Address getBillingAddress() {
         return billingAddress;
     }
-
+    
+    //Setsetset
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }

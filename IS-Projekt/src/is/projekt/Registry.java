@@ -70,4 +70,8 @@ public class Registry implements Serializable {
 
         getGoodsRegistry().put(this.getNewGoodsKey(), g);
     }
+    
+    public void addBuyOrder(Order o) {
+        getOrderRegistry().put(getNewOrderKey(), o);
+    }
 }

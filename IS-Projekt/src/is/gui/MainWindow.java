@@ -8,6 +8,7 @@ import is.controller.Controller;
 import is.controller.ListItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,16 +22,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     OrderFrame orderFrame;
 
     public MainWindow() {
-
+        
 
         initComponents();
 
         initFrames();
 
         addActionListenerToButtons();
-
+        
+        
+        
         this.setLocationRelativeTo(null);
-    }
+    }   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
