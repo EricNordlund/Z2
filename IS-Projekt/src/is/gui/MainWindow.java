@@ -9,6 +9,7 @@ import is.controller.ListItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
 
 /**
  *
@@ -22,18 +23,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     OrderFrame orderFrame;
 
     public MainWindow() {
-        
+
 
         initComponents();
 
         initFrames();
 
         addActionListenerToButtons();
-        
-        
-        
+
+
+
         this.setLocationRelativeTo(null);
-    }   
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -600,6 +601,22 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         //Order
         this.btnNewOrder.addActionListener(this);
     }
+    
+    /**
+     * Denna metod hämtar valt ListItem och returnerar den nyckel som finns i objektet.
+     * @return 
+     */
+    private Integer getSelectedKey(JList jlist){
+        
+        Integer customerKey;
+        
+        ListItem li;
+        li = (ListItem) jlist.getSelectedValue();
+        
+        customerKey = li.getKey();
+        
+        return customerKey;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -612,45 +629,38 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             customerFrame.setVisible(true);
         }
 
-        if (e.getSource() == this.btnEditCustomer) {
+        else if (e.getSource() == this.btnEditCustomer) {
 
             if (this.lstCustomer.getSelectedValue() instanceof ListItem) {
 
-                ListItem li;
-                li = (ListItem) this.lstCustomer.getSelectedValue();
+                
 
                 this.customerFrame.setNewCustomer(false);
-                this.customerFrame.setCustomerKey(li.getKey());
+                this.customerFrame.setCustomerKey();
                 this.customerFrame.fillTextBoxes(getController().getCustomerData(li.getKey()));
 
                 this.customerFrame.setVisible(true);
             }
-             
-             
-
-            if (e.getSource() == this.btnNewOrder) {
-
-                orderFrame.setTitle("Skapa order");
-                orderFrame.updateList();
-                orderFrame.setVisible(true);
-
-
-            }
-
-
 
         }
-    if (e.getSource() == this.btnRemoveCustomer) {
-                 
-                  ListItem li;
-                li = (ListItem) this.lstCustomer.getSelectedValue();
-                
-                Integer customerID = li.getKey();
-                 getController().removeCustomer(customerID);
-                 this.updateLists();
-             }   
+        else if (e.getSource() == this.btnRemoveCustomer) {
+
+            ListItem li;
+            li = (ListItem) this.lstCustomer.getSelectedValue();
+
+            Integer customerID = li.getKey();
+            getController().removeCustomer(customerID);
+            this.updateLists();
+        }
+
+        else if (e.getSource() == this.btnNewOrder) {
+
+            orderFrame.setTitle("Skapa order");
+            orderFrame.updateList();
+            orderFrame.setVisible(true);
+
+        }
     }// Actionlistner slutar här
-    
 
     //AUTOGENERERAD KOD
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
@@ -698,7 +708,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void btnAddGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGoodsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddGoodsActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;
     private javax.swing.JButton btnAddCustomer;

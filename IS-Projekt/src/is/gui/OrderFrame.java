@@ -22,6 +22,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         initComponents();
 
         this.parent = parent;
+        
+        this.setLocationRelativeTo(null);
 
     }
 
