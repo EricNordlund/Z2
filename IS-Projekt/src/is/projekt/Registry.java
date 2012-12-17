@@ -99,6 +99,10 @@ public class Registry implements Serializable {
     public void editBuyOrder(Order o,Integer orderID) {
         getOrderRegistry().put(orderID, o);
     }
-        
+    
+      public void removeBuyOrder(Integer orderID) {
+
+        getOrderRegistry().remove(orderID);
+    }   
    
 }

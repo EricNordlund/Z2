@@ -189,7 +189,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void removeBuyOrder(Integer orderID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        getRegistry().removeBuyOrder(orderID);
     }
 
     @Override

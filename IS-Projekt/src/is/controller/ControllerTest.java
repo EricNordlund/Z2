@@ -41,6 +41,8 @@ public class ControllerTest {
         
         HashMap<Integer, Order> CR = model.getOrderRegistry();
         
+        removeBuyOrders(controller, 1);
+        
         Order ord = CR.get(1);
         
         System.out.println(ord.getIsBuyOrder());
@@ -68,7 +70,11 @@ public class ControllerTest {
     }
     
     private static void editBuyOrders(Controller controller, Date datum) {
-      controller.editBuyOrder(datum, "Lillstigen 12", "33333", "Lyssna", 2, true, 1);  
+      controller.editBuyOrder(datum, "Lillstigen 12", "33333", "Lysekil", 2, true, 1);  
+    }
+    
+    private static void removeBuyOrders(Controller controller, Integer ordid) {
+        controller.removeBuyOrder(1);
     }
    
        
