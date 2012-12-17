@@ -25,6 +25,7 @@ public abstract class Order {
         this.customerID = customerID;
         this.isBuyOrder = isBuyOrder;
         this.orderID = orderID;
+        
     }
 
     public boolean getIsBuyOrder() {
@@ -77,6 +78,8 @@ public abstract class Order {
     public Date getBillingDate() {
         return billingDate;
     }
+    
+    
 
     /**
      * Adds an OrderRow to the list.
@@ -87,7 +90,7 @@ public abstract class Order {
         getOrderRows().add(newOrderRow);
     }
     
-    @Override
-    public String toString() { return billingDate.toString(); };
+    
+    public Integer toInt() { return orderID; };
     
 }
