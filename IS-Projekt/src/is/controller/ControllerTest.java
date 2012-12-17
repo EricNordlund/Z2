@@ -25,19 +25,9 @@ public class ControllerTest {
         addGoods(controller);
         
         Date datum = new Date(123);
-        
         List or = new ArrayList();
         or.add("123");
-        
         addBuyOrders(controller, datum, or);
-        
-        HashMap<Integer, Order> CR = model.getOrderRegistry();
-        
-        Order ord = CR.get(1);
-        
-        System.out.println(ord.toInt());
-        
-        
     
 
     }

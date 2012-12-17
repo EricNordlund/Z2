@@ -66,6 +66,10 @@ public class Registry implements Serializable {
 
     }
     
+    public Customer getCustomer(Integer customerID) {
+        return customerRegistry.get(customerID);
+         
+    }
     
 
     public void addGoods(Goods g) {
