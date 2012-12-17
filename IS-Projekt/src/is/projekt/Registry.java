@@ -74,4 +74,10 @@ public class Registry implements Serializable {
     public void addBuyOrder(Order o) {
         getOrderRegistry().put(getNewOrderKey(), o);
     }
+
+    public void removeCustomer(Integer customerID) {
+        
+        this.getCustomerRegistry().remove(customerID);
+        
+    }
 }

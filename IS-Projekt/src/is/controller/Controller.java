@@ -32,7 +32,7 @@ public class Controller implements ControllerInterface {
 
     }
 
-    private Registry getModel() {
+    private Registry getRegistry() {
         return model;
     }
 
@@ -41,7 +41,7 @@ public class Controller implements ControllerInterface {
 
         Address address = new Address(addressStreet, addressPostCode, addressCity);
         Customer c = new Customer(name, eMail, phoneNumber, address);
-        getModel().addCustomer(c);
+        getRegistry().addCustomer(c);
 
         System.out.println("Adding customer " + c.toString() + ".");
     }
@@ -51,7 +51,7 @@ public class Controller implements ControllerInterface {
 
         Address address = new Address(addressStreet, addressPostCode, addressCity);
         Customer c = new Customer(name, eMail, phoneNumber, address);
-        getModel().editCustomer(customerID, c);
+        getRegistry().editCustomer(customerID, c);
 
         System.out.println("Editing customer " + c.toString() + ".");
     }
@@ -59,7 +59,7 @@ public class Controller implements ControllerInterface {
     @Override
     public ArrayList<String> getCustomerData(Integer customerID) {
 
-        ArrayList<String> customerData = getModel().getCustomerRegistry().get(customerID).getDataAsList();
+        ArrayList<String> customerData = getRegistry().getCustomerRegistry().get(customerID).getDataAsList();
 
         return customerData;
 
@@ -67,7 +67,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void removeCustomer(Integer customerID) {
-        getModel().removeCustomer(customerID);
+        getRegistry().removeCustomer(customerID);
         
          System.out.println("Removing customer " + customerID + ".");
     }
@@ -88,7 +88,7 @@ public class Controller implements ControllerInterface {
 
         DefaultListModel lm = new DefaultListModel();
 
-        HashMap<Integer, Customer> hm = getModel().getCustomerRegistry();
+        HashMap<Integer, Customer> hm = getRegistry().getCustomerRegistry();
 
         Iterator it = hm.entrySet().iterator();
 
@@ -152,7 +152,7 @@ public class Controller implements ControllerInterface {
     public void addGoods(String name, Double price, String description) {
 
         Goods g = new Goods(name, price, description);
-        getModel().addGoods(g);
+        getRegistry().addGoods(g);
         System.out.println("Adding goods " + g.toString() + ".");
     }
 
@@ -161,7 +161,7 @@ public class Controller implements ControllerInterface {
        
         Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
         Order o = new BuyOrder(billingDate, billingAdress, customerID, isBuyOrder, orderID);
-        getModel().addBuyOrder(o);
+        getRegistry().addBuyOrder(o);
 
         System.out.println("Adding order " + o.toString() + ".");
     }
