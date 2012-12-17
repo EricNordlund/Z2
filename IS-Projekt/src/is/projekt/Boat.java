@@ -10,56 +10,60 @@ public class Boat extends Product {
     private String description;
     private int boatIdNumber;
 
-    //Constructor
+    //Konstruktor
     public Boat() {
 
         super(50.50, "Båt.");
     }
 
-    //Metod för att ändra på båtens data.
-    public void modifyData(String modregnr, String modmodel, String modlocation, String modpriceInfo, String moddescription) {
-        //Kontrollerar om det har skett en förändrig i den text som är satt.
-        if (modregnr.length() != 0) {
-            regnr = modregnr;
-        }
-
-        if (modmodel.length() != 0) {
-            model = modmodel;
-        }
-
-        if (modlocation.length() != 0) {
-            location = modlocation;
-        }
-
-        if (modpriceInfo.length() != 0) {
-            priceInfo = modpriceInfo;
-        }
-
-        if (moddescription.length() != 0) {
-            description = moddescription;
-        }
-    }
-
-    //Metoder för att hämta ut data.
     public String getRegnr() {
         return regnr;
+    }
+
+    public void setRegnr(String regnr) {
+        this.regnr = regnr;
     }
 
     public String getModel() {
         return model;
     }
 
+    public void setModel(String model) {
+        this.model = model;
+    }
+
     public String getLocation() {
         return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getPriceInfo() {
         return priceInfo;
     }
 
+    public void setPriceInfo(String priceInfo) {
+        this.priceInfo = priceInfo;
+    }
     public String getDescription() {
         return description;
     }
+
+    public void setdescription(String description) {
+        this.description = description;
+    }
+
+    public int getBoatIdNumber() {
+        return boatIdNumber;
+    }
+
+    public void setBoatIdNumber(int boatIdNumber) {
+        this.boatIdNumber = boatIdNumber;
+    }
+
+  
 
     //Metod för att skapa en array som kan sparas i en databas
     public String[] createArray() {
@@ -73,9 +77,5 @@ public class Boat extends Product {
         dataArray[4] = description;
         return dataArray;
     }
-
-    //Retunerar båtens regnr.
-    public int getBoatNumber() {
-        return boatIdNumber;
-    }
 }
+

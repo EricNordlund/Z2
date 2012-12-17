@@ -8,7 +8,7 @@ package is.projekt;
  * Klassen saknar setmetoder. Vill man ändra en address skapar man en ny och
  * skriver över den gamla.
  *
- * @param street Gatuadress inklusive jus/lägenehetsnummer.
+ * @param street Gatuadress inklusive lägenehetsnummer.
  * @param postCode Postnummer.
  * @param city Stad.
  *
@@ -22,6 +22,7 @@ public class Address {
     private String postCode;
     private String city;
 
+    // Konstruktor
     public Address(String street, String postCode, String city) {
         this.street = street;
         this.postCode = postCode;
