@@ -8,6 +8,7 @@ import is.controller.Controller;
 import is.controller.ListItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 
@@ -601,20 +602,22 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         //Order
         this.btnNewOrder.addActionListener(this);
     }
-    
+
     /**
-     * Denna metod hämtar valt ListItem och returnerar den nyckel som finns i objektet.
-     * @return 
+     * Denna metod hämtar valt ListItem och returnerar den nyckel som finns i
+     * objektet.
+     *
+     * @return
      */
-    private Integer getSelectedKey(JList jlist){
-        
+    private Integer getSelectedKey(JList jlist) {
+
         Integer customerKey;
-        
+
         ListItem li;
         li = (ListItem) jlist.getSelectedValue();
-        
+
         customerKey = li.getKey();
-        
+
         return customerKey;
     }
 
@@ -629,40 +632,37 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             customerFrame.setVisible(true);
         }
 
-        else if (e.getSource() == this.btnEditCustomer) {
+        if (this.lstCustomer.getSelectedValue() instanceof ListItem) {
 
-            if (this.lstCustomer.getSelectedValue() instanceof ListItem) {
+            Integer customerID = this.getSelectedKey(this.lstCustomer);
 
-                
+            if (e.getSource() == this.btnEditCustomer) {
+
 
                 this.customerFrame.setNewCustomer(false);
-                this.customerFrame.setCustomerKey();
-                this.customerFrame.fillTextBoxes(getController().getCustomerData(li.getKey()));
+                this.customerFrame.setCustomerKey(customerID);
+                ArrayList<String> customerData = this.getController().getCustomerData(customerID);
+                this.customerFrame.fillTextBoxes(customerData);
 
                 this.customerFrame.setVisible(true);
+                
+            } else if (e.getSource() == this.btnRemoveCustomer) {
+
+                getController().removeCustomer(customerID);
+                
+                this.updateLists();
+                
+            } else if (e.getSource() == this.btnNewOrder) {
+
+                orderFrame.setTitle("Skapa order");
+                orderFrame.updateList();
+                orderFrame.setVisible(true);
+
             }
-
-        }
-        else if (e.getSource() == this.btnRemoveCustomer) {
-
-            ListItem li;
-            li = (ListItem) this.lstCustomer.getSelectedValue();
-
-            Integer customerID = li.getKey();
-            getController().removeCustomer(customerID);
-            this.updateLists();
-        }
-
-        else if (e.getSource() == this.btnNewOrder) {
-
-            orderFrame.setTitle("Skapa order");
-            orderFrame.updateList();
-            orderFrame.setVisible(true);
-
         }
     }// Actionlistner slutar här
 
-    //AUTOGENERERAD KOD
+//AUTOGENERERAD KOD
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
