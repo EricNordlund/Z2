@@ -13,7 +13,7 @@ public class Boat extends Product {
     //Konstruktor
     public Boat() {
 
-        super(50.50, "Båt.");
+        super(50.50, "Båt");
     }
 
     public String getRegnr() {
