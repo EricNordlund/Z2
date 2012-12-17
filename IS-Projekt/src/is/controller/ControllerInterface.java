@@ -48,6 +48,8 @@ public interface ControllerInterface {
     public abstract List<String> getBoat(Integer boatID);
 
     public abstract void removeBoat(Integer boatID);
+    
+    public abstract ListModel getBoatListModel();
 
     //Varuahantering
     public abstract void addGoods(String name, Double price, String description);

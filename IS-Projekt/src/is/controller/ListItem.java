@@ -26,11 +26,15 @@ public class ListItem {
         return key;
 
     }
+    
+    public String getDisplayName(){
+        return displayName; 
+    }
 
     @Override
     public String toString() {
 
-        return displayName;
+        return getDisplayName();
 
     }
 }
