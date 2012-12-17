@@ -16,7 +16,7 @@ public class BuyOrder extends Order {
 
     
     
-    public BuyOrder(Date billingDate, Address billingAddress, Customer customer, boolean isBuyOrder, Integer orderID) {
-        super(billingDate, billingAddress, customer, isBuyOrder, orderID);
+    public BuyOrder(Date billingDate, Address billingAddress, Integer customerID, boolean isBuyOrder, Integer orderID) {
+        super(billingDate, billingAddress, customerID, isBuyOrder, orderID);
     }
 }
