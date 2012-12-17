@@ -11,8 +11,4 @@ public class BuyOrder extends Order {
      */
     public BuyOrder() {
     }
-    
-  
-    
-    
 }

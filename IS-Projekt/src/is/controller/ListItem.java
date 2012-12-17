@@ -10,28 +10,27 @@ package is.controller;
  * här klasen finns för att vi inte ska skicka customers ut i GUIn.
  */
 public class ListItem {
-    
+
     private Integer key;
     private String displayName;
 
     public ListItem(Integer key, String displayName) {
-        
+
         this.key = key;
         this.displayName = displayName;
-        
+
     }
-    
-    public Integer getKey(){
-        
+
+    public Integer getKey() {
+
         return key;
-        
+
     }
-    
+
     @Override
-    public String toString(){
-        
+    public String toString() {
+
         return displayName;
-        
+
     }
-    
 }

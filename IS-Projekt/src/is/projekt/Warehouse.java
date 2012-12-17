@@ -9,5 +9,4 @@ package is.projekt;
  * @author svalan
  */
 public class Warehouse {
-    
 }

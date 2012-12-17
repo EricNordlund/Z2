@@ -34,26 +34,23 @@ public class Controller implements ControllerInterface {
         return model;
     }
 
-
-
-
     @Override
     public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-        
+
         Address address = new Address(addressStreet, addressPostCode, addressCity);
         Customer c = new Customer(name, eMail, phoneNumber, address);
         getModel().addCustomer(c);
-        
+
         System.out.println("Adding customer " + c.toString() + ".");
     }
 
     @Override
     public void editCustomer(Integer customerID, String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-        
+
         Address address = new Address(addressStreet, addressPostCode, addressCity);
         Customer c = new Customer(name, eMail, phoneNumber, address);
         getModel().editCustomer(customerID, c);
-        
+
         System.out.println("Editing customer " + c.toString() + ".");
     }
 
@@ -72,14 +69,15 @@ public class Controller implements ControllerInterface {
     }
 
     /**
-     * Denna metod returnerar en DefaultListModel som håller värden från
-     * den HashMap som lagrar kunderna. En DefaultListModel kan användas av 
-     * en JList.
+     * Denna metod returnerar en DefaultListModel som håller värden från den
+     * HashMap som lagrar kunderna. En DefaultListModel kan användas av en
+     * JList.
+     *
      * @param it En iterator går igenom samtliga objekt i HashMap för kunderna.
      * @param e Ett objekt som plockas fram ur HashMap som innehåller nyckeln
      * och kundobjektet.
-     * 
-     * 
+     *
+     *
      */
     @Override
     public DefaultListModel getCustomerListModel() {
@@ -93,11 +91,11 @@ public class Controller implements ControllerInterface {
         while (it.hasNext()) {
 
             Map.Entry<Integer, Customer> e = (Map.Entry<Integer, Customer>) it.next();
-            
+
             ListItem item = new ListItem(e.getKey(), e.getValue().toString());
-                    
+
             lm.addElement(item);
-            
+
         }
 
         return lm;
@@ -133,14 +131,10 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-       
-
     @Override
     public void removeOrder(Integer orderID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-
 
     @Override
     public void editGoods(Double price, String description, String productNr) {
@@ -174,9 +168,9 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void addGoods(String name, Double price, String description) {
-       
-       Goods g = new Goods(name, price, description);
-       getModel().addGoods(g);
-       System.out.println("Adding goods " + g.toString() + ".");
+
+        Goods g = new Goods(name, price, description);
+        getModel().addGoods(g);
+        System.out.println("Adding goods " + g.toString() + ".");
     }
 }

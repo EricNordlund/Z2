@@ -28,7 +28,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         initFrames();
 
         addActionListenerToButtons();
-        
+
         this.setLocationRelativeTo(null);
     }
 
@@ -481,7 +481,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                 ListItem li;
                 li = (ListItem) this.lstCustomer.getSelectedValue();
-                
+
                 this.customerFrame.setNewCustomer(false);
                 this.customerFrame.setCustomerKey(li.getKey());
                 this.customerFrame.fillTextBoxes(getController().getCustomerData(li.getKey()));

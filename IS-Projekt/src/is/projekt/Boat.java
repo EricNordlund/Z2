@@ -12,7 +12,7 @@ public class Boat extends Product {
 
     //Constructor
     public Boat() {
-        
+
         super(50.50, "Båt.");
     }
 

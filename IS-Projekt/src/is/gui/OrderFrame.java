@@ -16,13 +16,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     Controller controller;
     private MainWindow parent;
-    
+
     OrderFrame(MainWindow parent) {
-        
+
         initComponents();
-        
+
         this.parent = parent;
-        
+
     }
 
     /**
@@ -275,7 +275,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOK;
     private javax.swing.JButton jButton1;
@@ -302,7 +301,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     // End of variables declaration//GEN-END:variables
 
     void addControllerToComponents(Controller controller) {
-
     }
 
     void setController(Controller controller) {
@@ -311,12 +309,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-       
-        
     }
 
     void updateList() {
-      
-              
     }
 }

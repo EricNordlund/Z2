@@ -8,15 +8,15 @@ package is.projekt;
  * @author Viktor Voigt
  */
 public abstract class Product {
-    
+
     private double price;
     private String description;
-    
-    public Product(double price, String description){
-        
+
+    public Product(double price, String description) {
+
         this.price = price;
         this.description = description;
-        
+
     }
 
     public double getPrice() {
@@ -34,7 +34,4 @@ public abstract class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
-    
 }

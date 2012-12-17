@@ -21,8 +21,6 @@ public abstract class Order {
      * @param billingAddress Our own address class.
      */
     public Order() {
-
-
     }
 
     public Address getBillingAddress() {
@@ -33,7 +31,6 @@ public abstract class Order {
         this.billingAddress = billingAddress;
     }
 
-
     public List<OrderRow> getOrderRows() {
         return orderRows;
     }
@@ -42,23 +39,17 @@ public abstract class Order {
         this.orderRows = orderRows;
     }
 
-
     public Customer getCustomer() {
         return customer;
     }
-
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-
-
-
     public void setBillingDate(Date billingDate) {
         this.billingDate = billingDate;
     }
-
 
     public Date getBillingDate() {
         return billingDate;
@@ -66,6 +57,7 @@ public abstract class Order {
 
     /**
      * Adds an OrderRow to the list.
+     *
      * @param newOrderRow The order row to add.
      */
     public void addOrderRow(OrderRow newOrderRow) {

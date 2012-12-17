@@ -67,28 +67,27 @@ public class Customer {
 
         getOrderList().remove(order);
     }
-    
-    public ArrayList<String> getDataAsList(){
-        
+
+    public ArrayList<String> getDataAsList() {
+
         ArrayList<String> l = new ArrayList<>();
-        
+
         l.add(getName());
         l.add(getPhone());
         l.add(getMail());
         l.add(getAddress().getStreetName());
         l.add(getAddress().getPostCode());
         l.add(getAddress().getCity());
-        
-        
+
+
         return l;
-        
+
     }
-    
-    
+
     @Override
-    public String toString(){
-        
+    public String toString() {
+
         return getName() + " (" + getMail() + ")";
-          
+
     }
 }

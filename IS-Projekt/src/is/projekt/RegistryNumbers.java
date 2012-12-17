@@ -2,9 +2,7 @@
  * Innehåller de senaste idNummren till databasobjekt.
  * 
  */
-
 package is.projekt;
-
 
 public class RegistryNumbers {
 
@@ -19,7 +17,6 @@ public class RegistryNumbers {
         this.orderRegistryNumber = orderRegistryNumber;
     }
 
-    
     //Setters
     public void setBoatRegistryNumber(int boatRegistryNumber) {
         this.boatRegistryNumber = boatRegistryNumber;
@@ -33,7 +30,6 @@ public class RegistryNumbers {
         this.orderRegistryNumber = orderRegistryNumber;
     }
 
-    
     //Getters
     public int getBoatRegistryNumber() {
         return boatRegistryNumber;
@@ -46,8 +42,4 @@ public class RegistryNumbers {
     public int getOrderRegistryNumber() {
         return orderRegistryNumber;
     }
-    
-    
-    
-    
 }

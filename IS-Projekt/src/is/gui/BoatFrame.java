@@ -11,7 +11,7 @@ import is.controller.Controller;
  * @author svalan
  */
 public class BoatFrame extends javax.swing.JFrame {
-   
+
     MainWindow parent;
     Controller controller;
 
@@ -19,14 +19,12 @@ public class BoatFrame extends javax.swing.JFrame {
      * Creates new form EditBoat
      */
     public BoatFrame(MainWindow parent) {
-        
+
         initComponents();
-        
+
         this.parent = parent;
-        
+
     }
-    
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,17 +52,14 @@ public class BoatFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     void addControllerToComponents(Controller controller) {
-       
     }
 
     void setController(Controller controller) {
         this.controller = controller;
     }
-
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

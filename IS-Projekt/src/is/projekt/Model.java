@@ -17,19 +17,17 @@ public class Model implements Serializable {
     private HashMap<Integer, Customer> customerRegistry = new HashMap<>();
     private HashMap<Integer, Goods> goodsRegistry = new HashMap<>();
     private HashMap<Integer, Order> orderRegistry = new HashMap<>();
-    
     private int boatKeyCount = 0;
     private int customerKeyCount = 0;
     private int goodsKeyCount = 0;
     private int orderKeyCount = 0;
-    
-    //Getters
 
+    //Getters
     public HashMap<Integer, Boat> getBoatRegistry() {
         return boatRegistry;
     }
 
-   public HashMap<Integer, Customer> getCustomerRegistry() {
+    public HashMap<Integer, Customer> getCustomerRegistry() {
         return customerRegistry;
     }
 
@@ -42,7 +40,6 @@ public class Model implements Serializable {
     }
 
     //Stadardiserade metoder för att få nya nyckar
-    
     private int getNewBoatKey() {
         boatKeyCount++;
         return boatKeyCount;
@@ -66,15 +63,15 @@ public class Model implements Serializable {
     public void addCustomer(Customer c) {
         getCustomerRegistry().put(getNewCustomerKey(), c);
     }
-    
-    public void editCustomer(Integer customerID, Customer c){
+
+    public void editCustomer(Integer customerID, Customer c) {
         getCustomerRegistry().put(customerID, c);
-        
-        
+
+
     }
 
     public void addGoods(Goods g) {
-        
+
         getGoodsRegistry().put(this.getNewGoodsKey(), g);
     }
 }
