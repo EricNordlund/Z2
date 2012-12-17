@@ -1,19 +1,25 @@
 package is.projekt;
 
+import java.util.ArrayList;
+
 public class Boat extends Product {
 
     //Variabler
     private String regnr;
     private String model;
     private String location;
-    private String priceInfo;
-    private String description;
     private int boatID;
 
     //Konstruktor
-    public Boat() {
-
-        super(50.50, "Båt");
+    public Boat(String regnr, String model, String location, int boatID, String description, double price) {
+        
+        super(price, description);
+        
+        this.regnr = regnr;
+        this.model = model;
+        this.location = location;
+        this.boatID = boatID;
+      
     }
 
     public String getRegnr() {
@@ -40,20 +46,7 @@ public class Boat extends Product {
         this.location = location;
     }
 
-    public String getPriceInfo() {
-        return priceInfo;
-    }
-
-    public void setPriceInfo(String priceInfo) {
-        this.priceInfo = priceInfo;
-    }
-    public String getDescription() {
-        return description;
-    }
-
-    public void setdescription(String description) {
-        this.description = description;
-    }
+    
 
     public int getBoatID() {
         return boatID;
@@ -62,20 +55,25 @@ public class Boat extends Product {
     public void setBoatID(int boatIdNumber) {
         this.boatID = boatIdNumber;
     }
+    public ArrayList<Object> getDataAsList() {
 
-  
+        ArrayList<Object> l = new ArrayList<>();
 
-    //Metod för att skapa en array som kan sparas i en databas
-    public String[] createArray() {
-
-        String[] dataArray = new String[5];
-
-        dataArray[0] = regnr;
-        dataArray[1] = model;
-        dataArray[2] = location;
-        dataArray[3] = priceInfo;
-        dataArray[4] = description;
-        return dataArray;
+        l.add(getRegnr());
+        l.add(getModel());
+        l.add(getLocation());
+        l.add(getBoatID());
+        l.add(getDescription());
+        l.add(getPrice());
+   
+       return l;
+        
     }
-}
 
+    
+    public String toString() {
+
+        return getRegnr() + " (" + getModel() + ")";
+
+    }   
+    }

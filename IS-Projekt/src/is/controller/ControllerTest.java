@@ -21,6 +21,8 @@ public class ControllerTest {
 
         addGoods(controller);
         
+        addBoats(controller);
+        
         Date datum = new Date(123);
         
         List or = new ArrayList();
@@ -37,7 +39,14 @@ public class ControllerTest {
         controller.addCustomer("August Burgh", "Lommavängen 12", "22273", "Simrishamn", "0704558712", "ogge74@hotmail.com");
         controller.addCustomer("Laura Wittman", "Kringlegatan 1", "24552", "Vetlanda", "0739231577", "babsi123@gmail.com");
     }
+    private static void addBoats(Controller controller){
+        controller.addBoat("ABC123", "Z2000", "Lomma", "50000", "Segelbåt", 1);
+    }
 
+    
+    
+    
+    
     private static void addGoods(Controller controller) {
         controller.addGoods("Plastbestick", 15.50, "Ett trevligt bestickset till båten.");
         controller.addGoods("Utombordsmotor LM-500", 3700.00, "En kraftig liten motor.");

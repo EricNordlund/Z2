@@ -2,6 +2,7 @@ package is.controller;
 
 import is.gui.MainWindow;
 import is.projekt.Address;
+import is.projekt.Boat;
 import is.projekt.BuyOrder;
 import is.projekt.Customer;
 import is.projekt.Goods;
@@ -45,7 +46,21 @@ public class Controller implements ControllerInterface {
 
         System.out.println("Adding customer " + c.toString() + ".");
     }
+    //
+ 
+    public void addBoat(String regnr, String model, String location, int boatID, String description, double price){
+        
+        Boat b = new Boat(regnr, model, location, boatID, description, price);
+        getRegistry().addBoat(b);
+        
+        System.out.println("Adding boat " + b.toString() + ".");
+    }
+    public ArrayList<Object> getBoatData(Integer boatID) {
 
+        ArrayList<Object> boatData = getRegistry().getBoatRegistry().get(boatID).getDataAsList();
+
+        return boatData;
+    }
     @Override
     public void editCustomer(Integer customerID, String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 

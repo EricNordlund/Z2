@@ -599,8 +599,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnAddCustomer.addActionListener(this);
         this.btnEditCustomer.addActionListener(this);
         this.btnRemoveCustomer.addActionListener(this);
-        //Order
+        //Order i Customber
         this.btnNewOrder.addActionListener(this);
+        //Boats
+        this.btnAddBoat.addActionListener(this);
+        this.btnEditBoat.addActionListener(this);
+        this.btnRemoveBoat.addActionListener(this);
     }
 
     /**

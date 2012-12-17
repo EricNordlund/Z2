@@ -56,6 +56,18 @@ public class Registry implements Serializable {
         return orderKeyCount;
     }
 
+    public void addBoat(Boat b) {
+        getBoatRegistry().put(getNewBoatKey(), b);
+    }
+
+    public void editBoat(Integer boatID, Boat b) {
+        getBoatRegistry().put(boatID, b);
+    }
+
+    public void removeBoat(Integer boatID) {
+        this.getBoatRegistry().remove(boatID);
+    }
+
     public void addCustomer(Customer c) {
         getCustomerRegistry().put(getNewCustomerKey(), c);
     }
@@ -63,21 +75,19 @@ public class Registry implements Serializable {
     public void editCustomer(Integer customerID, Customer c) {
         getCustomerRegistry().put(customerID, c);
 
+    }
 
+    public void removeCustomer(Integer customerID) {
+
+        this.getCustomerRegistry().remove(customerID);
     }
 
     public void addGoods(Goods g) {
 
         getGoodsRegistry().put(this.getNewGoodsKey(), g);
     }
-    
+
     public void addBuyOrder(Order o) {
         getOrderRegistry().put(getNewOrderKey(), o);
-    }
-
-    public void removeCustomer(Integer customerID) {
-        
-        this.getCustomerRegistry().remove(customerID);
-        
     }
 }
