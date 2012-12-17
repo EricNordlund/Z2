@@ -65,7 +65,9 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void removeCustomer(Integer customerID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        getModel().removeCustomer(customerID);
+        
+         System.out.println("Removing customer " + customerID + ".");
     }
 
     /**

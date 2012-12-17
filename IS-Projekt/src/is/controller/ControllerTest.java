@@ -15,6 +15,8 @@ public class ControllerTest {
         addCustomers(controller);
 
         addGoods(controller);
+        
+        removeCustomer(controller);
 
     }
 
@@ -28,4 +30,8 @@ public class ControllerTest {
         controller.addGoods("Utombordsmotor LM-500", 3700.00, "En kraftig liten motor.");
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");
     }
-}
+    private static void removeCustomer(Controller controller){
+        controller.removeCustomer(1);
+       } 
+    }
+

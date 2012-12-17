@@ -66,9 +66,11 @@ public class Model implements Serializable {
 
     public void editCustomer(Integer customerID, Customer c) {
         getCustomerRegistry().put(customerID, c);
-
-
     }
+    public void removeCustomer(Integer customerID){
+        customerRegistry.remove(customerID);
+       } 
+    
 
     public void addGoods(Goods g) {
 
