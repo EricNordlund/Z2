@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package is.projekt;
 
 import java.io.Serializable;
@@ -11,7 +7,7 @@ import java.util.HashMap;
  *
  * @author svalan
  */
-public class Model implements Serializable {
+public class Registry implements Serializable {
 
     private HashMap<Integer, Boat> boatRegistry = new HashMap<>();
     private HashMap<Integer, Customer> customerRegistry = new HashMap<>();
@@ -66,14 +62,16 @@ public class Model implements Serializable {
 
     public void editCustomer(Integer customerID, Customer c) {
         getCustomerRegistry().put(customerID, c);
+
+
     }
-    public void removeCustomer(Integer customerID){
-        customerRegistry.remove(customerID);
-       } 
-    
 
     public void addGoods(Goods g) {
 
         getGoodsRegistry().put(this.getNewGoodsKey(), g);
+    }
+    
+    public void addBuyOrder(Order o) {
+        getOrderRegistry().put(getNewOrderKey(), o);
     }
 }
