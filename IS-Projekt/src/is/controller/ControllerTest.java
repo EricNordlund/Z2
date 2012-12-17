@@ -44,7 +44,7 @@ public class ControllerTest {
 
     private static void addCustomers(Controller controller) {
         controller.addCustomer("August Burgh", "Lommavängen 12", "22273", "Simrishamn", "0704558712", "ogge74@hotmail.com");
-        controller.addCustomer("Laura Wittman", "Kringlegatan 1", "24552", "Vetlanda", "0739231577", "babsi123@gmail.com");
+        controller.addCustomer("Laura Wittman (NSF)", "Kringlegatan 1", "24552", "Vetlanda", "0739231577", "babsi123@gmail.com");
     }
 
     private static void addGoods(Controller controller) {
@@ -53,8 +53,8 @@ public class ControllerTest {
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");
     }
     private static void addBuyOrders(Controller controller, Date datum, List orl) {
-    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true);
-    controller.addBuyOrder(datum, "Tomtegatan 12", "18130", "Lomma", orl, 2, true);
+    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true, null);
+    controller.addBuyOrder(datum, "Tomtegatan 12", "18130", "Lomma", orl, 2, true, null);
     }
     
        
