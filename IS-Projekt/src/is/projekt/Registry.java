@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package is.projekt;
 
 import java.io.Serializable;
@@ -11,7 +7,7 @@ import java.util.HashMap;
  *
  * @author svalan
  */
-public class Model implements Serializable {
+public class Registry implements Serializable {
 
     private HashMap<Integer, Boat> boatRegistry = new HashMap<>();
     private HashMap<Integer, Customer> customerRegistry = new HashMap<>();
