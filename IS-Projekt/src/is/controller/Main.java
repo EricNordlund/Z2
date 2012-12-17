@@ -11,7 +11,7 @@ public class Main {
 
         Controller controller = new Controller(model);
 
-        ControllerTest.runTest(controller);
+        ControllerTest.runTest(controller, model);
 
         MainWindow view = new MainWindow();
 

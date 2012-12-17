@@ -83,8 +83,8 @@ public class Controller implements ControllerInterface {
     @Override
     public void removeCustomer(Integer customerID) {
         getRegistry().removeCustomer(customerID);
-        
-         System.out.println("Removing customer " + customerID + ".");
+
+        System.out.println("Removing customer " + customerID + ".");
     }
 
     /**
@@ -101,21 +101,9 @@ public class Controller implements ControllerInterface {
     @Override
     public DefaultListModel getCustomerListModel() {
 
-        DefaultListModel lm = new DefaultListModel();
-
         HashMap<Integer, Customer> hm = getRegistry().getCustomerRegistry();
 
-        Iterator it = hm.entrySet().iterator();
-
-        while (it.hasNext()) {
-
-            Map.Entry<Integer, Customer> e = (Map.Entry<Integer, Customer>) it.next();
-
-            ListItem item = new ListItem(e.getKey(), e.getValue().toString());
-
-            lm.addElement(item);
-
-        }
+        DefaultListModel lm = this.createListModel(hm);
 
         return lm;
     }
@@ -140,8 +128,6 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-  
-
     @Override
     public void editGoods(Double price, String description, String productNr) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -152,7 +138,6 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-
     @Override
     public List<String> getGoodsData(Integer goodsID) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -160,7 +145,12 @@ public class Controller implements ControllerInterface {
 
     @Override
     public ListModel getGoodsListModel() {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+        HashMap<Integer, Goods> hm = getRegistry().getGoodsRegistry();
+
+        DefaultListModel lm = this.createListModel(hm);
+
+        return lm;
     }
 
     @Override
@@ -172,13 +162,15 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Integer orderID) {
+    public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect) {
        
         Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
+        Integer orderID = getRegistry().getNewOrderKey();
+        //Customer customerObject = get
         Order o = new BuyOrder(billingDate, billingAdress, customerID, isBuyOrder, orderID);
-        getRegistry().addBuyOrder(o);
+        getRegistry().addBuyOrder(o, orderID);
 
-        System.out.println("Adding order " + o.toString() + ".");
+        System.out.println("Adding order with ID " + o.toInt() + ".");
     }
 
     @Override
@@ -199,5 +191,40 @@ public class Controller implements ControllerInterface {
     @Override
     public ListModel getBuyOrderRowsListModel(Integer orderID) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    
+    private DefaultListModel createListModel(HashMap hm) {
+
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+
+            Integer key = (Integer) e.getKey();
+
+            String displayString = e.getValue().toString();
+
+            ListItem item = new ListItem(key, displayString);
+
+            lm.addElement(item);
+
+        }
+
+        return lm;
+
+    }
+
+    @Override
+    public ListModel getBoatListModel() {
+        
+        HashMap<Integer, Boat> hm = getRegistry().getBoatRegistry();
+        
+        DefaultListModel lm = this.createListModel(hm);
+
+        return lm;
     }
 }

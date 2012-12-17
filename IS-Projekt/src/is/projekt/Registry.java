@@ -51,7 +51,7 @@ public class Registry implements Serializable {
         return goodsKeyCount;
     }
 
-    private int getNewOrderKey() {
+    public int getNewOrderKey() {
         orderKeyCount++;
         return orderKeyCount;
     }
@@ -81,13 +81,21 @@ public class Registry implements Serializable {
 
         this.getCustomerRegistry().remove(customerID);
     }
+    
+    
 
     public void addGoods(Goods g) {
 
         getGoodsRegistry().put(this.getNewGoodsKey(), g);
     }
+    
+    public void addBuyOrder(Order o,Integer orderID) {
+        getOrderRegistry().put(orderID, o);
+    }
 
-    public void addBuyOrder(Order o) {
-        getOrderRegistry().put(getNewOrderKey(), o);
+    public void removeCustomer(Integer customerID) {
+        
+        this.getCustomerRegistry().remove(customerID);
+        
     }
 }
