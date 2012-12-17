@@ -5,8 +5,11 @@
 package is.controller;
 
 import is.projekt.Customer;
+import is.projekt.Order;
+import is.projekt.Registry;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,7 +18,7 @@ import java.util.List;
  */
 public class ControllerTest {
 
-    static void runTest(Controller controller) {
+    static void runTest(Controller controller, Registry model) {
 
         addCustomers(controller);
 
@@ -28,7 +31,13 @@ public class ControllerTest {
         
         addBuyOrders(controller, datum, or);
         
-         
+        HashMap<Integer, Order> CR = model.getOrderRegistry();
+        
+        Order ord = CR.get(1);
+        
+        System.out.println(ord.toInt());
+        
+        
     
 
     }
@@ -44,7 +53,8 @@ public class ControllerTest {
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");
     }
     private static void addBuyOrders(Controller controller, Date datum, List orl) {
-    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true, 1);
+    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true);
+    controller.addBuyOrder(datum, "Tomtegatan 12", "18130", "Lomma", orl, 2, true);
     }
     
        
