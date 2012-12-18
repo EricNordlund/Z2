@@ -675,37 +675,37 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                 orderFrame.setTitle("Skapa order");
                 orderFrame.setCustomerID(customerID);
-                orderFrame.updateInterface();
+                orderFrame.initInterface();
                 orderFrame.updateLists();
                 orderFrame.setVisible(true);
 
             }//else if
 
         }
-        
+
         //Orderdel (Lägg till finns i kunddelen)
         if (this.lstOrders.getSelectedValue() instanceof ListItem) {
-            
-        if (e.getSource() == this.btnEditOrder) {
-                
-            
-            
-           Integer orderID = this.getSelectedKey(this.lstOrders);
-           
-           System.out.println("Öppnar order för kund ID: " + orderID);
-           ArrayList<String> orderData = controller.getOrderData(orderID);
-           Integer customerID = Integer.valueOf(orderData.get(2));
-           
-           
-           
+
+            if (e.getSource() == this.btnEditOrder) {
+
+
+
+                Integer orderID = this.getSelectedKey(this.lstOrders);
+
+                System.out.println("Öppnar order för kund ID: " + orderID);
+                ArrayList<String> orderData = controller.getOrderData(orderID);
+                Integer customerID = Integer.valueOf(orderData.get(2));
+
+
+
                 orderFrame.setTitle("Ändra order");
                 orderFrame.setCustomerID(customerID);
-                orderFrame.updateInterface();
+                orderFrame.initInterface();
                 orderFrame.updateLists();
                 orderFrame.setVisible(true);
             }
         }
-        
+
 
         //Hantering av knappar i båtdelen
 
@@ -715,7 +715,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             boatFrame.setTitle("Lägg till båt");
             boatFrame.setVisible(true);
         }
-        
+
         if (this.lstBoat.getSelectedValue() instanceof ListItem) {
 
             Integer boatID = this.getSelectedKey(this.lstBoat);
@@ -745,7 +745,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                 orderFrame.setTitle("Ändra order");
                 //orderFrame.setCustomerID(customerID);
-                orderFrame.updateInterface();
+                orderFrame.initInterface();
                 orderFrame.updateLists();
                 orderFrame.setVisible(true);
             }

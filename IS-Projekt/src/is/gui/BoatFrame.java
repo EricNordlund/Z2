@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author svalan
  */
-public class BoatFrame extends javax.swing.JFrame implements ActionListener{
+public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
     private Controller controller;
     private MainWindow parent;
@@ -23,8 +23,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
     /**
      * Creates new form EditBoat
      */
-
-        public BoatFrame(MainWindow parent) {
+    public BoatFrame(MainWindow parent) {
 
         initComponents();//Autogenererad metod
 
@@ -35,8 +34,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
         this.setLocationRelativeTo(null);
 
     }
-        
-        public void setController(Controller controller) {
+
+    public void setController(Controller controller) {
 
         this.controller = controller;
     }
@@ -45,10 +44,12 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
 
         return controller;
     }
+
     private void addActionListenerToButtons() {
         this.btnSaveBoat.addActionListener(this);
         this.btnExitBoat.addActionListener(this);
     }
+
     public void clearTextFields() {
 
 
@@ -58,16 +59,17 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
         this.txtBoatPrice.setText("");
         this.txtBoatIdNumber.setText("");
         this.txaBoatDesprection.setText("");
- 
+
 
 
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
 
         if (e.getSource() == this.btnSaveBoat) {
-        
+
             if (newBoat) {
 
                 getController().addBoat(
@@ -76,8 +78,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
                         this.txtBoatDestination.getText(),
                         this.txaBoatDesprection.getText(),
                         Double.valueOf(this.txtBoatPrice.getText()));
-                
-                    
+
+
             } else {
                 getController().editBoat(
                         this.boatKey,
@@ -86,8 +88,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
                         this.txtBoatDestination.getText(),
                         this.txaBoatDesprection.getText(),
                         Double.valueOf(this.txtBoatPrice.getText()));
-          
- }
+
+            }
 
             parent.updateLists();
 
@@ -101,18 +103,20 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
         }//if e.getSource() == this.btnCancel
 
     }
-        void fillTextBoxes(ArrayList<String> boatData) {
+
+    void fillTextBoxes(ArrayList<String> boatData) {
         this.txtBoatIdNumber.setText(boatData.get(0));
         this.txtBoatRegNumber.setText(boatData.get(1));
         this.txtBoatModel.setText(boatData.get(2));
         this.txtBoatDestination.setText(boatData.get(3));
         this.txaBoatDesprection.setText(boatData.get(4));
         this.txtBoatPrice.setText(boatData.get(5));
-        
-        
+
+
 
     }
- void setBoatKey(Integer key) {
+
+    void setBoatKey(Integer key) {
         this.boatKey = key;
         this.txtBoatRegNumber.setText(Integer.toString(key));
     }
@@ -120,7 +124,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
     void setNewBoat(boolean b) {
         this.newBoat = b;
     }
-                        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,8 +257,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
     private void txtBoatPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBoatPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBoatPriceActionPerformed
-
-    
     /**
      * @param args the command line arguments
      */
@@ -275,7 +277,4 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField txtBoatPrice;
     private javax.swing.JTextField txtBoatRegNumber;
     // End of variables declaration//GEN-END:variables
-
-    
-
 }

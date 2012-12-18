@@ -26,9 +26,9 @@ public class ListItem {
         return key;
 
     }
-    
-    public String getDisplayName(){
-        return displayName; 
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     @Override

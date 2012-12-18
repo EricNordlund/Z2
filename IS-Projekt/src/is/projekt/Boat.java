@@ -12,14 +12,14 @@ public class Boat extends Product {
 
     //Konstruktor
     public Boat(String regnr, String model, String location, String description, double price) {
-        
+
         super(price, description);
-        
+
         this.regnr = regnr;
         this.model = model;
         this.location = location;
         this.boatID = boatID;
-      
+
     }
 
     public String getRegnr() {
@@ -46,8 +46,6 @@ public class Boat extends Product {
         this.location = location;
     }
 
-    
-
     public int getBoatID() {
         return boatID;
     }
@@ -55,6 +53,7 @@ public class Boat extends Product {
     public void setBoatID(int boatIdNumber) {
         this.boatID = boatIdNumber;
     }
+
     public ArrayList<String> getDataAsList() {
 
         ArrayList<String> l = new ArrayList<>();
@@ -65,16 +64,16 @@ public class Boat extends Product {
         l.add(getLocation());
         l.add(getDescription());
         l.add(Double.toString(getPrice()));
-   
-       return l;
-      
-              
+
+        return l;
+
+
     }
 
-    
+    @Override
     public String toString() {
 
         return getRegnr() + ", " + getModel();
 
-    }   
     }
+}

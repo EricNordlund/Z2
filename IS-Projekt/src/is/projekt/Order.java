@@ -1,5 +1,6 @@
 package is.projekt;
 
+import is.controller.ListItem;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,16 +17,19 @@ public abstract class Order {
     private Integer customerID;
     private boolean isBuyOrder;
     private Integer orderID;
-    
 
-
-    public Order(Date billingDate, Address billingAddress, Integer customerID, boolean isBuyOrder, Integer orderID) {
+     /**
+     *
+     * @param billingDate The built in Date class.
+     * @param billingAddress Our own address class.
+     * 
+     */
+    public Order(int orderID, Date billingDate, Address billingAddress, Integer customerID) {
         this.billingDate = billingDate;
         this.billingAddress = billingAddress;
         this.customerID = customerID;
-        this.isBuyOrder = isBuyOrder;
         this.orderID = orderID;
-        
+
     }
 
     public boolean getIsBuyOrder() {
@@ -36,20 +40,10 @@ public abstract class Order {
         this.isBuyOrder = isBuyOrder;
     }
 
-    /**
-     *
-     * @param billingDate The built in Date class.
-     * @param billingAddress Our own address class.
-     */
-    
-    
-    public Order() {
-    }
-
     public Address getBillingAddress() {
         return billingAddress;
     }
-    
+
     //Setsetset
     public void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
@@ -78,11 +72,11 @@ public abstract class Order {
     public Date getBillingDate() {
         return billingDate;
     }
-    
+
     public ArrayList<String> getDataAsList() {
 
         ArrayList<String> l = new ArrayList<>();
-        
+
         l.add(getBillingDate().toString());
         l.add(getBillingAddress().toString());
         l.add(getCustomerID().toString());
@@ -92,20 +86,29 @@ public abstract class Order {
         return l;
 
     }
-    
 
     /**
      * Adds an OrderRow to the list.
      *
      * @param newOrderRow The order row to add.
      */
-    public void addOrderRow(OrderRow newOrderRow) {
-        getOrderRows().add(newOrderRow);
+    public void addOrderRow(ListItem li) {
+        
+        int key = li.getKey();
+        
+        OrderRow or;
+        
+ 
     }
-    
-    
-    public Integer toInt() { return orderID; };
+
+    public int getOrderID() {
+        return orderID;
+    }
+
+    ;
     @Override
-    public String toString() { return "Order ID: " + orderID.toString(); };
-    
+    public String toString() {
+        return "Order ID: " + orderID.toString();
+    }
+;
 }

@@ -17,11 +17,15 @@ public class Main {
 
 
         Controller controller = new Controller(br, cr, gr, or);
-
+        
+        br.setController(controller);
+        cr.setController(controller);
+        gr.setController(controller);
+        or.setController(controller);
+        
         ControllerTest.runTest(controller);
 
         MainWindow view = new MainWindow();
-
         view.setController(controller);
         view.updateLists();
         view.setVisible(true);

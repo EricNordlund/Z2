@@ -1,7 +1,6 @@
 package is.controller;
 
 import is.projekt.Customer;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -14,7 +13,7 @@ import javax.swing.ListModel;
  * @author Lärkan, Svalan och Thernan och Tratten och Finken
  */
 public interface ControllerInterface {
-
+ 
     //Kundhantering
     public abstract void addCustomer(String name, String addressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
 
@@ -26,44 +25,37 @@ public interface ControllerInterface {
 
     public abstract DefaultListModel getCustomerListModel();
 
-    
     //Köporderhantering
-    public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect);
+    public abstract void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect);
 
     public abstract void editBuyOrder(Date billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID);
 
     public abstract List<String> getBuyOrderData(Integer orderID);
 
     public abstract List<String> getOrderData(Integer customerID);
-    
+
     public abstract void removeBuyOrder(Integer orderID);
-    
+
     public abstract ListModel getOrderListModel();
 
     public abstract ListModel getBuyOrderRowsListModel(Integer orderID);
-    
+
     public abstract GoodsListItem getGoodsListItem(Integer orderID);
-    
-    
-    
 
-    
-    
+    //Säljorderhantering
+    public abstract void addSellOrder(int customerID, Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows);
 
-  
-    
     //Båthantering
     public abstract void addBoat(String regnr, String model, String location, String description, double price);
 
     public abstract void editBoat(int boatID, String regnr, String model, String location, String description, double price);
 
-    public abstract List<String> getBoat(Integer boatID);
+    public abstract void removeBoat(int boatID);
 
-    public abstract void removeBoat(Integer boatID);
-    
     public abstract ListModel getBoatListModel();
 
-    
+    public abstract BoatListItem getBoatListItem(int boatID);
+
     //Varuhantering
     public abstract void addGoods(String name, Double price, String description);
 

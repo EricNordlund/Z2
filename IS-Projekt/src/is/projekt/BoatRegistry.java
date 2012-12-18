@@ -4,6 +4,7 @@
  */
 package is.projekt;
 
+import is.controller.Controller;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -11,21 +12,24 @@ import java.util.HashMap;
  *
  * @author anna_thernfrid
  */
-public class BoatRegistry implements Serializable{
+public class BoatRegistry implements Serializable {
+
+    Controller controller;
     
-     private HashMap<Integer, Boat> boatRegistry = new HashMap<>();
-     private int boatKeyCount = 0;
-     
-     public HashMap<Integer, Boat> getBoatRegistry() {
+    private HashMap<Integer, Boat> boatRegistry = new HashMap<>();
+    
+    private int boatKeyCount = 0;
+
+    public HashMap<Integer, Boat> getBoatRegistry() {
         return boatRegistry;
     }
-     
-      private int getNewBoatKey() {
+
+    private int getNewBoatKey() {
         boatKeyCount++;
         return boatKeyCount;
     }
-      
-      public void addBoat(Boat b) {
+
+    public void addBoat(Boat b) {
         getBoatRegistry().put(getNewBoatKey(), b);
     }
 
@@ -36,5 +40,8 @@ public class BoatRegistry implements Serializable{
     public void removeBoat(Integer boatID) {
         this.getBoatRegistry().remove(boatID);
     }
-    
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
 }

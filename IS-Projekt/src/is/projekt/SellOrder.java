@@ -1,13 +1,19 @@
 package is.projekt;
 
+import java.util.Date;
+
 /**
  *
  * @author Anna Thernfrid, Eric Nordlund, Viktor Voigt
  */
 public class SellOrder extends Order {
 
-    /*Calls constructor in superclass. Read documantation there.
+    /**
+     * Anropar kontruktorn i Order.
      */
-    public SellOrder() {
+    public SellOrder(int orderID, Date billingDate, Address billingAddress, Integer customerID) {
+        
+        super(orderID, billingDate, billingAddress, customerID);
+        
     }
 }

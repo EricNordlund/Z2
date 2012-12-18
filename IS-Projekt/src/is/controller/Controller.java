@@ -33,7 +33,7 @@ public class Controller implements ControllerInterface {
     private CustomerRegistry customerRegistry;
     private GoodsRegistry goodsRegistry;
 
-    public Controller(BoatRegistry br, CustomerRegistry cr, GoodsRegistry gr ,OrderRegistry or) {
+    public Controller(BoatRegistry br, CustomerRegistry cr, GoodsRegistry gr, OrderRegistry or) {
 
         this.boatRegistry = br;
         this.customerRegistry = cr;
@@ -58,7 +58,6 @@ public class Controller implements ControllerInterface {
         return goodsRegistry;
     }
 
-
     @Override
     public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
@@ -69,30 +68,32 @@ public class Controller implements ControllerInterface {
         System.out.println("Adding customer " + c.toString() + ".");
     }
     //
- 
-    public void addBoat(String regnr, String model, String location, String description, double price){
-        
+
+    public void addBoat(String regnr, String model, String location, String description, double price) {
+
         Boat b = new Boat(regnr, model, location, description, price);
         getBoatRegistry().addBoat(b);
-        
+
         System.out.println("Adding boat " + b.toString() + ".");
-       
+
     }
-     @Override
+
+    @Override
     public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
-        
-         
-       Boat b = new Boat(regnr, model, location, description, price);
+
+
+        Boat b = new Boat(regnr, model, location, description, price);
         getBoatRegistry().editBoat(boatID, b);
 
         System.out.println("Editing boat " + b.toString() + ".");
     }
-     @Override
-    public void removeBoat(Integer boatID) {
+
+    @Override
+    public void removeBoat(int boatID) {
         getBoatRegistry().removeBoat(boatID);
 
         System.out.println("Removing boat " + boatID + ".");
-     }
+    }
 
     public ArrayList<String> getBoatData(Integer boatID) {
 
@@ -100,6 +101,7 @@ public class Controller implements ControllerInterface {
 
         return boatData;
     }
+
     @Override
     public void editCustomer(Integer customerID, String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
@@ -147,14 +149,6 @@ public class Controller implements ControllerInterface {
         return lm;
     }
 
-   
-
-    @Override
-    public List getBoat(Integer boatID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    
     @Override
     public void editGoods(Double price, String description, String productNr) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -190,23 +184,23 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect) {
-       
+
         Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
         Integer orderID = getOrderRegistry().getNewOrderKey();
-        Order o = new BuyOrder(billingDate, billingAdress, customerID, isBuyOrder, orderID);
+        Order o = new BuyOrder(orderID, billingDate, billingAdress, customerID);
         getOrderRegistry().addBuyOrder(o, orderID);
 
-        System.out.println("Adding order with ID " + o.toInt() + ".");
+        System.out.println("Adding order with ID " + o.getOrderID() + ".");
     }
 
     @Override
     public void editBuyOrder(Date billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
 
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
-        Order o = new BuyOrder(billingDate, address, customerID, isBuyOrder, orderID);
+        Order o = new BuyOrder(orderID, billingDate, address, customerID);
         getOrderRegistry().editBuyOrder(o, orderID);
 
-        System.out.println("Editing order with ID " + o.toInt() + ".");
+        System.out.println("Editing order with ID " + o.getOrderID() + ".");
     }
 
     @Override
@@ -224,7 +218,6 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    
     //Skapar listor som passar in i GUI.
     private DefaultListModel createListModel(HashMap hm) {
 
@@ -252,47 +245,67 @@ public class Controller implements ControllerInterface {
 
     @Override
     public ListModel getBoatListModel() {
-        
+
         HashMap<Integer, Boat> hm = getBoatRegistry().getBoatRegistry();
-        
+
         DefaultListModel lm = this.createListModel(hm);
 
         return lm;
     }
-    
+
     @Override
     public ListModel getOrderListModel() {
-        
-        HashMap<Integer, Order> hm = getOrderRegistry().getOrderRegistry();
-        
+
+        HashMap<Integer, Order> hm = getOrderRegistry().getOrderList();
+
         DefaultListModel lm = this.createListModel(hm);
 
         return lm;
     }
-    
+
     @Override
     public ArrayList<String> getOrderData(Integer orderID) {
 
-        ArrayList<String> orderData = getOrderRegistry().getOrderRegistry().get(orderID).getDataAsList();
+        ArrayList<String> orderData = getOrderRegistry().getOrderList().get(orderID).getDataAsList();
 
         return orderData;
-}
+    }
 
     @Override
     public GoodsListItem getGoodsListItem(Integer goodsID) {
-        
+
         GoodsListItem gli;
-        
-        String [] goodsData = getGoodsRegistry().getGoodsData(goodsID);
-        
+
+        String[] goodsData = getGoodsRegistry().getGoodsData(goodsID);
+
         String displayName = goodsData[0];
         double price = Double.valueOf(goodsData[1]);
-            
+
         gli = new GoodsListItem(goodsID, displayName, price, 1);
 
         return gli;
-      
+
     }
 
+    @Override
+    public BoatListItem getBoatListItem(int boatID) {
 
+        BoatListItem bli;
+
+        ArrayList<String> a = this.getBoatData(boatID);
+
+        String displayName = a.get(1) + " " + a.get(2);
+
+        double price = Double.valueOf(a.get(5));
+
+        bli = new BoatListItem(boatID, displayName, price);
+
+        return bli;
+
+    }
+
+    @Override
+    public void addSellOrder(int customerID, Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

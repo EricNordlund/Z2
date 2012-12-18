@@ -15,23 +15,23 @@ public class Goods extends Product {
 
         super(price, description);
         this.name = name;
-        
+
     }
 
     @Override
     public String toString() {
         return name + " " + getPrice();
     }
-    
-    public String[] getDataArray(){
-        
-       String[] a = new String[3];
-       
-       a[0] = name;
-       a[1] = Double.toString(getPrice());
-       a[2] = getDescription();
-        
+
+    public String[] getDataArray() {
+
+        String[] a = new String[3];
+
+        a[0] = name;
+        a[1] = Double.toString(getPrice());
+        a[2] = getDescription();
+
         return a;
-              
+
     }
 }

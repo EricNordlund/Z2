@@ -4,6 +4,7 @@
  */
 package is.projekt;
 
+import is.controller.Controller;
 import java.util.HashMap;
 
 /**
@@ -14,6 +15,7 @@ public class CustomerRegistry {
 
     private HashMap<Integer, Customer> customerRegistry = new HashMap<>();
     private int customerKeyCount = 0;
+    private Controller controller;
 
     public HashMap<Integer, Customer> getCustomerRegistry() {
         return customerRegistry;
@@ -35,5 +37,9 @@ public class CustomerRegistry {
     public void removeCustomer(Integer customerID) {
 
         this.getCustomerRegistry().remove(customerID);
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 }
