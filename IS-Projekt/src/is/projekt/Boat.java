@@ -11,7 +11,7 @@ public class Boat extends Product {
     private int boatID;
 
     //Konstruktor
-    public Boat(String regnr, String model, String location, int boatID, String description, double price) {
+    public Boat(int boatID, String regnr, String model, String location, String description, double price) {
         
         super(price, description);
         
