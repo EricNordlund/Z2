@@ -28,14 +28,11 @@ public class ControllerTest {
         
         List or = new ArrayList();
         or.add("123");
-        
-        addBuyOrders(controller, datum, or);
+    
         
         HashMap<Integer, Order> CR = model.getOrderRegistry();
         
         Order ord = CR.get(1);
-        
-        System.out.println(ord.toInt());
         
         
     
@@ -52,10 +49,7 @@ public class ControllerTest {
         controller.addGoods("Utombordsmotor LM-500", 3700.00, "En kraftig liten motor.");
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");
     }
-    private static void addBuyOrders(Controller controller, Date datum, List orl) {
-    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true);
-    controller.addBuyOrder(datum, "Tomtegatan 12", "18130", "Lomma", orl, 2, true);
-    }
+   
     
        
     

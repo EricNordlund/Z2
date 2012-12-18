@@ -15,13 +15,19 @@ public class Goods extends Product {
 
         super(price, description);
         this.name = name;
-
-
-
+        
     }
 
     @Override
     public String toString() {
         return name + " " + getPrice();
+    }
+    
+    public Object[] getDataArray(){
+        
+       Object[] a = {name, Double.toString(getPrice()) , getDescription()};
+        
+        return a;
+              
     }
 }

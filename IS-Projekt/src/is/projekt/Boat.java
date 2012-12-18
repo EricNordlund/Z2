@@ -47,6 +47,7 @@ public class Boat extends Product {
     public void setPriceInfo(String priceInfo) {
         this.priceInfo = priceInfo;
     }
+    
     public String getDescription() {
         return description;
     }
@@ -75,6 +76,7 @@ public class Boat extends Product {
         dataArray[2] = location;
         dataArray[3] = priceInfo;
         dataArray[4] = description;
+        
         return dataArray;
     }
 }

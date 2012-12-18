@@ -5,6 +5,8 @@
 package is.gui;
 
 import is.controller.Controller;
+import is.controller.ListItem;
+import is.controller.OrderRowListItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -50,6 +52,22 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(lstProducts.getSelectedValue() instanceof ListItem){
+            
+            if(e.getSource() ==  this.btnAdd)
+            {
+                OrderRowListItem orli;
+                
+                ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
+                int goodsID = selectedProduct.getKey();
+                
+                
+                
+                this.lstOrderRows.getModel().add(orli);
+            }
+            
+        }
     }
 
     public void updateLists() {
@@ -71,8 +89,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         lstProducts = new javax.swing.JList();
         btnOK = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
         jScrollPanelOrderRows1 = new javax.swing.JScrollPane();
         lstOrderRows = new javax.swing.JList();
         jPanel1 = new javax.swing.JPanel();
@@ -103,17 +121,17 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        jButton2.setText("<<");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("<<");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        jButton3.setText(">>");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnRemove.setText(">>");
+        btnRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnRemoveActionPerformed(evt);
             }
         });
 
@@ -254,8 +272,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                                 .addComponent(jScrollPanelOrderRows1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -283,9 +301,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(btnAdd)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btnRemove)
                         .addGap(148, 148, 148))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -307,13 +325,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void txtCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerActionPerformed
         // TODO add your handling code here:
@@ -336,10 +354,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnOK;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
