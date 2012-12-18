@@ -38,9 +38,15 @@ public class GoodsListItem extends ListItem{
   @Override
   public String toString(){
       
-      return getQuantity() + getDisplayName() + getTotalPrice();
+      return getQuantity() + " st " + getDisplayName() + " " + getTotalPrice();
       
   }
+
+    public void addQuantity(int i) {
+        
+        quantity += i;
+        
+    }
 }  
     
 

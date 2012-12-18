@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JList;
 
 /**
  *
@@ -27,26 +28,29 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         initComponents();
 
+        addActionListenerToButtons(this);
+
         this.parent = parent;
-        
+
         this.setLocationRelativeTo(null);
 
     }
-    
-    public Controller getController(){
-        
-        return this.controller;     
+
+    public Controller getController() {
+
+        return this.controller;
     }
-    
-    public void updateInterface(){
-        
+
+    public void updateInterface() {
+
+        //Hämtar relevant infor från Customer
         ArrayList<String> customerData = getController().getCustomerData(customerID);
         this.txtCustomer.setText(customerData.get(0));
         this.txtStreet.setText(customerData.get(3));
         this.txtPostCode.setText(customerData.get(4));
         this.txtCity.setText(customerData.get(5));
         this.lstOrderRows.setModel(new DefaultListModel());
-        
+
     }
 
     void setController(Controller controller) {
@@ -55,51 +59,49 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        if(lstProducts.getSelectedValue() instanceof ListItem){
-            
-                    if (e.getSource() instanceof JButton){
-            JButton btn = (JButton) e.getSource();
-            String btnName = btn.getText();
-            System.out.println("Du tryckte på knappen " + btnName + ".");
-            
-        }
-            
-            if(e.getSource() ==  this.btnAdd)
-            {
-                
-                GoodsListItem gli;
-                DefaultListModel lm;
-                
-                lm = (DefaultListModel) this.lstOrderRows.getModel();
-                
-                ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
-                
-                int goodsID = selectedProduct.getKey();
-                
-                gli = this.getController().getGoodsListItem(goodsID);
-                
-                lm.addElement(gli);
-                
-                updateLists();
-                
-                
-                
+
+        if (lstProducts.getSelectedValue() instanceof ListItem) {
+
+            if (e.getSource() instanceof JButton) {
+                JButton btn = (JButton) e.getSource();
+                String btnName = btn.getText();
+                System.out.println("Du tryckte på knappen " + btnName + ".");
+
             }
-            
+
+            if (e.getSource() == this.btnAdd) {
+
+                ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
+
+                int goodsID = selectedProduct.getKey();
+
+                if (!lstOrderRowsHasGoods(goodsID)) {
+
+                    this.addNewGoodsListItem(goodsID);
+
+                } else {
+                    
+                    addToGoodsListItem(goodsID, 1);
+                    
+                }
+
+            }
+
+            updateLists();
+
         }
     }
 
     public void updateLists() {
-        
+
         this.lstProducts.setModel(getController().getGoodsListModel());
-        
+        this.lstOrderRows.repaint();
+ 
     }
 
     void setCustomerID(Integer customerID) {
         this.customerID = customerID;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -108,7 +110,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         jScrollPanelOrderRows = new javax.swing.JScrollPane();
         lstProducts = new javax.swing.JList();
         btnOK = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
         jScrollPanelOrderRows1 = new javax.swing.JScrollPane();
@@ -134,10 +136,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         btnOK.setText("Spara order");
 
-        jButton1.setText("Avbryt");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Avbryt");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -283,7 +285,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnOK)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btnCancel)
                         .addGap(78, 78, 78))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -337,7 +339,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                                 .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(btnCancel)
                             .addComponent(btnOK))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -365,19 +367,18 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrderNrActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOK;
     private javax.swing.JButton btnRemove;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
@@ -400,4 +401,79 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
 
+    private void addActionListenerToButtons(ActionListener a) {
+        this.btnAdd.addActionListener(a);
+        this.btnRemove.addActionListener(a);
+        this.btnOK.addActionListener(a);
+        this.btnCancel.addActionListener(a);
+
+    }
+
+    private void addNewGoodsListItem(int goodsID) {
+
+        GoodsListItem gli;
+        DefaultListModel lm;
+
+        lm = (DefaultListModel) this.lstOrderRows.getModel();
+
+
+
+        gli = this.getController().getGoodsListItem(goodsID);
+
+        lm.addElement(gli);
+    }
+
+    private boolean lstOrderRowsHasGoods(int goodsID) {
+
+        boolean hasItem = false;
+
+        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+
+        Object[] lmArray = lm.toArray();
+
+        for (Object o : lmArray) {
+
+            if (o instanceof GoodsListItem) {
+                
+                GoodsListItem li = (GoodsListItem) o;
+                
+                if(goodsID ==li.getKey()){
+                    hasItem = true;
+                }
+                
+                
+            }
+            
+        }
+
+        return hasItem;
+    }
+
+    private void addToGoodsListItem(int goodsID, int toAdd) {
+
+        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+
+        Object[] lmArray = lm.toArray();
+
+        for (Object o : lmArray) {
+
+            if (o instanceof GoodsListItem) {
+                
+                GoodsListItem li = (GoodsListItem) o;
+                
+                if(goodsID ==li.getKey()){
+                    
+                    li.addQuantity(toAdd);
+                    System.out.println(li.toString() + " added " + toAdd);
+                  
+                    
+                }
+                
+                
+            }
+            
+        }
+
+ 
+    }
 }
