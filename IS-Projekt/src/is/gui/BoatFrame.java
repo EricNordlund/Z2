@@ -70,8 +70,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
             if (newBoat) {
 
                 getController().addBoat(
-                        this.boatKey,
-                        this.txtBoatIdNumber.getText(),
                         this.txtBoatRegNumber.getText(),
                         this.txtBoatModel.getText(),
                         this.txtBoatDestination.getText(),
@@ -82,7 +80,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
             } else {
                 getController().editBoat(
                         this.boatKey,
-                        this.txtBoatIdNumber.getText(),
                         this.txtBoatRegNumber.getText(),
                         this.txtBoatModel.getText(),
                         this.txtBoatDestination.getText(),
@@ -104,12 +101,14 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
 
     }
         void fillTextBoxes(ArrayList<String> boatData) {
-        this.txtBoatRegNumber.setText(boatData.get(0));
-        this.txtBoatModel.setText(boatData.get(1));
-        this.txtBoatDestination.setText(boatData.get(2));
-        this.txtBoatPrice.setText(boatData.get(3));
-        this.txtBoatIdNumber.setText(boatData.get(4));
-        this.txaBoatDesprection.setText(boatData.get(5));
+        this.txtBoatIdNumber.setText(boatData.get(0));
+        this.txtBoatRegNumber.setText(boatData.get(1));
+        this.txtBoatModel.setText(boatData.get(2));
+        this.txtBoatDestination.setText(boatData.get(3));
+        this.txaBoatDesprection.setText(boatData.get(4));
+        this.txtBoatPrice.setText(boatData.get(5));
+        
+        
 
     }
  void setBoatKey(Integer key) {
@@ -273,5 +272,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField txtBoatPrice;
     private javax.swing.JTextField txtBoatRegNumber;
     // End of variables declaration//GEN-END:variables
+
+    
 
 }

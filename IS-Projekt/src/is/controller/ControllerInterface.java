@@ -47,7 +47,7 @@ public interface ControllerInterface {
   
     
     //Båthantering
-    public abstract void addBoat(int boatID, String regnr, String model, String location, String description, double price);
+    public abstract void addBoat(String regnr, String model, String location, String description, double price);
 
     public abstract void editBoat(int boatID, String regnr, String model, String location, String description, double price);
 

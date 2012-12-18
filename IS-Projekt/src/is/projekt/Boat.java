@@ -11,7 +11,7 @@ public class Boat extends Product {
     private int boatID;
 
     //Konstruktor
-    public Boat(int boatID, String regnr, String model, String location, String description, double price) {
+    public Boat(String regnr, String model, String location, String description, double price) {
         
         super(price, description);
         
@@ -55,19 +55,20 @@ public class Boat extends Product {
     public void setBoatID(int boatIdNumber) {
         this.boatID = boatIdNumber;
     }
-    public ArrayList<Object> getDataAsList() {
+    public ArrayList<String> getDataAsList() {
 
-        ArrayList<Object> l = new ArrayList<>();
+        ArrayList<String> l = new ArrayList<>();
 
         l.add(getRegnr());
         l.add(getModel());
         l.add(getLocation());
-        l.add(getBoatID());
+        l.add(Integer.toString(getBoatID()));
         l.add(getDescription());
-        l.add(getPrice());
+        l.add(Double.toString(getPrice()));
    
        return l;
-        
+      
+              
     }
 
     

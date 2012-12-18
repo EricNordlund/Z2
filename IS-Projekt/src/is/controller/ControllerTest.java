@@ -52,7 +52,7 @@ public class ControllerTest {
         controller.addCustomer("Laura Wittman", "Kringlegatan 1", "24552", "Vetlanda", "0739231577", "babsi123@gmail.com");
     }
     private static void addBoat(Controller controller){
-        controller.addBoat("ABC123", "Z9000", "Lomma", 1, "Segelbåt", 50000);
+        controller.addBoat("ABC123", "Z9000", "Lomma", "Segelbåt", 50000);
     }
 
     private static void addGoods(Controller controller) {
