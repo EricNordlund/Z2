@@ -37,7 +37,7 @@ public class ControllerTest {
         
         addBuyOrders(controller, datum, or);
    
-        editBuyOrders(controller, datum);
+        //editBuyOrders(controller, datum);
         
         HashMap<Integer, Order> CR = model.getOrderRegistry();
         
@@ -51,6 +51,7 @@ public class ControllerTest {
     private static void addCustomers(Controller controller) {
         controller.addCustomer("August Burgh", "Lommavängen 12", "22273", "Simrishamn", "0704558712", "ogge74@hotmail.com");
         controller.addCustomer("Laura Wittman", "Kringlegatan 1", "24552", "Vetlanda", "0739231577", "babsi123@gmail.com");
+        controller.addCustomer("Kara Kaufman", "Apelstrasse 8", "32112", "Landskrona", "0723122223", "kamel@kontakt.se");
     }
     private static void addBoat(Controller controller){
         controller.addBoat("ABC123", "Z9000", "Lomma", 1, "Segelbåt", 50000);
@@ -63,8 +64,9 @@ public class ControllerTest {
     }
     
     private static void addBuyOrders(Controller controller, Date datum, List orl) {
-    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true, null);
+    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 1, true, null);
     controller.addBuyOrder(datum, "Tomtegatan 12", "18130", "Lomma", orl, 2, true, null);
+    controller.addBuyOrder(datum, "Lala 31", "13242", "Mumma", orl, 3, true, null);
     }
     
     private static void editBuyOrders(Controller controller, Date datum) {
