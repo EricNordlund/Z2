@@ -93,6 +93,15 @@ public class Registry implements Serializable {
         getGoodsRegistry().put(this.getNewGoodsKey(), g);
     }
     
+    public String[] getGoodsData(int goodsID){
+        
+        String [] goodsData = getGoods(goodsID).getDataArray();
+        
+        return goodsData;
+  
+    }
+    
+    
     public void addBuyOrder(Order o,Integer orderID) {
         getOrderRegistry().put(orderID, o);
     }
@@ -105,5 +114,11 @@ public class Registry implements Serializable {
 
         getOrderRegistry().remove(orderID);
     }   
+
+    private Goods getGoods(int goodsID) {
+        
+        return getGoodsRegistry().get(goodsID);
+        
+    }
    
 }
