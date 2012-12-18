@@ -231,4 +231,14 @@ public class Controller implements ControllerInterface {
 
         return lm;
     }
+    
+    @Override
+    public ListModel getOrderListModel() {
+        
+        HashMap<Integer, Order> hm = getRegistry().getOrderRegistry();
+        
+        DefaultListModel lm = this.createListModel(hm);
+
+        return lm;
+    }
 }

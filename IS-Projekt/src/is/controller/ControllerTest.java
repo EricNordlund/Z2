@@ -41,8 +41,6 @@ public class ControllerTest {
         
         HashMap<Integer, Order> CR = model.getOrderRegistry();
         
-        removeBuyOrders(controller, 1);
-        
         Order ord = CR.get(1);
         
         System.out.println(ord.getIsBuyOrder());

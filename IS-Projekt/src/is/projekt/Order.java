@@ -92,5 +92,7 @@ public abstract class Order {
     
     
     public Integer toInt() { return orderID; };
+    @Override
+    public String toString() { return "Order ID: " + orderID.toString(); };
     
 }

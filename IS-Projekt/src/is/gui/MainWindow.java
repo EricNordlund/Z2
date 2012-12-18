@@ -586,13 +586,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     }
 
+    
     public void updateLists() {
 
         System.out.println("Updating JLists.");
         this.lstCustomer.setModel(getController().getCustomerListModel());
         this.lstGoods.setModel(getController().getGoodsListModel());
         this.lstBoats.setModel(getController().getBoatListModel());
-
+        this.lstOrders.setModel(getController().getOrderListModel());
 
     }
 
@@ -601,8 +602,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnAddCustomer.addActionListener(this);
         this.btnEditCustomer.addActionListener(this);
         this.btnRemoveCustomer.addActionListener(this);
-        //Order i Customber
+        //Order i Customer
         this.btnNewOrder.addActionListener(this);
+       
         //Boats
         this.btnAddBoat.addActionListener(this);
         this.btnEditBoat.addActionListener(this);
