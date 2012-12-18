@@ -91,7 +91,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
             parent.updateLists();
 
             this.setVisible(false);
-        }//if e.getSource() == this.btnSave
+        }//if e.getSource() == this.btnSaveBoat
 
         if (e.getSource() == this.btnExitBoat) {
 
@@ -173,6 +173,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
                 txtBoatPriceActionPerformed(evt);
             }
         });
+
+        txtBoatIdNumber.setEditable(false);
 
         txaBoatDesprection.setColumns(20);
         txaBoatDesprection.setRows(5);

@@ -74,7 +74,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         rbtnOrderBuy = new javax.swing.JRadioButton();
         rbtnOrderSell = new javax.swing.JRadioButton();
         jPanelOrderSearch = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        txtSearchOrder = new javax.swing.JTextField();
         btnOrderSearch = new javax.swing.JButton();
         jPanelTillbehör = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -402,14 +402,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelOrderSearchLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelOrderSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
+                    .addComponent(txtSearchOrder)
                     .addComponent(btnOrderSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelOrderSearchLayout.setVerticalGroup(
             jPanelOrderSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOrderSearchLayout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOrderSearch)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -582,7 +582,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     }
 
-    
     public void updateLists() {
 
         System.out.println("Updating JLists.");
@@ -600,12 +599,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnRemoveCustomer.addActionListener(this);
         //Order i Customer
         this.btnNewOrder.addActionListener(this);
-       
+
         //Boats
         this.btnAddBoat.addActionListener(this);
         this.btnEditBoat.addActionListener(this);
         this.btnRemoveBoat.addActionListener(this);
-        
+
         //Order
         this.btnEditOrder.addActionListener(this);
         this.btnRemoveOrder.addActionListener(this);
@@ -625,9 +624,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         key = li.getKey();
 
         return key;
-        
-   
-        
+
+
+
     }
 
     //Actionlistener, sköter alla knappar.
@@ -641,7 +640,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             customerFrame.setNewCustomer(true);
             customerFrame.setTitle("Lägg till kund");
             customerFrame.setVisible(true);
-        }
+        }//if
 
         if (this.lstCustomer.getSelectedValue() instanceof ListItem) {
 
@@ -656,14 +655,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 this.customerFrame.fillTextBoxes(customerData);
 
                 this.customerFrame.setVisible(true);
-                
+
             } else if (e.getSource() == this.btnRemoveCustomer) {
 
                 getController().removeCustomer(customerID);
-                
+
                 this.updateLists();
-            
-            
+
+
             } else if (e.getSource() == this.btnNewOrder) {
 
                 orderFrame.setTitle("Skapa order");
@@ -672,27 +671,60 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 orderFrame.updateLists();
                 orderFrame.setVisible(true);
 
-            } 
-                
-        }
-        
+            }//else if
+
+        }//if
+
         //Hantering av knappar i båtdelen
-        
-        
-        
-        //Orderdel (Lägg till finns i kunddelen)
-        
-        if (e.getSource() == this.btnEditOrder) {
-                
-                orderFrame.setTitle("Ändra order");
-                //orderFrame.setCustomerID(customerID);
-                orderFrame.updateInterface();
-                orderFrame.updateLists();
-                orderFrame.setVisible(true);
+        if (this.lstBoat.getSelectedValue() instanceof ListItem) {
+
+            Integer boatID = this.getSelectedKey(this.lstBoat);
+
+            if (e.getSource() == this.btnAddBoat) {
+                boatFrame.clearTextFields();
+                boatFrame.setNewBoat(true);
+                boatFrame.setTitle("Lägg till båt");
+                boatFrame.setVisible(true);
             }
-    }// Actionlistner slutar här
+
+            
+
+                if (e.getSource() == this.btnEditBoat) {
+
+
+                    this.boatFrame.setNewBoat(false);
+                    this.boatFrame.setBoatKey(boatID);
+                    ArrayList<String> boatData = this.getController().getBoatData(boatID);
+                    this.boatFrame.fillTextBoxes(boatData);
+
+                    this.boatFrame.setVisible(true);
+
+                } else if (e.getSource() == this.btnRemoveBoat) {
+
+                    getController().removeBoat(boatID);
+
+                    this.updateLists();
+
+
+                }
+
+                //Orderdel (Lägg till finns i kunddelen)
+
+                if (e.getSource() == this.btnEditOrder) {
+
+                    orderFrame.setTitle("Ändra order");
+                    //orderFrame.setCustomerID(customerID);
+                    orderFrame.updateInterface();
+                    orderFrame.updateLists();
+                    orderFrame.setVisible(true);
+                }
+            }
+    }
+
+            // Actionlistner slutar här
 
 //AUTOGENERERAD KOD
+        
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
@@ -768,7 +800,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JList lstBoat;
     private javax.swing.JList lstCustomer;
     private javax.swing.JList lstGoods;
@@ -779,5 +810,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtSearchBoat;
     private javax.swing.JTextField txtSearchCustomer;
     private javax.swing.JTextField txtSearchGoods;
+    private javax.swing.JTextField txtSearchOrder;
     // End of variables declaration//GEN-END:variables
 }

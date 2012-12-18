@@ -54,7 +54,24 @@ public class Controller implements ControllerInterface {
         getRegistry().addBoat(b);
         
         System.out.println("Adding boat " + b.toString() + ".");
+       
     }
+     @Override
+    public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
+        
+         
+       Boat b = new Boat(regnr, model, location, description, price);
+        getRegistry().editBoat(boatID, b);
+
+        System.out.println("Editing boat " + b.toString() + ".");
+    }
+     @Override
+    public void removeBoat(Integer boatID) {
+        getRegistry().removeBoat(boatID);
+
+        System.out.println("Removing boat " + boatID + ".");
+     }
+
     public ArrayList<String> getBoatData(Integer boatID) {
 
         ArrayList<String> boatData = getRegistry().getBoatRegistry().get(boatID).getDataAsList();
@@ -115,11 +132,7 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void removeBoat(Integer boatID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    
     @Override
     public void editGoods(Double price, String description, String productNr) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -243,10 +256,6 @@ public class Controller implements ControllerInterface {
         return orderData;
 }
 
-    @Override
-    public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+   
     
 }

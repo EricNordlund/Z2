@@ -59,10 +59,10 @@ public class Boat extends Product {
 
         ArrayList<String> l = new ArrayList<>();
 
+        l.add(Integer.toString(getBoatID()));
         l.add(getRegnr());
         l.add(getModel());
         l.add(getLocation());
-        l.add(Integer.toString(getBoatID()));
         l.add(getDescription());
         l.add(Double.toString(getPrice()));
    
