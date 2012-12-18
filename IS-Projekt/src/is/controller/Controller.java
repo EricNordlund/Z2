@@ -250,4 +250,20 @@ public class Controller implements ControllerInterface {
 
         return orderData;
 }
+
+    @Override
+    public GoodsListItem getGoodsListItem(Integer goodsID) {
+        
+        GoodsListItem gli;
+        
+        String [] goodsData = getRegistry().getGoodsData(goodsID);
+        
+        String displayName = goodsData[0];
+        double price = Double.valueOf(goodsData[1]);
+            
+        gli = new GoodsListItem(goodsID, displayName, price, 1);
+
+        return gli;
+      
+    }
 }
