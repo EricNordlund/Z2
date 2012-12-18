@@ -8,12 +8,12 @@ package is.controller;
  *
  * @author svalan
  */
-public class OrderRowListItem extends ListItem{
+public class GoodsListItem extends ListItem{
     
     private int quantity;
     private double price;
     
-  public OrderRowListItem(Integer key, String displayName, int quantity, double price){
+  public GoodsListItem(Integer key, String displayName, double price, int quantity){
       
       super(key, displayName);
       this.price = price;

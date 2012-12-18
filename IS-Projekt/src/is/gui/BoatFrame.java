@@ -62,6 +62,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
 
 
     }
+    @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
 
@@ -71,7 +72,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
 
                 getController().addBoat(
                         this.boatKey,
-                        this.txtBoatIdNumber.getText(),
                         this.txtBoatRegNumber.getText(),
                         this.txtBoatModel.getText(),
                         this.txtBoatDestination.getText(),
@@ -82,7 +82,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener{
             } else {
                 getController().editBoat(
                         this.boatKey,
-                        this.txtBoatIdNumber.getText(),
                         this.txtBoatRegNumber.getText(),
                         this.txtBoatModel.getText(),
                         this.txtBoatDestination.getText(),

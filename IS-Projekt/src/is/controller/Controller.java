@@ -23,7 +23,7 @@ import javax.swing.ListModel;
  * @param mainWindow The user interface.
  * @param model The model.
  */
-public abstract class Controller implements ControllerInterface {
+public class Controller implements ControllerInterface {
 
     private Registry model;
 
@@ -243,5 +243,24 @@ public abstract class Controller implements ControllerInterface {
         return orderData;
 }
 
-    
+    @Override
+    public GoodsListItem getGoodsListItem(Integer goodsID) {
+        
+        GoodsListItem gli;
+        
+        String [] goodsData = getRegistry().getGoodsData(goodsID);
+        
+        String displayName = goodsData[0];
+        double price = Double.valueOf(goodsData[1]);
+            
+        gli = new GoodsListItem(goodsID, displayName, price, 1);
+
+        return gli;
+      
+    }
+
+    @Override
+    public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
