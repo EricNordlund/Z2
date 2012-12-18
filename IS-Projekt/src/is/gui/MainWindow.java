@@ -55,7 +55,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         txtSearchCustomer = new javax.swing.JTextField();
         jPanelBåtar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstBoats = new javax.swing.JList();
+        lstBoat = new javax.swing.JList();
         jPanel1 = new javax.swing.JPanel();
         txtSearchBoat = new javax.swing.JTextField();
         btnSearchBoat = new javax.swing.JButton();
@@ -201,19 +201,19 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                     .addGroup(jPanelCustomersLayout.createSequentialGroup()
                         .addComponent(jPanelSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
                         .addComponent(jPanelEditCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         tabbedPaneMainWindow.addTab("Kunder", jPanelCustomers);
 
-        lstBoats.setModel(new javax.swing.AbstractListModel() {
+        lstBoat.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {  };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(lstBoats);
+        jScrollPane1.setViewportView(lstBoat);
 
         txtSearchBoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +246,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
+            .addGap(0, 7, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +283,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(btnEditBoat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelEditCustomer2Layout.createSequentialGroup()
                         .addComponent(btnRemoveBoat, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelEditCustomer2Layout.setVerticalGroup(
@@ -323,7 +323,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanelBåtarLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 286, Short.MAX_VALUE)
                         .addGroup(jPanelBåtarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanelEditCustomer2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -347,7 +347,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelEditCustomer1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelEditCustomer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(btnEditOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addComponent(btnRemoveOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -440,7 +440,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addComponent(jPanelOrderFilters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelEditCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 243, Short.MAX_VALUE))
+                        .addGap(0, 260, Short.MAX_VALUE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -488,11 +488,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelEditCustomer3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelEditCustomer3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnChangeGoods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnChangeGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                     .addComponent(btnAddGoods, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelEditCustomer3Layout.createSequentialGroup()
-                        .addComponent(btnRemoveGoods, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE)))
+                    .addComponent(btnRemoveGoods, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelEditCustomer3Layout.setVerticalGroup(
@@ -516,11 +514,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanelTillbehörLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearchGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                    .addComponent(jPanelEditCustomer3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelTillbehörLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(btnSearchGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
-                    .addComponent(jPanelEditCustomer3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanelTillbehörLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSearchGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                            .addGroup(jPanelTillbehörLayout.createSequentialGroup()
+                                .addComponent(txtSearchGoods, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanelTillbehörLayout.setVerticalGroup(
@@ -530,8 +531,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addGap(25, 25, 25)
                 .addComponent(txtSearchGoods, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearchGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                .addGap(227, 227, 227)
+                .addComponent(btnSearchGoods)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
                 .addComponent(jPanelEditCustomer3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -587,7 +588,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         System.out.println("Updating JLists.");
         this.lstCustomer.setModel(getController().getCustomerListModel());
         this.lstGoods.setModel(getController().getGoodsListModel());
-        this.lstBoats.setModel(getController().getBoatListModel());
+        this.lstBoat.setModel(getController().getBoatListModel());
         this.lstOrders.setModel(getController().getOrderListModel());
 
     }
@@ -616,14 +617,17 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
      */
     private Integer getSelectedKey(JList jlist) {
 
-        Integer customerKey;
+        Integer key;
 
         ListItem li;
         li = (ListItem) jlist.getSelectedValue();
 
-        customerKey = li.getKey();
+        key = li.getKey();
 
-        return customerKey;
+        return key;
+        
+   
+        
     }
 
     //Actionlistener, sköter alla knappar.
@@ -671,6 +675,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             } 
                 
         }
+        
+        //Hantering av knappar i båtdelen
+        
+        
         
         //Orderdel (Lägg till finns i kunddelen)
         
@@ -761,7 +769,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JList lstBoats;
+    private javax.swing.JList lstBoat;
     private javax.swing.JList lstCustomer;
     private javax.swing.JList lstGoods;
     private javax.swing.JList lstOrders;

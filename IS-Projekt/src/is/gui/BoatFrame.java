@@ -5,27 +5,122 @@
 package is.gui;
 
 import is.controller.Controller;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 /**
  *
  * @author svalan
  */
-public class BoatFrame extends javax.swing.JFrame {
+public class BoatFrame extends javax.swing.JFrame implements ActionListener{
 
-    MainWindow parent;
-    Controller controller;
+    private Controller controller;
+    private MainWindow parent;
+    private int boatKey;
+    private boolean newBoat;
 
     /**
      * Creates new form EditBoat
      */
-    public BoatFrame(MainWindow parent) {
 
-        initComponents();
+        public BoatFrame(MainWindow parent) {
+
+        initComponents();//Autogenererad metod
+
+        addActionListenerToButtons();
 
         this.parent = parent;
 
+        this.setLocationRelativeTo(null);
+
+    }
+        
+        public void setController(Controller controller) {
+
+        this.controller = controller;
     }
 
+    private Controller getController() {
+
+        return controller;
+    }
+    private void addActionListenerToButtons() {
+        this.btnSaveBoat.addActionListener(this);
+        this.btnExitBoat.addActionListener(this);
+    }
+    public void clearTextFields() {
+
+
+        this.txtBoatRegNumber.setText("");
+        this.txtBoatModel.setText("");
+        this.txtBoatDestination.setText("");
+        this.txtBoatPrice.setText("");
+        this.txtBoatIdNumber.setText("");
+        this.txaBoatDesprection.setText("");
+ 
+
+
+    }
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
+
+        if (e.getSource() == this.btnSaveBoat) {
+        
+            if (newBoat) {
+
+                getController().addBoat(
+                        this.boatKey,
+                        this.txtBoatIdNumber.getText(),
+                        this.txtBoatRegNumber.getText(),
+                        this.txtBoatModel.getText(),
+                        this.txtBoatDestination.getText(),
+                        this.txaBoatDesprection.getText(),
+                        Double.valueOf(this.txtBoatPrice.getText()));
+                
+                    
+            } else {
+                getController().editBoat(
+                        this.boatKey,
+                        this.txtBoatIdNumber.getText(),
+                        this.txtBoatRegNumber.getText(),
+                        this.txtBoatModel.getText(),
+                        this.txtBoatDestination.getText(),
+                        this.txaBoatDesprection.getText(),
+                        Double.valueOf(this.txtBoatPrice.getText()));
+          
+ }
+
+            parent.updateLists();
+
+            this.setVisible(false);
+        }//if e.getSource() == this.btnSave
+
+        if (e.getSource() == this.btnExitBoat) {
+
+            this.setVisible(false);
+
+        }//if e.getSource() == this.btnCancel
+
+    }
+        void fillTextBoxes(ArrayList<String> boatData) {
+        this.txtBoatRegNumber.setText(boatData.get(0));
+        this.txtBoatModel.setText(boatData.get(1));
+        this.txtBoatDestination.setText(boatData.get(2));
+        this.txtBoatPrice.setText(boatData.get(3));
+        this.txtBoatIdNumber.setText(boatData.get(4));
+        this.txaBoatDesprection.setText(boatData.get(5));
+
+    }
+ void setBoatKey(Integer key) {
+        this.boatKey = key;
+        this.txtBoatRegNumber.setText(Integer.toString(key));
+    }
+
+    void setNewBoat(boolean b) {
+        this.newBoat = b;
+    }
+                        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,12 +252,7 @@ public class BoatFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBoatPriceActionPerformed
 
-    void addControllerToComponents(Controller controller) {
-    }
-
-    void setController(Controller controller) {
-        this.controller = controller;
-    }
+    
     /**
      * @param args the command line arguments
      */
@@ -183,4 +273,5 @@ public class BoatFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtBoatPrice;
     private javax.swing.JTextField txtBoatRegNumber;
     // End of variables declaration//GEN-END:variables
+
 }
