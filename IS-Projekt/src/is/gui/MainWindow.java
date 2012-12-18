@@ -681,27 +681,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         
         
         //Orderdel (Lägg till finns i kunddelen)
-        if (this.lstOrders.getSelectedValue() instanceof ListItem) {
-            
+        
         if (e.getSource() == this.btnEditOrder) {
                 
-            
-            
-           Integer orderID = this.getSelectedKey(this.lstOrders);
-           
-           System.out.println("Öppnar order för kund ID: " + orderID);
-           ArrayList<String> orderData = controller.getOrderData(orderID);
-           Integer customerID = Integer.valueOf(orderData.get(2));
-           
-           
-           
                 orderFrame.setTitle("Ändra order");
-                orderFrame.setCustomerID(customerID);
+                //orderFrame.setCustomerID(customerID);
                 orderFrame.updateInterface();
                 orderFrame.updateLists();
                 orderFrame.setVisible(true);
             }
-        }
     }// Actionlistner slutar här
 
 //AUTOGENERERAD KOD

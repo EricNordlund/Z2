@@ -82,11 +82,11 @@ public abstract class Order {
     public ArrayList<String> getDataAsList() {
 
         ArrayList<String> l = new ArrayList<>();
-        
+
         l.add(getBillingDate().toString());
         l.add(getBillingAddress().toString());
         l.add(getCustomerID().toString());
-        System.out.println("Skickar data: " + getCustomerID().toString());
+
 
 
         return l;
