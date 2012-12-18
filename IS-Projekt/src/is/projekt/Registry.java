@@ -74,7 +74,10 @@ public class Registry implements Serializable {
 
     public void editCustomer(Integer customerID, Customer c) {
         getCustomerRegistry().put(customerID, c);
-
+    }
+    
+    public Order getOrder(Integer orderID) {
+        return orderRegistry.get(orderID);
     }
 
     public void removeCustomer(Integer customerID) {
@@ -92,7 +95,14 @@ public class Registry implements Serializable {
     public void addBuyOrder(Order o,Integer orderID) {
         getOrderRegistry().put(orderID, o);
     }
-
-        
+    
+    public void editBuyOrder(Order o,Integer orderID) {
+        getOrderRegistry().put(orderID, o);
     }
+    
+      public void removeBuyOrder(Integer orderID) {
 
+        getOrderRegistry().remove(orderID);
+    }   
+   
+}
