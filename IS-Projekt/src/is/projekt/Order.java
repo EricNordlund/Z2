@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  *
- * @author Viktor Voigt
+ * @author Viktor Voigt ^^
  */
 public abstract class Order {
 
@@ -79,6 +79,19 @@ public abstract class Order {
         return billingDate;
     }
     
+    public ArrayList<String> getDataAsList() {
+
+        ArrayList<String> l = new ArrayList<>();
+
+        l.add(getBillingDate().toString());
+        l.add(getBillingAddress().toString());
+        l.add(getCustomerID().toString());
+
+
+
+        return l;
+
+    }
     
 
     /**
@@ -92,5 +105,7 @@ public abstract class Order {
     
     
     public Integer toInt() { return orderID; };
+    @Override
+    public String toString() { return "Order ID: " + orderID.toString(); };
     
 }
