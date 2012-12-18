@@ -23,9 +23,13 @@ public class Goods extends Product {
         return name + " " + getPrice();
     }
     
-    public Object[] getDataArray(){
+    public String[] getDataArray(){
         
-       Object[] a = {name, Double.toString(getPrice()) , getDescription()};
+       String[] a = new String[3];
+       
+       a[0] = name;
+       a[1] = Double.toString(getPrice());
+       a[2] = getDescription();
         
         return a;
               

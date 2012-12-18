@@ -6,10 +6,12 @@ package is.gui;
 
 import is.controller.Controller;
 import is.controller.ListItem;
-import is.controller.OrderRowListItem;
+import is.controller.GoodsListItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -43,6 +45,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         this.txtStreet.setText(customerData.get(3));
         this.txtPostCode.setText(customerData.get(4));
         this.txtCity.setText(customerData.get(5));
+        this.lstOrderRows.setModel(new DefaultListModel());
         
     }
 
@@ -57,14 +60,22 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             
             if(e.getSource() ==  this.btnAdd)
             {
-                OrderRowListItem orli;
+                
+                GoodsListItem gli;
+                DefaultListModel lm;
+                
+                lm = (DefaultListModel) this.lstOrderRows.getModel();
                 
                 ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
+                
                 int goodsID = selectedProduct.getKey();
                 
+                gli = this.getController().getGoodsListItem(goodsID);
+                
+                lm.addElement(gli);
                 
                 
-                this.lstOrderRows.getModel().add(orli);
+                
             }
             
         }
