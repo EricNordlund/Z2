@@ -3,11 +3,14 @@ package is.controller;
 import is.gui.MainWindow;
 import is.projekt.Address;
 import is.projekt.Boat;
+import is.projekt.BoatRegistry;
 import is.projekt.BuyOrder;
 import is.projekt.Customer;
+import is.projekt.CustomerRegistry;
 import is.projekt.Goods;
+import is.projekt.GoodsRegistry;
 import is.projekt.Order;
-import is.projekt.Registry;
+import is.projekt.OrderRegistry;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,24 +28,43 @@ import javax.swing.ListModel;
  */
 public class Controller implements ControllerInterface {
 
-    private Registry model;
+    private BoatRegistry boatRegistry;
+    private OrderRegistry orderRegistry;
+    private CustomerRegistry customerRegistry;
+    private GoodsRegistry goodsRegistry;
 
-    public Controller(Registry model) {
+    public Controller(BoatRegistry br, CustomerRegistry cr, GoodsRegistry gr ,OrderRegistry or) {
 
-        this.model = model;
+        this.boatRegistry = br;
+        this.customerRegistry = cr;
+        this.goodsRegistry = gr;
+        this.orderRegistry = or;
 
     }
 
-    private Registry getRegistry() {
-        return model;
+    public BoatRegistry getBoatRegistry() {
+        return boatRegistry;
     }
+
+    public OrderRegistry getOrderRegistry() {
+        return orderRegistry;
+    }
+
+    public CustomerRegistry getCustomerRegistry() {
+        return customerRegistry;
+    }
+
+    public GoodsRegistry getGoodsRegistry() {
+        return goodsRegistry;
+    }
+
 
     @Override
     public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
         Address address = new Address(addressStreet, addressPostCode, addressCity);
         Customer c = new Customer(name, eMail, phoneNumber, address);
-        getRegistry().addCustomer(c);
+        getCustomerRegistry().addCustomer(c);
 
         System.out.println("Adding customer " + c.toString() + ".");
     }
@@ -51,7 +73,7 @@ public class Controller implements ControllerInterface {
     public void addBoat(String regnr, String model, String location, String description, double price){
         
         Boat b = new Boat(regnr, model, location, description, price);
-        getRegistry().addBoat(b);
+        getBoatRegistry().addBoat(b);
         
         System.out.println("Adding boat " + b.toString() + ".");
        
@@ -61,20 +83,20 @@ public class Controller implements ControllerInterface {
         
          
        Boat b = new Boat(regnr, model, location, description, price);
-        getRegistry().editBoat(boatID, b);
+        getBoatRegistry().editBoat(boatID, b);
 
         System.out.println("Editing boat " + b.toString() + ".");
     }
      @Override
     public void removeBoat(Integer boatID) {
-        getRegistry().removeBoat(boatID);
+        getBoatRegistry().removeBoat(boatID);
 
         System.out.println("Removing boat " + boatID + ".");
      }
 
     public ArrayList<String> getBoatData(Integer boatID) {
 
-        ArrayList<String> boatData = getRegistry().getBoatRegistry().get(boatID).getDataAsList();
+        ArrayList<String> boatData = getBoatRegistry().getBoatRegistry().get(boatID).getDataAsList();
 
         return boatData;
     }
@@ -83,7 +105,7 @@ public class Controller implements ControllerInterface {
 
         Address address = new Address(addressStreet, addressPostCode, addressCity);
         Customer c = new Customer(name, eMail, phoneNumber, address);
-        getRegistry().editCustomer(customerID, c);
+        getCustomerRegistry().editCustomer(customerID, c);
 
         System.out.println("Editing customer " + c.toString() + ".");
     }
@@ -91,7 +113,7 @@ public class Controller implements ControllerInterface {
     @Override
     public ArrayList<String> getCustomerData(Integer customerID) {
 
-        ArrayList<String> customerData = getRegistry().getCustomerRegistry().get(customerID).getDataAsList();
+        ArrayList<String> customerData = getCustomerRegistry().getCustomerRegistry().get(customerID).getDataAsList();
 
         return customerData;
 
@@ -99,7 +121,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void removeCustomer(Integer customerID) {
-        getRegistry().removeCustomer(customerID);
+        getCustomerRegistry().removeCustomer(customerID);
 
         System.out.println("Removing customer " + customerID + ".");
     }
@@ -118,7 +140,7 @@ public class Controller implements ControllerInterface {
     @Override
     public DefaultListModel getCustomerListModel() {
 
-        HashMap<Integer, Customer> hm = getRegistry().getCustomerRegistry();
+        HashMap<Integer, Customer> hm = getCustomerRegistry().getCustomerRegistry();
 
         DefaultListModel lm = this.createListModel(hm);
 
@@ -151,7 +173,7 @@ public class Controller implements ControllerInterface {
     @Override
     public ListModel getGoodsListModel() {
 
-        HashMap<Integer, Goods> hm = getRegistry().getGoodsRegistry();
+        HashMap<Integer, Goods> hm = getGoodsRegistry().getGoodsRegistry();
 
         DefaultListModel lm = this.createListModel(hm);
 
@@ -162,7 +184,7 @@ public class Controller implements ControllerInterface {
     public void addGoods(String name, Double price, String description) {
 
         Goods g = new Goods(name, price, description);
-        getRegistry().addGoods(g);
+        getGoodsRegistry().addGoods(g);
         System.out.println("Adding goods " + g.toString() + ".");
     }
 
@@ -170,9 +192,9 @@ public class Controller implements ControllerInterface {
     public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect) {
        
         Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
-        Integer orderID = getRegistry().getNewOrderKey();
+        Integer orderID = getOrderRegistry().getNewOrderKey();
         Order o = new BuyOrder(billingDate, billingAdress, customerID, isBuyOrder, orderID);
-        getRegistry().addBuyOrder(o, orderID);
+        getOrderRegistry().addBuyOrder(o, orderID);
 
         System.out.println("Adding order with ID " + o.toInt() + ".");
     }
@@ -182,7 +204,7 @@ public class Controller implements ControllerInterface {
 
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
         Order o = new BuyOrder(billingDate, address, customerID, isBuyOrder, orderID);
-        getRegistry().editBuyOrder(o, orderID);
+        getOrderRegistry().editBuyOrder(o, orderID);
 
         System.out.println("Editing order with ID " + o.toInt() + ".");
     }
@@ -194,7 +216,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void removeBuyOrder(Integer orderID) {
-        getRegistry().removeBuyOrder(orderID);
+        getOrderRegistry().removeBuyOrder(orderID);
     }
 
     @Override
@@ -231,7 +253,7 @@ public class Controller implements ControllerInterface {
     @Override
     public ListModel getBoatListModel() {
         
-        HashMap<Integer, Boat> hm = getRegistry().getBoatRegistry();
+        HashMap<Integer, Boat> hm = getBoatRegistry().getBoatRegistry();
         
         DefaultListModel lm = this.createListModel(hm);
 
@@ -241,7 +263,7 @@ public class Controller implements ControllerInterface {
     @Override
     public ListModel getOrderListModel() {
         
-        HashMap<Integer, Order> hm = getRegistry().getOrderRegistry();
+        HashMap<Integer, Order> hm = getOrderRegistry().getOrderRegistry();
         
         DefaultListModel lm = this.createListModel(hm);
 
@@ -251,7 +273,7 @@ public class Controller implements ControllerInterface {
     @Override
     public ArrayList<String> getOrderData(Integer orderID) {
 
-        ArrayList<String> orderData = getRegistry().getOrderRegistry().get(orderID).getDataAsList();
+        ArrayList<String> orderData = getOrderRegistry().getOrderRegistry().get(orderID).getDataAsList();
 
         return orderData;
 }
@@ -261,7 +283,7 @@ public class Controller implements ControllerInterface {
         
         GoodsListItem gli;
         
-        String [] goodsData = getRegistry().getGoodsData(goodsID);
+        String [] goodsData = getGoodsRegistry().getGoodsData(goodsID);
         
         String displayName = goodsData[0];
         double price = Double.valueOf(goodsData[1]);

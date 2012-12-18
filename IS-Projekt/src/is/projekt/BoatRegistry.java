@@ -19,10 +19,12 @@ public class BoatRegistry implements Serializable{
      public HashMap<Integer, Boat> getBoatRegistry() {
         return boatRegistry;
     }
+     
       private int getNewBoatKey() {
         boatKeyCount++;
         return boatKeyCount;
     }
+      
       public void addBoat(Boat b) {
         getBoatRegistry().put(getNewBoatKey(), b);
     }

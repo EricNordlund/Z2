@@ -4,45 +4,19 @@
  */
 package is.controller;
 
-import is.projekt.Customer;
-import is.projekt.Order;
-import is.projekt.Registry;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+
 
 /**
- *
+ * Denna klass ska bara användas för att testa controllern. INGA importer ska vara nödvändiga.
  * @author svalan
  */
 public class ControllerTest {
 
-    static void runTest(Controller controller, Registry model) {
+    static void runTest(Controller controller) {
 
         addCustomers(controller);
 
         addGoods(controller);
-     
-        
-        Date datum = new Date(123);
-        
-        List or = new ArrayList();
-        or.add("123");
-        
-        
-        
-        
-        addBuyOrders(controller, datum, or);
-   
-        editBuyOrders(controller, datum);
-        
-        HashMap<Integer, Order> CR = model.getOrderRegistry();
-        
-        Order ord = CR.get(1);
-        
-        System.out.println(ord.getIsBuyOrder());
-    
 
     }
 
@@ -58,15 +32,7 @@ public class ControllerTest {
         controller.addGoods("Utombordsmotor LM-500", 3700.00, "En kraftig liten motor.");
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");
     }
-    
-    private static void addBuyOrders(Controller controller, Date datum, List orl) {
-    controller.addBuyOrder(datum, "Tomegapsbacken 10", "22351", "Lund", orl, 2, true, null);
-    controller.addBuyOrder(datum, "Tomtegatan 12", "18130", "Lomma", orl, 2, true, null);
-    }
-    
-    private static void editBuyOrders(Controller controller, Date datum) {
-      controller.editBuyOrder(datum, "Lillstigen 12", "33333", "Lysekil", 2, true, 1);  
-    }
+
     
     private static void removeBuyOrders(Controller controller, Integer ordid) {
         controller.removeBuyOrder(1);

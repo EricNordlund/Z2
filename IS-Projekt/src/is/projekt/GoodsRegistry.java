@@ -4,7 +4,6 @@
  */
 package is.projekt;
 
-import java.io.Serializable;
 import java.util.HashMap;
 
 /**
@@ -27,11 +26,30 @@ public class GoodsRegistry {
 
         getGoodsRegistry().put(this.getNewGoodsKey(), g);
     }
+    
+    private Goods getGoods(int goodsID){
+        
+        Goods g;
+        
+        g = getGoodsRegistry().get(goodsID);
+        
+        return g;
+        
+    }
+    
  public void editGoods(Integer goodsID, Goods g) {
         getGoodsRegistry().put(goodsID, g);
     }
 
     public void removeGoods(Integer goodsID) {
         this.getGoodsRegistry().remove(goodsID);
+    }
+
+    public String[] getGoodsData(Integer goodsID) {
+        
+        String[] goodsData = getGoods(goodsID).getDataArray();
+        
+        return goodsData;
+                
     }
 }

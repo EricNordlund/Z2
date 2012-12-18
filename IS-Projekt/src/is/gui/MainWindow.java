@@ -633,14 +633,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     //Actionlistener, sköter alla knappar.
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        if (e.getSource() instanceof JButton){
+
+        if (e.getSource() instanceof JButton) {
             JButton btn = (JButton) e.getSource();
             String btnName = btn.getText();
             System.out.println("Du tryckte på knappen " + btnName + ".");
-            
+
         }
-        
+
 
         //Kunddel
         if (e.getSource() == this.btnAddCustomer) {
@@ -684,55 +684,52 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }//if
 
         //Hantering av knappar i båtdelen
+
+        if (e.getSource() == this.btnAddBoat) {
+            boatFrame.clearTextFields();
+            boatFrame.setNewBoat(true);
+            boatFrame.setTitle("Lägg till båt");
+            boatFrame.setVisible(true);
+        }
+        
         if (this.lstBoat.getSelectedValue() instanceof ListItem) {
 
             Integer boatID = this.getSelectedKey(this.lstBoat);
 
-            if (e.getSource() == this.btnAddBoat) {
-                boatFrame.clearTextFields();
-                boatFrame.setNewBoat(true);
-                boatFrame.setTitle("Lägg till båt");
-                boatFrame.setVisible(true);
+            if (e.getSource() == this.btnEditBoat) {
+
+
+                this.boatFrame.setNewBoat(false);
+                this.boatFrame.setBoatKey(boatID);
+                ArrayList<String> boatData = this.getController().getBoatData(boatID);
+                this.boatFrame.fillTextBoxes(boatData);
+
+                this.boatFrame.setVisible(true);
+
+            } else if (e.getSource() == this.btnRemoveBoat) {
+
+                getController().removeBoat(boatID);
+
+                this.updateLists();
+
+
             }
 
-            
+            //Orderdel (Lägg till finns i kunddelen)
 
-                if (e.getSource() == this.btnEditBoat) {
+            if (e.getSource() == this.btnEditOrder) {
 
-
-                    this.boatFrame.setNewBoat(false);
-                    this.boatFrame.setBoatKey(boatID);
-                    ArrayList<String> boatData = this.getController().getBoatData(boatID);
-                    this.boatFrame.fillTextBoxes(boatData);
-
-                    this.boatFrame.setVisible(true);
-
-                } else if (e.getSource() == this.btnRemoveBoat) {
-
-                    getController().removeBoat(boatID);
-
-                    this.updateLists();
-
-
-                }
-
-                //Orderdel (Lägg till finns i kunddelen)
-
-                if (e.getSource() == this.btnEditOrder) {
-
-                    orderFrame.setTitle("Ändra order");
-                    //orderFrame.setCustomerID(customerID);
-                    orderFrame.updateInterface();
-                    orderFrame.updateLists();
-                    orderFrame.setVisible(true);
-                }
+                orderFrame.setTitle("Ändra order");
+                //orderFrame.setCustomerID(customerID);
+                orderFrame.updateInterface();
+                orderFrame.updateLists();
+                orderFrame.setVisible(true);
             }
+        }
     }
 
-            // Actionlistner slutar här
-
+    // Actionlistner slutar här
 //AUTOGENERERAD KOD
-        
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
