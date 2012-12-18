@@ -48,9 +48,9 @@ public class Controller implements ControllerInterface {
     }
     //
  
-    public void addBoat(String regnr, String model, String location, int boatID, String description, double price){
+    public void addBoat(int boatID, String regnr, String model, String location, String description, double price){
         
-        Boat b = new Boat(regnr, model, location, boatID, description, price);
+        Boat b = new Boat(boatID, regnr, model, location, description, price);
         getRegistry().addBoat(b);
         
         System.out.println("Adding boat " + b.toString() + ".");
@@ -108,15 +108,7 @@ public class Controller implements ControllerInterface {
         return lm;
     }
 
-    @Override
-    public void addBoat(String regnr, String model, String location, String priceInfo, String description, int boatID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void editBoat(String regnr, String model, String location, String priceInfo, String description, int boatID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+   
 
     @Override
     public List getBoat(Integer boatID) {
@@ -250,4 +242,25 @@ public class Controller implements ControllerInterface {
 
         return orderData;
 }
+
+    @Override
+    public GoodsListItem getGoodsListItem(Integer goodsID) {
+        
+        GoodsListItem gli;
+        
+        String [] goodsData = getRegistry().getGoodsData(goodsID);
+        
+        String displayName = goodsData[0];
+        double price = Double.valueOf(goodsData[1]);
+            
+        gli = new GoodsListItem(goodsID, displayName, price, 1);
+
+        return gli;
+      
+    }
+
+    @Override
+    public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

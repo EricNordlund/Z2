@@ -42,14 +42,20 @@ public interface ControllerInterface {
 
     public abstract ListModel getBuyOrderRowsListModel(Integer orderID);
     
+    public abstract GoodsListItem getGoodsListItem(Integer orderID);
+    
+    
+    
+
+    
     
 
   
     
     //Båthantering
-    public abstract void addBoat(String regnr, String model, String location, String priceInfo, String description, int boatID);
+    public abstract void addBoat(int boatID, String regnr, String model, String location, String description, double price);
 
-    public abstract void editBoat(String regnr, String model, String location, String priceInfo, String description, int boatID);
+    public abstract void editBoat(int boatID, String regnr, String model, String location, String description, double price);
 
     public abstract List<String> getBoat(Integer boatID);
 
@@ -57,7 +63,8 @@ public interface ControllerInterface {
     
     public abstract ListModel getBoatListModel();
 
-    //Varuahantering
+    
+    //Varuhantering
     public abstract void addGoods(String name, Double price, String description);
 
     public abstract void editGoods(Double price, String description, String productNr);
