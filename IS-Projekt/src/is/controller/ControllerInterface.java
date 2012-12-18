@@ -34,11 +34,15 @@ public interface ControllerInterface {
 
     public abstract List<String> getBuyOrderData(Integer orderID);
 
+    public abstract List<String> getOrderData(Integer customerID);
+    
     public abstract void removeBuyOrder(Integer orderID);
     
     public abstract ListModel getOrderListModel();
 
     public abstract ListModel getBuyOrderRowsListModel(Integer orderID);
+    
+    
 
   
     

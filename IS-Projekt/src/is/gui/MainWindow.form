@@ -492,11 +492,11 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnShowOrder" alignment="0" pref="179" max="32767" attributes="0"/>
                               <Component id="btnEditOrder" alignment="1" pref="179" max="32767" attributes="0"/>
+                              <Component id="btnRemoveOrder" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -506,26 +506,23 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnShowOrder" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnEditOrder" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnRemoveOrder" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="btnShowOrder">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Visa"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowOrderActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JButton" name="btnEditOrder">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Redigera"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnRemoveOrder">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ta bort"/>
                   </Properties>
                 </Component>
               </SubComponents>

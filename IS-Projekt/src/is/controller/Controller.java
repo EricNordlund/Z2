@@ -198,6 +198,7 @@ public class Controller implements ControllerInterface {
     }
 
     
+    //Skapar listor som passar in i GUI.
     private DefaultListModel createListModel(HashMap hm) {
 
         DefaultListModel lm = new DefaultListModel();
@@ -241,4 +242,12 @@ public class Controller implements ControllerInterface {
 
         return lm;
     }
+    
+    @Override
+    public ArrayList<String> getOrderData(Integer orderID) {
+
+        ArrayList<String> orderData = getRegistry().getOrderRegistry().get(orderID).getDataAsList();
+
+        return orderData;
+}
 }
