@@ -272,8 +272,5 @@ public class Controller implements ControllerInterface {
       
     }
 
-    @Override
-    public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+
 }
