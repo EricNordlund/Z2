@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JList;
 
 /**
@@ -633,7 +634,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     //Actionlistener, sköter alla knappar.
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
+        
+        if (e.getSource() instanceof JButton){
+            JButton btn = (JButton) e.getSource();
+            String btnName = btn.getText();
+            System.out.println("Du tryckte på knappen " + btnName + ".");
+            
+        }
+        
 
         //Kunddel
         if (e.getSource() == this.btnAddCustomer) {

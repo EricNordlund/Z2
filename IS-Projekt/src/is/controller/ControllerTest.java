@@ -23,8 +23,7 @@ public class ControllerTest {
         addCustomers(controller);
 
         addGoods(controller);
-        
-        addBoat(controller);
+     
         
         Date datum = new Date(123);
         
@@ -51,9 +50,8 @@ public class ControllerTest {
         controller.addCustomer("August Burgh", "Lommavängen 12", "22273", "Simrishamn", "0704558712", "ogge74@hotmail.com");
         controller.addCustomer("Laura Wittman", "Kringlegatan 1", "24552", "Vetlanda", "0739231577", "babsi123@gmail.com");
     }
-    private static void addBoat(Controller controller){
-        controller.addBoat("ABC123", "Z9000", "Lomma", 1, "Segelbåt", 50000);
-    }
+
+
 
     private static void addGoods(Controller controller) {
         controller.addGoods("Plastbestick", 15.50, "Ett trevligt bestickset till båten.");

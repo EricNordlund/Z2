@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
+import javax.swing.JButton;
 
 /**
  *
@@ -58,6 +58,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         
         if(lstProducts.getSelectedValue() instanceof ListItem){
             
+                    if (e.getSource() instanceof JButton){
+            JButton btn = (JButton) e.getSource();
+            String btnName = btn.getText();
+            System.out.println("Du tryckte på knappen " + btnName + ".");
+            
+        }
+            
             if(e.getSource() ==  this.btnAdd)
             {
                 
@@ -73,6 +80,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 gli = this.getController().getGoodsListItem(goodsID);
                 
                 lm.addElement(gli);
+                
+                updateLists();
                 
                 
                 
