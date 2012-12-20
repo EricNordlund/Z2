@@ -6,6 +6,8 @@ package is.gui;
 
 import is.controller.Controller;
 import is.controller.ListItem;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
 
         initComponents();
+        setIcon();
 
         initFrames();
 
@@ -38,6 +41,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
     }
 
+   
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -200,7 +205,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(jPanelCustomersLayout.createSequentialGroup()
                         .addComponent(jPanelSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanelEditCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -437,9 +442,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                         .addComponent(jPanelOrderSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelOrderFilters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelEditCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 260, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                        .addComponent(jPanelEditCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -558,6 +562,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void initFrames() {
 
         customerFrame = new CustomerFrame(this);
@@ -842,4 +847,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtSearchGoods;
     private javax.swing.JTextField txtSearchOrder;
     // End of variables declaration//GEN-END:variables
+
+    //Väljer ikon för det övre vänstra hörnet
+    private void setIcon() {
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("boat.png")));
+    }
 }
