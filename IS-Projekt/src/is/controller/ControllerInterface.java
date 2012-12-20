@@ -26,9 +26,9 @@ public interface ControllerInterface {
     public abstract DefaultListModel getCustomerListModel();
 
     //Köporderhantering
-    public abstract void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect);
+    public abstract void addBuyOrder(int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect);
 
-    public abstract void editBuyOrder(Date billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID);
+    public abstract void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID);
 
     public abstract List<String> getBuyOrderData(Integer orderID);
 

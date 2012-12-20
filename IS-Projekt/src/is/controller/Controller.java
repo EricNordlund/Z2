@@ -183,10 +183,11 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addBuyOrder(Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect) {
+    public void addBuyOrder(int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect) {
 
         Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
         Integer orderID = getOrderRegistry().getNewOrderKey();
+        
         Order o = new BuyOrder(orderID, billingDate, billingAdress, customerID);
         getOrderRegistry().addBuyOrder(o, orderID);
 
@@ -194,7 +195,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void editBuyOrder(Date billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
+    public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
 
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
         Order o = new BuyOrder(orderID, billingDate, address, customerID);

@@ -46,7 +46,9 @@ public class OrderRegistry {
         getOrderList().remove(orderID);
     }
 
-    public void addSellOrder(int customerID, Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] listItemArray){
+    
+    
+    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] listItemArray){
         
         Address billingAddress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
         

@@ -8,9 +8,11 @@ import is.controller.BoatListItem;
 import is.controller.Controller;
 import is.controller.ListItem;
 import is.controller.GoodsListItem;
+import is.projekt.Customer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -25,6 +27,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     Controller controller;
     private MainWindow parent;
     private Integer customerID;
+    private Integer orderID = -1; 
     private boolean boatMode = false;
     
     OrderFrame(MainWindow parent) {
@@ -46,13 +49,36 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     
     public void initInterface() {
 
-        //Hämtar relevant infor från Customer
+        //Hämtar relevant info från Customer och ordern
         ArrayList<String> customerData = getController().getCustomerData(customerID);
+        
+        //Kontrollerar om ordern skall redigeras eller läggas till. Uppdaterar sedan interfacen. 
+        if(orderID >= 0) {
+        ArrayList<String> orderData = getController().getOrderData(orderID);
+        this.txtBillingDate.setText(orderData.get(0));
+        this.txtOrderNr.setText(Integer.toString(orderID));
+        
+        this.txtStreet.setText(orderData.get(1));
+        this.txtPostCode.setText(orderData.get(3));
+        this.txtCity.setText(orderData.get(4));
+        
+        }
+        
+        else 
+            
+        {
+            this.txtOrderNr.setText(null);
+            this.txtBillingDate.setText(null);
+            this.txtStreet.setText(customerData.get(3));
+            this.txtPostCode.setText(customerData.get(4));
+            this.txtCity.setText(customerData.get(5));
+        }
+        
+        
         this.txtCustomer.setText(customerData.get(0));
-        this.txtStreet.setText(customerData.get(3));
-        this.txtPostCode.setText(customerData.get(4));
-        this.txtCity.setText(customerData.get(5));
+        
         this.lstOrderRows.setModel(new DefaultListModel());
+        
         
     }
     
@@ -72,16 +98,23 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             
         }
         
+        //Stänger ner rutan
         if (e.getSource() == this.btnCancel) {
             
             this.setVisible(false);
+            orderID = -1;
+            
+       //Stänger ner rutan och sparar ändringar.
         } else if (e.getSource() == this.btnSaveOrder) {
             
             saveOrder();
             this.setVisible(false);
+            orderID = -1;
         }
         
         
+        
+        //Ändrar mellan båtlistan och tillbehörslistan. 
         if (e.getSource() == this.rbtnBoat) {
             
             this.boatMode = true;
@@ -92,6 +125,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         }
         
         
+        //Kontrollerar om ett listvärde är markerat och möjliggör att flytta över det. 
         if (lstProducts.getSelectedValue() instanceof ListItem) {
             
             if (e.getSource() == this.btnAdd) {
@@ -128,6 +162,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         updateLists();
     }
     
+    //Efter att en produkt lagts till eller tagis bort uppdateras listorna beroende på om man är i båtläge eller tillbehörsläge
     public void updateLists() {
         
         
@@ -143,8 +178,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         
     }
     
+    //Setters för customerID och orderID
     void setCustomerID(Integer customerID) {
         this.customerID = customerID;
+    }
+    
+    void setOrderID(Integer orderID) {
+        this.orderID = orderID;
     }
     
     @SuppressWarnings("unchecked")
@@ -454,6 +494,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         
     }
     
+    
+   
+    //Om inte tillbehöret redan finns i listan läggs det till som nytt. 
     private void addNewGoodsListItem(int goodsID) {
         
         GoodsListItem gli;
@@ -466,6 +509,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         lm.addElement(gli);
     }
     
+    
+    //Kontrollerar om tillbehöret redan finns som Orderrad. Antalet finns lagrat i GoodsListItem-objektet
     private boolean lstOrderRowsHasGoods(int goodsID) {
         
         boolean hasItem = false;
@@ -492,6 +537,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         return hasItem;
     }
     
+    //Om tillbehöret redan finns läggs det till. 
     private void addGoodsListItem(int goodsID, int toAdd) {
         
         DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
@@ -520,6 +566,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         
     }
     
+    //Lägger till båt i orderrad
     private void addBoatListItem(int productID) {
         
         DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
@@ -533,9 +580,26 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         
     }
     
+    //Sparar och lägger till en ny order till slut. 
     private void saveOrder() {
         
         
-        
+        int billingDate = Integer.valueOf(this.txtBillingDate.getText());
+        String billingAddressStreet = this.txtStreet.getText();
+        String billingAddressCity = this.txtCity.getText();
+        String billingAddressPostCode = this.txtPostCode.getText();
+
+        if (orderID >= 0) {
+
+            controller.editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, true, orderID);
+
+            parent.updateLists();
+            
+        } else {
+            
+            controller.addBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, null, customerID, true, null);
+            parent.updateLists();
+        }
+
     }
 }

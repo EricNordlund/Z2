@@ -7,11 +7,11 @@ import java.util.List;
 
 /**
  *
- * @author Viktor Voigt ^^
+ * @author Viktor Voigt ^_^
  */
 public abstract class Order {
 
-    private Date billingDate;
+    private int billingDate;
     private Address billingAddress;
     private List<OrderRow> orderRows = new ArrayList();
     private Integer customerID;
@@ -24,7 +24,7 @@ public abstract class Order {
      * @param billingAddress Our own address class.
      * 
      */
-    public Order(int orderID, Date billingDate, Address billingAddress, Integer customerID) {
+    public Order(int orderID, int billingDate, Address billingAddress, Integer customerID) {
         this.billingDate = billingDate;
         this.billingAddress = billingAddress;
         this.customerID = customerID;
@@ -65,11 +65,11 @@ public abstract class Order {
         this.customerID = customerID;
     }
 
-    public void setBillingDate(Date billingDate) {
+    public void setBillingDate(int billingDate) {
         this.billingDate = billingDate;
     }
 
-    public Date getBillingDate() {
+    public int getBillingDate() {
         return billingDate;
     }
 
@@ -77,11 +77,11 @@ public abstract class Order {
 
         ArrayList<String> l = new ArrayList<>();
 
-        l.add(getBillingDate().toString());
-        l.add(getBillingAddress().toString());
+        l.add(Integer.toString(getBillingDate()));
+        l.add(getBillingAddress().getStreetName());
         l.add(getCustomerID().toString());
-        System.out.println("Skickar data: " + getCustomerID().toString());
-
+        l.add(getBillingAddress().getPostCode());
+        l.add(getBillingAddress().getCity());
 
         return l;
 
@@ -108,7 +108,7 @@ public abstract class Order {
     ;
     @Override
     public String toString() {
-        return "Order ID: " + orderID.toString();
+        return "Order: " + orderID + " (Kund: " + customerID + ")";
     }
 ;
 }

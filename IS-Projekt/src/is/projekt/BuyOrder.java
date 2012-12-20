@@ -8,7 +8,7 @@ import java.util.Date;
  */
 public class BuyOrder extends Order {
     
-    public BuyOrder(int orderID, Date billingDate, Address billingAddress, Integer customerID) {
+    public BuyOrder(int orderID, int billingDate, Address billingAddress, Integer customerID) {
         super(orderID, billingDate, billingAddress, customerID);
     }
 }
