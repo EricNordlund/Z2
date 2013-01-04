@@ -12,20 +12,21 @@ public class BoatListItem extends ListItem {
 
     private double price;
 
-    public BoatListItem(int key, String displayName, double price) {
+    public BoatListItem(int boatID, String displayName, double price) {
 
-        super(key, displayName);
+        super(boatID, displayName);
 
         this.price = price;
 
     }
 
-    private double getPrice() {
+    public double getPrice() {
 
         return price;
 
     }
 
+    @Override
     public String toString() {
 
         return getDisplayName() + " " + price;

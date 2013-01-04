@@ -11,9 +11,9 @@ public class Goods extends Product {
 
     private String name;
 
-    public Goods(String name, double price, String description) {
+    public Goods(int goodsID, String name, double price, String description) {
 
-        super(price, description);
+        super(goodsID, price, description);
         this.name = name;
 
     }

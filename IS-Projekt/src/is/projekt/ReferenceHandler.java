@@ -62,15 +62,15 @@ public class ReferenceHandler {
         return this.getCustomerRegistry().getCustomer(customerID);
 
     }
-    
-    protected Goods getGoods(int goodsID){
-        
+
+    protected Goods getGoods(int goodsID) {
+
         return this.getGoodsRegistry().getGoods(goodsID);
     }
-    
-    protected Order getOrder(int orderID){
-        
+
+    protected Order getOrder(int orderID) {
+
         return this.getOrderRegistry().getOrder(orderID);
-        
+
     }
 }

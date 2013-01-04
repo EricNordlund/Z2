@@ -6,16 +6,12 @@ import is.projekt.BoatRegistry;
 import is.projekt.BuyOrder;
 import is.projekt.Customer;
 import is.projekt.CustomerRegistry;
-import is.projekt.Goods;
 import is.projekt.GoodsRegistry;
 import is.projekt.Order;
 import is.projekt.OrderRegistry;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
@@ -66,25 +62,22 @@ public class Controller implements ControllerInterface {
 
         System.out.println("Adding customer " + c.toString() + ".");
     }
+
     //
-
     public void addBoat(String regnr, String model, String location, String description, double price) {
-
-        Boat b = new Boat(regnr, model, location, description, price);
-        getBoatRegistry().addBoat(b);
-
-        System.out.println("Adding boat " + b.toString() + ".");
+        
+        this.getBoatRegistry().addBoat(regnr, model, location, description, price);
 
     }
 
     @Override
     public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
 
+        
 
-        Boat b = new Boat(regnr, model, location, description, price);
-        getBoatRegistry().editBoat(boatID, b);
+        
+        getBoatRegistry().editBoat(boatID, regnr, model, location, description, price);
 
-        System.out.println("Editing boat " + b.toString() + ".");
     }
 
     @Override
@@ -140,12 +133,12 @@ public class Controller implements ControllerInterface {
      */
     @Override
     public DefaultListModel getCustomerListModel() {
-        
-        
-        return this.getCustomerRegistry().getListModel();
- 
 
-        
+
+        return this.getCustomerRegistry().getListModel();
+
+
+
 
     }
 
@@ -171,10 +164,10 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity) {
-      
-        this.getOrderRegistry().addBuyOrder(customerID, billingDate, billingAdressStreet, billingAdressPostCode, billingAdressCity);
-        
+    public int addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity) {
+
+        return this.getOrderRegistry().addBuyOrder(customerID, billingDate, billingAdressStreet, billingAdressPostCode, billingAdressCity);
+
     }
 
     @Override
@@ -183,8 +176,6 @@ public class Controller implements ControllerInterface {
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
         Order o = new BuyOrder(orderID, billingDate, address, customerID);
         getOrderRegistry().editBuyOrder(o, orderID);
-
-        System.out.println("Editing order with ID " + o.getOrderID() + ".");
     }
 
     @Override
@@ -198,8 +189,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ListModel getBuyOrderRowsListModel(Integer orderID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public ListModel getOrderRowListModel(int orderID) {
+        return this.getOrderRegistry().getOrderRowListModel(orderID);
     }
 
     @Override
@@ -263,5 +254,22 @@ public class Controller implements ControllerInterface {
     @Override
     public void addGoods(String name, double price, String description) {
         goodsRegistry.addGoods(name, price, description);
+    }
+
+    @Override
+    public void addGoodsOrderRow(int orderID, double price, int quantity, int productID) {
+
+        this.getOrderRegistry().addGoodsOrderRow(orderID, price, quantity, productID);
+
+    }
+
+    @Override
+    public void clearOrderRows(int orderID) {
+        this.getOrderRegistry().clearOrderRows(orderID);
+    }
+
+    @Override
+    public void addBoatOrderRow(int orderID, double price, int boatID) {
+        this.getOrderRegistry().addBoatOrderRow(orderID, price, boatID);
     }
 }

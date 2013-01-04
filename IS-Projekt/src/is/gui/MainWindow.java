@@ -6,12 +6,10 @@ package is.gui;
 
 import is.controller.Controller;
 import is.controller.ListItem;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
 
@@ -36,8 +34,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         initFrames();
 
         addActionListenerToButtons();
-
-
 
         this.setLocationRelativeTo(null);
     }
@@ -571,8 +567,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
 
     private void addActionListenerToButtons() {
-
-
+        
         //Boats
         this.btnAddBoat.addActionListener(this);
         this.btnEditBoat.addActionListener(this);
@@ -605,7 +600,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         ListItem li;
         li = (ListItem) jlist.getSelectedValue();
 
-        key = li.getKey();
+        key = li.getID();
 
         return key;
 
@@ -635,7 +630,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         if (this.lstCustomer.getSelectedValue() instanceof ListItem) {
 
-            Integer customerID = this.getSelectedKey(this.lstCustomer);
+            int customerID = this.getSelectedKey(this.lstCustomer);
 
             if (e.getSource() == this.btnEditCustomer) {
 
@@ -655,41 +650,26 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
 
             } else if (e.getSource() == this.btnNewOrder) {
-
-                orderFrame.setTitle("Skapa order");
-                orderFrame.setCustomerID(customerID);
-                orderFrame.initInterface();
-                orderFrame.updateLists();
-                orderFrame.setVisible(true);
+                
+                orderFrame.newOrderMode(customerID);
 
             }//else if
 
         }
 
-        //Orderdel (Lägg till finns i kunddelen)
+        //Orderdel (Lägg till order finns i kunddelen)
         if (this.lstOrders.getSelectedValue() instanceof ListItem) {
 
             int orderID = this.getSelectedKey(this.lstOrders);
 
-
             if (e.getSource() == this.btnEditOrder) {
-
-
-
-
-
-                System.out.println("Öppnar order för kund ID: " + orderID);
-                ArrayList<String> orderData = controller.getOrderData(orderID);
-                int customerID = Integer.valueOf(orderData.get(2));
-
-
-
-                orderFrame.setTitle("Ändra order");
-                orderFrame.setCustomerID(customerID);
-                orderFrame.setOrderID(orderID);
-                orderFrame.initInterface();
-                orderFrame.updateLists();
+                
+                orderFrame.editOrderMode(orderID);
+                
                 orderFrame.setVisible(true);
+
+
+                
 
             } else if (e.getSource() == this.btnRemoveOrder) {
 
@@ -698,13 +678,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }
         }
 
-
-
-
-
-
         //Hantering av knappar i båtdelen
-
         if (e.getSource() == this.btnAddBoat) {
             boatFrame.clearTextFields();
             boatFrame.setNewBoat(true);
@@ -738,26 +712,24 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
 
         //Hantering av knappar i tillbehörsdelen
-
         if (e.getSource() == this.btnAddGoods) {
-            
-            goodsFrame.newGoodsMode();         
+
+            goodsFrame.newGoodsMode();
             goodsFrame.setVisible(true);
 
-        } 
+        }
 
 
-            if (this.lstGoods.getSelectedValue() instanceof ListItem) {
-                
-                int goodsID = this.getSelectedKey(this.lstGoods);
-                
-                if(e.getSource() == this.btnEditGoods){
-                    
-                    goodsFrame.editGoodsMode(goodsID);                   
-                    goodsFrame.setVisible(true);
-                    
-                }
-          
+        if (this.lstGoods.getSelectedValue() instanceof ListItem) {
+
+            int goodsID = this.getSelectedKey(this.lstGoods);
+
+            if (e.getSource() == this.btnEditGoods) {
+
+                goodsFrame.editGoodsMode(goodsID);
+                goodsFrame.setVisible(true);
+
+            }
         }
     }
 
@@ -800,7 +772,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void btnEditGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGoodsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditGoodsActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;
     private javax.swing.JButton btnAddCustomer;

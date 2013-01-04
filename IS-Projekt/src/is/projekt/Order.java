@@ -1,9 +1,15 @@
 package is.projekt;
 
+import is.controller.BoatListItem;
+import is.controller.GoodsListItem;
 import is.controller.ListItem;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -14,17 +20,11 @@ public abstract class Order {
     private int billingDate;
     private Address billingAddress;
     private List<OrderRow> orderRows = new ArrayList();
-    private Integer customerID;
+    private int customerID;
     private boolean isBuyOrder;
-    private Integer orderID;
+    private int orderID;
 
-     /**
-     *
-     * @param billingDate The built in Date class.
-     * @param billingAddress Our own address class.
-     * 
-     */
-    public Order(int orderID, int billingDate, Address billingAddress, Integer customerID) {
+    public Order(int orderID, int billingDate, Address billingAddress, int customerID) {
         this.billingDate = billingDate;
         this.billingAddress = billingAddress;
         this.customerID = customerID;
@@ -92,16 +92,17 @@ public abstract class Order {
      *
      * @param newOrderRow The order row to add.
      */
-    public void addOrderRow(ListItem li) {
+    protected void addOrderRow(double price, int quantity, Product product) {
+
+        OrderRow or = new OrderRow(price, quantity, product);
+
+        this.getOrderRows().add(or);
         
-        int key = li.getKey();
-        
-        OrderRow or;
-        
- 
+        System.out.println("Sparar OrderRow för " + product.toString());
+
     }
 
-    public int getOrderID() {
+    protected int getOrderID() {
         return orderID;
     }
 
@@ -110,5 +111,54 @@ public abstract class Order {
     public String toString() {
         return "Order: " + orderID + " (Kund: " + customerID + ")";
     }
-;
+
+    ;
+
+    protected void clearOrderRows() {
+
+        this.getOrderRows().clear();
+
+    }
+
+    protected ListModel getOrderRowListModel() {
+        
+        
+        List<OrderRow> rowList = this.getOrderRows();
+
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = rowList.iterator();
+
+        while (it.hasNext()) {
+
+            OrderRow orderRow = (OrderRow) it.next();
+            ListItem item;
+            
+            double price = orderRow.getPrice();
+            int productID = orderRow.getProductID();
+            int quantity = orderRow.getQuantity();
+            String displayString = orderRow.getProductString();
+            
+            if (orderRow.holdsBoat()){
+                
+                item = new BoatListItem(productID, displayString, price);
+                
+            }
+            
+            else {
+                
+                item = new GoodsListItem(productID, displayString, price, quantity);
+                
+            }
+
+            lm.addElement(item);
+
+        }
+
+        return lm;
+        
+        
+        
+    }
+    
 }

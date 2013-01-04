@@ -13,7 +13,7 @@ import javax.swing.ListModel;
  * @author Lärkan, Svalan och Thernan och Tratten och Finken
  */
 public interface ControllerInterface {
- 
+
     //Kundhantering
     public abstract void addCustomer(String name, String addressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
 
@@ -26,7 +26,7 @@ public interface ControllerInterface {
     public abstract DefaultListModel getCustomerListModel();
 
     //Orderhantering
-    public abstract void addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);
+    public abstract int addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);
 
     public abstract void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID);
 
@@ -38,12 +38,17 @@ public interface ControllerInterface {
 
     public abstract ListModel getOrderListModel();
 
-    public abstract ListModel getBuyOrderRowsListModel(Integer orderID);
+    public abstract ListModel getOrderRowListModel(int orderID);
 
     public abstract GoodsListItem getGoodsListItem(Integer orderID);
 
-    //Säljorderhantering
     public abstract void addSellOrder(int customerID, Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows);
+
+    public abstract void addGoodsOrderRow(int orderID, double price, int quantity, int goodsID);
+    
+    public abstract void addBoatOrderRow(int orderID, double price, int boatID);
+
+    public abstract void clearOrderRows(int orderID);
 
     //Båthantering
     public abstract void addBoat(String regnr, String model, String location, String description, double price);

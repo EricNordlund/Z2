@@ -1,8 +1,10 @@
 package is.projekt;
 
 /**
- * 
- * Klassen saknar setters. Vill man ändra en order row skapar man en ny och skriver över.
+ *
+ * Klassen saknar setters. Vill man ändra en order row skapar man en ny och
+ * skriver över.
+ *
  * @author Viktor Voigt
  */
 public class OrderRow {
@@ -11,7 +13,7 @@ public class OrderRow {
     private int quantity;
     private Product product;
 
-    public OrderRow(Product product, float price, int quantity) {
+    public OrderRow(double price, int quantity, Product product) {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
@@ -27,5 +29,38 @@ public class OrderRow {
 
     public Product getProduct() {
         return product;
+    }
+
+    protected boolean holdsBoat() {
+
+        if (getProduct() instanceof Boat) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected boolean holdsGoods() {
+
+        if (getProduct() instanceof Goods) {
+
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    int getProductID() {
+        
+        return getProduct().getProductID();
+
+    }
+    
+    protected String getProductString()
+            
+    {
+        return getProduct().toString();
     }
 }

@@ -15,9 +15,10 @@ public class ControllerTestViktor {
      * @param controller
      */
     public static void runTest(Controller controller) {
-        
-        
+
+
         controller.addBoat("555 AFE", "X-5000 Pro", "Lomma", "En stabil segelbåt.", 50000);
-        
+      
+
     }
 }

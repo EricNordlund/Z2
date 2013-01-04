@@ -44,7 +44,7 @@ public class GoodsRegistry {
 
     public void editGoods(int goodsID, String name, double price, String description) {
 
-        Goods g = new Goods(name, price, description);
+        Goods g = new Goods(goodsID, name, price, description);
 
         getGoodsList().put(goodsID, g);
     }
@@ -66,9 +66,12 @@ public class GoodsRegistry {
     }
 
     public void addGoods(String name, double price, String description) {
-        Goods g = new Goods(name, price, description);
+        
+        int goodsID = this.getNewGoodsKey();
+        
+        Goods g = new Goods(goodsID, name, price, description);
 
-        getGoodsList().put(this.getNewGoodsKey(), g);
+        getGoodsList().put(goodsID, g);
 
     }
 

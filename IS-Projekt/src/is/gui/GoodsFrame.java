@@ -145,11 +145,11 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
             String name = this.txtName.getText();
             double price = Double.valueOf(this.txtPrice.getText());
             String description = this.txtDescription.getText();
-            if(newGoods){
+            if (newGoods) {
 
-            controller.addGoods(name, price, description);
-            } else if (!newGoods){
-                
+                controller.addGoods(name, price, description);
+            } else if (!newGoods) {
+
                 controller.editGoods(goodsID, name, price, description);
             }
             this.setVisible(false);

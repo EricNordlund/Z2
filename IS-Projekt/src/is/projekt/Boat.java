@@ -8,17 +8,15 @@ public class Boat extends Product {
     private String regnr;
     private String model;
     private String location;
-    private int boatID;
 
     //Konstruktor
-    public Boat(String regnr, String model, String location, String description, double price) {
+    protected Boat(int boatID, String regnr, String model, String location, String description, double price) {
 
-        super(price, description);
+        super(boatID, price, description);
 
         this.regnr = regnr;
         this.model = model;
         this.location = location;
-        this.boatID = boatID;
 
     }
 
@@ -46,12 +44,8 @@ public class Boat extends Product {
         this.location = location;
     }
 
-    public int getBoatID() {
-        return boatID;
-    }
-
-    public void setBoatID(int boatIdNumber) {
-        this.boatID = boatIdNumber;
+    protected int getBoatID() {
+        return super.getProductID();
     }
 
     public ArrayList<String> getDataAsList() {

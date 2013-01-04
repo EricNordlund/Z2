@@ -11,27 +11,36 @@ public abstract class Product {
 
     private double price;
     private String description;
+    private int productID;
 
-    public Product(double price, String description) {
+    protected Product(int productID, double price, String description) {
 
+        this.productID = productID;
         this.price = price;
         this.description = description;
 
     }
 
-    public double getPrice() {
+    protected double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    protected void setPrice(double price) {
         this.price = price;
     }
 
-    public String getDescription() {
+    protected String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
+    
+    protected int getProductID(){
+        
+        return this.productID;
+    }
+    
+    
 }

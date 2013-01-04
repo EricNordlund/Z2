@@ -13,176 +13,176 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.ListModel;
 
 /**
  *
  * @author Viktor Voigt
  */
 public class OrderFrame extends javax.swing.JFrame implements ActionListener {
-    
+
     Controller controller;
     private MainWindow parent;
-    private Integer customerID;
-    private Integer orderID = -1; 
+    private int customerID;
+    private int orderID;
     private boolean boatMode = false;
-    
+    private boolean newOrder;
+
     OrderFrame(MainWindow parent) {
-        
+
         initComponents();
-        
-        addActionListenerToButtons(this);
-        
+
+        addActionListenerToButtons();
+
         this.parent = parent;
-        
+
         this.setLocationRelativeTo(null);
-        
+
     }
-    
+
     public Controller getController() {
-        
+
         return this.controller;
     }
-    
+
     public void initInterface() {
 
         //Hämtar relevant info från Customer och ordern
         ArrayList<String> customerData = getController().getCustomerData(customerID);
-        
+
         //Kontrollerar om ordern skall redigeras eller läggas till. Uppdaterar sedan interfacen. 
-        if(orderID >= 0) {
-        ArrayList<String> orderData = getController().getOrderData(orderID);
-        this.txtBillingDate.setText(orderData.get(0));
-        this.txtOrderNr.setText(Integer.toString(orderID));
-        
-        this.txtStreet.setText(orderData.get(1));
-        this.txtPostCode.setText(orderData.get(3));
-        this.txtCity.setText(orderData.get(4));
-        
-        }
-        
-        else 
+        if (!newOrder) {
             
-        {
+            ArrayList<String> orderData = getController().getOrderData(orderID);
+            this.txtBillingDate.setText(orderData.get(0));
+            this.txtOrderNr.setText(Integer.toString(orderID));
+
+            this.txtStreet.setText(orderData.get(1));
+            this.txtPostCode.setText(orderData.get(3));
+            this.txtCity.setText(orderData.get(4));
+            
+            ListModel lm = controller.getOrderRowListModel(orderID);
+            
+            this.lstOrderRows.setModel(lm);
+
+        } else if (newOrder) {
+            
             this.txtOrderNr.setText(null);
             this.txtBillingDate.setText(null);
             this.txtStreet.setText(customerData.get(3));
             this.txtPostCode.setText(customerData.get(4));
             this.txtCity.setText(customerData.get(5));
+            this.txtBillingDate.setText("130112");
+            
         }
-        
-        
+
+
         this.txtCustomer.setText(customerData.get(0));
-        
+
         this.lstOrderRows.setModel(new DefaultListModel());
-        
-        
+
+
     }
-    
+
     void setController(Controller controller) {
         this.controller = controller;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         System.out.println("ActionEvent.");
-        
+
         if (e.getSource() instanceof JButton) {
             JButton btn = (JButton) e.getSource();
             String btnName = btn.getText();
             System.out.println("Du tryckte på " + btnName + ".");
-            
+
         }
-        
+
         //Stänger ner rutan
         if (e.getSource() == this.btnCancel) {
-            
+
             this.setVisible(false);
-            orderID = -1;
-            
-       //Stänger ner rutan och sparar ändringar.
+
+            //Stänger ner rutan och sparar ändringar.
         } else if (e.getSource() == this.btnSaveOrder) {
-            
+
             saveOrder();
+            saveOrderRows(this.orderID);
             this.setVisible(false);
-            orderID = -1;
         }
-        
-        
-        
+
+
+
         //Ändrar mellan båtlistan och tillbehörslistan. 
         if (e.getSource() == this.rbtnBoat) {
-            
+
             this.boatMode = true;
-            
+
         } else if (e.getSource() == this.rbtnGoods) {
-            
+
             this.boatMode = false;
         }
-        
-        
+
+
         //Kontrollerar om ett listvärde är markerat och möjliggör att flytta över det. 
         if (lstProducts.getSelectedValue() instanceof ListItem) {
-            
+
             if (e.getSource() == this.btnAdd) {
-                
+
                 ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
-                
-                int productID = selectedProduct.getKey();
-                
+
+                int productID = selectedProduct.getID();
+
                 if (boatMode) {
-                    
+
                     this.addBoatListItem(productID);
-                    
+
                 } else {
-                    
+
                     if (!lstOrderRowsHasGoods(productID)) {
-                        
+
                         this.addNewGoodsListItem(productID);
-                        
+
                     } else {
-                        
+
                         addGoodsListItem(productID, 1);
-                        
+
                     }
-                    
                 }
-                
-                
             }
-            
-            
-            
         }
-        
+
         updateLists();
     }
-    
+
     //Efter att en produkt lagts till eller tagis bort uppdateras listorna beroende på om man är i båtläge eller tillbehörsläge
     public void updateLists() {
-        
-        
+
+
         if (boatMode) {
-            
+
             lstProducts.setModel(getController().getBoatListModel());
-            
+
         } else {
+            
             this.lstProducts.setModel(getController().getGoodsListModel());
         }
-        
+
         this.lstOrderRows.repaint();
-        
+
     }
-    
+
     //Setters för customerID och orderID
     void setCustomerID(Integer customerID) {
         this.customerID = customerID;
     }
-    
+
     void setOrderID(Integer orderID) {
         this.orderID = orderID;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -427,27 +427,27 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed
-    
+
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRemoveActionPerformed
-    
+
     private void txtCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCustomerActionPerformed
-    
+
     private void txtBillingDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBillingDateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBillingDateActionPerformed
-    
+
     private void txtOrderNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderNrActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtOrderNrActionPerformed
-    
+
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelActionPerformed
-    
+
     private void rbtnBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnBoatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnBoatActionPerformed
@@ -479,123 +479,191 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
 
-    private void addActionListenerToButtons(ActionListener a) {
-        this.btnAdd.addActionListener(a);
-        this.btnRemove.addActionListener(a);
-        this.btnSaveOrder.addActionListener(a);
-        this.btnCancel.addActionListener(a);
-        
-        this.rbtnBoat.addActionListener(a);
-        this.rbtnGoods.addActionListener(a);
-        
+    private void addActionListenerToButtons() {
+        this.btnAdd.addActionListener(this);
+        this.btnRemove.addActionListener(this);
+        this.btnSaveOrder.addActionListener(this);
+        this.btnCancel.addActionListener(this);
+
+        this.rbtnBoat.addActionListener(this);
+        this.rbtnGoods.addActionListener(this);
+
     }
-    
-    
-   
+
     //Om inte tillbehöret redan finns i listan läggs det till som nytt. 
     private void addNewGoodsListItem(int goodsID) {
-        
+
         GoodsListItem gli;
         DefaultListModel lm;
-        
+
         lm = (DefaultListModel) this.lstOrderRows.getModel();
-        
+
         gli = this.getController().getGoodsListItem(goodsID);
-        
+
         lm.addElement(gli);
     }
-    
-    
+
     //Kontrollerar om tillbehöret redan finns som Orderrad. Antalet finns lagrat i GoodsListItem-objektet
     private boolean lstOrderRowsHasGoods(int goodsID) {
-        
+
         boolean hasItem = false;
-        
+
         DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
-        
+
         Object[] lmArray = lm.toArray();
-        
+
         for (Object o : lmArray) {
-            
+
             if (o instanceof GoodsListItem) {
-                
+
                 GoodsListItem li = (GoodsListItem) o;
-                
-                if (goodsID == li.getKey()) {
+
+                if (goodsID == li.getID()) {
                     hasItem = true;
                 }
-                
-                
+
+
             }
-            
+
         }
-        
+
         return hasItem;
     }
-    
+
     //Om tillbehöret redan finns läggs det till. 
     private void addGoodsListItem(int goodsID, int toAdd) {
-        
+
         DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
-        
+
         Object[] lmArray = lm.toArray();
-        
+
         for (Object o : lmArray) {
-            
+
             if (o instanceof GoodsListItem) {
-                
+
                 GoodsListItem li = (GoodsListItem) o;
-                
-                if (goodsID == li.getKey()) {
-                    
+
+                if (goodsID == li.getID()) {
+
                     li.addQuantity(toAdd);
                     System.out.println(li.toString() + " added " + toAdd);
-                    
-                    
+
+
                 }
-                
-                
+
+
             }
-            
+
         }
-        
-        
+
+
     }
-    
+
     //Lägger till båt i orderrad
     private void addBoatListItem(int productID) {
-        
+
         DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
-        
+
         BoatListItem bli;
-        
+
         bli = getController().getBoatListItem(productID);
-        
+
         lm.addElement(bli);
-        
-        
+
+
     }
-    
+
     //Sparar och lägger till en ny order till slut. 
     private void saveOrder() {
-        
-        
+
+
         int billingDate = Integer.valueOf(this.txtBillingDate.getText());
         String billingAddressStreet = this.txtStreet.getText();
         String billingAddressCity = this.txtCity.getText();
         String billingAddressPostCode = this.txtPostCode.getText();
 
-        if (orderID >= 0) {
+        if (!newOrder) {
 
             controller.editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, true, orderID);
 
             parent.updateLists();
-            
-        } else {
-            
-            controller.addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
-            parent.updateLists();
+
+        } else if (newOrder) {
+
+            this.orderID = controller.addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
+
         }
 
+        parent.updateLists();
+
+    }
+
+    /**
+     * Rensar alla OrderRows från en order.
+     * Skriver därefter in nya rader.
+     * 
+     */
+    private void saveOrderRows(int orderID) {
+
+        this.getController().clearOrderRows(orderID);
+
+        DefaultListModel lm = (DefaultListModel) this.lstOrderRows.getModel();
+
+        Object[] lmArray = lm.toArray();
+
+        for (Object o : lmArray) {
+
+            if (o instanceof GoodsListItem) {
+
+                GoodsListItem gli = (GoodsListItem) o;
+
+                double price = gli.getPrice();
+                int quantity = gli.getQuantity();
+                int productID = gli.getID();
+
+                controller.addGoodsOrderRow(orderID, price, quantity, productID);
+
+            }
+            
+            if (o instanceof BoatListItem) {
+                
+                BoatListItem bli = (BoatListItem) o;
+                
+                double price = bli.getPrice();
+                int productID = bli.getID();
+                
+                controller.addBoatOrderRow(orderID, price, productID);
+                
+            }
+
+        }
+
+
+    }
+
+    void newOrderMode(int customerID) {
+
+        this.newOrder = true;
+        setTitle("Skapa order");
+        setCustomerID(customerID);
+        initInterface();
+        updateLists();
+        setVisible(true);
+
+    }
+
+    void editOrderMode(int orderID) {
+
+        this.newOrder = false;
+        System.out.println("Öppnar order för kund ID: " + orderID);      
+        ArrayList<String> orderData = controller.getOrderData(orderID);
+        this.customerID = Integer.valueOf(orderData.get(2));
+        
+        setTitle("Ändra order");
+        setCustomerID(customerID);
+        setOrderID(orderID);
+        initInterface();
+        updateLists();
     }
 }
+

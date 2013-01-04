@@ -13,9 +13,9 @@ public class GoodsListItem extends ListItem {
     private int quantity;
     private double price;
 
-    public GoodsListItem(Integer key, String displayName, double price, int quantity) {
+    public GoodsListItem(Integer ID, String displayName, double price, int quantity) {
 
-        super(key, displayName);
+        super(ID, displayName);
         this.price = price;
         this.quantity = quantity;
 

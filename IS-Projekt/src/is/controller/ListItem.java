@@ -11,19 +11,19 @@ package is.controller;
  */
 public class ListItem {
 
-    private Integer key;
+    private int ID;
     private String displayName;
 
-    public ListItem(Integer key, String displayName) {
+    public ListItem(int ID, String displayName) {
 
-        this.key = key;
+        this.ID = ID;
         this.displayName = displayName;
 
     }
 
-    public Integer getKey() {
+    public int getID() {
 
-        return key;
+        return ID;
 
     }
 

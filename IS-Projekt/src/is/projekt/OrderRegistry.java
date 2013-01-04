@@ -22,6 +22,10 @@ public class OrderRegistry {
     private int orderKeyCount = 0;
     private ReferenceHandler referenceHandler;
 
+    public ReferenceHandler getReferenceHandler() {
+        return referenceHandler;
+    }
+
     private HashMap<Integer, Order> getOrderList() {
         return orderList;
     }
@@ -35,8 +39,6 @@ public class OrderRegistry {
         return getOrderList().get(orderID);
     }
 
-
-
     public void editBuyOrder(Order o, Integer orderID) {
         getOrderList().put(orderID, o);
     }
@@ -46,19 +48,15 @@ public class OrderRegistry {
         getOrderList().remove(orderID);
     }
 
-    
-    
-    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] listItemArray){
-        
+    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] listItemArray) {
+
         Address billingAddress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
-        
+
         SellOrder so = new SellOrder(getNewOrderKey(), billingDate, billingAddress, customerID);
-        
-        for (ListItem li : listItemArray){
-            
-            so.addOrderRow(li); 
+
+        for (ListItem li : listItemArray) {
         }
-        
+
         getOrderList().put(so.getOrderID(), so);
     }
 
@@ -66,31 +64,33 @@ public class OrderRegistry {
         this.referenceHandler = aThis;
     }
 
-    public void addBuyOrder(int customerID, int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity) {
-        
-        Address address = new Address (billingAddressStreet, billingAddressPostCode, billingAddressCity);
-        
+    public int addBuyOrder(int customerID, int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity) {
+
+        Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
+
         int orderID = this.getNewOrderKey();
-        
-        Order o = new BuyOrder (orderID, billingDate, address, customerID);
-        
+
+        Order o = new BuyOrder(orderID, billingDate, address, customerID);
+
         this.getOrderList().put(orderID, o);
-        
-        
+
+        return orderID;
+
+
     }
-    
-    public ArrayList<String> getDataArray(int orderID){
-        
+
+    public ArrayList<String> getDataArray(int orderID) {
+
         ArrayList<String> dataArray = this.getOrder(orderID).getDataAsList();
-        
+
         return dataArray;
     }
 
     public ListModel getOrderListModel() {
-        
-        
+
+
         HashMap<Integer, Order> hm = this.getOrderList();
-        
+
         DefaultListModel lm = new DefaultListModel();
 
         Iterator it = hm.entrySet().iterator();
@@ -110,5 +110,31 @@ public class OrderRegistry {
         }
 
         return lm;
+    }
+
+    public void addGoodsOrderRow(int orderID, double price, int quantity, int productID) {
+
+        Product p = this.getReferenceHandler().getGoods(productID);
+
+        Order o = this.getOrder(orderID);
+
+        o.addOrderRow(price, quantity, p);
+
+    }
+
+    public void clearOrderRows(int orderID) {
+        this.getOrder(orderID).clearOrderRows();
+    }
+
+    public void addBoatOrderRow(int orderID, double price, int boatID) {
+        
+        Product p = this.getReferenceHandler().getBoat(boatID);
+
+        this.getOrder(orderID).addOrderRow(price, 1, p);
+    
+    }
+
+    public ListModel getOrderRowListModel(int orderID) {
+        return this.getOrder(orderID).getOrderRowListModel();
     }
 }

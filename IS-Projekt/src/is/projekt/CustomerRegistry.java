@@ -20,13 +20,12 @@ public class CustomerRegistry {
 
     private HashMap<Integer, Customer> customerList = new HashMap<>();
     private int customerKeyCount = 0;
-    private Controller controller;
     private ReferenceHandler referenceHandler;
-    
-    protected Customer getCustomer(int customerID){
-        
+
+    protected Customer getCustomer(int customerID) {
+
         return getCustomerList().get(customerID);
-        
+
     }
 
     private HashMap<Integer, Customer> getCustomerList() {
@@ -51,27 +50,21 @@ public class CustomerRegistry {
         this.getCustomerList().remove(customerID);
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
-
     protected void setReferenceHandler(ReferenceHandler aThis) {
         this.referenceHandler = aThis;
     }
-    
-    public ArrayList<String> getCustomerData(int customerID){
-        
+
+    public ArrayList<String> getCustomerData(int customerID) {
+
         ArrayList<String> customerData = this.getCustomerList().get(customerID).getDataAsList();
-        
+
         return customerData;
     }
-    
-  
 
     public DefaultListModel getListModel() {
-        
+
         HashMap<Integer, Customer> hm = this.getCustomerList();
-        
+
         DefaultListModel lm = new DefaultListModel();
 
         Iterator it = hm.entrySet().iterator();
@@ -91,6 +84,6 @@ public class CustomerRegistry {
         }
 
         return lm;
-        
+
     }
 }
