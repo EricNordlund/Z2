@@ -5,7 +5,12 @@
 package is.projekt;
 
 import is.controller.Controller;
+import is.controller.ListItem;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -13,12 +18,13 @@ import java.util.HashMap;
  */
 public class GoodsRegistry {
 
-    private HashMap<Integer, Goods> goodsRegistry = new HashMap<>();
+    private HashMap<Integer, Goods> goodsList = new HashMap<>();
     private int goodsKeyCount = 0;
     private Controller controller;
+    private ReferenceHandler referenceHandler;
 
-    public HashMap<Integer, Goods> getGoodsRegistry() {
-        return goodsRegistry;
+    private HashMap<Integer, Goods> getGoodsList() {
+        return goodsList;
     }
 
     private int getNewGoodsKey() {
@@ -26,27 +32,25 @@ public class GoodsRegistry {
         return goodsKeyCount;
     }
 
-    public void addGoods(Goods g) {
-
-        getGoodsRegistry().put(this.getNewGoodsKey(), g);
-    }
-
-    private Goods getGoods(int goodsID) {
+    protected Goods getGoods(int goodsID) {
 
         Goods g;
 
-        g = getGoodsRegistry().get(goodsID);
+        g = getGoodsList().get(goodsID);
 
         return g;
 
     }
 
-    public void editGoods(Integer goodsID, Goods g) {
-        getGoodsRegistry().put(goodsID, g);
+    public void editGoods(int goodsID, String name, double price, String description) {
+
+        Goods g = new Goods(name, price, description);
+
+        getGoodsList().put(goodsID, g);
     }
 
     public void removeGoods(Integer goodsID) {
-        this.getGoodsRegistry().remove(goodsID);
+        this.getGoodsList().remove(goodsID);
     }
 
     public String[] getGoodsData(Integer goodsID) {
@@ -59,5 +63,40 @@ public class GoodsRegistry {
 
     public void setController(Controller controller) {
         this.controller = controller;
+    }
+
+    public void addGoods(String name, double price, String description) {
+        Goods g = new Goods(name, price, description);
+
+        getGoodsList().put(this.getNewGoodsKey(), g);
+
+    }
+
+    void setReferenceHandler(ReferenceHandler aThis) {
+        this.referenceHandler = aThis;
+    }
+
+    public ListModel getGoodsListModel() {
+        HashMap<Integer, Goods> hm = this.getGoodsList();
+
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+
+            Integer key = (Integer) e.getKey();
+
+            String displayString = e.getValue().toString();
+
+            ListItem item = new ListItem(key, displayString);
+
+            lm.addElement(item);
+
+        }
+
+        return lm;
     }
 }

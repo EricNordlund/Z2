@@ -4,24 +4,34 @@
  */
 package is.projekt;
 
-import is.controller.Controller;
+import is.controller.ListItem;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
- * @author anna_thernfrid
+ * @author anna_thernfrid, Viktor Voigt
  */
 public class BoatRegistry implements Serializable {
 
-    Controller controller;
     
-    private HashMap<Integer, Boat> boatRegistry = new HashMap<>();
-    
+    private HashMap<Integer, Boat> boatList = new HashMap<>();
     private int boatKeyCount = 0;
+    private ReferenceHandler referenceHandler;
+    
+    protected Boat getBoat(int boatID){
+        
+        return getBoatList().get(boatID);
+        
+    }
 
-    public HashMap<Integer, Boat> getBoatRegistry() {
-        return boatRegistry;
+    private HashMap<Integer, Boat> getBoatList() {
+        return boatList;
     }
 
     private int getNewBoatKey() {
@@ -30,18 +40,55 @@ public class BoatRegistry implements Serializable {
     }
 
     public void addBoat(Boat b) {
-        getBoatRegistry().put(getNewBoatKey(), b);
+        getBoatList().put(getNewBoatKey(), b);
     }
 
     public void editBoat(Integer boatID, Boat b) {
-        getBoatRegistry().put(boatID, b);
+        getBoatList().put(boatID, b);
     }
 
     public void removeBoat(Integer boatID) {
-        this.getBoatRegistry().remove(boatID);
+        this.getBoatList().remove(boatID);
+    }
+    
+    public ArrayList<String>getBoatData(int boatID){
+        
+        
+        
+        ArrayList <String> boatData = this.getBoatList().get(boatID).getDataAsList();
+        
+        return boatData;
+        
+        
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    protected void setReferenceHandler(ReferenceHandler aThis) {
+        referenceHandler = aThis;
+    }
+
+    public ListModel getListModel() {
+        
+        
+                HashMap<Integer, Boat> hm = this.getBoatList();
+        
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+
+            Integer key = (Integer) e.getKey();
+
+            String displayString = e.getValue().toString();
+
+            ListItem item = new ListItem(key, displayString);
+
+            lm.addElement(item);
+
+        }
+
+        return lm;
     }
 }

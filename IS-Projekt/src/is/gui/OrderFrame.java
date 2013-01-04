@@ -6,17 +6,13 @@ package is.gui;
 
 import is.controller.BoatListItem;
 import is.controller.Controller;
-import is.controller.ListItem;
 import is.controller.GoodsListItem;
-import is.projekt.Customer;
+import is.controller.ListItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JList;
 
 /**
  *
@@ -597,7 +593,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             
         } else {
             
-            controller.addBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, null, customerID, true, null);
+            controller.addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
             parent.updateLists();
         }
 

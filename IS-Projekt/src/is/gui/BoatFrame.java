@@ -182,6 +182,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         txtBoatIdNumber.setEditable(false);
 
         txaBoatDesprection.setColumns(20);
+        txaBoatDesprection.setLineWrap(true);
         txaBoatDesprection.setRows(5);
         jScrollPane1.setViewportView(txaBoatDesprection);
 

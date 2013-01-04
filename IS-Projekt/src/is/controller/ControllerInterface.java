@@ -25,8 +25,8 @@ public interface ControllerInterface {
 
     public abstract DefaultListModel getCustomerListModel();
 
-    //Köporderhantering
-    public abstract void addBuyOrder(int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect);
+    //Orderhantering
+    public abstract void addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);
 
     public abstract void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID);
 
@@ -57,11 +57,11 @@ public interface ControllerInterface {
     public abstract BoatListItem getBoatListItem(int boatID);
 
     //Varuhantering
-    public abstract void addGoods(String name, Double price, String description);
+    public abstract void addGoods(String name, double price, String description);
 
-    public abstract void editGoods(Double price, String description, String productNr);
+    public abstract void editGoods(int goodsID, String name, double price, String description);
 
-    public abstract List<String> getGoodsData(Integer goodsID);
+    public abstract String[] getGoodsData(Integer goodsID);
 
     public abstract void removeGoods(Integer goodsID);
 

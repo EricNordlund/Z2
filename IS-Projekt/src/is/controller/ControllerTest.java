@@ -28,6 +28,7 @@ public class ControllerTest {
     }
     
     private static void addGoods(Controller controller) {
+        
         controller.addGoods("Plastbestick", 15.50, "Ett trevligt bestickset till båten.");
         controller.addGoods("Utombordsmotor LM-500", 3700.00, "En kraftig liten motor.");
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");

@@ -1,6 +1,5 @@
 package is.controller;
 
-import is.gui.MainWindow;
 import is.projekt.Address;
 import is.projekt.Boat;
 import is.projekt.BoatRegistry;
@@ -97,7 +96,7 @@ public class Controller implements ControllerInterface {
 
     public ArrayList<String> getBoatData(Integer boatID) {
 
-        ArrayList<String> boatData = getBoatRegistry().getBoatRegistry().get(boatID).getDataAsList();
+        ArrayList<String> boatData = getBoatRegistry().getBoatData(boatID);
 
         return boatData;
     }
@@ -115,7 +114,7 @@ public class Controller implements ControllerInterface {
     @Override
     public ArrayList<String> getCustomerData(Integer customerID) {
 
-        ArrayList<String> customerData = getCustomerRegistry().getCustomerRegistry().get(customerID).getDataAsList();
+        ArrayList<String> customerData = getCustomerRegistry().getCustomerData(customerID);
 
         return customerData;
 
@@ -141,17 +140,18 @@ public class Controller implements ControllerInterface {
      */
     @Override
     public DefaultListModel getCustomerListModel() {
+        
+        
+        return this.getCustomerRegistry().getListModel();
+ 
 
-        HashMap<Integer, Customer> hm = getCustomerRegistry().getCustomerRegistry();
+        
 
-        DefaultListModel lm = this.createListModel(hm);
-
-        return lm;
     }
 
     @Override
-    public void editGoods(Double price, String description, String productNr) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void editGoods(int goodsID, String name, double price, String description) {
+        this.goodsRegistry.editGoods(goodsID, name, price, description);
     }
 
     @Override
@@ -160,38 +160,21 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<String> getGoodsData(Integer goodsID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public String[] getGoodsData(Integer goodsID) {
+        return this.goodsRegistry.getGoodsData(goodsID);
     }
 
     @Override
     public ListModel getGoodsListModel() {
 
-        HashMap<Integer, Goods> hm = getGoodsRegistry().getGoodsRegistry();
-
-        DefaultListModel lm = this.createListModel(hm);
-
-        return lm;
+        return this.getGoodsRegistry().getGoodsListModel();
     }
 
     @Override
-    public void addGoods(String name, Double price, String description) {
-
-        Goods g = new Goods(name, price, description);
-        getGoodsRegistry().addGoods(g);
-        System.out.println("Adding goods " + g.toString() + ".");
-    }
-
-    @Override
-    public void addBuyOrder(int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, List orderRows, Integer customerID, boolean isBuyOrder, Customer customerOjbect) {
-
-        Address billingAdress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
-        Integer orderID = getOrderRegistry().getNewOrderKey();
+    public void addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity) {
+      
+        this.getOrderRegistry().addBuyOrder(customerID, billingDate, billingAdressStreet, billingAdressPostCode, billingAdressCity);
         
-        Order o = new BuyOrder(orderID, billingDate, billingAdress, customerID);
-        getOrderRegistry().addBuyOrder(o, orderID);
-
-        System.out.println("Adding order with ID " + o.getOrderID() + ".");
     }
 
     @Override
@@ -219,55 +202,22 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    //Skapar listor som passar in i GUI.
-    private DefaultListModel createListModel(HashMap hm) {
-
-        DefaultListModel lm = new DefaultListModel();
-
-        Iterator it = hm.entrySet().iterator();
-
-        while (it.hasNext()) {
-
-            Map.Entry e = (Map.Entry) it.next();
-
-            Integer key = (Integer) e.getKey();
-
-            String displayString = e.getValue().toString();
-
-            ListItem item = new ListItem(key, displayString);
-
-            lm.addElement(item);
-
-        }
-
-        return lm;
-
-    }
-
     @Override
     public ListModel getBoatListModel() {
 
-        HashMap<Integer, Boat> hm = getBoatRegistry().getBoatRegistry();
-
-        DefaultListModel lm = this.createListModel(hm);
-
-        return lm;
+        return this.getBoatRegistry().getListModel();
     }
 
     @Override
     public ListModel getOrderListModel() {
 
-        HashMap<Integer, Order> hm = getOrderRegistry().getOrderList();
-
-        DefaultListModel lm = this.createListModel(hm);
-
-        return lm;
+        return this.getOrderRegistry().getOrderListModel();
     }
 
     @Override
     public ArrayList<String> getOrderData(Integer orderID) {
 
-        ArrayList<String> orderData = getOrderRegistry().getOrderList().get(orderID).getDataAsList();
+        ArrayList<String> orderData = getOrderRegistry().getDataArray(orderID);
 
         return orderData;
     }
@@ -308,5 +258,10 @@ public class Controller implements ControllerInterface {
     @Override
     public void addSellOrder(int customerID, Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void addGoods(String name, double price, String description) {
+        goodsRegistry.addGoods(name, price, description);
     }
 }

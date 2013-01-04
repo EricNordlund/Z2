@@ -9,6 +9,8 @@ import is.projekt.OrderRegistry;
 public class Main {
 
     public static void main(String[] args) {
+        
+        
 
         BoatRegistry br = new BoatRegistry();
         CustomerRegistry cr = new CustomerRegistry();
@@ -16,12 +18,7 @@ public class Main {
         OrderRegistry or = new OrderRegistry();
 
 
-        Controller controller = new Controller(br, cr, gr, or);
-        
-        br.setController(controller);
-        cr.setController(controller);
-        gr.setController(controller);
-        or.setController(controller);
+        Controller controller = new Controller(br, cr, gr, or);       
         
         ControllerTest.runTest(controller);
 

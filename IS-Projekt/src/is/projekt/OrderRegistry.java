@@ -4,11 +4,13 @@
  */
 package is.projekt;
 
-import is.controller.Controller;
 import is.controller.ListItem;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.io.Serializable;
-import java.util.Date;
+import java.util.Iterator;
+import java.util.Map;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -16,26 +18,24 @@ import java.util.Date;
  */
 public class OrderRegistry {
 
-    private HashMap<Integer, Order> orderRegistry = new HashMap<>();
+    private HashMap<Integer, Order> orderList = new HashMap<>();
     private int orderKeyCount = 0;
-    private Controller controller;
+    private ReferenceHandler referenceHandler;
 
-    public HashMap<Integer, Order> getOrderList() {
-        return orderRegistry;
+    private HashMap<Integer, Order> getOrderList() {
+        return orderList;
     }
 
-    public int getNewOrderKey() {
+    private int getNewOrderKey() {
         orderKeyCount++;
         return orderKeyCount;
     }
 
-    public Order getOrder(Integer orderID) {
-        return orderRegistry.get(orderID);
+    protected Order getOrder(Integer orderID) {
+        return getOrderList().get(orderID);
     }
 
-    public void addBuyOrder(Order o, Integer orderID) {
-        getOrderList().put(orderID, o);
-    }
+
 
     public void editBuyOrder(Order o, Integer orderID) {
         getOrderList().put(orderID, o);
@@ -62,7 +62,53 @@ public class OrderRegistry {
         getOrderList().put(so.getOrderID(), so);
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    void setReferenceHandler(ReferenceHandler aThis) {
+        this.referenceHandler = aThis;
+    }
+
+    public void addBuyOrder(int customerID, int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity) {
+        
+        Address address = new Address (billingAddressStreet, billingAddressPostCode, billingAddressCity);
+        
+        int orderID = this.getNewOrderKey();
+        
+        Order o = new BuyOrder (orderID, billingDate, address, customerID);
+        
+        this.getOrderList().put(orderID, o);
+        
+        
+    }
+    
+    public ArrayList<String> getDataArray(int orderID){
+        
+        ArrayList<String> dataArray = this.getOrder(orderID).getDataAsList();
+        
+        return dataArray;
+    }
+
+    public ListModel getOrderListModel() {
+        
+        
+        HashMap<Integer, Order> hm = this.getOrderList();
+        
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+
+            Integer key = (Integer) e.getKey();
+
+            String displayString = e.getValue().toString();
+
+            ListItem item = new ListItem(key, displayString);
+
+            lm.addElement(item);
+
+        }
+
+        return lm;
     }
 }

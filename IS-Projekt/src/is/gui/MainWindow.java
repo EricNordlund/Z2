@@ -84,7 +84,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jPanelTillbehör = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         lstGoods = new javax.swing.JList();
+        pnlGoods = new javax.swing.JPanel();
         btnAddGoods = new javax.swing.JButton();
+        btnEditGoods = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Seghel & Bååth");
@@ -451,12 +453,42 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         });
         jScrollPane4.setViewportView(lstGoods);
 
+        pnlGoods.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
+
         btnAddGoods.setText("Lägg till");
         btnAddGoods.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddGoodsActionPerformed(evt);
             }
         });
+
+        btnEditGoods.setText("Redigera");
+        btnEditGoods.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditGoodsActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlGoodsLayout = new javax.swing.GroupLayout(pnlGoods);
+        pnlGoods.setLayout(pnlGoodsLayout);
+        pnlGoodsLayout.setHorizontalGroup(
+            pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlGoodsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEditGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnAddGoods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlGoodsLayout.setVerticalGroup(
+            pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlGoodsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAddGoods)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEditGoods)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanelTillbehörLayout = new javax.swing.GroupLayout(jPanelTillbehör);
         jPanelTillbehör.setLayout(jPanelTillbehörLayout);
@@ -465,20 +497,19 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelTillbehörLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAddGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlGoods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelTillbehörLayout.setVerticalGroup(
             jPanelTillbehörLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelTillbehörLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTillbehörLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelTillbehörLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTillbehörLayout.createSequentialGroup()
+                    .addGroup(jPanelTillbehörLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAddGoods)
-                        .addGap(15, 15, 15)))
+                        .addComponent(pnlGoods, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -546,16 +577,17 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnAddBoat.addActionListener(this);
         this.btnEditBoat.addActionListener(this);
         this.btnRemoveBoat.addActionListener(this);
-        
+
         //Customer
         this.btnAddCustomer.addActionListener(this);
         this.btnEditCustomer.addActionListener(this);
         this.btnRemoveCustomer.addActionListener(this);
         //Order i Customer
         this.btnNewOrder.addActionListener(this);
-        
+
         //Goods
         this.btnAddGoods.addActionListener(this);
+        this.btnEditGoods.addActionListener(this);
 
         //Order
         this.btnEditOrder.addActionListener(this);
@@ -637,7 +669,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         //Orderdel (Lägg till finns i kunddelen)
         if (this.lstOrders.getSelectedValue() instanceof ListItem) {
 
-            Integer orderID = this.getSelectedKey(this.lstOrders);
+            int orderID = this.getSelectedKey(this.lstOrders);
 
 
             if (e.getSource() == this.btnEditOrder) {
@@ -648,7 +680,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                 System.out.println("Öppnar order för kund ID: " + orderID);
                 ArrayList<String> orderData = controller.getOrderData(orderID);
-                Integer customerID = Integer.valueOf(orderData.get(2));
+                int customerID = Integer.valueOf(orderData.get(2));
 
 
 
@@ -682,7 +714,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         if (this.lstBoat.getSelectedValue() instanceof ListItem) {
 
-            Integer boatID = this.getSelectedKey(this.lstBoat);
+            int boatID = this.getSelectedKey(this.lstBoat);
 
             if (e.getSource() == this.btnEditBoat) {
 
@@ -704,15 +736,28 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }
 
         }
-        
+
         //Hantering av knappar i tillbehörsdelen
-        
-        if(e.getSource() == this.btnAddGoods){
+
+        if (e.getSource() == this.btnAddGoods) {
             
-            goodsFrame.setTitle("Lägg till tillbehör");
-            goodsFrame.clearTextFields();
+            goodsFrame.newGoodsMode();         
             goodsFrame.setVisible(true);
-            
+
+        } 
+
+
+            if (this.lstGoods.getSelectedValue() instanceof ListItem) {
+                
+                int goodsID = this.getSelectedKey(this.lstGoods);
+                
+                if(e.getSource() == this.btnEditGoods){
+                    
+                    goodsFrame.editGoodsMode(goodsID);                   
+                    goodsFrame.setVisible(true);
+                    
+                }
+          
         }
     }
 
@@ -752,12 +797,17 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddGoodsActionPerformed
 
+    private void btnEditGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGoodsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditGoodsActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;
     private javax.swing.JButton btnAddCustomer;
     private javax.swing.JButton btnAddGoods;
     private javax.swing.JButton btnEditBoat;
     private javax.swing.JButton btnEditCustomer;
+    private javax.swing.JButton btnEditGoods;
     private javax.swing.JButton btnEditOrder;
     private javax.swing.JButton btnNewOrder;
     private javax.swing.JButton btnOrderSearch;
@@ -786,6 +836,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JList lstCustomer;
     private javax.swing.JList lstGoods;
     private javax.swing.JList lstOrders;
+    private javax.swing.JPanel pnlGoods;
     private javax.swing.JRadioButton rbtnOrderBuy;
     private javax.swing.JRadioButton rbtnOrderSell;
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
