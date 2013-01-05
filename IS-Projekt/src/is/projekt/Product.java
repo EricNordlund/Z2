@@ -4,6 +4,8 @@
  */
 package is.projekt;
 
+import java.text.DecimalFormat;
+
 /**
  * @author Viktor Voigt
  */
@@ -41,6 +43,22 @@ public abstract class Product {
         
         return this.productID;
     }
+    
+    protected String getPriceString() {
+        
+        DecimalFormat df = new DecimalFormat("#.00");
+        
+        String priceString = df.format(getPrice());
+        
+        return priceString;
+        
+    }
+    
+    /**
+     * Denna metod måste ha separata versioner i Boat och Goods då deras
+     * visningsnamn konstrueras olika
+     */
+    protected abstract String getDisplayName();
     
     
 }

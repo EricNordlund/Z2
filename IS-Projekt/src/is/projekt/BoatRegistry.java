@@ -39,20 +39,20 @@ public class BoatRegistry implements Serializable {
     }
 
     public void addBoat(String regnr, String model, String location, String description, double price) {
-        
+
         int boatID = getNewBoatKey();
-        
+
         Boat b = new Boat(boatID, regnr, model, location, description, price);
 
         System.out.println("Adding boat " + b.toString() + ".");
-        
+
         getBoatList().put(boatID, b);
     }
 
     public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
-        
+
         Boat b = new Boat(boatID, regnr, model, location, description, price);
-        
+
         getBoatList().put(boatID, b);
     }
 
@@ -90,7 +90,30 @@ public class BoatRegistry implements Serializable {
 
             Integer key = (Integer) e.getKey();
 
-            String displayString = e.getValue().toString();
+            Boat b = (Boat) e.getValue();
+
+             String padding = "";
+
+            String nameString = b.getDisplayName();
+
+            while (nameString.length() < 35) {
+                
+                nameString = nameString.concat(" ");
+                
+            }
+
+            String priceString = b.getPriceString();
+            
+            padding = "";
+            
+            while (priceString.length() + padding.length() < 10)
+            {
+                padding = padding.concat(" ");
+            }
+            
+            priceString = padding + priceString;
+
+            String displayString = nameString + " " + priceString;
 
             ListItem item = new ListItem(key, displayString);
 

@@ -44,8 +44,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     }
 
     private void addActionListenerToButtons() {
-        this.btnAdd.addActionListener(this);
-        this.btnRemove.addActionListener(this);
+        this.btnAddProduct.addActionListener(this);
+        this.btnRemoveProduct.addActionListener(this);
+
         this.btnSaveOrder.addActionListener(this);
         this.btnCancel.addActionListener(this);
 
@@ -88,13 +89,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.txtPostCode.setText(customerData.get(4));
             this.txtCity.setText(customerData.get(5));
             this.txtBillingDate.setText("130112");
-            
+
             this.lstOrderRows.setModel(new DefaultListModel());
 
         }
 
 
-        
+
 
     }
 
@@ -113,15 +114,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        System.out.println("ActionEvent.");
-
-        if (e.getSource() instanceof JButton) {
-            JButton btn = (JButton) e.getSource();
-            String btnName = btn.getText();
-            System.out.println("Du tryckte på " + btnName + ".");
-
-        }
 
         //Stänger ner rutan
         if (e.getSource() == this.btnCancel) {
@@ -142,17 +134,19 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         if (e.getSource() == this.rbtnBoat) {
 
             this.boatMode = true;
+            updateProductList();
 
         } else if (e.getSource() == this.rbtnGoods) {
 
             this.boatMode = false;
+            updateProductList();
         }
 
 
         //Kontrollerar om ett listvärde är markerat och möjliggör att flytta över det. 
         if (lstProducts.getSelectedValue() instanceof ListItem) {
 
-            if (e.getSource() == this.btnAdd) {
+            if (e.getSource() == this.btnAddProduct) {
 
                 ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
 
@@ -162,7 +156,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
                     this.addBoatListItem(productID);
 
-                } else {
+                } else if (!boatMode) {
 
                     if (!lstOrderRowsHasGoods(productID)) {
 
@@ -174,10 +168,33 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
                     }
                 }
+
+
             }
+            
+            updateProductList();
+        }
+        
+        if (this.lstOrderRows.getSelectedValue() instanceof ListItem){
+            
+             if (e.getSource() == this.btnRemoveProduct){
+                
+                int index = this.lstOrderRows.getSelectedIndex();
+                
+                DefaultListModel lm = (DefaultListModel) this.lstOrderRows.getModel();
+                
+                lm.remove(index);
+
+                updateProductList();
+                
+                
+            }
+             
+             
+            
         }
 
-        updateProductList();
+
     }
 
     //Efter att en produkt lagts till eller tagis bort uppdateras listorna beroende på om man är i båtläge eller tillbehörsläge
@@ -193,6 +210,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.lstProducts.setModel(getController().getGoodsListModel());
         }
 
+        this.lstOrderRows.repaint();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -204,8 +223,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         lstProducts = new javax.swing.JList();
         btnSaveOrder = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
+        btnAddProduct = new javax.swing.JButton();
+        btnRemoveProduct = new javax.swing.JButton();
         jScrollPanelOrderRows = new javax.swing.JScrollPane();
         lstOrderRows = new javax.swing.JList();
         jPanelOrderInfo = new javax.swing.JPanel();
@@ -227,6 +246,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         jScrollPanelProducts.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        lstProducts.setFont(new java.awt.Font("Courier New", 0, 11)); // NOI18N
         jScrollPanelProducts.setViewportView(lstProducts);
 
         btnSaveOrder.setText("Spara order");
@@ -238,23 +258,24 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        btnAdd.setText("<<");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAddProduct.setText("<<");
+        btnAddProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnAddProductActionPerformed(evt);
             }
         });
 
-        btnRemove.setText(">>");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
+        btnRemoveProduct.setText(">>");
+        btnRemoveProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
+                btnRemoveProductActionPerformed(evt);
             }
         });
 
         jScrollPanelOrderRows.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPanelOrderRows.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        lstOrderRows.setFont(new java.awt.Font("Courier New", 0, 11)); // NOI18N
         jScrollPanelOrderRows.setViewportView(lstOrderRows);
 
         jPanelOrderInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Orderinfo"));
@@ -389,29 +410,27 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                         .addComponent(btnCancel)
                         .addGap(78, 78, 78))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAdd)
-                                    .addComponent(btnRemove))))
+                            .addComponent(btnAddProduct)
+                            .addComponent(btnRemoveProduct))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(65, 65, 65)
                                 .addComponent(rbtnGoods)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(rbtnBoat)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jPanelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(13, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,9 +452,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAdd)
+                        .addComponent(btnAddProduct)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRemove)
+                        .addComponent(btnRemoveProduct)
                         .addGap(101, 101, 101)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel)
@@ -446,13 +465,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnAddProductActionPerformed
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+    private void btnRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveProductActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRemoveActionPerformed
+    }//GEN-LAST:event_btnRemoveProductActionPerformed
 
     private void txtCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerActionPerformed
         // TODO add your handling code here:
@@ -474,10 +493,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnBoatActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnCancel;
     private javax.swing.ButtonGroup btnGroupProducts;
-    private javax.swing.JButton btnRemove;
+    private javax.swing.JButton btnRemoveProduct;
     private javax.swing.JButton btnSaveOrder;
     private javax.swing.JPanel jPanelAddress;
     private javax.swing.JPanel jPanelOrderInfo;

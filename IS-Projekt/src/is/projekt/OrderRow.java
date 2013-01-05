@@ -58,9 +58,9 @@ public class OrderRow {
 
     }
     
-    protected String getProductString()
+    protected String getProductName()
             
     {
-        return getProduct().toString();
+        return getProduct().getDisplayName();
     }
 }

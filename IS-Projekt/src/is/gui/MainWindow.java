@@ -91,6 +91,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jPanelCustomers.setName(""); // NOI18N
 
+        lstCustomer.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jScrollPane2.setViewportView(lstCustomer);
 
         jPanelEditCustomer.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
@@ -204,6 +205,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         tabbedPaneMainWindow.addTab("Kunder", jPanelCustomers);
 
+        lstBoat.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         lstBoat.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {  };
             public int getSize() { return strings.length; }
@@ -328,6 +330,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         tabbedPaneMainWindow.addTab("Båtar", jPanelBåtar);
 
+        lstOrders.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(lstOrders);
 
         jPanelEditCustomer1.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
@@ -442,6 +445,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         tabbedPaneMainWindow.addTab("Ordrar", jPanelOrdrar);
 
+        lstGoods.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         lstGoods.setModel(new javax.swing.AbstractListModel() {
             String[] strings = {  };
             public int getSize() { return strings.length; }

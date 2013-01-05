@@ -135,7 +135,7 @@ public abstract class Order {
             double price = orderRow.getPrice();
             int productID = orderRow.getProductID();
             int quantity = orderRow.getQuantity();
-            String displayString = orderRow.getProductString();
+            String displayString = orderRow.getProductName();
             
             if (orderRow.holdsBoat()){
                 

@@ -18,11 +18,6 @@ public class Goods extends Product {
 
     }
 
-    @Override
-    public String toString() {
-        return name + " " + getPrice();
-    }
-
     public String[] getDataArray() {
 
         String[] a = new String[3];
@@ -34,4 +29,11 @@ public class Goods extends Product {
         return a;
 
     }
+
+    @Override
+    protected String getDisplayName() {
+        
+        return this.name;
+    }
+
 }
