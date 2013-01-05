@@ -64,6 +64,7 @@ public class Controller implements ControllerInterface {
     }
 
     //
+    @Override
     public void addBoat(String regnr, String model, String location, String description, double price) {
         
         this.getBoatRegistry().addBoat(regnr, model, location, description, price);
@@ -190,6 +191,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public ListModel getOrderRowListModel(int orderID) {
+        
         return this.getOrderRegistry().getOrderRowListModel(orderID);
     }
 

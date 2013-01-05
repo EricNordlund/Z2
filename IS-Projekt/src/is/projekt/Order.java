@@ -4,10 +4,8 @@ import is.controller.BoatListItem;
 import is.controller.GoodsListItem;
 import is.controller.ListItem;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
@@ -150,6 +148,8 @@ public abstract class Order {
                 item = new GoodsListItem(productID, displayString, price, quantity);
                 
             }
+            
+            System.out.println("Lägger till " + item.toString() + " till ListModel.");
 
             lm.addElement(item);
 

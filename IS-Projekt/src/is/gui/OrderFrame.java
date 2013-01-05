@@ -30,13 +30,27 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     OrderFrame(MainWindow parent) {
 
+        //Anropar netbeans autogenererade kod
         initComponents();
 
+        //Fönstret registrerar sig själv som ActionListener
         addActionListenerToButtons();
 
         this.parent = parent;
 
+        //Placerar fönstret mitt på skärmen
         this.setLocationRelativeTo(null);
+
+    }
+
+    private void addActionListenerToButtons() {
+        this.btnAdd.addActionListener(this);
+        this.btnRemove.addActionListener(this);
+        this.btnSaveOrder.addActionListener(this);
+        this.btnCancel.addActionListener(this);
+
+        this.rbtnBoat.addActionListener(this);
+        this.rbtnGoods.addActionListener(this);
 
     }
 
@@ -47,12 +61,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     public void initInterface() {
 
-        //Hämtar relevant info från Customer och ordern
+        //Hämtar kundens namn
         ArrayList<String> customerData = getController().getCustomerData(customerID);
+        this.txtCustomer.setText(customerData.get(0));
 
         //Kontrollerar om ordern skall redigeras eller läggas till. Uppdaterar sedan interfacen. 
         if (!newOrder) {
-            
+
             ArrayList<String> orderData = getController().getOrderData(orderID);
             this.txtBillingDate.setText(orderData.get(0));
             this.txtOrderNr.setText(Integer.toString(orderID));
@@ -60,13 +75,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.txtStreet.setText(orderData.get(1));
             this.txtPostCode.setText(orderData.get(3));
             this.txtCity.setText(orderData.get(4));
-            
+
             ListModel lm = controller.getOrderRowListModel(orderID);
-            
+
             this.lstOrderRows.setModel(lm);
 
         } else if (newOrder) {
-            
+
             this.txtOrderNr.setText(null);
             this.txtBillingDate.setText(null);
             this.txtStreet.setText(customerData.get(3));
@@ -74,18 +89,26 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.txtCity.setText(customerData.get(5));
             this.txtBillingDate.setText("130112");
             
+            this.lstOrderRows.setModel(new DefaultListModel());
+
         }
 
 
-        this.txtCustomer.setText(customerData.get(0));
-
-        this.lstOrderRows.setModel(new DefaultListModel());
-
+        
 
     }
 
     void setController(Controller controller) {
         this.controller = controller;
+    }
+
+    //Setters för customerID och orderID
+    void setCustomerID(Integer customerID) {
+        this.customerID = customerID;
+    }
+
+    void setOrderID(Integer orderID) {
+        this.orderID = orderID;
     }
 
     @Override
@@ -154,11 +177,11 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             }
         }
 
-        updateLists();
+        updateProductList();
     }
 
     //Efter att en produkt lagts till eller tagis bort uppdateras listorna beroende på om man är i båtläge eller tillbehörsläge
-    public void updateLists() {
+    public void updateProductList() {
 
 
         if (boatMode) {
@@ -166,21 +189,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             lstProducts.setModel(getController().getBoatListModel());
 
         } else {
-            
+
             this.lstProducts.setModel(getController().getGoodsListModel());
         }
 
-        this.lstOrderRows.repaint();
-
-    }
-
-    //Setters för customerID och orderID
-    void setCustomerID(Integer customerID) {
-        this.customerID = customerID;
-    }
-
-    void setOrderID(Integer orderID) {
-        this.orderID = orderID;
     }
 
     @SuppressWarnings("unchecked")
@@ -213,6 +225,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         rbtnGoods = new javax.swing.JRadioButton();
         rbtnBoat = new javax.swing.JRadioButton();
 
+        jScrollPanelProducts.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
         jScrollPanelProducts.setViewportView(lstProducts);
 
         btnSaveOrder.setText("Spara order");
@@ -237,6 +251,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 btnRemoveActionPerformed(evt);
             }
         });
+
+        jScrollPanelOrderRows.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPanelOrderRows.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jScrollPanelOrderRows.setViewportView(lstOrderRows);
 
@@ -374,21 +391,26 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnAdd)
-                                    .addComponent(btnRemove))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtnGoods)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbtnBoat)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                                    .addComponent(btnAdd)
+                                    .addComponent(btnRemove))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(rbtnGoods)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtnBoat)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -404,10 +426,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtnGoods)
                             .addComponent(rbtnBoat))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPanelOrderRows)
-                            .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                            .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -418,7 +440,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel)
                     .addComponent(btnSaveOrder))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -478,17 +500,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtPostCode;
     private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
-
-    private void addActionListenerToButtons() {
-        this.btnAdd.addActionListener(this);
-        this.btnRemove.addActionListener(this);
-        this.btnSaveOrder.addActionListener(this);
-        this.btnCancel.addActionListener(this);
-
-        this.rbtnBoat.addActionListener(this);
-        this.rbtnGoods.addActionListener(this);
-
-    }
 
     //Om inte tillbehöret redan finns i listan läggs det till som nytt. 
     private void addNewGoodsListItem(int goodsID) {
@@ -584,13 +595,11 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         if (!newOrder) {
 
-            controller.editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, true, orderID);
-
-            parent.updateLists();
+            this.getController().editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, true, orderID);
 
         } else if (newOrder) {
 
-            this.orderID = controller.addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
+            this.orderID = this.getController().addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
 
         }
 
@@ -599,9 +608,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     }
 
     /**
-     * Rensar alla OrderRows från en order.
-     * Skriver därefter in nya rader.
-     * 
+     * Rensar alla OrderRows från en order. Skriver därefter in nya rader.
+     *
      */
     private void saveOrderRows(int orderID) {
 
@@ -624,16 +632,16 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 controller.addGoodsOrderRow(orderID, price, quantity, productID);
 
             }
-            
+
             if (o instanceof BoatListItem) {
-                
+
                 BoatListItem bli = (BoatListItem) o;
-                
+
                 double price = bli.getPrice();
                 int productID = bli.getID();
-                
+
                 controller.addBoatOrderRow(orderID, price, productID);
-                
+
             }
 
         }
@@ -647,7 +655,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         setTitle("Skapa order");
         setCustomerID(customerID);
         initInterface();
-        updateLists();
+        updateProductList();
         setVisible(true);
 
     }
@@ -655,15 +663,20 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     void editOrderMode(int orderID) {
 
         this.newOrder = false;
-        System.out.println("Öppnar order för kund ID: " + orderID);      
-        ArrayList<String> orderData = controller.getOrderData(orderID);
-        this.customerID = Integer.valueOf(orderData.get(2));
-        
+
         setTitle("Ändra order");
-        setCustomerID(customerID);
+
+        //Hämtar CustomerID från order
+        ArrayList<String> orderData = controller.getOrderData(orderID);
+        setCustomerID(Integer.valueOf(orderData.get(2)));
+
         setOrderID(orderID);
+
         initInterface();
-        updateLists();
+
+        updateProductList();
+
+        System.out.println("Öppnar order för kund ID: " + orderID);
+
     }
 }
-

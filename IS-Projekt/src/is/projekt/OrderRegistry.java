@@ -135,6 +135,9 @@ public class OrderRegistry {
     }
 
     public ListModel getOrderRowListModel(int orderID) {
-        return this.getOrder(orderID).getOrderRowListModel();
+        
+        ListModel lm = this.getOrder(orderID).getOrderRowListModel();
+        
+        return lm;
     }
 }
