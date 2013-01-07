@@ -11,9 +11,9 @@ public class SellOrder extends Order {
     /**
      * Anropar kontruktorn i Order.
      */
-    public SellOrder(int orderID, int billingDate, Address billingAddress, Integer customerID) {
+    public SellOrder(int orderID, int billingDate, Address billingAddress, Customer customer) {
 
-        super(orderID, billingDate, billingAddress, customerID);
+        super(orderID, billingDate, billingAddress, customer);
 
     }
 }

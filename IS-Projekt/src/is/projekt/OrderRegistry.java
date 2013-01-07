@@ -35,30 +35,38 @@ public class OrderRegistry {
         return orderKeyCount;
     }
 
-    protected Order getOrder(Integer orderID) {
+    protected Order getOrder(int orderID) {
         return getOrderList().get(orderID);
     }
 
     public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
-            String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
+            String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
 
+        Customer customer = this.getReferenceHandler().getCustomer(customerID);
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
-        Order o = new BuyOrder(orderID, billingDate, address, customerID);
+        Order o = new BuyOrder(orderID, billingDate, address, customer);
         this.getOrderList().put(orderID, o);
 
 
     }
 
-    public void removeBuyOrder(Integer orderID) {
+    public void removeBuyOrder(int orderID) {
 
+        Order o = this.getOrder(orderID);
+        
+        o.removeCustomer();
+        
         getOrderList().remove(orderID);
     }
 
-    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] listItemArray) {
+    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, 
+            String billingAdressPostCode, String billingAdressCity, ListItem[] listItemArray) {
 
+        Customer customer = this.getReferenceHandler().getCustomer(customerID);
+        
         Address billingAddress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
 
-        SellOrder so = new SellOrder(getNewOrderKey(), billingDate, billingAddress, customerID);
+        SellOrder so = new SellOrder(getNewOrderKey(), billingDate, billingAddress, customer);
 
         for (ListItem li : listItemArray) {
         }
@@ -70,15 +78,20 @@ public class OrderRegistry {
         this.referenceHandler = aThis;
     }
 
-    public int addBuyOrder(int customerID, int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity) {
+    public int addBuyOrder(int customerID, int billingDate, String billingAddressStreet, 
+            
+        String billingAddressPostCode, String billingAddressCity) {
 
+        Customer customer = this.getReferenceHandler().getCustomer(customerID);
+        
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
 
         int orderID = this.getNewOrderKey();
 
-        Order o = new BuyOrder(orderID, billingDate, address, customerID);
+        Order o = new BuyOrder(orderID, billingDate, address, customer);
 
         this.getOrderList().put(orderID, o);
+        
 
         return orderID;
 
@@ -105,7 +118,7 @@ public class OrderRegistry {
 
             Map.Entry e = (Map.Entry) it.next();
 
-            Integer key = (Integer) e.getKey();
+            int key = (Integer) e.getKey();
 
             String displayString = e.getValue().toString();
 

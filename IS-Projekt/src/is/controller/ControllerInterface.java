@@ -17,30 +17,30 @@ public interface ControllerInterface {
     //Kundhantering
     public abstract void addNewCustomer(String name, String addressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
 
-    public abstract void editCustomer(Integer customerID, String name, String adressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
+    public abstract void editCustomer(int customerID, String name, String adressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
 
-    public abstract List<String> getCustomerData(Integer customerID);
+    public abstract List<String> getCustomerData(int customerID);
 
-    public abstract void removeCustomer(Integer customerID);
+    public abstract void removeCustomer(int customerID);
 
     public abstract DefaultListModel getCustomerListModel();
 
     //Orderhantering
     public abstract int addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);
 
-    public abstract void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID);
+    public abstract void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, int customerID, boolean isBuyOrder, int orderID);
 
-    public abstract List<String> getBuyOrderData(Integer orderID);
+    public abstract List<String> getBuyOrderData(int orderID);
 
-    public abstract List<String> getOrderData(Integer customerID);
+    public abstract List<String> getOrderData(int customerID);
 
-    public abstract void removeBuyOrder(Integer orderID);
+    public abstract void removeBuyOrder(int orderID);
 
     public abstract ListModel getOrderListModel();
 
     public abstract ListModel getOrderRowListModel(int orderID);
 
-    public abstract GoodsListItem getGoodsListItem(Integer orderID);
+    public abstract GoodsListItem getGoodsListItem(int orderID);
 
     public abstract void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows);
 
@@ -66,9 +66,9 @@ public interface ControllerInterface {
 
     public abstract void editGoods(int goodsID, String name, double price, String description);
 
-    public abstract String[] getGoodsData(Integer goodsID);
+    public abstract String[] getGoodsData(int goodsID);
 
-    public abstract void removeGoods(Integer goodsID);
+    public abstract void removeGoods(int goodsID);
 
     public abstract ListModel getGoodsListModel();
 }

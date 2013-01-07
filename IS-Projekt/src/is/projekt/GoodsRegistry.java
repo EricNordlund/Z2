@@ -49,11 +49,11 @@ public class GoodsRegistry {
         getGoodsList().put(goodsID, g);
     }
 
-    public void removeGoods(Integer goodsID) {
+    public void removeGoods(int goodsID) {
         this.getGoodsList().remove(goodsID);
     }
 
-    public String[] getGoodsData(Integer goodsID) {
+    public String[] getGoodsData(int goodsID) {
 
         String[] goodsData = getGoods(goodsID).getDataArray();
 
@@ -90,7 +90,7 @@ public class GoodsRegistry {
 
             Map.Entry e = (Map.Entry) it.next();
 
-            Integer key = (Integer) e.getKey();
+            int key = (Integer) e.getKey();
 
             Goods g = (Goods) e.getValue();
 

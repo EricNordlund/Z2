@@ -116,7 +116,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
     }
 
-    void setBoatKey(Integer key) {
+    void setBoatKey(int key) {
         this.boatKey = key;
         this.txtBoatRegNumber.setText(Integer.toString(key));
     }

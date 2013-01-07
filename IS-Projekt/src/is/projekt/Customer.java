@@ -1,6 +1,7 @@
 package is.projekt;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Customer {
 
@@ -9,7 +10,7 @@ public class Customer {
     private String phone;
     private String mail;
     private int customerID;
-    private ArrayList<Order> orderList;
+    private HashMap<Integer,Order> orderList;
 
     protected Customer(int customerID, String name, String eMail, String phone, Address address) {
 
@@ -18,14 +19,11 @@ public class Customer {
         this.phone = phone;
         this.address = address;
         this.customerID = customerID;
+        orderList = new HashMap<>();
     }
 
-    public ArrayList<Order> getOrderList() {
+    protected HashMap<Integer, Order> getOrderList() {
         return orderList;
-    }
-
-    public void setOrderList(ArrayList<Order> orderList) {
-        this.orderList = orderList;
     }
 
     public String getName() {
@@ -39,6 +37,12 @@ public class Customer {
 
     public Address getAddress() {
         return address;
+    }
+    
+    protected int getID(){
+        
+        return this.customerID;
+        
     }
 
     public void setAddress(Address address) {
@@ -62,12 +66,16 @@ public class Customer {
     }
 
     public void addOrder(Order order) {
-        getOrderList().add(order);
+        int orderID = order.getOrderID();
+        
+        this.getOrderList().put(orderID, order);
     }
 
     public void removeOrder(Order order) {
+        
+        int orderID = order.getOrderID();
 
-        getOrderList().remove(order);
+        this.getOrderList().remove(orderID);
     }
 
     public ArrayList<String> getDataAsList() {

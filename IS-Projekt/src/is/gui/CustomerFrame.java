@@ -111,7 +111,7 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
     }
 
-    void setCustomerKey(Integer key) {
+    void setCustomerKey(int key) {
         this.customerKey = key;
         this.txtCustomerNumber.setText(Integer.toString(key));
     }

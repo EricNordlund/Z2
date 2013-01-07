@@ -80,7 +80,7 @@ public class Controller implements ControllerInterface {
         System.out.println("Removing boat " + boatID + ".");
     }
 
-    public ArrayList<String> getBoatData(Integer boatID) {
+    public ArrayList<String> getBoatData(int boatID) {
 
         ArrayList<String> boatData = getBoatRegistry().getBoatData(boatID);
 
@@ -88,7 +88,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void editCustomer(Integer customerID, String name, String addressStreet,
+    public void editCustomer(int customerID, String name, String addressStreet,
             String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
 
@@ -98,7 +98,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ArrayList<String> getCustomerData(Integer customerID) {
+    public ArrayList<String> getCustomerData(int customerID) {
 
         ArrayList<String> customerData = getCustomerRegistry().getCustomerData(customerID);
 
@@ -107,7 +107,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void removeCustomer(Integer customerID) {
+    public void removeCustomer(int customerID) {
         getCustomerRegistry().removeCustomer(customerID);
 
         System.out.println("Removing customer " + customerID + ".");
@@ -141,12 +141,12 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void removeGoods(Integer goodsID) {
+    public void removeGoods(int goodsID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public String[] getGoodsData(Integer goodsID) {
+    public String[] getGoodsData(int goodsID) {
         return this.goodsRegistry.getGoodsData(goodsID);
     }
 
@@ -165,7 +165,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
-            String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
+            String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
 
 
         getOrderRegistry().editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode,
@@ -173,12 +173,12 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<String> getBuyOrderData(Integer orderID) {
+    public List<String> getBuyOrderData(int orderID) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void removeBuyOrder(Integer orderID) {
+    public void removeBuyOrder(int orderID) {
         getOrderRegistry().removeBuyOrder(orderID);
     }
 
@@ -201,7 +201,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ArrayList<String> getOrderData(Integer orderID) {
+    public ArrayList<String> getOrderData(int orderID) {
 
         ArrayList<String> orderData = getOrderRegistry().getDataArray(orderID);
 
@@ -209,7 +209,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public GoodsListItem getGoodsListItem(Integer goodsID) {
+    public GoodsListItem getGoodsListItem(int goodsID) {
 
         GoodsListItem gli;
 

@@ -18,16 +18,34 @@ public abstract class Order {
     private int billingDate;
     private Address billingAddress;
     private List<OrderRow> orderRows = new ArrayList();
-    private int customerID;
+    private Customer customer;
     private boolean isBuyOrder;
     private int orderID;
 
-    protected Order(int orderID, int billingDate, Address billingAddress, int customerID) {
+    protected Order(int orderID, int billingDate, Address billingAddress, Customer customer) {
         this.billingDate = billingDate;
-        this.billingAddress = billingAddress;
-        this.customerID = customerID;
+        this.billingAddress = billingAddress;      
         this.orderID = orderID;
+        
+        this.setCustomer(customer);
 
+    }
+    
+    private Customer getCustomer(){
+        
+        return this.customer;
+    }
+    
+    private void setCustomer (Customer customer){
+        
+        this.customer = customer;
+        this.getCustomer().addOrder(this);
+    }
+    
+    protected void removeCustomer(){
+        
+        this.getCustomer().removeOrder(this);
+   
     }
 
     public boolean getIsBuyOrder() {
@@ -55,12 +73,8 @@ public abstract class Order {
         this.orderRows = orderRows;
     }
 
-    public Integer getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(Integer customerID) {
-        this.customerID = customerID;
+    protected int getCustomerID() {
+        return this.getCustomer().getID();
     }
 
     public void setBillingDate(int billingDate) {
@@ -77,7 +91,7 @@ public abstract class Order {
 
         l.add(Integer.toString(getBillingDate()));
         l.add(getBillingAddress().getStreetName());
-        l.add(getCustomerID().toString());
+        l.add(String.valueOf(getCustomerID()));
         l.add(getBillingAddress().getPostCode());
         l.add(getBillingAddress().getCity());
 
@@ -107,7 +121,7 @@ public abstract class Order {
     ;
     @Override
     public String toString() {
-        return "Order: " + orderID + " (Kund: " + customerID + ")";
+        return "Order: " + orderID + " (Kund: " + this.getCustomerID() + ")";
     }
 
     ;

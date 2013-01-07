@@ -6,7 +6,7 @@ package is.projekt;
  */
 public class BuyOrder extends Order {
 
-    public BuyOrder(int orderID, int billingDate, Address billingAddress, Integer customerID) {
-        super(orderID, billingDate, billingAddress, customerID);
+    public BuyOrder(int orderID, int billingDate, Address billingAddress,Customer customer) {
+        super(orderID, billingDate, billingAddress, customer);
     }
 }

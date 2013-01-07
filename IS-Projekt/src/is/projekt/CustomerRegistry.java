@@ -50,7 +50,7 @@ public class CustomerRegistry {
         getCustomerList().put(customerID, c);
     }
 
-    public void editCustomer(Integer customerID, String name, String addressStreet,
+    public void editCustomer(int customerID, String name, String addressStreet,
             String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
         Address address = new Address(addressStreet, addressPostCode, addressCity);
@@ -59,7 +59,7 @@ public class CustomerRegistry {
         getCustomerList().put(customerID, c);
     }
 
-    public void removeCustomer(Integer customerID) {
+    public void removeCustomer(int customerID) {
 
         this.getCustomerList().remove(customerID);
     }
@@ -87,7 +87,7 @@ public class CustomerRegistry {
 
             Map.Entry e = (Map.Entry) it.next();
 
-            Integer key = (Integer) e.getKey();
+            int key = (Integer) e.getKey();
 
             String displayString = e.getValue().toString();
 

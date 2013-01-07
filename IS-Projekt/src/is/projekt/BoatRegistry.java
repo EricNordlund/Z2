@@ -56,7 +56,7 @@ public class BoatRegistry implements Serializable {
         getBoatList().put(boatID, b);
     }
 
-    public void removeBoat(Integer boatID) {
+    public void removeBoat(int boatID) {
         this.getBoatList().remove(boatID);
     }
 
@@ -88,7 +88,7 @@ public class BoatRegistry implements Serializable {
 
             Map.Entry e = (Map.Entry) it.next();
 
-            Integer key = (Integer) e.getKey();
+            int key = (Integer) e.getKey();
 
             Boat b = (Boat) e.getValue();
 

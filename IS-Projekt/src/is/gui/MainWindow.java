@@ -597,9 +597,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
      * Denna metod hämtar valt ListItem och returnerar den nyckel som finns i
      * objektet.
      */
-    private Integer getSelectedKey(JList jlist) {
+    private int getSelectedKey(JList jlist) {
 
-        Integer key;
+        int key;
 
         ListItem li;
         li = (ListItem) jlist.getSelectedValue();

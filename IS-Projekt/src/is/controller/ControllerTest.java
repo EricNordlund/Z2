@@ -34,7 +34,7 @@ public class ControllerTest {
         controller.addGoods("Becker Båtlack 5 liter", 370.00, "Prima lack till din båt.");
     }
 
-    private static void removeBuyOrders(Controller controller, Integer ordid) {
-        controller.removeBuyOrder(1);
+    private static void removeBuyOrders(Controller controller, int ordid) {
+        controller.removeBuyOrder(ordid);
     }
 }

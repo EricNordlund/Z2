@@ -15,6 +15,7 @@ public abstract class Product {
     private String description;
     private int productID;
 
+
     protected Product(int productID, double price, String description) {
 
         this.productID = productID;
