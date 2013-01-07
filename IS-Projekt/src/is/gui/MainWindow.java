@@ -51,15 +51,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         btnEditCustomer = new javax.swing.JButton();
         btnNewOrder = new javax.swing.JButton();
         btnRemoveCustomer = new javax.swing.JButton();
-        jPanelSearchCustomer = new javax.swing.JPanel();
-        btnSearchCustomer = new javax.swing.JButton();
-        txtSearchCustomer = new javax.swing.JTextField();
         jPanelBåtar = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lstBoat = new javax.swing.JList();
-        jPanel1 = new javax.swing.JPanel();
-        txtSearchBoat = new javax.swing.JTextField();
-        btnSearchBoat = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanelEditCustomer2 = new javax.swing.JPanel();
         btnAddBoat = new javax.swing.JButton();
@@ -69,14 +63,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jScrollPane3 = new javax.swing.JScrollPane();
         lstOrders = new javax.swing.JList();
         jPanelEditCustomer1 = new javax.swing.JPanel();
-        btnEditOrder = new javax.swing.JButton();
         btnRemoveOrder = new javax.swing.JButton();
+        btnEditOrder = new javax.swing.JButton();
         jPanelOrderFilters = new javax.swing.JPanel();
         rbtnOrderBuy = new javax.swing.JRadioButton();
         rbtnOrderSell = new javax.swing.JRadioButton();
-        jPanelOrderSearch = new javax.swing.JPanel();
-        txtSearchOrder = new javax.swing.JTextField();
-        btnOrderSearch = new javax.swing.JButton();
         jPanelTillbehör = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         lstGoods = new javax.swing.JList();
@@ -128,9 +119,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addGroup(jPanelEditCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addComponent(btnNewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRemoveCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRemoveCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelEditCustomerLayout.setVerticalGroup(
@@ -147,36 +138,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap())
         );
 
-        jPanelSearchCustomer.setBorder(javax.swing.BorderFactory.createTitledBorder("Sök"));
-
-        btnSearchCustomer.setText("Sök");
-
-        txtSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchCustomerActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelSearchCustomerLayout = new javax.swing.GroupLayout(jPanelSearchCustomer);
-        jPanelSearchCustomer.setLayout(jPanelSearchCustomerLayout);
-        jPanelSearchCustomerLayout.setHorizontalGroup(
-            jPanelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSearchCustomerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearchCustomer)
-                    .addComponent(btnSearchCustomer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanelSearchCustomerLayout.setVerticalGroup(
-            jPanelSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSearchCustomerLayout.createSequentialGroup()
-                .addComponent(txtSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearchCustomer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanelCustomersLayout = new javax.swing.GroupLayout(jPanelCustomers);
         jPanelCustomers.setLayout(jPanelCustomersLayout);
         jPanelCustomersLayout.setHorizontalGroup(
@@ -185,9 +146,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelEditCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelEditCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelCustomersLayout.setVerticalGroup(
@@ -197,9 +156,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addGroup(jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(jPanelCustomersLayout.createSequentialGroup()
-                        .addComponent(jPanelSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelEditCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanelEditCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -213,38 +171,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         });
         jScrollPane1.setViewportView(lstBoat);
 
-        txtSearchBoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchBoatActionPerformed(evt);
-            }
-        });
-
-        btnSearchBoat.setText("Sök");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtSearchBoat, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(btnSearchBoat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(txtSearchBoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearchBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 7, Short.MAX_VALUE)
+            .addGap(0, 11, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,6 +192,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         });
 
         btnEditBoat.setText("Redigera båt");
+        btnEditBoat.setMaximumSize(new java.awt.Dimension(75, 23));
+        btnEditBoat.setMinimumSize(new java.awt.Dimension(75, 23));
         btnEditBoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditBoatActionPerformed(evt);
@@ -274,26 +207,24 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         jPanelEditCustomer2.setLayout(jPanelEditCustomer2Layout);
         jPanelEditCustomer2Layout.setHorizontalGroup(
             jPanelEditCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelEditCustomer2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEditCustomer2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelEditCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAddBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditBoat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelEditCustomer2Layout.createSequentialGroup()
-                        .addComponent(btnRemoveBoat, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE)))
+                .addGroup(jPanelEditCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEditBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddBoat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRemoveBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelEditCustomer2Layout.setVerticalGroup(
             jPanelEditCustomer2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEditCustomer2Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(btnEditBoat)
+                .addComponent(btnEditBoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddBoat)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRemoveBoat)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanelBåtarLayout = new javax.swing.GroupLayout(jPanelBåtar);
@@ -303,14 +234,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelBåtarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelBåtarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelBåtarLayout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jPanelEditCustomer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(210, 210, 210)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelBåtarLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanelEditCustomer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelBåtarLayout.setVerticalGroup(
@@ -318,13 +248,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelBåtarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBåtarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(jPanelBåtarLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
-                        .addGroup(jPanelBåtarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelEditCustomer2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanelEditCustomer2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -335,9 +263,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         jPanelEditCustomer1.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
 
-        btnEditOrder.setText("Redigera");
+        btnRemoveOrder.setText("Ta bort order");
 
-        btnRemoveOrder.setText("Ta bort");
+        btnEditOrder.setText("Redigera order");
 
         javax.swing.GroupLayout jPanelEditCustomer1Layout = new javax.swing.GroupLayout(jPanelEditCustomer1);
         jPanelEditCustomer1.setLayout(jPanelEditCustomer1Layout);
@@ -346,18 +274,18 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelEditCustomer1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelEditCustomer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditOrder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnEditOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addComponent(btnRemoveOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelEditCustomer1Layout.setVerticalGroup(
             jPanelEditCustomer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEditCustomer1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEditOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemoveOrder)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanelOrderFilters.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
@@ -390,30 +318,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addComponent(rbtnOrderSell))
         );
 
-        jPanelOrderSearch.setBorder(javax.swing.BorderFactory.createTitledBorder("Sök"));
-
-        btnOrderSearch.setText("Sök");
-
-        javax.swing.GroupLayout jPanelOrderSearchLayout = new javax.swing.GroupLayout(jPanelOrderSearch);
-        jPanelOrderSearch.setLayout(jPanelOrderSearchLayout);
-        jPanelOrderSearchLayout.setHorizontalGroup(
-            jPanelOrderSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelOrderSearchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelOrderSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearchOrder)
-                    .addComponent(btnOrderSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanelOrderSearchLayout.setVerticalGroup(
-            jPanelOrderSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelOrderSearchLayout.createSequentialGroup()
-                .addComponent(txtSearchOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOrderSearch)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanelOrdrarLayout = new javax.swing.GroupLayout(jPanelOrdrar);
         jPanelOrdrar.setLayout(jPanelOrdrarLayout);
         jPanelOrdrarLayout.setHorizontalGroup(
@@ -423,9 +327,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelOrdrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEditCustomer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelOrderFilters, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelOrderSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelEditCustomer1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelOrdrarLayout.setVerticalGroup(
@@ -433,13 +336,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelOrdrarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelOrdrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(jPanelOrdrarLayout.createSequentialGroup()
-                        .addComponent(jPanelOrderSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelEditCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelOrderFilters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
-                        .addComponent(jPanelEditCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -455,14 +357,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         pnlGoods.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
 
-        btnAddGoods.setText("Lägg till");
+        btnAddGoods.setText("Lägg till vara");
         btnAddGoods.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddGoodsActionPerformed(evt);
             }
         });
 
-        btnEditGoods.setText("Redigera");
+        btnEditGoods.setText("Redigera vara");
         btnEditGoods.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditGoodsActionPerformed(evt);
@@ -508,12 +410,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addGroup(jPanelTillbehörLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(jPanelTillbehörLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pnlGoods, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnlGoods, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        tabbedPaneMainWindow.addTab("Tillbehör", jPanelTillbehör);
+        tabbedPaneMainWindow.addTab("Varor", jPanelTillbehör);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -737,17 +639,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
     }
 
-    // Actionlistner slutar här
-//AUTOGENERERAD KOD
-    private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
-    }//GEN-LAST:event_txtSearchCustomerActionPerformed
-
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
     }//GEN-LAST:event_btnAddCustomerActionPerformed
-
-    private void txtSearchBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchBoatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSearchBoatActionPerformed
 
     private void rbtnOrderSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnOrderSellActionPerformed
         // TODO add your handling code here:
@@ -776,6 +669,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void btnEditGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGoodsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditGoodsActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;
     private javax.swing.JButton btnAddCustomer;
@@ -785,13 +679,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton btnEditGoods;
     private javax.swing.JButton btnEditOrder;
     private javax.swing.JButton btnNewOrder;
-    private javax.swing.JButton btnOrderSearch;
     private javax.swing.JButton btnRemoveBoat;
     private javax.swing.JButton btnRemoveCustomer;
     private javax.swing.JButton btnRemoveOrder;
-    private javax.swing.JButton btnSearchBoat;
-    private javax.swing.JButton btnSearchCustomer;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelBåtar;
     private javax.swing.JPanel jPanelCustomers;
@@ -799,9 +689,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel jPanelEditCustomer1;
     private javax.swing.JPanel jPanelEditCustomer2;
     private javax.swing.JPanel jPanelOrderFilters;
-    private javax.swing.JPanel jPanelOrderSearch;
     private javax.swing.JPanel jPanelOrdrar;
-    private javax.swing.JPanel jPanelSearchCustomer;
     private javax.swing.JPanel jPanelTillbehör;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -815,9 +703,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JRadioButton rbtnOrderBuy;
     private javax.swing.JRadioButton rbtnOrderSell;
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
-    private javax.swing.JTextField txtSearchBoat;
-    private javax.swing.JTextField txtSearchCustomer;
-    private javax.swing.JTextField txtSearchOrder;
     // End of variables declaration//GEN-END:variables
 
     //Väljer ikon för det övre vänstra hörnet
