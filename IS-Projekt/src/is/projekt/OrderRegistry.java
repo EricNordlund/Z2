@@ -39,8 +39,14 @@ public class OrderRegistry {
         return getOrderList().get(orderID);
     }
 
-    public void editBuyOrder(Order o, Integer orderID) {
-        getOrderList().put(orderID, o);
+    public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
+            String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
+
+        Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
+        Order o = new BuyOrder(orderID, billingDate, address, customerID);
+        this.getOrderList().put(orderID, o);
+
+
     }
 
     public void removeBuyOrder(Integer orderID) {
@@ -127,17 +133,17 @@ public class OrderRegistry {
     }
 
     public void addBoatOrderRow(int orderID, double price, int boatID) {
-        
+
         Product p = this.getReferenceHandler().getBoat(boatID);
 
         this.getOrder(orderID).addOrderRow(price, 1, p);
-    
+
     }
 
     public ListModel getOrderRowListModel(int orderID) {
-        
+
         ListModel lm = this.getOrder(orderID).getOrderRowListModel();
-        
+
         return lm;
     }
 }

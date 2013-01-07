@@ -70,7 +70,7 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
             if (newCustomer) {
 
-                getController().addCustomer(
+                getController().addNewCustomer(
                         this.txtCustomerName.getText(),
                         this.txtCustomerStreet.getText(),
                         this.txtCustomerPostCode.getText(),

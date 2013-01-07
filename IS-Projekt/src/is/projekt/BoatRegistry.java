@@ -92,25 +92,24 @@ public class BoatRegistry implements Serializable {
 
             Boat b = (Boat) e.getValue();
 
-             String padding = "";
+            String padding = "";
 
             String nameString = b.getDisplayName();
 
             while (nameString.length() < 35) {
-                
+
                 nameString = nameString.concat(" ");
-                
+
             }
 
             String priceString = b.getPriceString();
-            
+
             padding = "";
-            
-            while (priceString.length() + padding.length() < 10)
-            {
+
+            while (priceString.length() + padding.length() < 10) {
                 padding = padding.concat(" ");
             }
-            
+
             priceString = padding + priceString;
 
             String displayString = nameString + " " + priceString;

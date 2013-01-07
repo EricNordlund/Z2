@@ -571,7 +571,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }
 
     private void addActionListenerToButtons() {
-        
+
         //Boats
         this.btnAddBoat.addActionListener(this);
         this.btnEditBoat.addActionListener(this);
@@ -654,7 +654,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
 
             } else if (e.getSource() == this.btnNewOrder) {
-                
+
                 orderFrame.newOrderMode(customerID);
 
             }//else if
@@ -667,13 +667,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             int orderID = this.getSelectedKey(this.lstOrders);
 
             if (e.getSource() == this.btnEditOrder) {
-                
+
                 orderFrame.editOrderMode(orderID);
-                
+
                 orderFrame.setVisible(true);
 
 
-                
+
 
             } else if (e.getSource() == this.btnRemoveOrder) {
 

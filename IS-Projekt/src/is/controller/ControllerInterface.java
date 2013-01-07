@@ -15,7 +15,7 @@ import javax.swing.ListModel;
 public interface ControllerInterface {
 
     //Kundhantering
-    public abstract void addCustomer(String name, String addressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
+    public abstract void addNewCustomer(String name, String addressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
 
     public abstract void editCustomer(Integer customerID, String name, String adressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
 
@@ -42,10 +42,10 @@ public interface ControllerInterface {
 
     public abstract GoodsListItem getGoodsListItem(Integer orderID);
 
-    public abstract void addSellOrder(int customerID, Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows);
+    public abstract void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows);
 
     public abstract void addGoodsOrderRow(int orderID, double price, int quantity, int goodsID);
-    
+
     public abstract void addBoatOrderRow(int orderID, double price, int boatID);
 
     public abstract void clearOrderRows(int orderID);

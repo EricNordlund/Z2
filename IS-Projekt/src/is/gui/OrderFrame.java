@@ -171,27 +171,27 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
 
             }
-            
+
             updateProductList();
         }
-        
-        if (this.lstOrderRows.getSelectedValue() instanceof ListItem){
-            
-             if (e.getSource() == this.btnRemoveProduct){
-                
+
+        if (this.lstOrderRows.getSelectedValue() instanceof ListItem) {
+
+            if (e.getSource() == this.btnRemoveProduct) {
+
                 int index = this.lstOrderRows.getSelectedIndex();
-                
+
                 DefaultListModel lm = (DefaultListModel) this.lstOrderRows.getModel();
-                
+
                 lm.remove(index);
 
                 updateProductList();
-                
-                
+
+
             }
-             
-             
-            
+
+
+
         }
 
 

@@ -64,11 +64,8 @@ public class Boat extends Product {
 
     }
 
-
     @Override
     protected String getDisplayName() {
         return getRegnr() + ", " + getModel();
     }
-
-
 }

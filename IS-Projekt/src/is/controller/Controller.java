@@ -1,16 +1,10 @@
 package is.controller;
 
-import is.projekt.Address;
-import is.projekt.Boat;
 import is.projekt.BoatRegistry;
-import is.projekt.BuyOrder;
-import is.projekt.Customer;
 import is.projekt.CustomerRegistry;
 import is.projekt.GoodsRegistry;
-import is.projekt.Order;
 import is.projekt.OrderRegistry;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
@@ -54,19 +48,17 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
+    public void addNewCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
-        Address address = new Address(addressStreet, addressPostCode, addressCity);
-        Customer c = new Customer(name, eMail, phoneNumber, address);
-        getCustomerRegistry().addCustomer(c);
 
-        System.out.println("Adding customer " + c.toString() + ".");
+        this.getCustomerRegistry().addCustomer(name, addressStreet, addressPostCode, addressCity, phoneNumber, eMail);
+
     }
 
     //
     @Override
     public void addBoat(String regnr, String model, String location, String description, double price) {
-        
+
         this.getBoatRegistry().addBoat(regnr, model, location, description, price);
 
     }
@@ -74,9 +66,9 @@ public class Controller implements ControllerInterface {
     @Override
     public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
 
-        
 
-        
+
+
         getBoatRegistry().editBoat(boatID, regnr, model, location, description, price);
 
     }
@@ -96,13 +88,13 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void editCustomer(Integer customerID, String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
+    public void editCustomer(Integer customerID, String name, String addressStreet,
+            String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
-        Address address = new Address(addressStreet, addressPostCode, addressCity);
-        Customer c = new Customer(name, eMail, phoneNumber, address);
-        getCustomerRegistry().editCustomer(customerID, c);
 
-        System.out.println("Editing customer " + c.toString() + ".");
+        getCustomerRegistry().editCustomer(customerID, name, addressStreet,
+                addressPostCode, addressCity, phoneNumber, eMail);
+
     }
 
     @Override
@@ -172,11 +164,12 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
+    public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
+            String billingAddressCity, Integer customerID, boolean isBuyOrder, Integer orderID) {
 
-        Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
-        Order o = new BuyOrder(orderID, billingDate, address, customerID);
-        getOrderRegistry().editBuyOrder(o, orderID);
+
+        getOrderRegistry().editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode,
+                billingAddressCity, customerID, isBuyOrder, orderID);
     }
 
     @Override
@@ -191,7 +184,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public ListModel getOrderRowListModel(int orderID) {
-        
+
         return this.getOrderRegistry().getOrderRowListModel(orderID);
     }
 
@@ -249,7 +242,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addSellOrder(int customerID, Date billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows) {
+    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

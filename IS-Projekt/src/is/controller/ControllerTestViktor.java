@@ -18,7 +18,7 @@ public class ControllerTestViktor {
 
 
         controller.addBoat("555 AFE", "X-5000 Pro", "Lomma", "En stabil segelbåt.", 50000);
-      
+
 
     }
 }

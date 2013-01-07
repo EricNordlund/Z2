@@ -38,27 +38,25 @@ public abstract class Product {
     protected void setDescription(String description) {
         this.description = description;
     }
-    
-    protected int getProductID(){
-        
+
+    protected int getProductID() {
+
         return this.productID;
     }
-    
+
     protected String getPriceString() {
-        
+
         DecimalFormat df = new DecimalFormat("#.00");
-        
+
         String priceString = df.format(getPrice());
-        
+
         return priceString;
-        
+
     }
-    
+
     /**
      * Denna metod måste ha separata versioner i Boat och Goods då deras
      * visningsnamn konstrueras olika
      */
     protected abstract String getDisplayName();
-    
-    
 }

@@ -22,7 +22,7 @@ public abstract class Order {
     private boolean isBuyOrder;
     private int orderID;
 
-    public Order(int orderID, int billingDate, Address billingAddress, int customerID) {
+    protected Order(int orderID, int billingDate, Address billingAddress, int customerID) {
         this.billingDate = billingDate;
         this.billingAddress = billingAddress;
         this.customerID = customerID;
@@ -95,7 +95,7 @@ public abstract class Order {
         OrderRow or = new OrderRow(price, quantity, product);
 
         this.getOrderRows().add(or);
-        
+
         System.out.println("Sparar OrderRow för " + product.toString());
 
     }
@@ -119,8 +119,8 @@ public abstract class Order {
     }
 
     protected ListModel getOrderRowListModel() {
-        
-        
+
+
         List<OrderRow> rowList = this.getOrderRows();
 
         DefaultListModel lm = new DefaultListModel();
@@ -131,24 +131,22 @@ public abstract class Order {
 
             OrderRow orderRow = (OrderRow) it.next();
             ListItem item;
-            
+
             double price = orderRow.getPrice();
             int productID = orderRow.getProductID();
             int quantity = orderRow.getQuantity();
             String displayString = orderRow.getProductName();
-            
-            if (orderRow.holdsBoat()){
-                
+
+            if (orderRow.holdsBoat()) {
+
                 item = new BoatListItem(productID, displayString, price);
-                
-            }
-            
-            else {
-                
+
+            } else {
+
                 item = new GoodsListItem(productID, displayString, price, quantity);
-                
+
             }
-            
+
             System.out.println("Lägger till " + item.toString() + " till ListModel.");
 
             lm.addElement(item);
@@ -156,9 +154,8 @@ public abstract class Order {
         }
 
         return lm;
-        
-        
-        
+
+
+
     }
-    
 }

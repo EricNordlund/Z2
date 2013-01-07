@@ -8,14 +8,16 @@ public class Customer {
     private Address address;
     private String phone;
     private String mail;
+    private int customerID;
     private ArrayList<Order> orderList;
 
-    public Customer(String name, String eMail, String phone, Address address) {
+    protected Customer(int customerID, String name, String eMail, String phone, Address address) {
 
         this.name = name;
         this.mail = eMail;
         this.phone = phone;
         this.address = address;
+        this.customerID = customerID;
     }
 
     public ArrayList<Order> getOrderList() {
@@ -29,7 +31,7 @@ public class Customer {
     public String getName() {
         return name;
     }
-    
+
     //Setters
     public void setName(String name) {
         this.name = name;

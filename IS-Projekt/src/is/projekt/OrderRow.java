@@ -53,14 +53,12 @@ public class OrderRow {
     }
 
     int getProductID() {
-        
+
         return getProduct().getProductID();
 
     }
-    
-    protected String getProductName()
-            
-    {
+
+    protected String getProductName() {
         return getProduct().getDisplayName();
     }
 }

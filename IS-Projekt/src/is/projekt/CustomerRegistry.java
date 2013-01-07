@@ -4,7 +4,6 @@
  */
 package is.projekt;
 
-import is.controller.Controller;
 import is.controller.ListItem;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,11 +36,26 @@ public class CustomerRegistry {
         return customerKeyCount;
     }
 
-    public void addCustomer(Customer c) {
-        getCustomerList().put(getNewCustomerKey(), c);
+    public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
+
+        
+        int customerID = this.getNewCustomerKey();
+        
+        Address address = new Address(addressStreet, addressPostCode, addressCity);
+ 
+        Customer c = new Customer(customerID, name, eMail, phoneNumber, address);
+
+        System.out.println("Adding customer " + c.toString() + ".");
+
+        getCustomerList().put(customerID, c);
     }
 
-    public void editCustomer(Integer customerID, Customer c) {
+    public void editCustomer(Integer customerID, String name, String addressStreet,
+            String addressPostCode, String addressCity, String phoneNumber, String eMail) {
+
+        Address address = new Address(addressStreet, addressPostCode, addressCity);
+        Customer c = new Customer(customerID, name, eMail, phoneNumber, address);
+
         getCustomerList().put(customerID, c);
     }
 

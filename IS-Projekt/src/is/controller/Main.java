@@ -17,9 +17,9 @@ public class Main {
         CustomerRegistry cr = new CustomerRegistry();
         GoodsRegistry gr = new GoodsRegistry();
         OrderRegistry or = new OrderRegistry();
-        
+
         ReferenceHandler rh = new ReferenceHandler();
-        
+
         rh.setBoatRegistry(br);
         rh.setCustomerRegistry(cr);
         rh.setGoodsRegistry(gr);

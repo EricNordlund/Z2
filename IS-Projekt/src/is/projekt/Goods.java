@@ -32,8 +32,7 @@ public class Goods extends Product {
 
     @Override
     protected String getDisplayName() {
-        
+
         return this.name;
     }
-
 }
