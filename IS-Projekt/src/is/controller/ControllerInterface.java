@@ -36,9 +36,9 @@ public interface ControllerInterface {
 
     public abstract void removeBuyOrder(Integer orderID);
 
-    public abstract DefaultListModel getOrderListModel();
+    public abstract ListModel getOrderListModel();
 
-    public abstract DefaultListModel getOrderRowListModel(int orderID);
+    public abstract ListModel getOrderRowListModel(int orderID);
 
     public abstract GoodsListItem getGoodsListItem(Integer orderID);
 

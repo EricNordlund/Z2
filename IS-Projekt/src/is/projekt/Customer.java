@@ -29,7 +29,7 @@ public class Customer {
     public String getName() {
         return name;
     }
-
+    
     //Setters
     public void setName(String name) {
         this.name = name;
