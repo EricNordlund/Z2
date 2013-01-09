@@ -123,9 +123,33 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             //Stänger ner rutan och sparar ändringar.
         } else if (e.getSource() == this.btnSaveOrder) {
 
-            saveOrder();
-            saveOrderRows(this.orderID);
-            this.setVisible(false);
+            //Kontrollerar input och öppnar annars ett felmeddelande
+            if(Integer.valueOf(this.txtBillingDate.getText()) > 99999)
+            {
+                saveOrder();
+                saveOrderRows(this.orderID);
+                this.setVisible(false);
+            }
+            
+            //Öppnar felmeddelandet om det inte redan är öppet. 
+            else if(!inputConfirm.isVisible())
+            {
+                inputConfirm.setBounds(100,100,300,125);
+                inputConfirm.setVisible(true);
+                
+                //Actionlisterner som håller koll på knappen
+                
+                
+                
+            }
+        
+        
+        }
+        
+        if(e.getSource() == this.btnInputConfirm)
+        {
+            System.out.println("OK tryckt");
+            this.inputConfirm.setVisible(false);
         }
 
 
@@ -219,6 +243,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private void initComponents() {
 
         btnGroupProducts = new javax.swing.ButtonGroup();
+        inputConfirm = new javax.swing.JDialog();
+        infoText = new javax.swing.JLabel();
+        btnInputConfirm = new javax.swing.JButton();
         jScrollPanelProducts = new javax.swing.JScrollPane();
         lstProducts = new javax.swing.JList();
         btnSaveOrder = new javax.swing.JButton();
@@ -243,6 +270,41 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         txtCity = new javax.swing.JTextField();
         rbtnGoods = new javax.swing.JRadioButton();
         rbtnBoat = new javax.swing.JRadioButton();
+
+        inputConfirm.setTitle("Ogiltig data");
+
+        infoText.setText("All text är inte korrekt inmatad");
+
+        btnInputConfirm.setText("Ok");
+        btnInputConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInputConfirmActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputConfirmLayout = new javax.swing.GroupLayout(inputConfirm.getContentPane());
+        inputConfirm.getContentPane().setLayout(inputConfirmLayout);
+        inputConfirmLayout.setHorizontalGroup(
+            inputConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputConfirmLayout.createSequentialGroup()
+                .addGroup(inputConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inputConfirmLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(btnInputConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(inputConfirmLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(infoText)))
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        inputConfirmLayout.setVerticalGroup(
+            inputConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputConfirmLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(infoText)
+                .addGap(18, 18, 18)
+                .addComponent(btnInputConfirm)
+                .addGap(22, 22, 22))
+        );
 
         jScrollPanelProducts.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
@@ -425,7 +487,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(13, Short.MAX_VALUE))))
+                                .addContainerGap(20, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -492,12 +554,20 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private void rbtnBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnBoatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnBoatActionPerformed
+
+    private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
+        inputConfirm.setVisible(false);
+    }//GEN-LAST:event_btnInputConfirmActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnCancel;
     private javax.swing.ButtonGroup btnGroupProducts;
+    private javax.swing.JButton btnInputConfirm;
     private javax.swing.JButton btnRemoveProduct;
     private javax.swing.JButton btnSaveOrder;
+    private javax.swing.JLabel infoText;
+    private javax.swing.JDialog inputConfirm;
     private javax.swing.JPanel jPanelAddress;
     private javax.swing.JPanel jPanelOrderInfo;
     private javax.swing.JScrollPane jScrollPanelOrderRows;
