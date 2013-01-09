@@ -48,7 +48,7 @@ public class Boat extends Product {
 
     public String[] getDataArray() {
 
-        String[] array = new String[5];
+        String[] array = new String[6];
 
         array[0] = this.getProductIDString();
         array[1] = this.getRegnr();
