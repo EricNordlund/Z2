@@ -73,4 +73,8 @@ public interface ControllerInterface {
     public abstract void removeGoods(int goodsID);
 
     public abstract ListModel getGoodsListModel();
+    
+    //Input-kontroll
+    public abstract boolean inputCheckString (String s);
+    public abstract boolean inputCheckDate (String s);
 }

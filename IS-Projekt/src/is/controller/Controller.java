@@ -3,6 +3,7 @@ package is.controller;
 import is.projekt.BoatRegistry;
 import is.projekt.CustomerRegistry;
 import is.projekt.GoodsRegistry;
+import is.projekt.InputCheck;
 import is.projekt.OrderRegistry;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +22,15 @@ public class Controller implements ControllerInterface {
     private OrderRegistry orderRegistry;
     private CustomerRegistry customerRegistry;
     private GoodsRegistry goodsRegistry;
-
+    public InputCheck inputCheck = new InputCheck();
+    
     public Controller(BoatRegistry br, CustomerRegistry cr, GoodsRegistry gr, OrderRegistry or) {
 
         this.boatRegistry = br;
         this.customerRegistry = cr;
         this.goodsRegistry = gr;
         this.orderRegistry = or;
-
+        
     }
 
     public BoatRegistry getBoatRegistry() {
@@ -55,7 +57,7 @@ public class Controller implements ControllerInterface {
 
     }
 
-    //
+    
     @Override
     public void addBoat(String regnr, String model, String location, String description, double price) {
 
@@ -267,5 +269,15 @@ public class Controller implements ControllerInterface {
     @Override
     public void addBoatOrderRow(int orderID, double price, int boatID) {
         this.getOrderRegistry().addBoatOrderRow(orderID, price, boatID);
+    }
+
+    @Override
+    public boolean inputCheckString(String s) {
+        return this.inputCheck.chekString(s);
+    }
+
+    @Override
+    public boolean inputCheckDate(String s) {
+        return this.inputCheck.checkDate(s);
     }
 }

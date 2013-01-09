@@ -124,7 +124,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         } else if (e.getSource() == this.btnSaveOrder) {
 
             //Kontrollerar input och öppnar annars ett felmeddelande
-            if(Integer.valueOf(this.txtBillingDate.getText()) > 99999)
+            if(this.controller.inputCheckDate(this.txtBillingDate.getText()))
             {
                 saveOrder();
                 saveOrderRows(this.orderID);
