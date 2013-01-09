@@ -23,7 +23,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     /**
      * Creates new form EditBoat
      */
-    public BoatFrame(MainWindow parent) {
+    protected BoatFrame(MainWindow parent) {
 
         initComponents();//Autogenererad metod
 
@@ -35,7 +35,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
     }
 
-    public void setController(Controller controller) {
+    protected void setController(Controller controller) {
 
         this.controller = controller;
     }
@@ -50,7 +50,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         this.btnExitBoat.addActionListener(this);
     }
 
-    public void clearTextFields() {
+    protected void clearTextFields() {
 
 
         this.txtBoatRegNumber.setText("");
@@ -60,8 +60,25 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         this.txtBoatIdNumber.setText("");
         this.txaBoatDesprection.setText("");
 
+    }
+    
+        void setBoatKey(int key) {
+        this.boatKey = key;
+        this.txtBoatRegNumber.setText(Integer.toString(key));
+    }
 
-
+    protected void setNewBoat(boolean b) {
+        this.newBoat = b;
+    }
+    
+    
+    protected void fillTextBoxes(String[] boatData) {
+        this.txtBoatIdNumber.setText(boatData[0]);
+        this.txtBoatRegNumber.setText(boatData[1]);
+        this.txtBoatModel.setText(boatData[2]);
+        this.txtBoatDestination.setText(boatData[3]);
+        this.txaBoatDesprection.setText(boatData[4]);
+        this.txtBoatPrice.setText(boatData[5]);
     }
 
     @Override
@@ -102,27 +119,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
         }//if e.getSource() == this.btnCancel
 
-    }
-
-    void fillTextBoxes(ArrayList<String> boatData) {
-        this.txtBoatIdNumber.setText(boatData.get(0));
-        this.txtBoatRegNumber.setText(boatData.get(1));
-        this.txtBoatModel.setText(boatData.get(2));
-        this.txtBoatDestination.setText(boatData.get(3));
-        this.txaBoatDesprection.setText(boatData.get(4));
-        this.txtBoatPrice.setText(boatData.get(5));
-
-
-
-    }
-
-    void setBoatKey(int key) {
-        this.boatKey = key;
-        this.txtBoatRegNumber.setText(Integer.toString(key));
-    }
-
-    void setNewBoat(boolean b) {
-        this.newBoat = b;
     }
 
     /**

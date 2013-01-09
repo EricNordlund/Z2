@@ -37,33 +37,35 @@ public class Boat extends Product {
     }
 
     public String getLocation() {
-        return location;
+        return this.location;
     }
 
     public void setLocation(String location) {
         this.location = location;
     }
 
-    protected int getBoatID() {
-        return super.getProductID();
-    }
+ 
 
-    public ArrayList<String> getDataAsList() {
+    public String[] getDataArray() {
 
-        ArrayList<String> l = new ArrayList<>();
+        String[] array = new String[5];
 
-        l.add(Integer.toString(getBoatID()));
-        l.add(getRegnr());
-        l.add(getModel());
-        l.add(getLocation());
-        l.add(getDescription());
-        l.add(Double.toString(getPrice()));
+        array[0] = this.getProductIDString();
+        array[1] = this.getRegnr();
+        array[2] = this.getModel();
+        array[3] = this.getLocation();
+        array[4] = this.getDescription();
+        array[5] = this.getPriceString();
 
-        return l;
+        return array;
 
 
     }
-
+    
+    /**
+     * Kombinerar regnr och modellbeteckning för till en String.
+     * @return 
+     */
     @Override
     protected String getDisplayName() {
         return getRegnr() + ", " + getModel();

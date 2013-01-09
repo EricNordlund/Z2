@@ -60,11 +60,11 @@ public class BoatRegistry implements Serializable {
         this.getBoatList().remove(boatID);
     }
 
-    public ArrayList<String> getBoatData(int boatID) {
+    public String[] getBoatData(int boatID) {
 
 
 
-        ArrayList<String> boatData = this.getBoatList().get(boatID).getDataAsList();
+        String[] boatData = this.getBoatList().get(boatID).getDataArray();
 
         return boatData;
 

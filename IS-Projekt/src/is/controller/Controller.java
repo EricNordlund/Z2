@@ -80,9 +80,10 @@ public class Controller implements ControllerInterface {
         System.out.println("Removing boat " + boatID + ".");
     }
 
-    public ArrayList<String> getBoatData(int boatID) {
+    @Override
+    public String[] getBoatData(int boatID) {
 
-        ArrayList<String> boatData = getBoatRegistry().getBoatData(boatID);
+        String[] boatData = getBoatRegistry().getBoatData(boatID);
 
         return boatData;
     }
@@ -229,11 +230,11 @@ public class Controller implements ControllerInterface {
 
         BoatListItem bli;
 
-        ArrayList<String> a = this.getBoatData(boatID);
+        String[] a = this.getBoatData(boatID);
 
-        String displayName = a.get(1) + " " + a.get(2);
+        String displayName = a[1] + " " + a[2];
 
-        double price = Double.valueOf(a.get(5));
+        double price = Double.valueOf(a[5]);
 
         bli = new BoatListItem(boatID, displayName, price);
 

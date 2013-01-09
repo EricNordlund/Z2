@@ -60,6 +60,8 @@ public interface ControllerInterface {
     public abstract ListModel getBoatListModel();
 
     public abstract BoatListItem getBoatListItem(int boatID);
+    
+    public abstract String[] getBoatData(int boatID);
 
     //Varuhantering
     public abstract void addGoods(String name, double price, String description);

@@ -44,6 +44,11 @@ public abstract class Product {
 
         return this.productID;
     }
+    
+       protected String getProductIDString() {
+
+        return Integer.toString(this.getProductID());
+    }
 
     protected String getPriceString() {
 
