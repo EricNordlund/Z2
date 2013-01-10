@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 
 /**
  *
- * @author svalan
+ * @author Viktor Voigt
  */
 public class BoatListItem extends ListItem {
 

@@ -11,7 +11,7 @@ import javax.swing.ListModel;
 
 /**
  *
- * @author Viktor Voigt ^_^
+ * @author Viktor Voigt
  */
 public abstract class Order {
 
@@ -24,28 +24,28 @@ public abstract class Order {
 
     protected Order(int orderID, int billingDate, Address billingAddress, Customer customer) {
         this.billingDate = billingDate;
-        this.billingAddress = billingAddress;      
+        this.billingAddress = billingAddress;
         this.orderID = orderID;
-        
+
         this.setCustomer(customer);
 
     }
-    
-    private Customer getCustomer(){
-        
+
+    private Customer getCustomer() {
+
         return this.customer;
     }
-    
-    private void setCustomer (Customer customer){
-        
+
+    private void setCustomer(Customer customer) {
+
         this.customer = customer;
         this.getCustomer().addOrder(this);
     }
-    
-    protected void removeCustomer(){
-        
+
+    protected void removeCustomer() {
+
         this.getCustomer().removeOrder(this);
-   
+
     }
 
     public boolean getIsBuyOrder() {
@@ -117,14 +117,11 @@ public abstract class Order {
     protected int getOrderID() {
         return orderID;
     }
-
-    ;
+    
     @Override
     public String toString() {
-        return "Order: " + orderID + " (Kund: " + this.getCustomerID() + ")";
+        return "Order: " + orderID + " (Kund: " + this.getCustomer().getID() + ")";
     }
-
-    ;
 
     protected void clearOrderRows() {
 
@@ -171,5 +168,35 @@ public abstract class Order {
 
 
 
+    }
+
+    @SuppressWarnings("empty-statement")
+    protected String getDisplayName() {
+        
+        String displayName = Integer.toString(this.getOrderID());
+        
+        String padding;
+        
+        //Tom for-loop skapar nollorna i strängen
+        for (padding = ""; padding.length() + displayName.length() < 6; padding = padding + "0");
+
+        displayName = padding.concat(displayName);
+        
+        if (this instanceof BuyOrder){
+            
+            displayName = displayName.concat(" (köp)  ");
+            
+        }
+        
+        else {
+            
+            displayName = displayName.concat(" (sälj) ");
+            
+        }
+        
+        displayName = displayName.concat(this.getCustomer().getName());
+        
+        return displayName;
+        
     }
 }

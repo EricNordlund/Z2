@@ -15,6 +15,7 @@ import javax.swing.ListModel;
  *
  * @param mainWindow The user interface.
  * @param model The model.
+ * 
  */
 public class Controller implements ControllerInterface {
 
@@ -144,8 +145,21 @@ public class Controller implements ControllerInterface {
     public ListModel getOrderListModel() {
 
         return this.getOrderRegistry().getOrderListModel();
+        
+        
     }
 
+    @Override
+    public ListModel getBuyOrderListModel() {
+        return this.getOrderRegistry().getBuyOrderListModel();
+    }
+
+    @Override
+    public ListModel getSellOrderListModel() {
+       return this.getOrderRegistry().getSellOrderListModel();
+    }
+    
+    
     @Override
     public ArrayList<String> getOrderData(int orderID) {
 

@@ -36,6 +36,10 @@ public interface ControllerInterface {
 
     public abstract ListModel getOrderListModel();
 
+    public abstract ListModel getBuyOrderListModel();
+
+    public abstract ListModel getSellOrderListModel();
+
     public abstract ListModel getOrderRowListModel(int orderID);
 
     public abstract GoodsListItem getGoodsListItem(int orderID);
@@ -47,8 +51,8 @@ public interface ControllerInterface {
     public abstract void addBoatOrderRow(int orderID, double price, int boatID);
 
     public abstract void clearOrderRows(int orderID);
-    
-    public abstract boolean isBuyorder (int orderID);
+
+    public abstract boolean isBuyorder(int orderID);
 
     //Båthantering
     public abstract void addBoat(String regnr, String model, String location, String description, double price);
@@ -60,7 +64,7 @@ public interface ControllerInterface {
     public abstract ListModel getBoatListModel();
 
     public abstract BoatListItem getBoatListItem(int boatID);
-    
+
     public abstract String[] getBoatData(int boatID);
 
     //Varuhantering
@@ -73,8 +77,9 @@ public interface ControllerInterface {
     public abstract void removeGoods(int goodsID);
 
     public abstract ListModel getGoodsListModel();
-    
+
     //Input-kontroll
-    public abstract boolean inputCheckString (String s);
-    public abstract boolean inputCheckDate (String s);
+    public abstract boolean inputCheckString(String s);
+
+    public abstract boolean inputCheckDate(String s);
 }

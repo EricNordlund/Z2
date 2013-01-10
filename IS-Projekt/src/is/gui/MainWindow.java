@@ -44,8 +44,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupOrderType = new javax.swing.ButtonGroup();
         tabbedPaneMainWindow = new javax.swing.JTabbedPane();
-        jPanelCustomers = new javax.swing.JPanel();
+        pnlCustomers = new javax.swing.JPanel();
         jScrollPaneCustomers = new javax.swing.JScrollPane();
         lstCustomers = new javax.swing.JList();
         jPanelCustomerTools = new javax.swing.JPanel();
@@ -53,7 +54,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         btnEditCustomer = new javax.swing.JButton();
         btnNewOrder = new javax.swing.JButton();
         btnRemoveCustomer = new javax.swing.JButton();
-        jPanelBoats = new javax.swing.JPanel();
+        pnlBoats = new javax.swing.JPanel();
         jScrollPaneBoats = new javax.swing.JScrollPane();
         lstBoats = new javax.swing.JList();
         jPanelBoatTools = new javax.swing.JPanel();
@@ -67,9 +68,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         btnRemoveOrder = new javax.swing.JButton();
         btnEditOrder = new javax.swing.JButton();
         pnlOrderFilters = new javax.swing.JPanel();
-        rbtnOrderBuy = new javax.swing.JRadioButton();
-        rbtnOrderSell = new javax.swing.JRadioButton();
-        jPanelGoods = new javax.swing.JPanel();
+        rbtnShowBuyOrders = new javax.swing.JRadioButton();
+        rbtnShowSellOrders = new javax.swing.JRadioButton();
+        rbtnShowAllOrders = new javax.swing.JRadioButton();
+        pnlGoods = new javax.swing.JPanel();
         jScrollPaneGoods = new javax.swing.JScrollPane();
         lstGoods = new javax.swing.JList();
         pnlGoodsTools = new javax.swing.JPanel();
@@ -81,7 +83,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
         tabbedPaneMainWindow.setName("asdds"); // NOI18N
 
-        jPanelCustomers.setName(""); // NOI18N
+        pnlCustomers.setName(""); // NOI18N
 
         lstCustomers.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jScrollPaneCustomers.setViewportView(lstCustomers);
@@ -139,30 +141,30 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanelCustomersLayout = new javax.swing.GroupLayout(jPanelCustomers);
-        jPanelCustomers.setLayout(jPanelCustomersLayout);
-        jPanelCustomersLayout.setHorizontalGroup(
-            jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCustomersLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCustomersLayout = new javax.swing.GroupLayout(pnlCustomers);
+        pnlCustomers.setLayout(pnlCustomersLayout);
+        pnlCustomersLayout.setHorizontalGroup(
+            pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustomersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPaneCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelCustomerTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanelCustomersLayout.setVerticalGroup(
-            jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCustomersLayout.createSequentialGroup()
+        pnlCustomersLayout.setVerticalGroup(
+            pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCustomersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
-                    .addGroup(jPanelCustomersLayout.createSequentialGroup()
+                    .addGroup(pnlCustomersLayout.createSequentialGroup()
                         .addComponent(jPanelCustomerTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        tabbedPaneMainWindow.addTab("Kunder", jPanelCustomers);
+        tabbedPaneMainWindow.addTab("Kunder", pnlCustomers);
 
         lstBoats.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         lstBoats.setModel(new javax.swing.AbstractListModel() {
@@ -217,30 +219,30 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanelBoatsLayout = new javax.swing.GroupLayout(jPanelBoats);
-        jPanelBoats.setLayout(jPanelBoatsLayout);
-        jPanelBoatsLayout.setHorizontalGroup(
-            jPanelBoatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBoatsLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBoatsLayout = new javax.swing.GroupLayout(pnlBoats);
+        pnlBoats.setLayout(pnlBoatsLayout);
+        pnlBoatsLayout.setHorizontalGroup(
+            pnlBoatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBoatsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPaneBoats, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelBoatTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanelBoatsLayout.setVerticalGroup(
-            jPanelBoatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBoatsLayout.createSequentialGroup()
+        pnlBoatsLayout.setVerticalGroup(
+            pnlBoatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBoatsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBoatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBoatsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneBoats, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
-                    .addGroup(jPanelBoatsLayout.createSequentialGroup()
+                    .addGroup(pnlBoatsLayout.createSequentialGroup()
                         .addComponent(jPanelBoatTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        tabbedPaneMainWindow.addTab("Båtar", jPanelBoats);
+        tabbedPaneMainWindow.addTab("Båtar", pnlBoats);
 
         lstOrders.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         jScrollPaneOrders.setViewportView(lstOrders);
@@ -272,16 +274,22 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap())
         );
 
-        pnlOrderFilters.setBorder(javax.swing.BorderFactory.createTitledBorder("Filter"));
+        pnlOrderFilters.setBorder(javax.swing.BorderFactory.createTitledBorder("Visningsfilter"));
 
-        rbtnOrderBuy.setText("Köp");
+        btnGroupOrderType.add(rbtnShowBuyOrders);
+        rbtnShowBuyOrders.setText("Köp");
 
-        rbtnOrderSell.setText("Sälj");
-        rbtnOrderSell.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupOrderType.add(rbtnShowSellOrders);
+        rbtnShowSellOrders.setText("Sälj");
+        rbtnShowSellOrders.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtnOrderSellActionPerformed(evt);
+                rbtnShowSellOrdersActionPerformed(evt);
             }
         });
+
+        btnGroupOrderType.add(rbtnShowAllOrders);
+        rbtnShowAllOrders.setSelected(true);
+        rbtnShowAllOrders.setText("Alla");
 
         javax.swing.GroupLayout pnlOrderFiltersLayout = new javax.swing.GroupLayout(pnlOrderFilters);
         pnlOrderFilters.setLayout(pnlOrderFiltersLayout);
@@ -290,16 +298,20 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(pnlOrderFiltersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlOrderFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtnOrderBuy)
-                    .addComponent(rbtnOrderSell))
+                    .addComponent(rbtnShowBuyOrders)
+                    .addComponent(rbtnShowSellOrders)
+                    .addComponent(rbtnShowAllOrders))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlOrderFiltersLayout.setVerticalGroup(
             pnlOrderFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlOrderFiltersLayout.createSequentialGroup()
-                .addComponent(rbtnOrderBuy)
+                .addComponent(rbtnShowBuyOrders)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbtnOrderSell))
+                .addComponent(rbtnShowSellOrders)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(rbtnShowAllOrders)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlOrdersLayout = new javax.swing.GroupLayout(pnlOrders);
@@ -324,7 +336,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addGroup(pnlOrdersLayout.createSequentialGroup()
                         .addComponent(pnlOrderTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlOrderFilters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlOrderFilters, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -376,30 +388,30 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanelGoodsLayout = new javax.swing.GroupLayout(jPanelGoods);
-        jPanelGoods.setLayout(jPanelGoodsLayout);
-        jPanelGoodsLayout.setHorizontalGroup(
-            jPanelGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGoodsLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlGoodsLayout = new javax.swing.GroupLayout(pnlGoods);
+        pnlGoods.setLayout(pnlGoodsLayout);
+        pnlGoodsLayout.setHorizontalGroup(
+            pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlGoodsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPaneGoods, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlGoodsTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanelGoodsLayout.setVerticalGroup(
-            jPanelGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGoodsLayout.createSequentialGroup()
+        pnlGoodsLayout.setVerticalGroup(
+            pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGoodsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
-                    .addGroup(jPanelGoodsLayout.createSequentialGroup()
+                    .addGroup(pnlGoodsLayout.createSequentialGroup()
                         .addComponent(pnlGoodsTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
-        tabbedPaneMainWindow.addTab("Varor", jPanelGoods);
+        tabbedPaneMainWindow.addTab("Varor", pnlGoods);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -486,6 +498,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         //Order
         this.btnEditOrder.addActionListener(this);
         this.btnRemoveOrder.addActionListener(this);
+        this.rbtnShowBuyOrders.addActionListener(this);
+        this.rbtnShowSellOrders.addActionListener(this);
+        this.rbtnShowAllOrders.addActionListener(this);
     }
 
     /**
@@ -580,9 +595,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                 orderFrame.setVisible(true);
 
-
-
-
             } else if (e.getSource() == this.btnRemoveOrder) {
 
                 int confirmButton = JOptionPane.showConfirmDialog(this, "Vill du bekräfta borttagning av order?", "Ta bort order",
@@ -596,6 +608,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     System.out.println("Order borttagen");
                 }
             }
+        }
+
+        if (e.getSource() == this.rbtnShowAllOrders) {
+            this.lstOrders.setModel(getController().getOrderListModel());
+        } else if (e.getSource() == this.rbtnShowBuyOrders) {
+            this.lstOrders.setModel(getController().getBuyOrderListModel());
+        } else if (e.getSource() == this.rbtnShowSellOrders) {
+            this.lstOrders.setModel(getController().getSellOrderListModel());
         }
 
         //Hantering av knappar i båtdelen
@@ -662,9 +682,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
-    private void rbtnOrderSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnOrderSellActionPerformed
+    private void rbtnShowSellOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnShowSellOrdersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbtnOrderSellActionPerformed
+    }//GEN-LAST:event_rbtnShowSellOrdersActionPerformed
 
     private void btnNewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewOrderActionPerformed
         // TODO add your handling code here:
@@ -697,15 +717,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton btnEditCustomer;
     private javax.swing.JButton btnEditGoods;
     private javax.swing.JButton btnEditOrder;
+    private javax.swing.ButtonGroup btnGroupOrderType;
     private javax.swing.JButton btnNewOrder;
     private javax.swing.JButton btnRemoveBoat;
     private javax.swing.JButton btnRemoveCustomer;
     private javax.swing.JButton btnRemoveOrder;
     private javax.swing.JPanel jPanelBoatTools;
-    private javax.swing.JPanel jPanelBoats;
     private javax.swing.JPanel jPanelCustomerTools;
-    private javax.swing.JPanel jPanelCustomers;
-    private javax.swing.JPanel jPanelGoods;
     private javax.swing.JScrollPane jScrollPaneBoats;
     private javax.swing.JScrollPane jScrollPaneCustomers;
     private javax.swing.JScrollPane jScrollPaneGoods;
@@ -714,12 +732,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JList lstCustomers;
     private javax.swing.JList lstGoods;
     private javax.swing.JList lstOrders;
+    private javax.swing.JPanel pnlBoats;
+    private javax.swing.JPanel pnlCustomers;
+    private javax.swing.JPanel pnlGoods;
     private javax.swing.JPanel pnlGoodsTools;
     private javax.swing.JPanel pnlOrderFilters;
     private javax.swing.JPanel pnlOrderTools;
     private javax.swing.JPanel pnlOrders;
-    private javax.swing.JRadioButton rbtnOrderBuy;
-    private javax.swing.JRadioButton rbtnOrderSell;
+    private javax.swing.JRadioButton rbtnShowAllOrders;
+    private javax.swing.JRadioButton rbtnShowBuyOrders;
+    private javax.swing.JRadioButton rbtnShowSellOrders;
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
     // End of variables declaration//GEN-END:variables
 }

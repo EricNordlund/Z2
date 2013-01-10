@@ -69,9 +69,9 @@ public class OrderRegistry {
         SellOrder so = new SellOrder(getNewOrderKey(), billingDate, billingAddress, customer);
 
         getOrderList().put(so.getOrderID(), so);
-        
+
         return so.getOrderID();
-        
+
     }
 
     void setReferenceHandler(ReferenceHandler aThis) {
@@ -79,7 +79,6 @@ public class OrderRegistry {
     }
 
     public int addBuyOrder(int customerID, int billingDate, String billingAddressStreet,
-        
             String billingAddressPostCode, String billingAddressCity) {
 
         Customer customer = this.getReferenceHandler().getCustomer(customerID);
@@ -107,7 +106,6 @@ public class OrderRegistry {
 
     public ListModel getOrderListModel() {
 
-
         HashMap<Integer, Order> hm = this.getOrderList();
 
         DefaultListModel lm = new DefaultListModel();
@@ -120,9 +118,7 @@ public class OrderRegistry {
 
             int key = (Integer) e.getKey();
 
-            String displayString = e.getValue().toString();
-
-            ListItem item = new ListItem(key, displayString);
+            ListItem item = this.createListItem(key);
 
             lm.addElement(item);
 
@@ -171,5 +167,67 @@ public class OrderRegistry {
         } else {
             return false;
         }
+    }
+
+    public ListModel getBuyOrderListModel() {
+        HashMap<Integer, Order> hm = this.getOrderList();
+
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+
+            if (e.getValue() instanceof BuyOrder) {
+
+                int key = (Integer) e.getKey();
+
+                ListItem item = this.createListItem(key);
+
+                lm.addElement(item);
+            }
+
+        }
+
+        return lm;
+    }
+
+    public ListModel getSellOrderListModel() {
+        HashMap<Integer, Order> hm = this.getOrderList();
+
+        DefaultListModel lm = new DefaultListModel();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+
+            if (e.getValue() instanceof SellOrder) {
+
+                int key = (Integer) e.getKey();
+
+                ListItem item = this.createListItem(key);
+
+                lm.addElement(item);
+            }
+
+        }
+
+        return lm;
+    }
+
+    private ListItem createListItem(int orderID) {
+
+        Order o = this.getOrder(orderID);
+
+        String displayString = o.getDisplayName();
+
+        ListItem li = new ListItem(orderID, displayString);
+
+        return li;
+
     }
 }
