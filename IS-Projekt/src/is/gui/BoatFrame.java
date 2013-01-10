@@ -57,7 +57,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         this.txtBoatDestination.setText("");
         this.txtBoatPrice.setText("");
         this.txtBoatIdNumber.setText("");
-        this.txaBoatDesprection.setText("");
+        this.txtBoatDescription.setText("");
 
     }
     
@@ -76,7 +76,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         this.txtBoatRegNumber.setText(boatData[1]);
         this.txtBoatModel.setText(boatData[2]);
         this.txtBoatDestination.setText(boatData[3]);
-        this.txaBoatDesprection.setText(boatData[4]);
+        this.txtBoatDescription.setText(boatData[4]);
         this.txtBoatPrice.setText(boatData[5]);
     }
 
@@ -92,7 +92,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                         this.txtBoatRegNumber.getText(),
                         this.txtBoatModel.getText(),
                         this.txtBoatDestination.getText(),
-                        this.txaBoatDesprection.getText(),
+                        this.txtBoatDescription.getText(),
                         Double.valueOf(this.txtBoatPrice.getText()));
 
 
@@ -102,7 +102,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                         this.txtBoatRegNumber.getText(),
                         this.txtBoatModel.getText(),
                         this.txtBoatDestination.getText(),
-                        this.txaBoatDesprection.getText(),
+                        this.txtBoatDescription.getText(),
                         Double.valueOf(this.txtBoatPrice.getText()));
 
             }
@@ -142,8 +142,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         txtBoatDestination = new javax.swing.JTextField();
         txtBoatPrice = new javax.swing.JTextField();
         txtBoatIdNumber = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaBoatDesprection = new javax.swing.JTextArea();
+        jScrollPaneBoatDescription = new javax.swing.JScrollPane();
+        txtBoatDescription = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,10 +176,10 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
         txtBoatIdNumber.setEditable(false);
 
-        txaBoatDesprection.setColumns(20);
-        txaBoatDesprection.setLineWrap(true);
-        txaBoatDesprection.setRows(5);
-        jScrollPane1.setViewportView(txaBoatDesprection);
+        txtBoatDescription.setColumns(20);
+        txtBoatDescription.setLineWrap(true);
+        txtBoatDescription.setRows(5);
+        jScrollPaneBoatDescription.setViewportView(txtBoatDescription);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +197,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                 .add(40, 40, 40)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(txtBoatPrice, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 130, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jScrollPaneBoatDescription, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                         .add(org.jdesktop.layout.GroupLayout.LEADING, txtBoatIdNumber)
                         .add(org.jdesktop.layout.GroupLayout.LEADING, txtBoatDestination)
@@ -235,7 +235,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(lblBoatDescription)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jScrollPaneBoatDescription, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnSaveBoat)
@@ -259,14 +259,14 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExitBoat;
     private javax.swing.JButton btnSaveBoat;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneBoatDescription;
     private javax.swing.JLabel lblBoatDescription;
     private javax.swing.JLabel lblBoatDestination;
     private javax.swing.JLabel lblBoatIdNumber;
     private javax.swing.JLabel lblBoatModel;
     private javax.swing.JLabel lblBoatPrice;
     private javax.swing.JLabel lblBoatRegNumber;
-    private javax.swing.JTextArea txaBoatDesprection;
+    private javax.swing.JTextArea txtBoatDescription;
     private javax.swing.JTextField txtBoatDestination;
     private javax.swing.JTextField txtBoatIdNumber;
     private javax.swing.JTextField txtBoatModel;
