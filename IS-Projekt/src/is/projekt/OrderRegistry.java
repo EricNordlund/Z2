@@ -53,37 +53,37 @@ public class OrderRegistry {
     public void removeBuyOrder(int orderID) {
 
         Order o = this.getOrder(orderID);
-        
+
         o.removeCustomer();
-        
+
         getOrderList().remove(orderID);
     }
 
-    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, 
-            String billingAdressPostCode, String billingAdressCity, ListItem[] listItemArray) {
+    public int addSellOrder(int customerID, int billingDate, String billingAdressStreet,
+            String billingAdressPostCode, String billingAdressCity) {
 
         Customer customer = this.getReferenceHandler().getCustomer(customerID);
-        
+
         Address billingAddress = new Address(billingAdressStreet, billingAdressPostCode, billingAdressCity);
 
         SellOrder so = new SellOrder(getNewOrderKey(), billingDate, billingAddress, customer);
 
-        for (ListItem li : listItemArray) {
-        }
-
         getOrderList().put(so.getOrderID(), so);
+        
+        return so.getOrderID();
+        
     }
 
     void setReferenceHandler(ReferenceHandler aThis) {
         this.referenceHandler = aThis;
     }
 
-    public int addBuyOrder(int customerID, int billingDate, String billingAddressStreet, 
-            
-        String billingAddressPostCode, String billingAddressCity) {
+    public int addBuyOrder(int customerID, int billingDate, String billingAddressStreet,
+        
+            String billingAddressPostCode, String billingAddressCity) {
 
         Customer customer = this.getReferenceHandler().getCustomer(customerID);
-        
+
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
 
         int orderID = this.getNewOrderKey();
@@ -91,7 +91,7 @@ public class OrderRegistry {
         Order o = new BuyOrder(orderID, billingDate, address, customer);
 
         this.getOrderList().put(orderID, o);
-        
+
 
         return orderID;
 
@@ -158,5 +158,18 @@ public class OrderRegistry {
         ListModel lm = this.getOrder(orderID).getOrderRowListModel();
 
         return lm;
+    }
+
+    public boolean isBuyOrder(int orderID) {
+        Order o;
+
+        o = this.getOrder(orderID);
+
+        if (o instanceof BuyOrder) {
+
+            return true;
+        } else {
+            return false;
+        }
     }
 }

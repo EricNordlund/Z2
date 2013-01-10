@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
 import javax.swing.ListModel;
 
 /**
@@ -28,7 +27,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private boolean boatMode = false;
     private boolean newOrder;
 
-    OrderFrame(MainWindow parent) {
+    protected OrderFrame(MainWindow parent) {
 
         //Anropar netbeans autogenererade kod
         initComponents();
@@ -52,24 +51,23 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         this.rbtnBoat.addActionListener(this);
         this.rbtnGoods.addActionListener(this);
+        
+        this.rbtnBuyOrder.addActionListener(this);
+        this.rbtnSellOrder.addActionListener(this);
 
     }
 
-    public Controller getController() {
-
-        return this.controller;
-    }
-
-    public void initInterface() {
+    private void initInterface() {
 
         //Hämtar kundens namn
         ArrayList<String> customerData = getController().getCustomerData(customerID);
         this.txtCustomer.setText(customerData.get(0));
 
-        //Kontrollerar om ordern skall redigeras eller läggas till. Uppdaterar sedan interfacen. 
+        //Kontrollerar om ordern skall redigeras eller läggas till. Uppdaterar sedan användargränssnittet. 
         if (!newOrder) {
 
             ArrayList<String> orderData = getController().getOrderData(orderID);
+            
             this.txtBillingDate.setText(orderData.get(0));
             this.txtOrderNr.setText(Integer.toString(orderID));
 
@@ -80,6 +78,16 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             ListModel lm = controller.getOrderRowListModel(orderID);
 
             this.lstOrderRows.setModel(lm);
+            
+            if (this.getController().isBuyorder(orderID))
+            {
+                this.rbtnBuyOrder.setSelected(true);
+            }
+            else {
+                this.rbtnSellOrder.setSelected(true);
+            }
+            this.rbtnBuyOrder.setEnabled(false);
+            this.rbtnSellOrder.setEnabled(false);
 
         } else if (newOrder) {
 
@@ -91,16 +99,21 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.txtBillingDate.setText("130112");
 
             this.lstOrderRows.setModel(new DefaultListModel());
+            
+            this.rbtnBuyOrder.setEnabled(true);
+            this.rbtnSellOrder.setEnabled(true);
 
         }
 
-
-
-
     }
 
-    void setController(Controller controller) {
+    protected void setController(Controller controller) {
         this.controller = controller;
+    }
+
+    private Controller getController() {
+
+        return this.controller;
     }
 
     //Setters för customerID och orderID
@@ -112,7 +125,213 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         this.orderID = orderID;
     }
 
-    @Override
+    //Efter att en produkt lagts till eller tagis bort uppdateras listorna beroende på om man är i båtläge eller tillbehörsläge
+    public void updateProductList() {
+
+
+        if (boatMode) {
+
+            lstProducts.setModel(getController().getBoatListModel());
+
+        } else {
+
+            this.lstProducts.setModel(getController().getGoodsListModel());
+        }
+
+        this.lstOrderRows.repaint();
+
+    }
+
+    //Om inte tillbehöret int redan finns i listan läggs det till som nytt. 
+    private void addNewGoodsListItem(int goodsID) {
+
+        GoodsListItem gli;
+        DefaultListModel lm;
+
+        lm = (DefaultListModel) this.lstOrderRows.getModel();
+
+        gli = this.getController().getGoodsListItem(goodsID);
+
+        lm.addElement(gli);
+    }
+
+    //Kontrollerar om tillbehöret redan finns som Orderrad. Antalet finns lagrat i GoodsListItem-objektet
+    private boolean lstOrderRowsHasGoods(int goodsID) {
+
+        boolean hasItem = false;
+
+        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+
+        Object[] lmArray = lm.toArray();
+
+        for (Object o : lmArray) {
+
+            if (o instanceof GoodsListItem) {
+
+                GoodsListItem li = (GoodsListItem) o;
+
+                if (goodsID == li.getID()) {
+                    hasItem = true;
+                }
+
+
+            }
+
+        }
+
+        return hasItem;
+    }
+
+    //Om tillbehöret redan finns läggs det till. 
+    private void addGoodsListItem(int goodsID, int toAdd) {
+
+        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+
+        Object[] lmArray = lm.toArray();
+
+        for (Object o : lmArray) {
+
+            if (o instanceof GoodsListItem) {
+
+                GoodsListItem li = (GoodsListItem) o;
+
+                if (goodsID == li.getID()) {
+
+                    li.addQuantity(toAdd);
+                    System.out.println(li.toString() + " added " + toAdd);
+
+
+                }
+
+
+            }
+
+        }
+
+
+    }
+
+    //Lägger till båt i orderrad
+    private void addBoatListItem(int productID) {
+
+        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+
+        BoatListItem bli;
+
+        bli = getController().getBoatListItem(productID);
+
+        lm.addElement(bli);
+
+
+    }
+
+    //Sparar och lägger till en ny order till slut. 
+    private void saveOrder() {
+
+
+        int billingDate = Integer.valueOf(this.txtBillingDate.getText());
+        String billingAddressStreet = this.txtStreet.getText();
+        String billingAddressCity = this.txtCity.getText();
+        String billingAddressPostCode = this.txtPostCode.getText();
+
+        if (!newOrder) {
+
+            this.getController().editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, true, orderID);
+
+        } else if (newOrder) {
+            
+            if(this.rbtnBuyOrder.isSelected() == true){
+
+            this.orderID = this.getController().addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
+            
+            } else {
+                
+                this.orderID = this.getController().addSellOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
+                
+            }
+            
+            
+
+        }
+
+        parent.updateLists();
+
+    }
+
+    /**
+     * Rensar alla OrderRows från en order. Skriver därefter in nya rader.
+     *
+     */
+    private void saveOrderRows(int orderID) {
+
+        this.getController().clearOrderRows(orderID);
+
+        DefaultListModel lm = (DefaultListModel) this.lstOrderRows.getModel();
+
+        Object[] lmArray = lm.toArray();
+
+        for (Object o : lmArray) {
+
+            if (o instanceof GoodsListItem) {
+
+                GoodsListItem gli = (GoodsListItem) o;
+
+                double price = gli.getPrice();
+                int quantity = gli.getQuantity();
+                int productID = gli.getID();
+
+                controller.addGoodsOrderRow(orderID, price, quantity, productID);
+
+            }
+
+            if (o instanceof BoatListItem) {
+
+                BoatListItem bli = (BoatListItem) o;
+
+                double price = bli.getPrice();
+                int productID = bli.getID();
+
+                controller.addBoatOrderRow(orderID, price, productID);
+
+            }
+
+        }
+
+
+    }
+
+    void newOrderMode(int customerID) {
+
+        this.newOrder = true;
+        setTitle("Skapa order");
+        setCustomerID(customerID);
+        initInterface();
+        updateProductList();
+        setVisible(true);
+
+    }
+
+    void editOrderMode(int orderID) {
+
+        this.newOrder = false;
+
+        setTitle("Ändra order");
+
+        //Hämtar CustomerID från order
+        ArrayList<String> orderData = controller.getOrderData(orderID);
+        setCustomerID(Integer.valueOf(orderData.get(2)));
+
+        setOrderID(orderID);
+
+        initInterface();
+
+        updateProductList();
+
+        System.out.println("Öppnar order för kund ID: " + orderID);
+
+    }
+    
+     @Override
     public void actionPerformed(ActionEvent e) {
 
         //Stänger ner rutan
@@ -124,35 +343,25 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         } else if (e.getSource() == this.btnSaveOrder) {
 
             //Kontrollerar input och öppnar annars ett felmeddelande
-            if(this.controller.inputCheckDate(this.txtBillingDate.getText()) 
-            && this.controller.inputCheckString(this.txtCity.getText())
-            && this.controller.inputCheckString(this.txtStreet.getText())
-            && this.controller.inputCheckString(this.txtPostCode.getText())
-              )
-            {
+            if (this.controller.inputCheckDate(this.txtBillingDate.getText())
+                    && this.controller.inputCheckString(this.txtCity.getText())
+                    && this.controller.inputCheckString(this.txtStreet.getText())
+                    && this.controller.inputCheckString(this.txtPostCode.getText())) {
                 saveOrder();
                 saveOrderRows(this.orderID);
                 this.setVisible(false);
-                
-            }
-            
-            //Öppnar felmeddelandet om det inte redan är öppet. 
-            else if(!inputConfirm.isVisible())
-            {
-                inputConfirm.setBounds(0,0,300,125);
+
+            } //Öppnar felmeddelandet om det inte redan är öppet. 
+            else if (!inputConfirm.isVisible()) {
+                inputConfirm.setBounds(0, 0, 300, 125);
                 inputConfirm.setVisible(true);
                 inputConfirm.setLocationRelativeTo(null);
-              
-                
-                
-                
+
             }
-        
-        
+
         }
-        
-        if(e.getSource() == this.btnInputConfirm)
-        {
+
+        if (e.getSource() == this.btnInputConfirm) {
             System.out.println("OK tryckt");
             this.inputConfirm.setVisible(false);
         }
@@ -197,8 +406,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
                     }
                 }
-
-
             }
 
             updateProductList();
@@ -216,30 +423,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
                 updateProductList();
 
-
             }
 
-
-
         }
-
-
-    }
-
-    //Efter att en produkt lagts till eller tagis bort uppdateras listorna beroende på om man är i båtläge eller tillbehörsläge
-    public void updateProductList() {
-
-
-        if (boatMode) {
-
-            lstProducts.setModel(getController().getBoatListModel());
-
-        } else {
-
-            this.lstProducts.setModel(getController().getGoodsListModel());
-        }
-
-        this.lstOrderRows.repaint();
 
     }
 
@@ -251,6 +437,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         inputConfirm = new javax.swing.JDialog();
         infoText = new javax.swing.JLabel();
         btnInputConfirm = new javax.swing.JButton();
+        btnGroupOrderType = new javax.swing.ButtonGroup();
         jScrollPanelProducts = new javax.swing.JScrollPane();
         lstProducts = new javax.swing.JList();
         btnSaveOrder = new javax.swing.JButton();
@@ -266,13 +453,16 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         txtCustomer = new javax.swing.JTextField();
         txtOrderNr = new javax.swing.JTextField();
         txtBillingDate = new javax.swing.JTextField();
-        jPanelAddress = new javax.swing.JPanel();
+        rbtnBuyOrder = new javax.swing.JRadioButton();
+        rbtnSellOrder = new javax.swing.JRadioButton();
+        pnlAddress = new javax.swing.JPanel();
         lblStreetAddress = new javax.swing.JLabel();
         lblPostCode = new javax.swing.JLabel();
         lblCity = new javax.swing.JLabel();
         txtStreet = new javax.swing.JTextField();
         txtPostCode = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
+        pnlTools = new javax.swing.JPanel();
         rbtnGoods = new javax.swing.JRadioButton();
         rbtnBoat = new javax.swing.JRadioButton();
 
@@ -373,6 +563,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        btnGroupOrderType.add(rbtnBuyOrder);
+        rbtnBuyOrder.setText("Köporder");
+
+        btnGroupOrderType.add(rbtnSellOrder);
+        rbtnSellOrder.setSelected(true);
+        rbtnSellOrder.setText("Säljorder");
+
         javax.swing.GroupLayout jPanelOrderInfoLayout = new javax.swing.GroupLayout(jPanelOrderInfo);
         jPanelOrderInfo.setLayout(jPanelOrderInfoLayout);
         jPanelOrderInfoLayout.setHorizontalGroup(
@@ -380,20 +577,27 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             .addGroup(jPanelOrderInfoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblBillingDate)
-                    .addComponent(lblOrderNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txtOrderNr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                    .addComponent(txtCustomer, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtBillingDate))
-                .addGap(0, 7, Short.MAX_VALUE))
+                    .addGroup(jPanelOrderInfoLayout.createSequentialGroup()
+                        .addGroup(jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBillingDate)
+                            .addComponent(lblOrderNr, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                            .addComponent(lblCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtOrderNr, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                            .addComponent(txtCustomer, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBillingDate))
+                        .addGap(0, 9, Short.MAX_VALUE))
+                    .addGroup(jPanelOrderInfoLayout.createSequentialGroup()
+                        .addComponent(rbtnSellOrder)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbtnBuyOrder)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelOrderInfoLayout.setVerticalGroup(
             jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelOrderInfoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCustomer))
@@ -405,10 +609,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 .addGroup(jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBillingDate)
                     .addComponent(txtBillingDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelOrderInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtnBuyOrder)
+                    .addComponent(rbtnSellOrder)))
         );
 
-        jPanelAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Faktureringsadress"));
+        pnlAddress.setBorder(javax.swing.BorderFactory.createTitledBorder("Faktureringsadress"));
 
         lblStreetAddress.setText("Gatuadress:");
 
@@ -416,52 +623,80 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         lblCity.setText("Stad:");
 
-        javax.swing.GroupLayout jPanelAddressLayout = new javax.swing.GroupLayout(jPanelAddress);
-        jPanelAddress.setLayout(jPanelAddressLayout);
-        jPanelAddressLayout.setHorizontalGroup(
-            jPanelAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAddressLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlAddressLayout = new javax.swing.GroupLayout(pnlAddress);
+        pnlAddress.setLayout(pnlAddressLayout);
+        pnlAddressLayout.setHorizontalGroup(
+            pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAddressLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblStreetAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPostCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addGroup(jPanelAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtStreet)
                     .addComponent(txtPostCode)
                     .addComponent(txtCity, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanelAddressLayout.setVerticalGroup(
-            jPanelAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAddressLayout.createSequentialGroup()
+        pnlAddressLayout.setVerticalGroup(
+            pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAddressLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStreetAddress)
                     .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPostCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPostCode))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlAddressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCity)
                     .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pnlTools.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
 
         btnGroupProducts.add(rbtnGoods);
         rbtnGoods.setSelected(true);
-        rbtnGoods.setText("Tillbehör");
+        rbtnGoods.setText("Visa tillbehör");
+        rbtnGoods.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnGoodsActionPerformed(evt);
+            }
+        });
 
         btnGroupProducts.add(rbtnBoat);
-        rbtnBoat.setText("Båtar");
+        rbtnBoat.setText("Visa båtar");
         rbtnBoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnBoatActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout pnlToolsLayout = new javax.swing.GroupLayout(pnlTools);
+        pnlTools.setLayout(pnlToolsLayout);
+        pnlToolsLayout.setHorizontalGroup(
+            pnlToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlToolsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtnGoods)
+                    .addComponent(rbtnBoat))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pnlToolsLayout.setVerticalGroup(
+            pnlToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlToolsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(rbtnGoods)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rbtnBoat)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -473,60 +708,52 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSaveOrder)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancel)
-                        .addGap(78, 78, 78))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnAddProduct)
-                            .addComponent(btnRemoveProduct))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnCancel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pnlAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pnlTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addComponent(rbtnGoods)
-                                .addGap(18, 18, 18)
-                                .addComponent(rbtnBoat)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(20, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAddProduct)
+                                    .addComponent(btnRemoveProduct))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pnlAddress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelOrderInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rbtnGoods)
-                            .addComponent(rbtnBoat))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(6, 6, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPanelOrderRows, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPanelProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
                         .addComponent(btnAddProduct)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnRemoveProduct)
-                        .addGap(101, 101, 101)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancel)
-                    .addComponent(btnSaveOrder))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSaveOrder)
+                    .addComponent(btnCancel))
+                .addContainerGap())
         );
 
         pack();
@@ -564,16 +791,19 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         inputConfirm.setVisible(false);
     }//GEN-LAST:event_btnInputConfirmActionPerformed
 
+    private void rbtnGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnGoodsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnGoodsActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnCancel;
+    private javax.swing.ButtonGroup btnGroupOrderType;
     private javax.swing.ButtonGroup btnGroupProducts;
     private javax.swing.JButton btnInputConfirm;
     private javax.swing.JButton btnRemoveProduct;
     private javax.swing.JButton btnSaveOrder;
     private javax.swing.JLabel infoText;
     private javax.swing.JDialog inputConfirm;
-    private javax.swing.JPanel jPanelAddress;
     private javax.swing.JPanel jPanelOrderInfo;
     private javax.swing.JScrollPane jScrollPanelOrderRows;
     private javax.swing.JScrollPane jScrollPanelProducts;
@@ -585,8 +815,12 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel lblStreetAddress;
     private javax.swing.JList lstOrderRows;
     private javax.swing.JList lstProducts;
+    private javax.swing.JPanel pnlAddress;
+    private javax.swing.JPanel pnlTools;
     private javax.swing.JRadioButton rbtnBoat;
+    private javax.swing.JRadioButton rbtnBuyOrder;
     private javax.swing.JRadioButton rbtnGoods;
+    private javax.swing.JRadioButton rbtnSellOrder;
     private javax.swing.JTextField txtBillingDate;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtCustomer;
@@ -594,183 +828,4 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtPostCode;
     private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
-
-    //Om inte tillbehöret redan finns i listan läggs det till som nytt. 
-    private void addNewGoodsListItem(int goodsID) {
-
-        GoodsListItem gli;
-        DefaultListModel lm;
-
-        lm = (DefaultListModel) this.lstOrderRows.getModel();
-
-        gli = this.getController().getGoodsListItem(goodsID);
-
-        lm.addElement(gli);
-    }
-
-    //Kontrollerar om tillbehöret redan finns som Orderrad. Antalet finns lagrat i GoodsListItem-objektet
-    private boolean lstOrderRowsHasGoods(int goodsID) {
-
-        boolean hasItem = false;
-
-        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
-
-        Object[] lmArray = lm.toArray();
-
-        for (Object o : lmArray) {
-
-            if (o instanceof GoodsListItem) {
-
-                GoodsListItem li = (GoodsListItem) o;
-
-                if (goodsID == li.getID()) {
-                    hasItem = true;
-                }
-
-
-            }
-
-        }
-
-        return hasItem;
-    }
-
-    //Om tillbehöret redan finns läggs det till. 
-    private void addGoodsListItem(int goodsID, int toAdd) {
-
-        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
-
-        Object[] lmArray = lm.toArray();
-
-        for (Object o : lmArray) {
-
-            if (o instanceof GoodsListItem) {
-
-                GoodsListItem li = (GoodsListItem) o;
-
-                if (goodsID == li.getID()) {
-
-                    li.addQuantity(toAdd);
-                    System.out.println(li.toString() + " added " + toAdd);
-
-
-                }
-
-
-            }
-
-        }
-
-
-    }
-
-    //Lägger till båt i orderrad
-    private void addBoatListItem(int productID) {
-
-        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
-
-        BoatListItem bli;
-
-        bli = getController().getBoatListItem(productID);
-
-        lm.addElement(bli);
-
-
-    }
-
-    //Sparar och lägger till en ny order till slut. 
-    private void saveOrder() {
-
-
-        int billingDate = Integer.valueOf(this.txtBillingDate.getText());
-        String billingAddressStreet = this.txtStreet.getText();
-        String billingAddressCity = this.txtCity.getText();
-        String billingAddressPostCode = this.txtPostCode.getText();
-
-        if (!newOrder) {
-
-            this.getController().editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, true, orderID);
-
-        } else if (newOrder) {
-
-            this.orderID = this.getController().addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
-
-        }
-
-        parent.updateLists();
-
-    }
-
-    /**
-     * Rensar alla OrderRows från en order. Skriver därefter in nya rader.
-     *
-     */
-    private void saveOrderRows(int orderID) {
-
-        this.getController().clearOrderRows(orderID);
-
-        DefaultListModel lm = (DefaultListModel) this.lstOrderRows.getModel();
-
-        Object[] lmArray = lm.toArray();
-
-        for (Object o : lmArray) {
-
-            if (o instanceof GoodsListItem) {
-
-                GoodsListItem gli = (GoodsListItem) o;
-
-                double price = gli.getPrice();
-                int quantity = gli.getQuantity();
-                int productID = gli.getID();
-
-                controller.addGoodsOrderRow(orderID, price, quantity, productID);
-
-            }
-
-            if (o instanceof BoatListItem) {
-
-                BoatListItem bli = (BoatListItem) o;
-
-                double price = bli.getPrice();
-                int productID = bli.getID();
-
-                controller.addBoatOrderRow(orderID, price, productID);
-
-            }
-
-        }
-
-
-    }
-
-    void newOrderMode(int customerID) {
-
-        this.newOrder = true;
-        setTitle("Skapa order");
-        setCustomerID(customerID);
-        initInterface();
-        updateProductList();
-        setVisible(true);
-
-    }
-
-    void editOrderMode(int orderID) {
-
-        this.newOrder = false;
-
-        setTitle("Ändra order");
-
-        //Hämtar CustomerID från order
-        ArrayList<String> orderData = controller.getOrderData(orderID);
-        setCustomerID(Integer.valueOf(orderData.get(2)));
-
-        setOrderID(orderID);
-
-        initInterface();
-
-        updateProductList();
-
-        System.out.println("Öppnar order för kund ID: " + orderID);
-
-    }
 }

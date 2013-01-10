@@ -1,7 +1,5 @@
 package is.controller;
 
-import is.projekt.Customer;
-import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
@@ -42,13 +40,15 @@ public interface ControllerInterface {
 
     public abstract GoodsListItem getGoodsListItem(int orderID);
 
-    public abstract void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows);
+    public abstract int addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);
 
     public abstract void addGoodsOrderRow(int orderID, double price, int quantity, int goodsID);
 
     public abstract void addBoatOrderRow(int orderID, double price, int boatID);
 
     public abstract void clearOrderRows(int orderID);
+    
+    public abstract boolean isBuyorder (int orderID);
 
     //Båthantering
     public abstract void addBoat(String regnr, String model, String location, String description, double price);

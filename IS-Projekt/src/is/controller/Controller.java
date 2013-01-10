@@ -23,14 +23,14 @@ public class Controller implements ControllerInterface {
     private CustomerRegistry customerRegistry;
     private GoodsRegistry goodsRegistry;
     public InputCheck inputCheck = new InputCheck();
-    
+
     public Controller(BoatRegistry br, CustomerRegistry cr, GoodsRegistry gr, OrderRegistry or) {
 
         this.boatRegistry = br;
         this.customerRegistry = cr;
         this.goodsRegistry = gr;
         this.orderRegistry = or;
-        
+
     }
 
     public BoatRegistry getBoatRegistry() {
@@ -48,46 +48,17 @@ public class Controller implements ControllerInterface {
     public GoodsRegistry getGoodsRegistry() {
         return goodsRegistry;
     }
-
+    
+    //#######################################################################
+    //############## CUSTOMER ###############################################
+    //#######################################################################
+    
     @Override
     public void addNewCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
 
 
         this.getCustomerRegistry().addCustomer(name, addressStreet, addressPostCode, addressCity, phoneNumber, eMail);
 
-    }
-
-    
-    @Override
-    public void addBoat(String regnr, String model, String location, String description, double price) {
-
-        this.getBoatRegistry().addBoat(regnr, model, location, description, price);
-
-    }
-
-    @Override
-    public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
-
-
-
-
-        getBoatRegistry().editBoat(boatID, regnr, model, location, description, price);
-
-    }
-
-    @Override
-    public void removeBoat(int boatID) {
-        getBoatRegistry().removeBoat(boatID);
-
-        System.out.println("Removing boat " + boatID + ".");
-    }
-
-    @Override
-    public String[] getBoatData(int boatID) {
-
-        String[] boatData = getBoatRegistry().getBoatData(boatID);
-
-        return boatData;
     }
 
     @Override
@@ -130,34 +101,12 @@ public class Controller implements ControllerInterface {
     @Override
     public DefaultListModel getCustomerListModel() {
 
-
         return this.getCustomerRegistry().getListModel();
 
-
-
-
     }
-
-    @Override
-    public void editGoods(int goodsID, String name, double price, String description) {
-        this.goodsRegistry.editGoods(goodsID, name, price, description);
-    }
-
-    @Override
-    public void removeGoods(int goodsID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String[] getGoodsData(int goodsID) {
-        return this.goodsRegistry.getGoodsData(goodsID);
-    }
-
-    @Override
-    public ListModel getGoodsListModel() {
-
-        return this.getGoodsRegistry().getGoodsListModel();
-    }
+    //########################################################################
+    //################### ORDERS #############################################
+    //########################################################################
 
     @Override
     public int addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity) {
@@ -192,12 +141,6 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ListModel getBoatListModel() {
-
-        return this.getBoatRegistry().getListModel();
-    }
-
-    @Override
     public ListModel getOrderListModel() {
 
         return this.getOrderRegistry().getOrderListModel();
@@ -212,46 +155,19 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public GoodsListItem getGoodsListItem(int goodsID) {
-
-        GoodsListItem gli;
-
-        String[] goodsData = getGoodsRegistry().getGoodsData(goodsID);
-
-        String displayName = goodsData[0];
-        double price = Double.valueOf(goodsData[1]);
-
-        gli = new GoodsListItem(goodsID, displayName, price, 1);
-
-        return gli;
-
+    public int addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity) {
+        
+        return this.getOrderRegistry().addSellOrder(customerID, billingDate, billingAdressStreet, billingAdressPostCode, billingAdressCity);
+        
     }
 
     @Override
-    public BoatListItem getBoatListItem(int boatID) {
+    public boolean isBuyorder(int orderID) {
+        boolean b;
 
-        BoatListItem bli;
+        b = this.getOrderRegistry().isBuyOrder(orderID);
 
-        String[] a = this.getBoatData(boatID);
-
-        String displayName = a[1] + " " + a[2];
-
-        double price = Double.valueOf(a[5]);
-
-        bli = new BoatListItem(boatID, displayName, price);
-
-        return bli;
-
-    }
-
-    @Override
-    public void addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity, ListItem[] orderRows) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void addGoods(String name, double price, String description) {
-        goodsRegistry.addGoods(name, price, description);
+        return b;
     }
 
     @Override
@@ -271,6 +187,112 @@ public class Controller implements ControllerInterface {
         this.getOrderRegistry().addBoatOrderRow(orderID, price, boatID);
     }
 
+    //######################################################################
+    //########## BOAT ######################################################
+    //######################################################################
+    @Override
+    public void addBoat(String regnr, String model, String location, String description, double price) {
+
+        this.getBoatRegistry().addBoat(regnr, model, location, description, price);
+
+    }
+
+    @Override
+    public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
+
+
+
+
+        getBoatRegistry().editBoat(boatID, regnr, model, location, description, price);
+
+    }
+
+    @Override
+    public void removeBoat(int boatID) {
+        getBoatRegistry().removeBoat(boatID);
+
+        System.out.println("Removing boat " + boatID + ".");
+    }
+
+    @Override
+    public String[] getBoatData(int boatID) {
+
+        String[] boatData = getBoatRegistry().getBoatData(boatID);
+
+        return boatData;
+    }
+
+    @Override
+    public ListModel getBoatListModel() {
+
+        return this.getBoatRegistry().getListModel();
+    }
+
+    @Override
+    public BoatListItem getBoatListItem(int boatID) {
+
+        BoatListItem bli;
+
+        String[] a = this.getBoatData(boatID);
+
+        String displayName = a[1] + " " + a[2];
+
+        double price = Double.valueOf(a[5]);
+
+        bli = new BoatListItem(boatID, displayName, price);
+
+        return bli;
+
+    }
+
+    //########################################################################
+    //############## GOODS ###################################################
+    //########################################################################
+    @Override
+    public void editGoods(int goodsID, String name, double price, String description) {
+        this.goodsRegistry.editGoods(goodsID, name, price, description);
+    }
+
+    @Override
+    public void removeGoods(int goodsID) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String[] getGoodsData(int goodsID) {
+        return this.goodsRegistry.getGoodsData(goodsID);
+    }
+
+    @Override
+    public ListModel getGoodsListModel() {
+
+        return this.getGoodsRegistry().getGoodsListModel();
+    }
+
+    @Override
+    public GoodsListItem getGoodsListItem(int goodsID) {
+
+        GoodsListItem gli;
+
+        String[] goodsData = getGoodsRegistry().getGoodsData(goodsID);
+
+        String displayName = goodsData[0];
+        double price = Double.valueOf(goodsData[1]);
+
+        gli = new GoodsListItem(goodsID, displayName, price, 1);
+
+        return gli;
+
+    }
+
+    @Override
+    public void addGoods(String name, double price, String description) {
+        goodsRegistry.addGoods(name, price, description);
+    }
+
+    //#######################################################################
+    //################# INPUT CHECKING ######################################
+    //#######################################################################
     @Override
     public boolean inputCheckString(String s) {
         return this.inputCheck.chekString(s);
@@ -280,4 +302,6 @@ public class Controller implements ControllerInterface {
     public boolean inputCheckDate(String s) {
         return this.inputCheck.checkDate(s);
     }
+    
+    
 }

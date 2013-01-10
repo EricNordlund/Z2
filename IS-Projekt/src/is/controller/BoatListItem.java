@@ -36,7 +36,7 @@ public class BoatListItem extends ListItem {
 
         String name = this.getDisplayName();
 
-        String price = this.getPriceString();
+        String priceString = this.getPriceString();
 
         String padding = "";
 
@@ -49,15 +49,15 @@ public class BoatListItem extends ListItem {
 
         padding = "";
 
-        while (price.length() + padding.length() < 12) {
+        while (priceString.length() + padding.length() < 12) {
 
             padding = padding.concat(" ");
         }
 
-        price = padding.concat(price);
+        priceString = padding.concat(priceString);
 
 
-        return quantity + name + price;
+        return quantity + name + priceString;
 
 
     }

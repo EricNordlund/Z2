@@ -520,7 +520,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             String btnName = btn.getText();
             System.out.println("Du tryckte på knappen " + btnName + ".");
 
-        }
+        }//If, debugutskrift
 
 
         //Kunder
@@ -536,7 +536,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             int customerID = this.getSelectedKey(this.lstCustomers);
 
             if (e.getSource() == this.btnEditCustomer) {
-
 
                 this.customerFrame.setNewCustomer(false);
                 this.customerFrame.setCustomerKey(customerID);
@@ -560,14 +559,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     System.out.println("Kund borttagen");
 
 
-                } else if (e.getSource() == this.btnNewOrder) {
+                }
+            } else if (e.getSource() == this.btnNewOrder) {
 
-                    orderFrame.newOrderMode(customerID);
+                orderFrame.newOrderMode(customerID);
 
-                }//else if
+            }//else if
 
-            }
         }
+
 
         //Orderdel (Lägg till order finns i kunddelen)
         if (this.lstOrders.getSelectedValue() instanceof ListItem) {
@@ -599,7 +599,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
 
         //Hantering av knappar i båtdelen
-        if (e.getSource() == this.btnAddBoat) {
+        if (e.getSource()
+                == this.btnAddBoat) {
             boatFrame.clearTextFields();
             boatFrame.setNewBoat(true);
             boatFrame.setTitle("Lägg till båt");
@@ -638,13 +639,13 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }
 
         //Hantering av knappar i tillbehörsdelen
-        if (e.getSource() == this.btnAddGoods) {
+        if (e.getSource()
+                == this.btnAddGoods) {
 
             goodsFrame.newGoodsMode();
             goodsFrame.setVisible(true);
 
         }
-
 
         if (this.lstGoods.getSelectedValue() instanceof ListItem) {
 
@@ -658,7 +659,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }
         }
     }
-
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
