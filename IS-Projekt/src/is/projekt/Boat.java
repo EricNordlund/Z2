@@ -1,11 +1,9 @@
 package is.projekt;
 
-import java.util.ArrayList;
-
 public class Boat extends Product {
 
     //Variabler
-    private String regnr;
+    private String regNr;
     private String model;
     private String location;
 
@@ -14,18 +12,18 @@ public class Boat extends Product {
 
         super(boatID, price, description);
 
-        this.regnr = regnr;
+        this.regNr = regnr;
         this.model = model;
         this.location = location;
 
     }
 
     public String getRegnr() {
-        return regnr;
+        return regNr;
     }
 
     public void setRegnr(String regnr) {
-        this.regnr = regnr;
+        this.regNr = regnr;
     }
 
     public String getModel() {

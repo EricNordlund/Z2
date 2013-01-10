@@ -11,10 +11,9 @@ import java.text.DecimalFormat;
  */
 public abstract class Product {
 
+    private int productID;
     private double price;
     private String description;
-    private int productID;
-
 
     protected Product(int productID, double price, String description) {
 

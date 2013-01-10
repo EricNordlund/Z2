@@ -1,7 +1,5 @@
 package is.projekt;
 
-import java.util.Date;
-
 /**
  *
  * @author Anna Thernfrid, Eric Nordlund, Viktor Voigt

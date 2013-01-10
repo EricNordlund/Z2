@@ -6,7 +6,6 @@ package is.projekt;
 
 import is.controller.ListItem;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -92,8 +91,6 @@ public class BoatRegistry implements Serializable {
 
             Boat b = (Boat) e.getValue();
 
-            String padding = "";
-
             String nameString = b.getDisplayName();
 
             while (nameString.length() < 35) {
@@ -104,7 +101,7 @@ public class BoatRegistry implements Serializable {
 
             String priceString = b.getPriceString();
 
-            padding = "";
+            String padding = "";
 
             while (priceString.length() + padding.length() < 10) {
                 padding = padding.concat(" ");

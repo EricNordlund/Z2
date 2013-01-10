@@ -15,12 +15,11 @@ import javax.swing.ListModel;
  */
 public abstract class Order {
 
+    private int orderID;
     private int billingDate;
     private Address billingAddress;
     private List<OrderRow> orderRows = new ArrayList();
     private Customer customer;
-    private boolean isBuyOrder;
-    private int orderID;
 
     protected Order(int orderID, int billingDate, Address billingAddress, Customer customer) {
         this.billingDate = billingDate;
@@ -46,14 +45,6 @@ public abstract class Order {
 
         this.getCustomer().removeOrder(this);
 
-    }
-
-    public boolean getIsBuyOrder() {
-        return isBuyOrder;
-    }
-
-    public void setIsBuyOrder(boolean isBuyOrder) {
-        this.isBuyOrder = isBuyOrder;
     }
 
     public Address getBillingAddress() {
