@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +30,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
 
         initComponents();
+
         setIcon();
 
         initFrames();
@@ -437,6 +439,15 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Väljer ikon för det övre vänstra hörnet
+    private void setIcon() {
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("boat.png")));
+    }
+
+    /**
+     * Intialiserar de övriga JFrames som senare kommer att användas och skickat
+     * med en referens till den här JFramen.
+     */
     private void initFrames() {
 
         customerFrame = new CustomerFrame(this);
@@ -514,7 +525,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     }
 
-    //Actionlistener, sköter alla knappar.
+    /**
+     * Actionlistener, sköter alla knappar.
+     *
+     * @param e Händelsen som sskickas från den aktuella knappen.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -550,17 +565,26 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
             } else if (e.getSource() == this.btnRemoveCustomer) {
 
-                getController().removeCustomer(customerID);
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Vill du bekräfta borttagning av kund?", "Ta bort kund",
+                        JOptionPane.YES_NO_OPTION);
 
-                this.updateLists();
+                if (confirmButton == JOptionPane.YES_OPTION) {
 
 
-            } else if (e.getSource() == this.btnNewOrder) {
+                    getController().removeCustomer(customerID);
 
-                orderFrame.newOrderMode(customerID);
+                    this.updateLists();
 
-            }//else if
+                    System.out.println("Kund borttagen");
 
+
+                } else if (e.getSource() == this.btnNewOrder) {
+
+                    orderFrame.newOrderMode(customerID);
+
+                }//else if
+
+            }
         }
 
         //Orderdel (Lägg till order finns i kunddelen)
@@ -579,8 +603,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
             } else if (e.getSource() == this.btnRemoveOrder) {
 
-                controller.removeBuyOrder(orderID);
-                this.updateLists();
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Vill du bekräfta borttagning av order?", "Ta bort order",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+
+                    controller.removeBuyOrder(orderID);
+                    this.updateLists();
+                    System.out.println("Order borttagen");
+                }
             }
         }
 
@@ -608,10 +640,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
             } else if (e.getSource() == this.btnRemoveBoat) {
 
-                getController().removeBoat(boatID);
 
-                this.updateLists();
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Vill du bekräfta borttagning av båt?", "Ta bort båt",
+                        JOptionPane.YES_NO_OPTION);
 
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+                    getController().removeBoat(boatID);
+                    this.updateLists();
+                    System.out.println("Båt borttagen.");
+                }
 
             }
 
@@ -669,7 +707,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void btnEditGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGoodsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditGoodsActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;
     private javax.swing.JButton btnAddCustomer;
@@ -704,9 +741,4 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JRadioButton rbtnOrderSell;
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
     // End of variables declaration//GEN-END:variables
-
-    //Väljer ikon för det övre vänstra hörnet
-    private void setIcon() {
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("boat.png")));
-    }
 }
