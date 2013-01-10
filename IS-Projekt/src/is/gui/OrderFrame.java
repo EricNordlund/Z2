@@ -124,20 +124,25 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         } else if (e.getSource() == this.btnSaveOrder) {
 
             //Kontrollerar input och öppnar annars ett felmeddelande
-            if(this.controller.inputCheckDate(this.txtBillingDate.getText()))
+            if(this.controller.inputCheckDate(this.txtBillingDate.getText()) 
+            && this.controller.inputCheckString(this.txtCity.getText())
+            && this.controller.inputCheckString(this.txtStreet.getText())
+            && this.controller.inputCheckString(this.txtPostCode.getText())
+              )
             {
                 saveOrder();
                 saveOrderRows(this.orderID);
                 this.setVisible(false);
+                
             }
             
             //Öppnar felmeddelandet om det inte redan är öppet. 
             else if(!inputConfirm.isVisible())
             {
-                inputConfirm.setBounds(100,100,300,125);
+                inputConfirm.setBounds(0,0,300,125);
                 inputConfirm.setVisible(true);
-                
-                //Actionlisterner som håller koll på knappen
+                inputConfirm.setLocationRelativeTo(null);
+              
                 
                 
                 

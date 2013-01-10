@@ -19,7 +19,7 @@ public class InputCheck {
     {
         String input = s;
 
-        if(input.length() > 3)
+        if(input.length() > 2)
         {
             return true;
         }
