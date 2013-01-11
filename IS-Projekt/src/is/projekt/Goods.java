@@ -29,7 +29,7 @@ public class Goods extends Product {
         String[] a = new String[3];
 
         a[0] = this.getName();
-        a[1] = Double.toString(getPrice());
+        a[1] = this.getPriceString();
         a[2] = getDescription();
 
         return a;

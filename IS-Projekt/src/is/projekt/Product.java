@@ -53,9 +53,7 @@ public abstract class Product {
 
     protected String getPriceString() {
 
-        DecimalFormat df = new DecimalFormat("#.00");
-
-        String priceString = df.format(getPrice());
+        String priceString = Double.toString(getPrice());
 
         return priceString;
 

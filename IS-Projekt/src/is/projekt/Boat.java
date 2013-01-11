@@ -53,16 +53,16 @@ public class Boat extends Product {
 
     public String[] getDataArray() {
 
-        String[] array = new String[6];
+        String[] boatDataArray = new String[6];
 
-        array[0] = this.getProductIDString();
-        array[1] = this.getRegnr();
-        array[2] = this.getModel();
-        array[3] = this.getLocation();
-        array[4] = this.getDescription();
-        array[5] = this.getPriceString();
+       boatDataArray[0] = this.getProductIDString();
+        boatDataArray[1] = this.getRegnr();
+        boatDataArray[2] = this.getModel();
+        boatDataArray[3] = this.getLocation();
+        boatDataArray[4] = this.getDescription();
+        boatDataArray[5] = this.getPriceString();
 
-        return array;
+        return boatDataArray;
 
 
     }

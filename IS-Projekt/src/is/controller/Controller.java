@@ -246,15 +246,18 @@ public class Controller implements ControllerInterface {
     @Override
     public BoatListItem getBoatListItem(int boatID) {
 
-        BoatListItem bli;
+        
+        //Hämtar nödvändig data
+        String[] boatDataArray = this.getBoatData(boatID);
 
-        String[] a = this.getBoatData(boatID);
+        String displayName = boatDataArray[1] + " " + boatDataArray[2];
+        
+        String priceString = boatDataArray[5];
 
-        String displayName = a[1] + " " + a[2];
+        double price = Double.valueOf(priceString);
 
-        double price = Double.valueOf(a[5]);
-
-        bli = new BoatListItem(boatID, displayName, price);
+        //Skapar ett BoatListItem
+        BoatListItem bli = new BoatListItem(boatID, displayName, price);
 
         return bli;
 
@@ -287,14 +290,15 @@ public class Controller implements ControllerInterface {
     @Override
     public GoodsListItem getGoodsListItem(int goodsID) {
 
-        GoodsListItem gli;
+        //Hämtar nödvändig data
+        String[] goodsDataArray = getGoodsRegistry().getGoodsData(goodsID);
 
-        String[] goodsData = getGoodsRegistry().getGoodsData(goodsID);
+        String displayName = goodsDataArray[0];
+             
+        double price = Double.valueOf(goodsDataArray[1]);
 
-        String displayName = goodsData[0];
-        double price = Double.valueOf(goodsData[1]);
-
-        gli = new GoodsListItem(goodsID, displayName, price, 1);
+        //Skapar ett GoodsListItem
+        GoodsListItem gli = new GoodsListItem(goodsID, displayName, price, 1);
 
         return gli;
 
