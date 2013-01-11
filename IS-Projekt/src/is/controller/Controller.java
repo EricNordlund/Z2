@@ -284,7 +284,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public ListModel<ListItem> getGoodsListModel() {
-
+        
         return this.getGoodsRegistry().getGoodsListModel();
     }
 
