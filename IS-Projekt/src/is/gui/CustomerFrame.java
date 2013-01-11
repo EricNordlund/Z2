@@ -68,29 +68,48 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
         if (e.getSource() == this.btnSave) {
 
-            if (newCustomer) {
+            if(this.controller.inputCheckString(this.txtCustomerName.getText())
+            && this.controller.inputCheckString(this.txtCustomerStreet.getText())
+            && this.controller.inputCheckString(this.txtCustomerPostCode.getText()) 
+            && this.controller.inputCheckString(this.txtCustomerCity.getText())
+            && this.controller.inputCheckString(this.txtCustomerPhone.getText())
+            && this.controller.inputCheckString(this.txtCustomerMail.getText())
+                    )
+            {
+            
+                if (newCustomer) {
 
-                getController().addNewCustomer(
-                        this.txtCustomerName.getText(),
-                        this.txtCustomerStreet.getText(),
-                        this.txtCustomerPostCode.getText(),
-                        this.txtCustomerCity.getText(),
-                        this.txtCustomerPhone.getText(),
-                        this.txtCustomerMail.getText());
-            } else {
-                getController().editCustomer(
-                        this.customerKey,
-                        this.txtCustomerName.getText(),
-                        this.txtCustomerStreet.getText(),
-                        this.txtCustomerPostCode.getText(),
-                        this.txtCustomerCity.getText(),
-                        this.txtCustomerPhone.getText(),
-                        this.txtCustomerMail.getText());
-            }//else
+                    getController().addNewCustomer(
+                            this.txtCustomerName.getText(),
+                            this.txtCustomerStreet.getText(),
+                            this.txtCustomerPostCode.getText(),
+                            this.txtCustomerCity.getText(),
+                            this.txtCustomerPhone.getText(),
+                            this.txtCustomerMail.getText());
+                } else {
+                    getController().editCustomer(
+                            this.customerKey,
+                            this.txtCustomerName.getText(),
+                            this.txtCustomerStreet.getText(),
+                            this.txtCustomerPostCode.getText(),
+                            this.txtCustomerCity.getText(),
+                            this.txtCustomerPhone.getText(),
+                            this.txtCustomerMail.getText());
+                }//else
+                
+                parent.updateLists();
 
-            parent.updateLists();
+                this.setVisible(false);
+                
+            } 
+            else if (!inputConfirm.isVisible())
+            {
+                inputConfirm.setBounds(0, 0, 300, 125);
+                inputConfirm.setVisible(true);
+                //inputConfirm.setLocationRelativeTo(null);
+            }
 
-            this.setVisible(false);
+            
         }//if e.getSource() == this.btnSave
 
         if (e.getSource() == this.btnCancel) {
@@ -98,6 +117,7 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
             this.setVisible(false);
 
         }//if e.getSource() == this.btnCancel
+        
 
     }
 
@@ -124,6 +144,9 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        inputConfirm = new javax.swing.JDialog();
+        infoText = new javax.swing.JLabel();
+        btnInputConfirm = new javax.swing.JButton();
         lblCustomerPhoneNumber = new javax.swing.JLabel();
         lblCustomerNumber = new javax.swing.JLabel();
         lclCustomerName = new javax.swing.JLabel();
@@ -141,6 +164,41 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
         lblCustomerPostCode = new javax.swing.JLabel();
         lblCustomerCity = new javax.swing.JLabel();
         txtCustomerPostCode = new javax.swing.JTextField();
+
+        inputConfirm.setTitle("Ogiltig data");
+
+        infoText.setText("All text är inte korrekt inmatad");
+
+        btnInputConfirm.setText("Ok");
+        btnInputConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInputConfirmActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout inputConfirmLayout = new org.jdesktop.layout.GroupLayout(inputConfirm.getContentPane());
+        inputConfirm.getContentPane().setLayout(inputConfirmLayout);
+        inputConfirmLayout.setHorizontalGroup(
+            inputConfirmLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(inputConfirmLayout.createSequentialGroup()
+                .add(inputConfirmLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(inputConfirmLayout.createSequentialGroup()
+                        .add(86, 86, 86)
+                        .add(btnInputConfirm, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(inputConfirmLayout.createSequentialGroup()
+                        .add(71, 71, 71)
+                        .add(infoText)))
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        inputConfirmLayout.setVerticalGroup(
+            inputConfirmLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(inputConfirmLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .add(infoText)
+                .add(18, 18, 18)
+                .add(btnInputConfirm)
+                .add(22, 22, 22))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -292,9 +350,17 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
+        inputConfirm.setVisible(false);
+    }//GEN-LAST:event_btnInputConfirmActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnInputConfirm;
     private javax.swing.JButton btnSave;
+    private javax.swing.JLabel infoText;
+    private javax.swing.JDialog inputConfirm;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCustomerCity;

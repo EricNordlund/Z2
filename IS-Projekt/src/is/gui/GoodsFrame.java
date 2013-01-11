@@ -42,6 +42,9 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        inputConfirm = new javax.swing.JDialog();
+        infoText = new javax.swing.JLabel();
+        btnInputConfirm = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         lblName = new javax.swing.JLabel();
@@ -51,6 +54,41 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
         txtPrice = new javax.swing.JTextField();
         jScrollPaneDescription = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
+
+        inputConfirm.setTitle("Ogiltig data");
+
+        infoText.setText("All text är inte korrekt inmatad");
+
+        btnInputConfirm.setText("Ok");
+        btnInputConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInputConfirmActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout inputConfirmLayout = new javax.swing.GroupLayout(inputConfirm.getContentPane());
+        inputConfirm.getContentPane().setLayout(inputConfirmLayout);
+        inputConfirmLayout.setHorizontalGroup(
+            inputConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputConfirmLayout.createSequentialGroup()
+                .addGroup(inputConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(inputConfirmLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(btnInputConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(inputConfirmLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(infoText)))
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        inputConfirmLayout.setVerticalGroup(
+            inputConfirmLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inputConfirmLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(infoText)
+                .addGap(18, 18, 18)
+                .addComponent(btnInputConfirm)
+                .addGap(22, 22, 22))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,9 +161,17 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
+        inputConfirm.setVisible(false);
+    }//GEN-LAST:event_btnInputConfirmActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnInputConfirm;
     private javax.swing.JButton btnSave;
+    private javax.swing.JLabel infoText;
+    private javax.swing.JDialog inputConfirm;
     private javax.swing.JScrollPane jScrollPaneDescription;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblName;
@@ -142,21 +188,40 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
             this.setVisible(false);
         } else if (e.getSource() == this.btnSave) {
 
-            String name = this.txtName.getText();
-            double price = Double.valueOf(this.txtPrice.getText());
-            String description = this.txtDescription.getText();
-            if (newGoods) {
+            
+            if(this.controller.inputCheckString(this.txtPrice.getText())
+              && this.controller.inputCheckString(this.txtDescription.getText())
+              && this.controller.inputCheckString(this.txtName.getText())
+              )
+                
+            {
+            
+                String name = this.txtName.getText();
+                double price = Double.valueOf(this.txtPrice.getText());
+                String description = this.txtDescription.getText();
+                if (newGoods) {
 
-                controller.addGoods(name, price, description);
-            } else if (!newGoods) {
+                    controller.addGoods(name, price, description);
+                } else if (!newGoods) {
 
-                controller.editGoods(goodsID, name, price, description);
+                    controller.editGoods(goodsID, name, price, description);
+                }
+                this.setVisible(false);
+                parent.updateLists();
+            
+            } //Öppnar felmeddelandet om det inte redan är öppet. 
+            else if (!inputConfirm.isVisible()) {
+                inputConfirm.setBounds(0, 0, 300, 125);
+                inputConfirm.setVisible(true);
+                inputConfirm.setLocationRelativeTo(null);
+
             }
-            this.setVisible(false);
+            
+            
 
         }
 
-        parent.updateLists();
+        
     }
 
     void setController(Controller controller) {

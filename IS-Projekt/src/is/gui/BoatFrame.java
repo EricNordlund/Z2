@@ -86,6 +86,14 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
         if (e.getSource() == this.btnSaveBoat) {
 
+            if(this.controller.inputCheckString(this.txtBoatRegNumber.getText())
+                    && this.controller.inputCheckString(this.txtBoatModel.getText())
+               && this.controller.inputCheckString(this.txtBoatDestination.getText())
+               && this.controller.inputCheckString(this.txtBoatDescription.getText())
+               && this.controller.inputCheckString(this.txtBoatPrice.getText())
+                    ) 
+            {
+            
             if (newBoat) {
 
                 getController().addBoat(
@@ -110,6 +118,16 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
             parent.updateLists();
 
             this.setVisible(false);
+            } 
+            
+            else if (!inputConfirm.isVisible()) {
+                inputConfirm.setBounds(0, 0, 300, 125);
+                inputConfirm.setVisible(true);
+                inputConfirm.setLocationRelativeTo(null);
+
+            }
+            
+            
         }//if e.getSource() == this.btnSaveBoat
 
         if (e.getSource() == this.btnExitBoat) {
@@ -129,6 +147,9 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        inputConfirm = new javax.swing.JDialog();
+        infoText = new javax.swing.JLabel();
+        btnInputConfirm = new javax.swing.JButton();
         btnSaveBoat = new javax.swing.JButton();
         btnExitBoat = new javax.swing.JButton();
         lblBoatRegNumber = new javax.swing.JLabel();
@@ -144,6 +165,41 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         txtBoatIdNumber = new javax.swing.JTextField();
         jScrollPaneBoatDescription = new javax.swing.JScrollPane();
         txtBoatDescription = new javax.swing.JTextArea();
+
+        inputConfirm.setTitle("Ogiltig data");
+
+        infoText.setText("All text är inte korrekt inmatad");
+
+        btnInputConfirm.setText("Ok");
+        btnInputConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInputConfirmActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout inputConfirmLayout = new org.jdesktop.layout.GroupLayout(inputConfirm.getContentPane());
+        inputConfirm.getContentPane().setLayout(inputConfirmLayout);
+        inputConfirmLayout.setHorizontalGroup(
+            inputConfirmLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(inputConfirmLayout.createSequentialGroup()
+                .add(inputConfirmLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(inputConfirmLayout.createSequentialGroup()
+                        .add(86, 86, 86)
+                        .add(btnInputConfirm, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(inputConfirmLayout.createSequentialGroup()
+                        .add(71, 71, 71)
+                        .add(infoText)))
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        inputConfirmLayout.setVerticalGroup(
+            inputConfirmLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(inputConfirmLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .add(infoText)
+                .add(18, 18, 18)
+                .add(btnInputConfirm)
+                .add(22, 22, 22))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -253,12 +309,19 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     private void txtBoatPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBoatPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBoatPriceActionPerformed
+
+    private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
+        inputConfirm.setVisible(false);
+    }//GEN-LAST:event_btnInputConfirmActionPerformed
     /**
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExitBoat;
+    private javax.swing.JButton btnInputConfirm;
     private javax.swing.JButton btnSaveBoat;
+    private javax.swing.JLabel infoText;
+    private javax.swing.JDialog inputConfirm;
     private javax.swing.JScrollPane jScrollPaneBoatDescription;
     private javax.swing.JLabel lblBoatDescription;
     private javax.swing.JLabel lblBoatDestination;
