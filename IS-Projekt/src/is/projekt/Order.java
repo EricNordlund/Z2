@@ -11,6 +11,7 @@ import javax.swing.ListModel;
 
 /**
  *
+ * Klassen ansvarar för att lagra företagets ordrar.
  * @author Viktor Voigt
  */
 public abstract class Order {
@@ -76,6 +77,7 @@ public abstract class Order {
         return billingDate;
     }
 
+    //TODO: Ändra till String[]
     public ArrayList<String> getDataAsList() {
 
         ArrayList<String> l = new ArrayList<>();
@@ -168,6 +170,7 @@ public abstract class Order {
         
         String padding;
         
+        //TODO: Lägg flytta till StringFormatter
         //Tom for-loop skapar nollorna i strängen
         for (padding = ""; padding.length() + displayName.length() < 6; padding = padding + "0");
 

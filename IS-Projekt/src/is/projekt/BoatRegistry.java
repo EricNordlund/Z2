@@ -41,11 +41,8 @@ public class BoatRegistry implements Serializable {
 
         int boatID = getNewBoatKey();
 
-        Boat b = new Boat(boatID, regnr, model, location, description, price);
+        this.editBoat(boatID, regnr, model, location, description, price);
 
-        System.out.println("Adding boat " + b.toString() + ".");
-
-        getBoatList().put(boatID, b);
     }
 
     public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
@@ -61,21 +58,17 @@ public class BoatRegistry implements Serializable {
 
     public String[] getBoatData(int boatID) {
 
-
-
         String[] boatData = this.getBoatList().get(boatID).getDataArray();
 
         return boatData;
 
-
     }
 
-    protected void setReferenceHandler(ReferenceHandler aThis) {
-        referenceHandler = aThis;
-    }
-
+    /**
+     * 
+     * @return 
+     */
     public ListModel getListModel() {
-
 
         HashMap<Integer, Boat> hm = this.getBoatList();
 
@@ -90,7 +83,8 @@ public class BoatRegistry implements Serializable {
             int key = (Integer) e.getKey();
 
             Boat b = (Boat) e.getValue();
-
+ 
+            //Ren estetisk strängformatering
             String nameString = b.getDisplayName();
 
             while (nameString.length() < 35) {
@@ -118,5 +112,9 @@ public class BoatRegistry implements Serializable {
         }
 
         return lm;
+    }
+
+    protected void setReferenceHandler(ReferenceHandler aThis) {
+        referenceHandler = aThis;
     }
 }

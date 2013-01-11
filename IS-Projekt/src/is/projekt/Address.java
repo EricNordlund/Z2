@@ -30,14 +30,14 @@ public class Address {
     }
 
     public String getStreetName() {
-        return street;
+        return this.street;
     }
 
     public String getPostCode() {
-        return postCode;
+        return this.postCode;
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 }

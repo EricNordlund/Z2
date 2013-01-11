@@ -11,18 +11,24 @@ public class Goods extends Product {
 
     private String name;
 
-    public Goods(int goodsID, String name, double price, String description) {
+    protected Goods(int goodsID, String name, double price, String description) {
 
         super(goodsID, price, description);
         this.name = name;
 
+    }
+    
+    private String getName(){
+        
+        return this.name;
+        
     }
 
     public String[] getDataArray() {
 
         String[] a = new String[3];
 
-        a[0] = name;
+        a[0] = this.getName();
         a[1] = Double.toString(getPrice());
         a[2] = getDescription();
 

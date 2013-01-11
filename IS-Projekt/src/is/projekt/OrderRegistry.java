@@ -14,7 +14,9 @@ import javax.swing.ListModel;
 
 /**
  *
- * @author anna_thernfrid
+ * @author Anna Thernfrid
+ * @author Viktor Voigt
+ * @author Eric Nordlund
  */
 public class OrderRegistry {
 
@@ -39,8 +41,9 @@ public class OrderRegistry {
         return getOrderList().get(orderID);
     }
 
+    //TODO: Faktorera om till alla Order
     public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
-            String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
+        String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
 
         Customer customer = this.getReferenceHandler().getCustomer(customerID);
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);

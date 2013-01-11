@@ -14,13 +14,14 @@ import javax.swing.ListModel;
 
 /**
  *
- * @author anna_thernfrid
+ * @author Viktor Voigt
+ * @author Anna Thernfrid
+ * @author Eric Nordlund
  */
 public class GoodsRegistry {
 
     private HashMap<Integer, Goods> goodsList = new HashMap<>();
     private int goodsKeyCount = 0;
-    private Controller controller;
     private ReferenceHandler referenceHandler;
 
     private HashMap<Integer, Goods> getGoodsList() {
@@ -59,10 +60,6 @@ public class GoodsRegistry {
 
         return goodsData;
 
-    }
-
-    public void setController(Controller controller) {
-        this.controller = controller;
     }
 
     public void addGoods(String name, double price, String description) {

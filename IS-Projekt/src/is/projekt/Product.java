@@ -8,6 +8,8 @@ import java.text.DecimalFormat;
 
 /**
  * @author Viktor Voigt
+ * @author Anna Thernfrid
+ * @author Eric Nordlund
  */
 public abstract class Product {
 

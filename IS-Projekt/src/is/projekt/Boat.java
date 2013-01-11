@@ -1,5 +1,12 @@
 package is.projekt;
 
+/**
+ * Klassen ansvarar för att lagra information om företagets båtar.
+ * 
+ * @author Viktor Voigt
+ * @author Anna Thernfrid
+ * @author Eric Nordlund
+ */
 public class Boat extends Product {
 
     //Variabler
@@ -62,6 +69,7 @@ public class Boat extends Product {
     
     /**
      * Kombinerar regnr och modellbeteckning för till en String.
+     * 
      * @return 
      */
     @Override

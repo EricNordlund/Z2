@@ -3,6 +3,13 @@ package is.projekt;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Klassen ansvarar för att lagra information om företagets kunder.
+ * 
+ * @author Viktor Voigt
+ * @author Anna Thernfrid
+ * @author Eric Nordlund
+ */
 public class Customer {
 
     private String name;
@@ -22,6 +29,7 @@ public class Customer {
         orderList = new HashMap<>();
     }
 
+    //Getters
     protected HashMap<Integer, Order> getOrderList() {
         return orderList;
     }
@@ -29,13 +37,8 @@ public class Customer {
     public String getName() {
         return name;
     }
-
-    //Setters
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Address getAddress() {
+    
+     public Address getAddress() {
         return address;
     }
     
@@ -43,6 +46,20 @@ public class Customer {
         
         return this.customerID;
         
+    }
+    
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+    
+
+    //Setters
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setAddress(Address address) {
@@ -53,17 +70,11 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
+    
     public void setMail(String mail) {
         this.mail = mail;
     }
+    
 
     public void addOrder(Order order) {
         int orderID = order.getOrderID();
@@ -78,6 +89,7 @@ public class Customer {
         this.getOrderList().remove(orderID);
     }
 
+    //TODO: ändra till String[]
     public ArrayList<String> getDataAsList() {
 
         ArrayList<String> l = new ArrayList<>();

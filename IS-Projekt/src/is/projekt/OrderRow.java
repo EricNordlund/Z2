@@ -52,7 +52,7 @@ public class OrderRow {
 
     }
 
-    int getProductID() {
+    protected int getProductID() {
 
         return getProduct().getProductID();
 

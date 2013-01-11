@@ -13,7 +13,9 @@ import javax.swing.DefaultListModel;
 
 /**
  *
- * @author anna_thernfrid
+ * @author Viktor Voigt
+ * @author Anna Thernfrid
+ * @author Eric Nordlund
  */
 public class CustomerRegistry {
 
@@ -31,23 +33,22 @@ public class CustomerRegistry {
         return customerList;
     }
 
+    /*
+     * Räknar upp kundnyckeln och returnerar det nya värdet.
+     */
     private int getNewCustomerKey() {
         customerKeyCount++;
         return customerKeyCount;
     }
 
     public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-
-        
+  
         int customerID = this.getNewCustomerKey();
         
-        Address address = new Address(addressStreet, addressPostCode, addressCity);
- 
-        Customer c = new Customer(customerID, name, eMail, phoneNumber, address);
+        this.editCustomer(customerID, name, addressStreet,
+            addressPostCode, addressCity, phoneNumber, eMail);
+        
 
-        System.out.println("Adding customer " + c.toString() + ".");
-
-        getCustomerList().put(customerID, c);
     }
 
     public void editCustomer(int customerID, String name, String addressStreet,
