@@ -9,8 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * BoatFrame används för att skapa och redigera båtar.
  *
- * @author svalan
+ * @author Viktor Voigt
+ * @author Anna Thernfrid
+ * @author Eric Nordlund
  */
 public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
@@ -60,8 +63,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         this.txtBoatDescription.setText("");
 
     }
-    
-        void setBoatKey(int key) {
+
+    void setBoatID(int key) {
         this.boatKey = key;
         this.txtBoatRegNumber.setText(Integer.toString(key));
     }
@@ -69,8 +72,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     protected void setNewBoat(boolean b) {
         this.newBoat = b;
     }
-    
-    
+
     protected void fillTextBoxes(String[] boatData) {
         this.txtBoatIdNumber.setText(boatData[0]);
         this.txtBoatRegNumber.setText(boatData[1]);
@@ -82,52 +84,47 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("ActionEvent from " + e.getSource().getClass().getSimpleName());
 
         if (e.getSource() == this.btnSaveBoat) {
 
-            if(this.controller.inputCheckString(this.txtBoatRegNumber.getText())
+            //TODO: Inputcheck metod
+            if (this.controller.inputCheckString(this.txtBoatRegNumber.getText())
                     && this.controller.inputCheckString(this.txtBoatModel.getText())
-               && this.controller.inputCheckString(this.txtBoatDestination.getText())
-               && this.controller.inputCheckString(this.txtBoatDescription.getText())
-               && this.controller.inputCheckString(this.txtBoatPrice.getText())
-                    ) 
-            {
-            
-            if (newBoat) {
+                    && this.controller.inputCheckString(this.txtBoatDestination.getText())
+                    && this.controller.inputCheckString(this.txtBoatDescription.getText())
+                    && this.controller.inputCheckString(this.txtBoatPrice.getText())) {
 
-                getController().addBoat(
-                        this.txtBoatRegNumber.getText(),
-                        this.txtBoatModel.getText(),
-                        this.txtBoatDestination.getText(),
-                        this.txtBoatDescription.getText(),
-                        Double.valueOf(this.txtBoatPrice.getText()));
+                if (newBoat) {
+
+                    getController().addBoat(
+                            this.txtBoatRegNumber.getText(),
+                            this.txtBoatModel.getText(),
+                            this.txtBoatDestination.getText(),
+                            this.txtBoatDescription.getText(),
+                            Double.valueOf(this.txtBoatPrice.getText()));
 
 
-            } else {
-                getController().editBoat(
-                        this.boatKey,
-                        this.txtBoatRegNumber.getText(),
-                        this.txtBoatModel.getText(),
-                        this.txtBoatDestination.getText(),
-                        this.txtBoatDescription.getText(),
-                        Double.valueOf(this.txtBoatPrice.getText()));
+                } else if (!newBoat) {
+                    getController().editBoat(
+                            this.boatKey,
+                            this.txtBoatRegNumber.getText(),
+                            this.txtBoatModel.getText(),
+                            this.txtBoatDestination.getText(),
+                            this.txtBoatDescription.getText(),
+                            Double.valueOf(this.txtBoatPrice.getText()));
 
-            }
+                }
 
-            parent.updateLists();
+                parent.updateLists();
 
-            this.setVisible(false);
-            } 
-            
-            else if (!inputConfirm.isVisible()) {
+                this.setVisible(false);
+                
+            } else if (!inputConfirm.isVisible()) {
                 inputConfirm.setBounds(0, 0, 300, 125);
                 inputConfirm.setVisible(true);
                 inputConfirm.setLocationRelativeTo(null);
-
             }
-            
-            
+
         }//if e.getSource() == this.btnSaveBoat
 
         if (e.getSource() == this.btnExitBoat) {
@@ -311,11 +308,11 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_txtBoatPriceActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
+        // TODO LÖSA DETTA! (OM VI HINNER!)
+        
         inputConfirm.setVisible(false);
     }//GEN-LAST:event_btnInputConfirmActionPerformed
-    /**
-     * @param args the command line arguments
-     */
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExitBoat;
     private javax.swing.JButton btnInputConfirm;

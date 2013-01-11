@@ -8,7 +8,9 @@ import javax.swing.ListModel;
  * Interface som kontrollerar alla in och ut-metoder mellan controller och
  * model.
  *
- * @author Lärkan, Svalan och Thernan och Tratten och Finken
+ * @author Viktor Voigt
+ * @author Anna Thernfrid
+ * @author Eric Nordlund
  */
 public interface ControllerInterface {
 

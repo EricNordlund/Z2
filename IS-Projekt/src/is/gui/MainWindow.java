@@ -635,7 +635,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
 
                 this.boatFrame.setNewBoat(false);
-                this.boatFrame.setBoatKey(boatID);
+                this.boatFrame.setBoatID(boatID);
                 String[] boatData = this.getController().getBoatData(boatID);
                 this.boatFrame.fillTextBoxes(boatData);
 

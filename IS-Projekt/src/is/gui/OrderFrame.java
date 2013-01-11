@@ -115,7 +115,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         return this.controller;
     }
-
+    
     //Setters för customerID och orderID
     void setCustomerID(int customerID) {
         this.customerID = customerID;

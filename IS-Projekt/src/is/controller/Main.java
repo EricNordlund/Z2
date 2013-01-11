@@ -11,8 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-
         BoatRegistry br = new BoatRegistry();
         CustomerRegistry cr = new CustomerRegistry();
         GoodsRegistry gr = new GoodsRegistry();

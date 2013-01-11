@@ -177,6 +177,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public boolean isBuyorder(int orderID) {
+        
         boolean b;
 
         b = this.getOrderRegistry().isBuyOrder(orderID);
