@@ -561,7 +561,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
             } else if (e.getSource() == this.btnRemoveCustomer) {
 
-                int confirmButton = JOptionPane.showConfirmDialog(this, "Vill du bekräfta borttagning av kund?", "Ta bort kund",
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av kund?", "Ta bort kund",
                         JOptionPane.YES_NO_OPTION);
 
                 if (confirmButton == JOptionPane.YES_OPTION) {
@@ -597,7 +597,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
             } else if (e.getSource() == this.btnRemoveOrder) {
 
-                int confirmButton = JOptionPane.showConfirmDialog(this, "Vill du bekräfta borttagning av order?", "Ta bort order",
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av order?", "Ta bort order",
                         JOptionPane.YES_NO_OPTION);
 
                 if (confirmButton == JOptionPane.YES_OPTION) {
@@ -644,7 +644,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             } else if (e.getSource() == this.btnRemoveBoat) {
 
 
-                int confirmButton = JOptionPane.showConfirmDialog(this, "Vill du bekräfta borttagning av båt?", "Ta bort båt",
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av båt?", "Ta bort båt",
                         JOptionPane.YES_NO_OPTION);
 
                 if (confirmButton == JOptionPane.YES_OPTION) {
