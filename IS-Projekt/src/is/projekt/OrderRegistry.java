@@ -40,8 +40,7 @@ public class OrderRegistry {
     protected Order getOrder(int orderID) {
         return getOrderList().get(orderID);
     }
-
-    //TODO: Faktorera om till alla Order
+    
     public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
         String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
 

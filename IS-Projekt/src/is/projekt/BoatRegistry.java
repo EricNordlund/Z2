@@ -84,24 +84,13 @@ public class BoatRegistry implements Serializable {
 
             Boat b = (Boat) e.getValue();
  
-            //Ren estetisk strängformatering
             String nameString = b.getDisplayName();
-
-            while (nameString.length() < 35) {
-
-                nameString = nameString.concat(" ");
-
-            }
+            
+            nameString = StringFormatter.rightPad(nameString, 35);
 
             String priceString = b.getPriceString();
-
-            String padding = "";
-
-            while (priceString.length() + padding.length() < 10) {
-                padding = padding.concat(" ");
-            }
-
-            priceString = padding + priceString;
+            
+            priceString = StringFormatter.leftPad(priceString, 12);
 
             String displayString = nameString + " " + priceString;
 

@@ -525,7 +525,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     /**
      * Actionlistener, sköter alla knappar.
      *
-     * @param e Händelsen som sskickas från den aktuella knappen.
+     * @param e Händelsen som skickas från den aktuella knappen.
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -683,31 +683,31 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void rbtnShowSellOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnShowSellOrdersActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_rbtnShowSellOrdersActionPerformed
 
     private void btnNewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewOrderActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnNewOrderActionPerformed
 
     private void btnEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCustomerActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnEditCustomerActionPerformed
 
     private void btnAddBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBoatActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAddBoatActionPerformed
 
     private void btnEditBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditBoatActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnEditBoatActionPerformed
 
     private void btnAddGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGoodsActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAddGoodsActionPerformed
 
     private void btnEditGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGoodsActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnEditGoodsActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;

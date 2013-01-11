@@ -163,34 +163,33 @@ public abstract class Order {
 
     }
 
-    @SuppressWarnings("empty-statement")
     protected String getDisplayName() {
         
-        String displayName = Integer.toString(this.getOrderID());
-        
-        String padding;
-        
-        //TODO: Lägg flytta till StringFormatter
-        //Tom for-loop skapar nollorna i strängen
-        for (padding = ""; padding.length() + displayName.length() < 6; padding = padding + "0");
+        //Spapar och formaterar Sträng för ordernummer
+        String displayNumber = Integer.toString(this.getOrderID());              
 
-        displayName = padding.concat(displayName);
+        displayNumber = StringFormatter.leftPad(displayNumber, 7, "0");
+        
+        //Skapar sträng för ordertyp
+        String displayOrderType;
         
         if (this instanceof BuyOrder){
             
-            displayName = displayName.concat(" (köp)  ");
+            displayOrderType = " (köp)  ";
             
         }
         
         else {
             
-            displayName = displayName.concat(" (sälj) ");
+            displayOrderType = " (sälj) ";
             
         }
         
-        displayName = displayName.concat(this.getCustomer().getName());
+        //Skapar Sträng för kundens namn
+        String displayCustomerName = this.getCustomer().getName();
         
-        return displayName;
+        //Returnerar en kombination av strängarna
+        return displayNumber + displayOrderType + displayCustomerName;
         
     }
 }

@@ -91,26 +91,13 @@ public class GoodsRegistry {
 
             Goods g = (Goods) e.getValue();
 
-            //Strängformatering
-            String padding = "";
-
             String nameString = g.getDisplayName();
 
-            while (nameString.length() < 35) {
-
-                nameString = nameString.concat(" ");
-
-            }
+            nameString = StringFormatter.rightPad(nameString, 35);
 
             String priceString = g.getPriceString();
 
-            padding = "";
-
-            while (priceString.length() + padding.length() < 10) {
-                padding = padding.concat(" ");
-            }
-
-            priceString = padding + priceString;
+            priceString = StringFormatter.leftPad(priceString, 10);
 
             String displayString = nameString + " " + priceString;
 

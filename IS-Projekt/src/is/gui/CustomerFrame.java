@@ -339,7 +339,7 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtCustomerNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerNumberActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtCustomerNumberActionPerformed
 
     private void txtCustomerPostCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerPostCodeActionPerformed

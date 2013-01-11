@@ -300,11 +300,11 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveBoatActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnSaveBoatActionPerformed
 
     private void txtBoatPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBoatPriceActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtBoatPriceActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed

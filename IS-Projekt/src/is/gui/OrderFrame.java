@@ -760,31 +760,31 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void btnRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveProductActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnRemoveProductActionPerformed
 
     private void txtCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtCustomerActionPerformed
 
     private void txtBillingDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBillingDateActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtBillingDateActionPerformed
 
     private void txtOrderNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderNrActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtOrderNrActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void rbtnBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnBoatActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_rbtnBoatActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
@@ -792,7 +792,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_btnInputConfirmActionPerformed
 
     private void rbtnGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnGoodsActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_rbtnGoodsActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddProduct;
