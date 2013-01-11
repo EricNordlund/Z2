@@ -68,11 +68,11 @@ public class BoatRegistry implements Serializable {
      * 
      * @return 
      */
-    public ListModel getListModel() {
+    public ListModel<ListItem> getListModel() {
 
         HashMap<Integer, Boat> hm = this.getBoatList();
 
-        DefaultListModel lm = new DefaultListModel();
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 

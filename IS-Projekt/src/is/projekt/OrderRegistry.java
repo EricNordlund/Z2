@@ -106,11 +106,11 @@ public class OrderRegistry {
         return dataArray;
     }
 
-    public ListModel getOrderListModel() {
+    public ListModel<ListItem> getOrderListModel() {
 
         HashMap<Integer, Order> hm = this.getOrderList();
 
-        DefaultListModel lm = new DefaultListModel();
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 
@@ -151,9 +151,9 @@ public class OrderRegistry {
 
     }
 
-    public ListModel getOrderRowListModel(int orderID) {
+    public ListModel<ListItem> getOrderRowListModel(int orderID) {
 
-        ListModel lm = this.getOrder(orderID).getOrderRowListModel();
+        ListModel<ListItem> lm = this.getOrder(orderID).getOrderRowListModel();
 
         return lm;
     }
@@ -171,10 +171,10 @@ public class OrderRegistry {
         }
     }
 
-    public ListModel getBuyOrderListModel() {
+    public ListModel<ListItem> getBuyOrderListModel() {
         HashMap<Integer, Order> hm = this.getOrderList();
 
-        DefaultListModel lm = new DefaultListModel();
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 
@@ -196,10 +196,10 @@ public class OrderRegistry {
         return lm;
     }
 
-    public ListModel getSellOrderListModel() {
+    public ListModel<ListItem> getSellOrderListModel() {
         HashMap<Integer, Order> hm = this.getOrderList();
 
-        DefaultListModel lm = new DefaultListModel();
+        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 

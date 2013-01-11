@@ -4,7 +4,6 @@
  */
 package is.projekt;
 
-import is.controller.Controller;
 import is.controller.ListItem;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -76,10 +75,11 @@ public class GoodsRegistry {
         this.referenceHandler = aThis;
     }
 
-    public ListModel getGoodsListModel() {
+    public ListModel<ListItem> getGoodsListModel() {
+        
         HashMap<Integer, Goods> hm = this.getGoodsList();
 
-        DefaultListModel lm = new DefaultListModel();
+        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 

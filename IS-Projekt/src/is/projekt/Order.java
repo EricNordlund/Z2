@@ -19,7 +19,7 @@ public abstract class Order {
     private int orderID;
     private int billingDate;
     private Address billingAddress;
-    private List<OrderRow> orderRows = new ArrayList();
+    private List<OrderRow> orderRows = new ArrayList<>();
     private Customer customer;
 
     protected Order(int orderID, int billingDate, Address billingAddress, Customer customer) {
@@ -122,12 +122,12 @@ public abstract class Order {
 
     }
 
-    protected ListModel getOrderRowListModel() {
+    protected ListModel<ListItem> getOrderRowListModel() {
 
 
         List<OrderRow> rowList = this.getOrderRows();
 
-        DefaultListModel lm = new DefaultListModel();
+        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
 
         Iterator it = rowList.iterator();
 

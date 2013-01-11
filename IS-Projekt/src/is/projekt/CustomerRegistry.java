@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -76,11 +77,11 @@ public class CustomerRegistry {
         return customerData;
     }
 
-    public DefaultListModel getListModel() {
+    public ListModel<ListItem> getListModel() {
 
         HashMap<Integer, Customer> hm = this.getCustomerList();
 
-        DefaultListModel lm = new DefaultListModel();
+        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 
@@ -94,6 +95,7 @@ public class CustomerRegistry {
 
             ListItem item = new ListItem(key, displayString);
 
+      
             lm.addElement(item);
 
         }

@@ -75,7 +75,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.txtPostCode.setText(orderData.get(3));
             this.txtCity.setText(orderData.get(4));
 
-            ListModel lm = controller.getOrderRowListModel(orderID);
+            ListModel<ListItem> lm = controller.getOrderRowListModel(orderID);
 
             this.lstOrderRows.setModel(lm);
             
@@ -98,7 +98,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.txtCity.setText(customerData.get(5));
             this.txtBillingDate.setText("130112");
 
-            this.lstOrderRows.setModel(new DefaultListModel());
+            this.lstOrderRows.setModel(new DefaultListModel<ListItem>());
             
             this.rbtnBuyOrder.setEnabled(true);
             this.rbtnSellOrder.setEnabled(true);
@@ -146,9 +146,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private void addNewGoodsListItem(int goodsID) {
 
         GoodsListItem gli;
-        DefaultListModel lm;
+        
+        DefaultListModel<ListItem> lm;
 
-        lm = (DefaultListModel) this.lstOrderRows.getModel();
+        lm = (DefaultListModel<ListItem>) this.lstOrderRows.getModel();
 
         gli = this.getController().getGoodsListItem(goodsID);
 
@@ -213,8 +214,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     //Lägger till båt i orderrad
     private void addBoatListItem(int productID) {
-
-        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+        
+        DefaultListModel<ListItem> lm = (DefaultListModel<ListItem>) lstOrderRows.getModel();
 
         BoatListItem bli;
 
@@ -439,13 +440,13 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         btnInputConfirm = new javax.swing.JButton();
         btnGroupOrderType = new javax.swing.ButtonGroup();
         jScrollPanelProducts = new javax.swing.JScrollPane();
-        lstProducts = new javax.swing.JList();
+        lstProducts = new javax.swing.JList<ListItem>();
         btnSaveOrder = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnAddProduct = new javax.swing.JButton();
         btnRemoveProduct = new javax.swing.JButton();
         jScrollPanelOrderRows = new javax.swing.JScrollPane();
-        lstOrderRows = new javax.swing.JList();
+        lstOrderRows = new javax.swing.JList<ListItem>();
         jPanelOrderInfo = new javax.swing.JPanel();
         lblBillingDate = new javax.swing.JLabel();
         lblCustomer = new javax.swing.JLabel();
@@ -813,8 +814,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel lblOrderNr;
     private javax.swing.JLabel lblPostCode;
     private javax.swing.JLabel lblStreetAddress;
-    private javax.swing.JList lstOrderRows;
-    private javax.swing.JList lstProducts;
+    private javax.swing.JList<ListItem> lstOrderRows;
+    private javax.swing.JList<ListItem> lstProducts;
     private javax.swing.JPanel pnlAddress;
     private javax.swing.JPanel pnlTools;
     private javax.swing.JRadioButton rbtnBoat;

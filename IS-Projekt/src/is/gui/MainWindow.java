@@ -40,7 +40,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
     }
 
-    @SuppressWarnings("unchecked")
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -48,7 +48,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         tabbedPaneMainWindow = new javax.swing.JTabbedPane();
         pnlCustomers = new javax.swing.JPanel();
         jScrollPaneCustomers = new javax.swing.JScrollPane();
-        lstCustomers = new javax.swing.JList();
+        lstCustomers = new javax.swing.JList<ListItem>();
         jPanelCustomerTools = new javax.swing.JPanel();
         btnAddCustomer = new javax.swing.JButton();
         btnEditCustomer = new javax.swing.JButton();
@@ -56,14 +56,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         btnRemoveCustomer = new javax.swing.JButton();
         pnlBoats = new javax.swing.JPanel();
         jScrollPaneBoats = new javax.swing.JScrollPane();
-        lstBoats = new javax.swing.JList();
+        lstBoats = new javax.swing.JList<ListItem>();
         jPanelBoatTools = new javax.swing.JPanel();
         btnAddBoat = new javax.swing.JButton();
         btnEditBoat = new javax.swing.JButton();
         btnRemoveBoat = new javax.swing.JButton();
         pnlOrders = new javax.swing.JPanel();
         jScrollPaneOrders = new javax.swing.JScrollPane();
-        lstOrders = new javax.swing.JList();
+        lstOrders = new javax.swing.JList<ListItem>();
         pnlOrderTools = new javax.swing.JPanel();
         btnRemoveOrder = new javax.swing.JButton();
         btnEditOrder = new javax.swing.JButton();
@@ -73,7 +73,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         rbtnShowAllOrders = new javax.swing.JRadioButton();
         pnlGoods = new javax.swing.JPanel();
         jScrollPaneGoods = new javax.swing.JScrollPane();
-        lstGoods = new javax.swing.JList();
+        lstGoods = new javax.swing.JList<ListItem>();
         pnlGoodsTools = new javax.swing.JPanel();
         btnAddGoods = new javax.swing.JButton();
         btnEditGoods = new javax.swing.JButton();
@@ -111,7 +111,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        btnRemoveCustomer.setLabel("Ta bort kund");
+        btnRemoveCustomer.setText("Ta bort kund");
         btnRemoveCustomer.setName("Ta bort kund"); // NOI18N
 
         javax.swing.GroupLayout jPanelCustomerToolsLayout = new javax.swing.GroupLayout(jPanelCustomerTools);
@@ -167,11 +167,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         tabbedPaneMainWindow.addTab("Kunder", pnlCustomers);
 
         lstBoats.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        lstBoats.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = {  };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPaneBoats.setViewportView(lstBoats);
 
         jPanelBoatTools.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
@@ -344,11 +339,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         tabbedPaneMainWindow.addTab("Ordrar", pnlOrders);
 
         lstGoods.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        lstGoods.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = {  };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPaneGoods.setViewportView(lstGoods);
 
         pnlGoodsTools.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
@@ -469,7 +459,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
     public void updateLists() {
 
-        System.out.println("Updating JLists.");
         this.lstCustomers.setModel(getController().getCustomerListModel());
         this.lstGoods.setModel(getController().getGoodsListModel());
         this.lstBoats.setModel(getController().getBoatListModel());
@@ -517,8 +506,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         key = li.getID();
 
         return key;
-
-
 
     }
 
@@ -728,10 +715,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JScrollPane jScrollPaneCustomers;
     private javax.swing.JScrollPane jScrollPaneGoods;
     private javax.swing.JScrollPane jScrollPaneOrders;
-    private javax.swing.JList lstBoats;
-    private javax.swing.JList lstCustomers;
-    private javax.swing.JList lstGoods;
-    private javax.swing.JList lstOrders;
+    private javax.swing.JList<ListItem> lstBoats;
+    private javax.swing.JList<ListItem> lstCustomers;
+    private javax.swing.JList<ListItem> lstGoods;
+    private javax.swing.JList<ListItem> lstOrders;
     private javax.swing.JPanel pnlBoats;
     private javax.swing.JPanel pnlCustomers;
     private javax.swing.JPanel pnlGoods;

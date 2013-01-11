@@ -7,7 +7,6 @@ import is.projekt.InputCheck;
 import is.projekt.OrderRegistry;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
 /**
@@ -33,6 +32,8 @@ public class Controller implements ControllerInterface {
         this.orderRegistry = or;
 
     }
+    
+    //Getters för registren
 
     public BoatRegistry getBoatRegistry() {
         return boatRegistry;
@@ -100,7 +101,7 @@ public class Controller implements ControllerInterface {
      *
      */
     @Override
-    public DefaultListModel getCustomerListModel() {
+    public ListModel<ListItem> getCustomerListModel() {
 
         return this.getCustomerRegistry().getListModel();
 
@@ -136,13 +137,13 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ListModel getOrderRowListModel(int orderID) {
+    public ListModel<ListItem> getOrderRowListModel(int orderID) {
 
         return this.getOrderRegistry().getOrderRowListModel(orderID);
     }
 
     @Override
-    public ListModel getOrderListModel() {
+    public ListModel<ListItem> getOrderListModel() {
 
         return this.getOrderRegistry().getOrderListModel();
         
@@ -150,12 +151,12 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ListModel getBuyOrderListModel() {
+    public ListModel<ListItem> getBuyOrderListModel() {
         return this.getOrderRegistry().getBuyOrderListModel();
     }
 
     @Override
-    public ListModel getSellOrderListModel() {
+    public ListModel<ListItem> getSellOrderListModel() {
        return this.getOrderRegistry().getSellOrderListModel();
     }
     
@@ -238,7 +239,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ListModel getBoatListModel() {
+    public ListModel<ListItem> getBoatListModel() {
 
         return this.getBoatRegistry().getListModel();
     }
@@ -282,7 +283,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ListModel getGoodsListModel() {
+    public ListModel<ListItem> getGoodsListModel() {
 
         return this.getGoodsRegistry().getGoodsListModel();
     }

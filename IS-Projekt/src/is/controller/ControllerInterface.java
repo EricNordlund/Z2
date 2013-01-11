@@ -23,7 +23,7 @@ public interface ControllerInterface {
 
     public abstract void removeCustomer(int customerID);
 
-    public abstract DefaultListModel getCustomerListModel();
+    public abstract ListModel<ListItem> getCustomerListModel();
 
     //Orderhantering
     public abstract int addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);
@@ -36,13 +36,13 @@ public interface ControllerInterface {
 
     public abstract void removeBuyOrder(int orderID);
 
-    public abstract ListModel getOrderListModel();
+    public abstract ListModel<ListItem> getOrderListModel();
 
-    public abstract ListModel getBuyOrderListModel();
+    public abstract ListModel<ListItem> getBuyOrderListModel();
 
-    public abstract ListModel getSellOrderListModel();
+    public abstract ListModel<ListItem> getSellOrderListModel();
 
-    public abstract ListModel getOrderRowListModel(int orderID);
+    public abstract ListModel<ListItem> getOrderRowListModel(int orderID);
 
     public abstract GoodsListItem getGoodsListItem(int orderID);
 
@@ -63,7 +63,7 @@ public interface ControllerInterface {
 
     public abstract void removeBoat(int boatID);
 
-    public abstract ListModel getBoatListModel();
+    public abstract ListModel<ListItem> getBoatListModel();
 
     public abstract BoatListItem getBoatListItem(int boatID);
 
@@ -78,7 +78,7 @@ public interface ControllerInterface {
 
     public abstract void removeGoods(int goodsID);
 
-    public abstract ListModel getGoodsListModel();
+    public abstract ListModel<ListItem> getGoodsListModel();
 
     //Input-kontroll
     public abstract boolean inputCheckString(String s);
