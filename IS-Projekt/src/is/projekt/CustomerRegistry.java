@@ -70,9 +70,9 @@ public class CustomerRegistry {
         this.referenceHandler = aThis;
     }
 
-    public ArrayList<String> getCustomerData(int customerID) {
+    public String[] getCustomerData(int customerID) {
 
-        ArrayList<String> customerData = this.getCustomerList().get(customerID).getDataAsList();
+        String[] customerData = this.getCustomerList().get(customerID).getDataArray();
 
         return customerData;
     }

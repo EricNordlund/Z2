@@ -74,9 +74,9 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ArrayList<String> getCustomerData(int customerID) {
+    public String[] getCustomerData(int customerID) {
 
-        ArrayList<String> customerData = getCustomerRegistry().getCustomerData(customerID);
+        String[] customerData = getCustomerRegistry().getCustomerData(customerID);
 
         return customerData;
 

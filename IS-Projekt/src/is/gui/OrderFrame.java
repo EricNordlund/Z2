@@ -60,8 +60,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private void initInterface() {
 
         //Hämtar kundens namn
-        ArrayList<String> customerData = getController().getCustomerData(customerID);
-        this.txtCustomer.setText(customerData.get(0));
+        String[] customerData = getController().getCustomerData(customerID);
+        this.txtCustomer.setText(customerData[0]);
 
         //Kontrollerar om ordern skall redigeras eller läggas till. Uppdaterar sedan användargränssnittet. 
         if (!newOrder) {
@@ -93,9 +93,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
             this.txtOrderNr.setText(null);
             this.txtBillingDate.setText(null);
-            this.txtStreet.setText(customerData.get(3));
-            this.txtPostCode.setText(customerData.get(4));
-            this.txtCity.setText(customerData.get(5));
+            this.txtStreet.setText(customerData[3]);
+            this.txtPostCode.setText(customerData[4]);
+            this.txtCity.setText(customerData[5]);
             this.txtBillingDate.setText("130112");
 
             this.lstOrderRows.setModel(new DefaultListModel<ListItem>());

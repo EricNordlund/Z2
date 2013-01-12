@@ -121,13 +121,13 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
     }
 
-    void fillTextBoxes(ArrayList<String> customerData) {
-        this.txtCustomerName.setText(customerData.get(0));
-        this.txtCustomerPhone.setText(customerData.get(1));
-        this.txtCustomerMail.setText(customerData.get(2));
-        this.txtCustomerStreet.setText(customerData.get(3));
-        this.txtCustomerPostCode.setText(customerData.get(4));
-        this.txtCustomerCity.setText(customerData.get(5));
+    void fillTextBoxes(String[] customerData) {
+        this.txtCustomerName.setText(customerData[0]);
+        this.txtCustomerPhone.setText(customerData[1]);
+        this.txtCustomerMail.setText(customerData[2]);
+        this.txtCustomerStreet.setText(customerData[3]);
+        this.txtCustomerPostCode.setText(customerData[4]);
+        this.txtCustomerCity.setText(customerData[5]);
 
     }
 

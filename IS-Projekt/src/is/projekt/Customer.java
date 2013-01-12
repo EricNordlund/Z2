@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * Klassen ansvarar för att lagra information om företagets kunder.
- * 
+ *
  * @author Viktor Voigt
  * @author Anna Thernfrid
  * @author Eric Nordlund
@@ -17,7 +17,7 @@ public class Customer {
     private String phone;
     private String mail;
     private int customerID;
-    private HashMap<Integer,Order> orderList;
+    private HashMap<Integer, Order> orderList;
 
     protected Customer(int customerID, String name, String eMail, String phone, Address address) {
 
@@ -37,17 +37,17 @@ public class Customer {
     public String getName() {
         return name;
     }
-    
-     public Address getAddress() {
+
+    public Address getAddress() {
         return address;
     }
-    
-    protected int getID(){
-        
+
+    protected int getID() {
+
         return this.customerID;
-        
+
     }
-    
+
     public String getPhone() {
         return phone;
     }
@@ -55,7 +55,6 @@ public class Customer {
     public String getMail() {
         return mail;
     }
-    
 
     //Setters
     public void setName(String name) {
@@ -70,39 +69,37 @@ public class Customer {
         this.phone = phone;
     }
 
-    
     public void setMail(String mail) {
         this.mail = mail;
     }
-    
 
     public void addOrder(Order order) {
         int orderID = order.getOrderID();
-        
+
         this.getOrderList().put(orderID, order);
     }
 
     public void removeOrder(Order order) {
-        
+
         int orderID = order.getOrderID();
 
         this.getOrderList().remove(orderID);
     }
 
     //TODO: ändra till String[]
-    public ArrayList<String> getDataAsList() {
+    public String[] getDataArray() {
 
-        ArrayList<String> l = new ArrayList<>();
+        String[] dataArray = new String[6];
 
-        l.add(getName());
-        l.add(getPhone());
-        l.add(getMail());
-        l.add(getAddress().getStreetName());
-        l.add(getAddress().getPostCode());
-        l.add(getAddress().getCity());
+        dataArray[0] = this.getName();
+        dataArray[1] = this.getPhone();
+        dataArray[2] = this.getMail();
+        
+        dataArray[3] = this.getAddress().getStreetName();
+        dataArray[4] = this.getAddress().getPostCode();
+        dataArray[5] = this.getAddress().getCity();
 
-
-        return l;
+        return dataArray;
 
     }
 

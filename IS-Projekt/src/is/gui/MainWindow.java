@@ -541,7 +541,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                 this.customerFrame.setNewCustomer(false);
                 this.customerFrame.setCustomerKey(customerID);
-                ArrayList<String> customerData = this.getController().getCustomerData(customerID);
+                String[] customerData = this.getController().getCustomerData(customerID);
                 this.customerFrame.fillTextBoxes(customerData);
 
                 this.customerFrame.setVisible(true);

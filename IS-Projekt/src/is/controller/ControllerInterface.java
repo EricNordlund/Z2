@@ -1,7 +1,6 @@
 package is.controller;
 
 import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
 /**
@@ -19,7 +18,7 @@ public interface ControllerInterface {
 
     public abstract void editCustomer(int customerID, String name, String adressStreet, String adressPostCode, String adressCity, String phoneNumber, String eMail);
 
-    public abstract List<String> getCustomerData(int customerID);
+    public abstract String[] getCustomerData(int customerID);
 
     public abstract void removeCustomer(int customerID);
 
