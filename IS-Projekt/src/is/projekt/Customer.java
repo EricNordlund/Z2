@@ -86,7 +86,6 @@ public class Customer {
         this.getOrderList().remove(orderID);
     }
 
-    //TODO: ändra till String[]
     public String[] getDataArray() {
 
         String[] dataArray = new String[6];

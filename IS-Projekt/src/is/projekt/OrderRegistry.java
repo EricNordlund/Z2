@@ -99,9 +99,9 @@ public class OrderRegistry {
 
     }
 
-    public ArrayList<String> getDataArray(int orderID) {
+    public String[] getDataArray(int orderID) {
 
-        ArrayList<String> dataArray = this.getOrder(orderID).getDataAsList();
+        String[] dataArray = this.getOrder(orderID).getDataArray();
 
         return dataArray;
     }

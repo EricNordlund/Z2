@@ -5,8 +5,6 @@ import is.projekt.CustomerRegistry;
 import is.projekt.GoodsRegistry;
 import is.projekt.InputCheck;
 import is.projekt.OrderRegistry;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.ListModel;
 
 /**
@@ -127,11 +125,6 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<String> getBuyOrderData(int orderID) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public void removeBuyOrder(int orderID) {
         getOrderRegistry().removeBuyOrder(orderID);
     }
@@ -162,9 +155,9 @@ public class Controller implements ControllerInterface {
     
     
     @Override
-    public ArrayList<String> getOrderData(int orderID) {
+    public String[] getOrderData(int orderID) {
 
-        ArrayList<String> orderData = getOrderRegistry().getDataArray(orderID);
+        String[] orderData = getOrderRegistry().getDataArray(orderID);
 
         return orderData;
     }

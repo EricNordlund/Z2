@@ -66,14 +66,14 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         //Kontrollerar om ordern skall redigeras eller läggas till. Uppdaterar sedan användargränssnittet. 
         if (!newOrder) {
 
-            ArrayList<String> orderData = getController().getOrderData(orderID);
+            String[] orderData = getController().getOrderData(orderID);
             
-            this.txtBillingDate.setText(orderData.get(0));
+            this.txtBillingDate.setText(orderData[0]);
             this.txtOrderNr.setText(Integer.toString(orderID));
 
-            this.txtStreet.setText(orderData.get(1));
-            this.txtPostCode.setText(orderData.get(3));
-            this.txtCity.setText(orderData.get(4));
+            this.txtStreet.setText(orderData[2]);
+            this.txtPostCode.setText(orderData[3]);
+            this.txtCity.setText(orderData[4]);
 
             ListModel<ListItem> lm = controller.getOrderRowListModel(orderID);
 
@@ -319,8 +319,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         setTitle("Ändra order");
 
         //Hämtar CustomerID från order
-        ArrayList<String> orderData = controller.getOrderData(orderID);
-        setCustomerID(Integer.valueOf(orderData.get(2)));
+        String[] orderData = controller.getOrderData(orderID);
+        setCustomerID(Integer.valueOf(orderData[1]));
 
         setOrderID(orderID);
 

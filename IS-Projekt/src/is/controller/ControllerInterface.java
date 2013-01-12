@@ -29,9 +29,7 @@ public interface ControllerInterface {
 
     public abstract void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, int customerID, boolean isBuyOrder, int orderID);
 
-    public abstract List<String> getBuyOrderData(int orderID);
-
-    public abstract List<String> getOrderData(int customerID);
+    public abstract String[] getOrderData(int orderID);
 
     public abstract void removeBuyOrder(int orderID);
 

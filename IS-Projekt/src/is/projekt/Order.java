@@ -12,6 +12,7 @@ import javax.swing.ListModel;
 /**
  *
  * Klassen ansvarar för att lagra företagets ordrar.
+ *
  * @author Viktor Voigt
  */
 public abstract class Order {
@@ -77,18 +78,18 @@ public abstract class Order {
         return billingDate;
     }
 
-    //TODO: Ändra till String[]
-    public ArrayList<String> getDataAsList() {
+    public String[] getDataArray() {
 
-        ArrayList<String> l = new ArrayList<>();
+        String[] dataArray = new String[5];
 
-        l.add(Integer.toString(getBillingDate()));
-        l.add(getBillingAddress().getStreetName());
-        l.add(String.valueOf(getCustomerID()));
-        l.add(getBillingAddress().getPostCode());
-        l.add(getBillingAddress().getCity());
+        dataArray[0] = Integer.toString(getBillingDate());
+        dataArray[1] = String.valueOf(getCustomerID());
+        dataArray[2] = getBillingAddress().getStreetName();
+        dataArray[3] = getBillingAddress().getPostCode();
+        dataArray[4] = getBillingAddress().getCity();
 
-        return l;
+
+        return dataArray;
 
     }
 
@@ -110,7 +111,7 @@ public abstract class Order {
     protected int getOrderID() {
         return orderID;
     }
-    
+
     @Override
     public String toString() {
         return "Order: " + orderID + " (Kund: " + this.getCustomer().getID() + ")";
@@ -127,7 +128,7 @@ public abstract class Order {
 
         List<OrderRow> rowList = this.getOrderRows();
 
-        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
         Iterator it = rowList.iterator();
 
@@ -164,32 +165,30 @@ public abstract class Order {
     }
 
     protected String getDisplayName() {
-        
+
         //Spapar och formaterar Sträng för ordernummer
-        String displayNumber = Integer.toString(this.getOrderID());              
+        String displayNumber = Integer.toString(this.getOrderID());
 
         displayNumber = StringFormatter.leftPad(displayNumber, 7, "0");
-        
+
         //Skapar sträng för ordertyp
         String displayOrderType;
-        
-        if (this instanceof BuyOrder){
-            
+
+        if (this instanceof BuyOrder) {
+
             displayOrderType = " (köp)  ";
-            
-        }
-        
-        else {
-            
+
+        } else {
+
             displayOrderType = " (sälj) ";
-            
+
         }
-        
+
         //Skapar Sträng för kundens namn
         String displayCustomerName = this.getCustomer().getName();
-        
+
         //Returnerar en kombination av strängarna
         return displayNumber + displayOrderType + displayCustomerName;
-        
+
     }
 }
