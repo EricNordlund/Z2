@@ -228,20 +228,23 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     //Sparar och lägger till en ny order till slut. 
     private void saveOrder() {
-
+        
+        boolean isBuyOrder = this.rbtnBuyOrder.isSelected();
 
         int billingDate = Integer.valueOf(this.txtBillingDate.getText());
+        
         String billingAddressStreet = this.txtStreet.getText();
         String billingAddressCity = this.txtCity.getText();
         String billingAddressPostCode = this.txtPostCode.getText();
 
         if (!newOrder) {
 
-            this.getController().editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, true, orderID);
+            
+            this.getController().editOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, isBuyOrder, orderID);
 
         } else if (newOrder) {
             
-            if(this.rbtnBuyOrder.isSelected() == true){
+            if(isBuyOrder){
 
             this.orderID = this.getController().addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
             

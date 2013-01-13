@@ -118,11 +118,11 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
+    public void editOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
             String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
 
 
-        getOrderRegistry().editBuyOrder(billingDate, billingAddressStreet, billingAddressPostCode,
+        getOrderRegistry().editOrder(billingDate, billingAddressStreet, billingAddressPostCode,
                 billingAddressCity, customerID, isBuyOrder, orderID);
     }
 

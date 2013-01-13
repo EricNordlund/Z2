@@ -5,7 +5,6 @@
 package is.projekt;
 
 import is.controller.ListItem;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -40,13 +39,22 @@ public class OrderRegistry {
     protected Order getOrder(int orderID) {
         return getOrderList().get(orderID);
     }
-    
-    public void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
-        String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
+
+    public void editOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
+            String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
+
 
         Customer customer = this.getReferenceHandler().getCustomer(customerID);
         Address address = new Address(billingAddressStreet, billingAddressPostCode, billingAddressCity);
-        Order o = new BuyOrder(orderID, billingDate, address, customer);
+
+        Order o;
+
+        if (isBuyOrder) {
+            o = new BuyOrder(orderID, billingDate, address, customer);
+        } else {
+            o = new SellOrder(orderID, billingDate, address, customer);
+        }
+        
         this.getOrderList().put(orderID, o);
 
 
@@ -199,7 +207,7 @@ public class OrderRegistry {
     public ListModel<ListItem> getSellOrderListModel() {
         HashMap<Integer, Order> hm = this.getOrderList();
 
-        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 

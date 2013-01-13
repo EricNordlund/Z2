@@ -27,7 +27,7 @@ public interface ControllerInterface {
     //Orderhantering
     public abstract int addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);
 
-    public abstract void editBuyOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, int customerID, boolean isBuyOrder, int orderID);
+    public abstract void editOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode, String billingAddressCity, int customerID, boolean isBuyOrder, int orderID);
 
     public abstract String[] getOrderData(int orderID);
 
