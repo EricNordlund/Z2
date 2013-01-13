@@ -81,4 +81,6 @@ public interface ControllerInterface {
     public abstract boolean inputCheckString(String s);
 
     public abstract boolean inputCheckDate(String s);
+    
+    public abstract boolean inputCheckPrice(String s);
 }

@@ -82,17 +82,38 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
         this.txtBoatPrice.setText(boatData[5]);
     }
 
+    private boolean checkInput() {
+
+
+        if (
+                !this.controller.inputCheckString(this.txtBoatRegNumber.getText()) 
+                || !this.controller.inputCheckString(this.txtBoatModel.getText())
+                || !this.controller.inputCheckString(this.txtBoatDestination.getText())
+                || !this.controller.inputCheckString(this.txtBoatDescription.getText())) {
+            
+            return false;
+            
+        }
+
+        if (!this.controller.inputCheckPrice(this.txtBoatPrice.getText())){
+            
+            return false;
+            
+        }
+            
+        return true;
+
+
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.btnSaveBoat) {
 
             //TODO: Inputcheck metod
-            if (this.controller.inputCheckString(this.txtBoatRegNumber.getText())
-                    && this.controller.inputCheckString(this.txtBoatModel.getText())
-                    && this.controller.inputCheckString(this.txtBoatDestination.getText())
-                    && this.controller.inputCheckString(this.txtBoatDescription.getText())
-                    && this.controller.inputCheckString(this.txtBoatPrice.getText())) {
+            if (checkInput()) {
 
                 if (newBoat) {
 
@@ -118,7 +139,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                 parent.updateLists();
 
                 this.setVisible(false);
-                
+
             } else if (!inputConfirm.isVisible()) {
                 inputConfirm.setBounds(0, 0, 300, 125);
                 inputConfirm.setVisible(true);
@@ -300,19 +321,16 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveBoatActionPerformed
-
     }//GEN-LAST:event_btnSaveBoatActionPerformed
 
     private void txtBoatPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBoatPriceActionPerformed
-
     }//GEN-LAST:event_txtBoatPriceActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
         // TODO LÖSA DETTA! (OM VI HINNER!)
-        
+
         inputConfirm.setVisible(false);
     }//GEN-LAST:event_btnInputConfirmActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExitBoat;
     private javax.swing.JButton btnInputConfirm;

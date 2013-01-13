@@ -312,11 +312,16 @@ public class Controller implements ControllerInterface {
     //#######################################################################
     @Override
     public boolean inputCheckString(String s) {
-        return this.inputChecker.chekString(s);
+        return this.inputChecker.checkString(s);
     }
 
     @Override
     public boolean inputCheckDate(String s) {
         return this.inputChecker.checkDate(s);
+    }
+
+    @Override
+    public boolean inputCheckPrice(String s) {
+        return this.inputChecker.checkStringToDouble(s);
     }
 }

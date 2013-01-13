@@ -1,5 +1,10 @@
 package is.projekt;
 
+/**
+ * 
+ * @author Eric Nordlund
+ * @author Viktor Voigt
+ */
 public class InputChecker {
 
     public void InputCheck() {
@@ -9,7 +14,7 @@ public class InputChecker {
      * Kontrollerar att en sträng är minst 3 bokstäver lång. 
      * @param s Strängen som kontrolleras.
      */
-    public boolean chekString(String s) {
+    public boolean checkString(String s) {
         String input = s;
 
         if (input.length() > 2) {
@@ -54,12 +59,27 @@ public class InputChecker {
         try {
             int i = Integer.valueOf(s);
 
-        } catch (NumberFormatException nfe) {
+        } catch (NumberFormatException exception) {
 
             return false;
 
         }
 
         return true;
+    }
+    
+    public boolean checkStringToDouble(String s){
+        
+        try {
+            double d = Double.valueOf(s);
+
+        } catch (NumberFormatException exception) {
+
+            return false;
+
+        }
+
+        return true;
+        
     }
 }
