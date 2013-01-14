@@ -1,8 +1,5 @@
 package is.controller;
 
-import is.model.listitems.ListItem;
-import is.model.listitems.GoodsListItem;
-import is.model.listitems.BoatListItem;
 import java.util.List;
 import javax.swing.ListModel;
 
