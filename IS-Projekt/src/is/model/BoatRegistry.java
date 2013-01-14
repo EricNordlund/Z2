@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package is.projekt;
+package is.model;
 
-import is.controller.BoatListItem;
-import is.controller.ListItem;
+import is.model.listitems.BoatListItem;
+import is.model.listitems.ListItem;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;

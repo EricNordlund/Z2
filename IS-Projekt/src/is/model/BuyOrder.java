@@ -1,4 +1,4 @@
-package is.projekt;
+package is.model;
 
 /**
  * "Tom" klass som bara är till för att kategorisera ordrar.

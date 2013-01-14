@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package is.projekt;
+package is.model;
 
-import is.controller.GoodsListItem;
-import is.controller.ListItem;
+import is.model.tools.StringFormatter;
+import is.model.listitems.GoodsListItem;
+import is.model.listitems.ListItem;
 
 /**
  * En klass som representerar likformiga varor som tillbehör och reservdelar.

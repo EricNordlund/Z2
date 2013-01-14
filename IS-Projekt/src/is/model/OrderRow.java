@@ -1,4 +1,4 @@
-package is.projekt;
+package is.model;
 
 /**
  *

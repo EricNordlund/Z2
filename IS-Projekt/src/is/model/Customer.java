@@ -1,6 +1,7 @@
-package is.projekt;
+package is.model;
 
-import is.controller.ListItem;
+import is.model.tools.StringFormatter;
+import is.model.listitems.ListItem;
 import java.util.HashMap;
 
 /**

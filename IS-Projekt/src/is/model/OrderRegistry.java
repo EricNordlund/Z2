@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package is.projekt;
+package is.model;
 
-import is.controller.ListItem;
+import is.model.listitems.ListItem;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

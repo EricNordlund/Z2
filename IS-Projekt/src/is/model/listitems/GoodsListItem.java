@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package is.controller;
+package is.model.listitems;
 
+import is.model.listitems.ListItem;
 import java.text.DecimalFormat;
 
 /**

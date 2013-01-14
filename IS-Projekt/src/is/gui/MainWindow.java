@@ -5,7 +5,7 @@
 package is.gui;
 
 import is.controller.Controller;
-import is.controller.ListItem;
+import is.model.listitems.ListItem;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package is.projekt;
+package is.model;
 
 /**
  * Det här klassen låter det olika registen få referenser från varandra.
@@ -18,7 +18,7 @@ public class ReferenceHandler {
 
     public void setBoatRegistry(BoatRegistry boatRegistry) {
         this.boatRegistry = boatRegistry;
-        boatRegistry.setReferenceHandler(this);
+        this.getBoatRegistry().setReferenceHandler(this);
     }
 
     public void setCustomerRegistry(CustomerRegistry customerRegistry) {

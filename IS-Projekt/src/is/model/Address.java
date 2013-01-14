@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package is.projekt;
+package is.model;
 
 /**
  * Klassen saknar setmetoder. Vill man ändra en address skapar man en ny och

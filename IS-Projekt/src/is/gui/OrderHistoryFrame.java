@@ -2,7 +2,7 @@
 package is.gui;
 
 import is.controller.Controller;
-import is.controller.ListItem;
+import is.model.listitems.ListItem;
 import javax.swing.ListModel;
 
 

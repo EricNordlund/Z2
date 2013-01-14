@@ -1,8 +1,9 @@
-package is.projekt;
+package is.model;
 
-import is.controller.BoatListItem;
-import is.controller.GoodsListItem;
-import is.controller.ListItem;
+import is.model.tools.StringFormatter;
+import is.model.listitems.BoatListItem;
+import is.model.listitems.GoodsListItem;
+import is.model.listitems.ListItem;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

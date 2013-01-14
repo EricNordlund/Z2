@@ -4,10 +4,10 @@
  */
 package is.gui;
 
-import is.controller.BoatListItem;
+import is.model.listitems.BoatListItem;
 import is.controller.Controller;
-import is.controller.GoodsListItem;
-import is.controller.ListItem;
+import is.model.listitems.GoodsListItem;
+import is.model.listitems.ListItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
