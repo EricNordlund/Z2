@@ -43,12 +43,12 @@ public class CustomerRegistry {
     }
 
     public void addCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-  
+
         int customerID = this.getNewCustomerKey();
-        
+
         this.editCustomer(customerID, name, addressStreet,
-            addressPostCode, addressCity, phoneNumber, eMail);
-        
+                addressPostCode, addressCity, phoneNumber, eMail);
+
 
     }
 
@@ -81,7 +81,33 @@ public class CustomerRegistry {
 
         HashMap<Integer, Customer> hm = this.getCustomerList();
 
-        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+            
+            Customer c = (Customer) e.getValue();
+
+            ListItem item = c.getListItem();
+
+            lm.addElement(item);
+
+        }
+
+        return lm;
+
+    }
+
+    public ListModel<ListItem> getListModel(String searchString) {
+
+        searchString = searchString.toLowerCase();
+        
+        HashMap<Integer, Customer> hm = this.getCustomerList();
+
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 
@@ -89,14 +115,29 @@ public class CustomerRegistry {
 
             Map.Entry e = (Map.Entry) it.next();
 
-            int key = (Integer) e.getKey();
+            Customer c = (Customer) e.getValue();
 
-            String displayString = e.getValue().toString();
+            String[] customerData = c.getDataArray();
 
-            ListItem item = new ListItem(key, displayString);
+            boolean hasString = false;
 
-      
-            lm.addElement(item);
+            for (int j = 0; j < customerData.length && hasString == false; j++) {
+                
+                String customerString = customerData[j].toLowerCase();
+                
+                if (customerString.contains(searchString)){
+
+                    hasString = true;
+                }
+            }
+
+
+            if (hasString) {
+                
+                ListItem li = c.getListItem();
+                
+                lm.addElement(li);
+            }
 
         }
 

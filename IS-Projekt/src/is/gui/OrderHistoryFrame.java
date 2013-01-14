@@ -48,7 +48,7 @@ private void addActionListenerToButtons()
         jLabel1 = new javax.swing.JLabel();
         customerOrderHistory = new javax.swing.JPanel();
         customerOrderPane = new javax.swing.JScrollPane();
-        lstOrderHistory = new javax.swing.JList();
+        lstOrderHistory = new javax.swing.JList<ListItem>();
         customerOrderTools = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -136,7 +136,7 @@ private void addActionListenerToButtons()
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList lstOrderHistory;
+    private javax.swing.JList<ListItem> lstOrderHistory;
     // End of variables declaration//GEN-END:variables
 
     void setController(Controller controller) {

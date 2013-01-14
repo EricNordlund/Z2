@@ -23,6 +23,8 @@ public interface ControllerInterface {
     public abstract void removeCustomer(int customerID);
 
     public abstract ListModel<ListItem> getCustomerListModel();
+    
+    public abstract ListModel<ListItem> getCustomerListModel(String searchString);
 
     //Orderhantering
     public abstract int addBuyOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity);

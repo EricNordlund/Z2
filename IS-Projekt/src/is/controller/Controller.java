@@ -88,6 +88,10 @@ public class Controller implements ControllerInterface {
 
         System.out.println("Removing customer " + customerID + ".");
     }
+    
+    public ListModel<ListItem> getCustomerListModel(String searchString) {
+        return this.getCustomerRegistry().getListModel(searchString);
+    }
 
     /**
      * Denna metod returnerar en DefaultListModel som håller värden från den
@@ -329,4 +333,6 @@ public class Controller implements ControllerInterface {
     public boolean inputCheckPrice(String s) {
         return this.inputChecker.checkStringToDouble(s);
     }
+
+
 }

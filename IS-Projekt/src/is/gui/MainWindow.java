@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
@@ -55,6 +56,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         btnNewOrder = new javax.swing.JButton();
         btnRemoveCustomer = new javax.swing.JButton();
         btnOrderHistory = new javax.swing.JButton();
+        pnlSearchCustomer = new javax.swing.JPanel();
+        btnSearchCustomer = new javax.swing.JButton();
+        txtSearchCustomer = new javax.swing.JTextField();
         pnlBoats = new javax.swing.JPanel();
         jScrollPaneBoats = new javax.swing.JScrollPane();
         lstBoats = new javax.swing.JList<ListItem>();
@@ -128,14 +132,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(btnAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRemoveCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnEditCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                     .addComponent(btnOrderHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelCustomerToolsLayout.setVerticalGroup(
             jPanelCustomerToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCustomerToolsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEditCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddCustomer)
@@ -144,8 +148,36 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewOrder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnOrderHistory)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnOrderHistory))
+        );
+
+        pnlSearchCustomer.setBorder(javax.swing.BorderFactory.createTitledBorder("Sök"));
+
+        btnSearchCustomer.setText("Sök kund");
+
+        txtSearchCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchCustomerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlSearchCustomerLayout = new javax.swing.GroupLayout(pnlSearchCustomer);
+        pnlSearchCustomer.setLayout(pnlSearchCustomerLayout);
+        pnlSearchCustomerLayout.setHorizontalGroup(
+            pnlSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSearchCustomerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSearchCustomer)
+                    .addComponent(btnSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlSearchCustomerLayout.setVerticalGroup(
+            pnlSearchCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSearchCustomerLayout.createSequentialGroup()
+                .addComponent(txtSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSearchCustomer))
         );
 
         javax.swing.GroupLayout pnlCustomersLayout = new javax.swing.GroupLayout(pnlCustomers);
@@ -156,7 +188,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addComponent(jScrollPaneCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelCustomerTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelCustomerTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlSearchCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlCustomersLayout.setVerticalGroup(
@@ -166,6 +200,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addGroup(pnlCustomersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPaneCustomers, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(pnlCustomersLayout.createSequentialGroup()
+                        .addComponent(pnlSearchCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelCustomerTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -204,7 +240,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBoatToolsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelBoatToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEditBoat, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnEditBoat, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                     .addComponent(btnAddBoat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRemoveBoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -262,7 +298,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(pnlOrderToolsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlOrderToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnEditOrder, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                     .addComponent(btnRemoveOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -303,7 +339,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(rbtnShowBuyOrders)
                     .addComponent(rbtnShowSellOrders)
                     .addComponent(rbtnShowAllOrders))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         pnlOrderFiltersLayout.setVerticalGroup(
             pnlOrderFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,8 +410,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addContainerGap()
                 .addGroup(pnlGoodsToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRemoveGoods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                    .addComponent(btnEditGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                    .addComponent(btnAddGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                    .addComponent(btnEditGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlGoodsToolsLayout.setVerticalGroup(
@@ -406,7 +442,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGoodsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneGoods)
+                    .addComponent(jScrollPaneGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addGroup(pnlGoodsLayout.createSequentialGroup()
                         .addComponent(pnlGoodsTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 378, Short.MAX_VALUE)))
@@ -488,10 +524,12 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnRemoveBoat.addActionListener(this);
 
         //Customer
+        this.btnSearchCustomer.addActionListener(this);
         this.btnAddCustomer.addActionListener(this);
         this.btnEditCustomer.addActionListener(this);
         this.btnRemoveCustomer.addActionListener(this);
-        //Order i Customer
+        
+        //Order i CustomerFliken
         this.btnNewOrder.addActionListener(this);
         this.btnOrderHistory.addActionListener(this);
 
@@ -541,6 +579,16 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }//If, debugutskrift
 
 
+        if (e.getSource() == this.btnSearchCustomer){
+            
+            String searchString = this.txtSearchCustomer.getText();
+            
+            ListModel<ListItem> lm = this.getController().getCustomerListModel(searchString);
+            
+            this.lstCustomers.setModel(lm);
+            
+        }
+        
         //Kundknapparna
         if (e.getSource() == this.btnAddCustomer) {
             customerFrame.clearTextFields();
@@ -585,14 +633,17 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }//else if
             
             //Öppnar orderhistoriken för en viss kund
-            else if(this.lstCustomers.getSelectedValue() instanceof ListItem && e.getSource() == this.btnOrderHistory && !this.orderFrame.isVisible()) 
+            else if(e.getSource() == this.btnOrderHistory && !this.orderFrame.isVisible()) 
             {
                 System.out.println("Öppnar kund " + customerID);
                 this.orderHistoryFrame.initFrame(customerID);
                 this.orderHistoryFrame.setVisible(true);
             }
+            
+            
+            
 
-        }
+        }//Slut på "något valt i listan" - if
 
 
         //Orderdel (Lägg till order finns i kunddelen)
@@ -733,6 +784,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private void btnEditGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGoodsActionPerformed
 
     }//GEN-LAST:event_btnEditGoodsActionPerformed
+
+    private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchCustomerActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;
     private javax.swing.JButton btnAddCustomer;
@@ -748,6 +804,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton btnRemoveCustomer;
     private javax.swing.JButton btnRemoveGoods;
     private javax.swing.JButton btnRemoveOrder;
+    private javax.swing.JButton btnSearchCustomer;
     private javax.swing.JPanel jPanelBoatTools;
     private javax.swing.JPanel jPanelCustomerTools;
     private javax.swing.JScrollPane jScrollPaneBoats;
@@ -765,9 +822,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel pnlOrderFilters;
     private javax.swing.JPanel pnlOrderTools;
     private javax.swing.JPanel pnlOrders;
+    private javax.swing.JPanel pnlSearchCustomer;
     private javax.swing.JRadioButton rbtnShowAllOrders;
     private javax.swing.JRadioButton rbtnShowBuyOrders;
     private javax.swing.JRadioButton rbtnShowSellOrders;
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
+    private javax.swing.JTextField txtSearchCustomer;
     // End of variables declaration//GEN-END:variables
 }

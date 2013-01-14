@@ -1,6 +1,6 @@
 package is.projekt;
 
-import java.util.ArrayList;
+import is.controller.ListItem;
 import java.util.HashMap;
 
 /**
@@ -102,8 +102,8 @@ public class Customer {
 
     }
 
-    @Override
-    public String toString() {
+
+    public String getDisplayString() {
 
         return getName() + " (" + getMail() + ")";
 
@@ -120,5 +120,13 @@ public class Customer {
             return false;
         }
 
+    }
+
+    ListItem getListItem() {
+        
+        ListItem li = new ListItem(this.getID(), this.getDisplayString());
+        
+        return li;
+        
     }
 }
