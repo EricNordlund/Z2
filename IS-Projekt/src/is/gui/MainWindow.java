@@ -78,6 +78,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         pnlGoodsTools = new javax.swing.JPanel();
         btnAddGoods = new javax.swing.JButton();
         btnEditGoods = new javax.swing.JButton();
+        btnRemoveGoods = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Seghel & Bååth");
@@ -363,6 +364,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }
         });
 
+        btnRemoveGoods.setText("Ta bort vara");
+
         javax.swing.GroupLayout pnlGoodsToolsLayout = new javax.swing.GroupLayout(pnlGoodsTools);
         pnlGoodsTools.setLayout(pnlGoodsToolsLayout);
         pnlGoodsToolsLayout.setHorizontalGroup(
@@ -370,18 +373,21 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(pnlGoodsToolsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlGoodsToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEditGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                    .addComponent(btnAddGoods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRemoveGoods, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnEditGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlGoodsToolsLayout.setVerticalGroup(
             pnlGoodsToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGoodsToolsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
                 .addComponent(btnAddGoods)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEditGoods)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRemoveGoods)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlGoodsLayout = new javax.swing.GroupLayout(pnlGoods);
@@ -400,10 +406,10 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGoodsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlGoodsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneGoods, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneGoods)
                     .addGroup(pnlGoodsLayout.createSequentialGroup()
                         .addComponent(pnlGoodsTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 378, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -492,6 +498,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         //Goods
         this.btnAddGoods.addActionListener(this);
         this.btnEditGoods.addActionListener(this);
+        this.btnRemoveGoods.addActionListener(this);
 
         //Order
         this.btnEditOrder.addActionListener(this);
@@ -680,8 +687,21 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 goodsFrame.editGoodsMode(goodsID);
                 goodsFrame.setVisible(true);
 
-            }
+            
+            } else if (e.getSource() == this.btnRemoveGoods) {
+
+
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av tillbehör?", "Ta bort tillbehör",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+                    getController().removeGoods(goodsID);
+                    this.updateLists();
+                    System.out.println("Tillbehör borttagen.");
         }
+            }
+            }
     }
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
     }//GEN-LAST:event_btnAddCustomerActionPerformed
@@ -726,6 +746,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton btnOrderHistory;
     private javax.swing.JButton btnRemoveBoat;
     private javax.swing.JButton btnRemoveCustomer;
+    private javax.swing.JButton btnRemoveGoods;
     private javax.swing.JButton btnRemoveOrder;
     private javax.swing.JPanel jPanelBoatTools;
     private javax.swing.JPanel jPanelCustomerTools;

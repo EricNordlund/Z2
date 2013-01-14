@@ -535,10 +535,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPaneGoods" pref="521" max="32767" attributes="0"/>
+                          <Component id="jScrollPaneGoods" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="pnlGoodsTools" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="378" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -578,11 +578,12 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnEditGoods" pref="183" max="32767" attributes="0"/>
-                              <Component id="btnAddGoods" alignment="0" max="32767" attributes="0"/>
+                              <Component id="btnRemoveGoods" max="32767" attributes="0"/>
+                              <Component id="btnAddGoods" pref="183" max="32767" attributes="0"/>
+                              <Component id="btnEditGoods" alignment="0" pref="183" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -591,11 +592,13 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Component id="btnAddGoods" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnEditGoods" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnRemoveGoods" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -616,6 +619,11 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditGoodsActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnRemoveGoods">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Ta bort vara"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
