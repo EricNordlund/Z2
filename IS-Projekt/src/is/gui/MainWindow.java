@@ -303,7 +303,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(rbtnShowBuyOrders)
                     .addComponent(rbtnShowSellOrders)
                     .addComponent(rbtnShowAllOrders))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
         pnlOrderFiltersLayout.setVerticalGroup(
             pnlOrderFiltersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +338,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addGroup(pnlOrdersLayout.createSequentialGroup()
                         .addComponent(pnlOrderTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlOrderFilters, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlOrderFilters, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
