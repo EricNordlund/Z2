@@ -21,6 +21,7 @@ public class BoatRegistry implements Serializable {
     private HashMap<Integer, Boat> boatList = new HashMap<>();
     private int boatKeyCount = 0;
     private ReferenceHandler referenceHandler;
+    private ListItem createListItem;
 
     protected Boat getBoat(int boatID) {
 
@@ -80,23 +81,11 @@ public class BoatRegistry implements Serializable {
 
             Map.Entry e = (Map.Entry) it.next();
 
-            int key = (Integer) e.getKey();
-
             Boat b = (Boat) e.getValue();
- 
-            String nameString = b.getDisplayName();
             
-            nameString = StringFormatter.rightPad(nameString, 35);
+            ListItem listItem = b.getSimpleListItem();
 
-            String priceString = b.getPriceString();
-            
-            priceString = StringFormatter.leftPad(priceString, 12);
-
-            String displayString = nameString + " " + priceString;
-
-            ListItem item = new ListItem(key, displayString);
-
-            lm.addElement(item);
+            lm.addElement(listItem);
 
         }
 
@@ -106,4 +95,5 @@ public class BoatRegistry implements Serializable {
     protected void setReferenceHandler(ReferenceHandler aThis) {
         referenceHandler = aThis;
     }
+
 }

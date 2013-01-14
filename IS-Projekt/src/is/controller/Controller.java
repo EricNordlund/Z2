@@ -34,21 +34,28 @@ public class Controller implements ControllerInterface {
     }
 
     //Getters för registren
-    public BoatRegistry getBoatRegistry() {
-        return boatRegistry;
+    private BoatRegistry getBoatRegistry() {
+        return this.boatRegistry;
     }
 
-    public OrderRegistry getOrderRegistry() {
-        return orderRegistry;
+    private OrderRegistry getOrderRegistry() {
+        return this.orderRegistry;
     }
 
-    public CustomerRegistry getCustomerRegistry() {
-        return customerRegistry;
+    private CustomerRegistry getCustomerRegistry() {
+        return this.customerRegistry;
     }
 
-    public GoodsRegistry getGoodsRegistry() {
-        return goodsRegistry;
+    private GoodsRegistry getGoodsRegistry() {
+        return this.goodsRegistry;
     }
+    
+    private InputChecker getInputChecker(){
+        
+        return this.inputChecker;
+    }
+    
+    
     
     
 
@@ -321,17 +328,24 @@ public class Controller implements ControllerInterface {
     //#######################################################################
     @Override
     public boolean inputCheckString(String s) {
-        return this.inputChecker.checkString(s);
+        return this.getInputChecker().checkString(s);
     }
 
     @Override
     public boolean inputCheckDate(String s) {
-        return this.inputChecker.checkDate(s);
+        return this.getInputChecker().checkDate(s);
     }
 
     @Override
     public boolean inputCheckPrice(String s) {
-        return this.inputChecker.checkStringToDouble(s);
+        return this.getInputChecker().checkStringToDouble(s);
+    }
+    
+    @Override
+    public double getDouble(String s){
+        
+        return this.getInputChecker().parseStringToDouble(s);
+        
     }
 
 

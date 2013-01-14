@@ -87,4 +87,6 @@ public interface ControllerInterface {
     public abstract boolean inputCheckDate(String s);
     
     public abstract boolean inputCheckPrice(String s);
+    
+    public abstract double getDouble(String s);
 }

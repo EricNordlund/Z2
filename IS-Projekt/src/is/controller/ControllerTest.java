@@ -28,12 +28,12 @@ public class ControllerTest {
         controller.addBoat("55542342", "Cascade 42", "Lomma", "En stabil segelbåt.", 150000.00);
         controller.addBoat("87686677", "Cascade 36", "Lomma", "En stabil segelbåt.", 510000.00);
         controller.addBoat("46456456", "Cascade 24", "Lomma", "En stabil segelbåt.", 503000.00);
-        controller.addBoat("42342343", "Cascade 27", "Lomma", "En stabil segelbåt.", 12000.00);
-        controller.addBoat("08908909", "Beneteau First 21.7 S", "Lomma", "En stabil segelbåt.", 1220000.00);
+        controller.addBoat("42342343", "Cascade 27", "Lomma", "En stabil segelbåt.", 120000.00);
+        controller.addBoat("08908909", "Beneteau First 21.7 S", "Lomma", "En stabil segelbåt.", 120000.00);
         controller.addBoat("08990800", "Beneteau First 25.7 S", "Lomma", "En stabil segelbåt.", 550000.00);
-        controller.addBoat("23434242", "Beneteau First 27.7 S", "Lomma", "En stabil segelbåt.", 3000.00);
-        controller.addBoat("23423423", "Beneteau First 31.7", "Lomma", "En stabil segelbåt.", 12000.00);
-        controller.addBoat("45345345", "Beneteau First 35", "Lomma", "En stabil segelbåt.", 1250000.00);
+        controller.addBoat("23434242", "Beneteau First 27.7 S", "Lomma", "En stabil segelbåt. Lättseglad. Renoveringobjekt.", 300000.00);
+        controller.addBoat("23423423", "Beneteau First 31.7", "Lomma", "En stabil segelbåt.", 1200000.00);
+        controller.addBoat("45345345", "Beneteau First 35", "Lomma", "En stabil segelbåt.", 125000.00);
         controller.addBoat("57567567", "Beneteau First 35", "Lomma", "En stabil segelbåt.", 550000.00);
         controller.addBoat("42343243", "Beneteau First 35", "Lomma", "En stabil segelbåt.", 510000.00);
         controller.addBoat("08908089", "Columbia 7.6 - PHRF 210", "Lomma", "En stabil segelbåt.", 800000.00);

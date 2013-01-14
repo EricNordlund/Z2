@@ -1,8 +1,11 @@
 package is.projekt;
 
+import is.controller.ListItem;
+import java.text.DecimalFormat;
+
 /**
  * Klassen ansvarar för att lagra information om företagets båtar.
- * 
+ *
  * @author Viktor Voigt
  * @author Anna Thernfrid
  * @author Eric Nordlund
@@ -49,13 +52,11 @@ public class Boat extends Product {
         this.location = location;
     }
 
- 
-
     public String[] getDataArray() {
 
         String[] boatDataArray = new String[6];
 
-       boatDataArray[0] = this.getProductIDString();
+        boatDataArray[0] = this.getProductIDString();
         boatDataArray[1] = this.getRegnr();
         boatDataArray[2] = this.getModel();
         boatDataArray[3] = this.getLocation();
@@ -66,14 +67,40 @@ public class Boat extends Product {
 
 
     }
-    
+
     /**
      * Kombinerar regnr och modellbeteckning för till en String.
-     * 
-     * @return 
+     *
+     * @return
      */
     @Override
     protected String getDisplayName() {
-        return getRegnr() + ", " + getModel();
+
+        String displayName = getRegnr() + ", " + getModel();
+
+        return displayName;
+    }
+
+    /**
+     * Returnerar ett ListItem som bara har ett produktID samt en sträng 
+     * som visas i listor
+     * 
+     */
+    protected ListItem getSimpleListItem() {
+
+        String nameString = this.getDisplayName();
+
+        nameString = StringFormatter.rightPad(nameString, 35);
+
+        String priceString = StringFormatter.formatPriceString(this.getPrice());
+
+        priceString = StringFormatter.leftPad(priceString, 12);
+
+        String displayString = nameString + " " + priceString;
+
+        ListItem listItem = new ListItem(this.getProductID(), displayString);
+
+        return listItem;
+
     }
 }

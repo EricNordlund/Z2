@@ -114,6 +114,9 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
             //TODO: Inputcheck metod
             if (checkInput()) {
+                
+                String priceString = this.txtBoatPrice.getText();
+                double price = this.getController().getDouble(priceString);
 
                 if (newBoat) {
 
@@ -122,7 +125,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                             this.txtBoatModel.getText(),
                             this.txtBoatDestination.getText(),
                             this.txtBoatDescription.getText(),
-                            Double.valueOf(this.txtBoatPrice.getText()));
+                            price);
 
 
                 } else if (!newBoat) {
@@ -131,8 +134,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                             this.txtBoatRegNumber.getText(),
                             this.txtBoatModel.getText(),
                             this.txtBoatDestination.getText(),
-                            this.txtBoatDescription.getText(),
-                            Double.valueOf(this.txtBoatPrice.getText()));
+                            this.txtBoatDescription.getText(),                     
+                            price);
 
                 }
 

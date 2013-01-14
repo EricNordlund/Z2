@@ -90,20 +90,10 @@ public class GoodsRegistry {
             int key = (Integer) e.getKey();
 
             Goods g = (Goods) e.getValue();
+            
+            ListItem listItem = g.getSimpleListItem();
 
-            String nameString = g.getDisplayName();
-
-            nameString = StringFormatter.rightPad(nameString, 35);
-
-            String priceString = g.getPriceString();
-
-            priceString = StringFormatter.leftPad(priceString, 10);
-
-            String displayString = nameString + " " + priceString;
-
-            ListItem item = new ListItem(key, displayString);
-
-            lm.addElement(item);
+            lm.addElement(listItem);
 
         }
 

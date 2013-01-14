@@ -4,6 +4,8 @@
  */
 package is.projekt;
 
+import is.controller.ListItem;
+
 /**
  * En klass som representerar likformiga varor som tillbehör och reservdelar.
  */
@@ -40,5 +42,23 @@ public class Goods extends Product {
     protected String getDisplayName() {
 
         return this.name;
+    }
+
+    protected ListItem getSimpleListItem() {
+        
+            String nameString = this.getDisplayName();
+
+            nameString = StringFormatter.rightPad(nameString, 35);
+            
+            String priceString = StringFormatter.formatPriceString(this.getPrice());
+
+            priceString = StringFormatter.leftPad(priceString, 10);
+
+            String displayString = nameString + " " + priceString;
+
+            ListItem listItem = new ListItem(this.getProductID(), displayString);
+            
+            return listItem;
+        
     }
 }

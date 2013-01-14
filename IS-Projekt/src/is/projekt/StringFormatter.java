@@ -4,6 +4,9 @@
  */
 package is.projekt;
 
+import java.text.DecimalFormat;
+import java.util.Locale;
+
 /**
  * En klass som formaterar strängar så vi slipper ha dubblettkod för de
  * funktionerna överallt.
@@ -55,5 +58,15 @@ public class StringFormatter {
        }
 
        return paddingString; 
+    }
+    
+    public static String formatPriceString(double price){
+        
+        DecimalFormat decimalFormat = new DecimalFormat("##.00");
+        
+        String priceString = decimalFormat.format(price);
+        
+        return priceString;
+        
     }
 }

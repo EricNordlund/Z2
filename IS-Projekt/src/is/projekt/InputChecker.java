@@ -1,7 +1,11 @@
 package is.projekt;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Locale;
+
 /**
- * 
+ *
  * @author Eric Nordlund
  * @author Viktor Voigt
  */
@@ -34,11 +38,11 @@ public class InputChecker {
     public boolean checkDate(String s) {
 
         int date;
-        
+
         if (this.checkStringToInteger(s)) {
 
             date = Integer.valueOf(s);
-            
+
         } else {
 
             return false;
@@ -46,7 +50,7 @@ public class InputChecker {
         }
 
         if (date < 100000 || date > 999999) {
-            
+
             return false;
         }
 
@@ -67,19 +71,46 @@ public class InputChecker {
 
         return true;
     }
-    
-    public boolean checkStringToDouble(String s){
-        
-        try {
-            double d = Double.valueOf(s);
 
-        } catch (NumberFormatException exception) {
+    public boolean checkStringToDouble(String s) {
+
+        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+
+        try {
+
+            Number number = format.parse(s);
+
+        } catch (ParseException ex) {
 
             return false;
 
         }
 
         return true;
+
+    }
+
+    public double parseStringToDouble(String s) {
+
+        NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+
+        Number number;
+        
+        double d = 0;
+        
+        try {
+            
+         number = format.parse(s);
+         
+         d = number.doubleValue();
+        
+        } catch (ParseException ex){
+            
+            System.out.println("Felaktig konvertering av String till double.");
+            
+        }
+   
+        return d;
         
     }
 }
