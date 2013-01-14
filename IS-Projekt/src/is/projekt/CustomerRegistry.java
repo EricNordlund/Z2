@@ -103,9 +103,7 @@ public class CustomerRegistry {
 
     public ListModel<ListItem> getListModel(String searchString) {
 
-        searchString = searchString.toLowerCase();
-        
-        HashMap<Integer, Customer> hm = this.getCustomerList();
+       HashMap<Integer, Customer> hm = this.getCustomerList();
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
@@ -119,20 +117,9 @@ public class CustomerRegistry {
 
             String[] customerData = c.getDataArray();
 
-            boolean hasString = false;
+            boolean found = ArraySearcher.searchStringArray(customerData, searchString);
 
-            for (int j = 0; j < customerData.length && hasString == false; j++) {
-                
-                String customerString = customerData[j].toLowerCase();
-                
-                if (customerString.contains(searchString)){
-
-                    hasString = true;
-                }
-            }
-
-
-            if (hasString) {
+            if (found) {
                 
                 ListItem li = c.getListItem();
                 
