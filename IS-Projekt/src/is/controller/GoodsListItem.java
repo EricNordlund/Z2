@@ -79,7 +79,7 @@ public class GoodsListItem extends ListItem {
 
         DecimalFormat df = new DecimalFormat("#.00");
 
-        String priceString = df.format(getPrice());
+        String priceString = df.format(getTotalPrice());
 
         return priceString;
 
