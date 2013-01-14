@@ -1,9 +1,8 @@
 package is.model;
 
-import is.model.tools.StringFormatter;
 import is.model.listitems.BoatListItem;
 import is.model.listitems.ListItem;
-import java.text.DecimalFormat;
+import is.model.tools.StringFormatter;
 
 /**
  * Klassen ansvarar för att lagra information om företagets båtar.

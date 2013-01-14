@@ -1,13 +1,13 @@
 package is.controller;
 
-import is.model.listitems.GoodsListItem;
-import is.model.listitems.ListItem;
-import is.model.listitems.BoatListItem;
 import is.model.BoatRegistry;
 import is.model.CustomerRegistry;
 import is.model.GoodsRegistry;
-import is.model.tools.InputChecker;
 import is.model.OrderRegistry;
+import is.model.listitems.BoatListItem;
+import is.model.listitems.GoodsListItem;
+import is.model.listitems.ListItem;
+import is.model.tools.InputChecker;
 import javax.swing.ListModel;
 
 /**

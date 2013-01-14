@@ -1,7 +1,7 @@
 package is.model;
 
-import is.model.tools.StringFormatter;
 import is.model.listitems.ListItem;
+import is.model.tools.StringFormatter;
 import java.util.HashMap;
 
 /**
