@@ -4,6 +4,7 @@
  */
 package is.projekt;
 
+import is.controller.BoatListItem;
 import is.controller.ListItem;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -94,6 +95,16 @@ public class BoatRegistry implements Serializable {
 
     protected void setReferenceHandler(ReferenceHandler aThis) {
         referenceHandler = aThis;
+    }
+
+    public BoatListItem getBoatListItem(int boatID) {
+        
+        Boat b = this.getBoat(boatID);
+        
+        BoatListItem bli = b.getBoatListItem();
+        
+        return bli;
+        
     }
 
 }

@@ -1,5 +1,6 @@
 package is.projekt;
 
+import is.controller.BoatListItem;
 import is.controller.ListItem;
 import java.text.DecimalFormat;
 
@@ -102,5 +103,19 @@ public class Boat extends Product {
 
         return listItem;
 
+    }
+
+    protected BoatListItem getBoatListItem(){
+
+        String displayName = this.getDisplayName();
+
+        double price = this.getPrice();
+        
+        int boatID = this.getProductID();
+
+        //Skapar ett BoatListItem
+        BoatListItem bli = new BoatListItem(boatID, displayName, price);
+        
+        return bli;
     }
 }

@@ -62,7 +62,7 @@ public class StringFormatter {
     
     public static String formatPriceString(double price){
         
-        DecimalFormat decimalFormat = new DecimalFormat("##.00");
+        DecimalFormat decimalFormat = new DecimalFormat("00.00");
         
         String priceString = decimalFormat.format(price);
         

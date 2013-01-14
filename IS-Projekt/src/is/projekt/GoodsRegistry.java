@@ -4,6 +4,7 @@
  */
 package is.projekt;
 
+import is.controller.GoodsListItem;
 import is.controller.ListItem;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -75,7 +76,7 @@ public class GoodsRegistry {
         this.referenceHandler = aThis;
     }
 
-    public ListModel<ListItem> getGoodsListModel() {
+    public ListModel<ListItem> getSimpleGoodsListModel() {
         
         HashMap<Integer, Goods> hm = this.getGoodsList();
 
@@ -99,4 +100,15 @@ public class GoodsRegistry {
 
         return lm;
     }
+
+    public GoodsListItem getGoodsListItem(int goodsID) {
+        
+        Goods g = this.getGoods(goodsKeyCount);
+        
+        GoodsListItem gli = g.getGoodsListItem();
+                
+        return gli;
+        
+    }
+
 }

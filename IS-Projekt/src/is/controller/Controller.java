@@ -257,18 +257,7 @@ public class Controller implements ControllerInterface {
     @Override
     public BoatListItem getBoatListItem(int boatID) {
 
-
-        //Hämtar nödvändig data
-        String[] boatDataArray = this.getBoatData(boatID);
-
-        String displayName = boatDataArray[1] + " " + boatDataArray[2];
-
-        String priceString = boatDataArray[5];
-
-        double price = Double.valueOf(priceString);
-
-        //Skapar ett BoatListItem
-        BoatListItem bli = new BoatListItem(boatID, displayName, price);
+        BoatListItem bli = this.getBoatRegistry().getBoatListItem(boatID);
 
         return bli;
 
@@ -296,24 +285,15 @@ public class Controller implements ControllerInterface {
     @Override
     public ListModel<ListItem> getGoodsListModel() {
 
-        return this.getGoodsRegistry().getGoodsListModel();
+        return this.getGoodsRegistry().getSimpleGoodsListModel();
     }
 
     @Override
     public GoodsListItem getGoodsListItem(int goodsID) {
-
-        //Hämtar nödvändig data
-        String[] goodsDataArray = getGoodsRegistry().getGoodsData(goodsID);
-
-        String displayName = goodsDataArray[0];
-
-        double price = Double.valueOf(goodsDataArray[1]);
-
-        //Skapar ett GoodsListItem
-        GoodsListItem gli = new GoodsListItem(goodsID, displayName, price, 1);
+        
+        GoodsListItem gli = this.getGoodsRegistry().getGoodsListItem(goodsID);
 
         return gli;
-
     }
 
     @Override

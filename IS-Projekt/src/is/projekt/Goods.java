@@ -4,6 +4,7 @@
  */
 package is.projekt;
 
+import is.controller.GoodsListItem;
 import is.controller.ListItem;
 
 /**
@@ -59,6 +60,22 @@ public class Goods extends Product {
             ListItem listItem = new ListItem(this.getProductID(), displayString);
             
             return listItem;
+        
+    }
+
+    GoodsListItem getGoodsListItem() {
+        
+        int goodsID = this.getProductID();
+        
+        String displayName = this.getDisplayName();
+        
+        double price = this.getPrice();
+
+        //Skapar ett GoodsListItem
+        GoodsListItem gli = new GoodsListItem(goodsID, displayName, price, 1);
+        
+        return gli;
+
         
     }
 }
