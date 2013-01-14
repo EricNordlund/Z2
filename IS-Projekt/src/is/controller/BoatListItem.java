@@ -40,7 +40,7 @@ public class BoatListItem extends ListItem {
 
         String padding = "";
 
-        while (name.length() + padding.length() < 30) {
+        while (name.length() + padding.length() < 35) {
 
             padding = padding.concat(" ");
         }

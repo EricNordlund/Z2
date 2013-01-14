@@ -103,7 +103,7 @@ public class GoodsRegistry {
 
     public GoodsListItem getGoodsListItem(int goodsID) {
         
-        Goods g = this.getGoods(goodsKeyCount);
+        Goods g = this.getGoods(goodsID);
         
         GoodsListItem gli = g.getGoodsListItem();
                 

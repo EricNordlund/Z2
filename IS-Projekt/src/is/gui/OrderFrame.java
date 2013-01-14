@@ -335,7 +335,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     }
     
-     @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
 
         //Stänger ner rutan
@@ -393,6 +393,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
 
                 int productID = selectedProduct.getID();
+                
+                System.out.println("Editing " + productID);
 
                 if (boatMode) {
 
