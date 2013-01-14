@@ -1,11 +1,11 @@
 package is.controller;
 
-import is.gui.MainWindow;
-import is.projekt.BoatRegistry;
-import is.projekt.CustomerRegistry;
-import is.projekt.GoodsRegistry;
-import is.projekt.OrderRegistry;
-import is.projekt.ReferenceHandler;
+import is.view.MainWindow;
+import is.model.BoatRegistry;
+import is.model.CustomerRegistry;
+import is.model.GoodsRegistry;
+import is.model.OrderRegistry;
+import is.model.ReferenceHandler;
 
 public class Main {
 
