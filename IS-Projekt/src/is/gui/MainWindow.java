@@ -9,7 +9,6 @@ import is.controller.ListItem;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -452,10 +451,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     public void setController(Controller controller) {
 
         this.controller = controller;
-        customerFrame.setController(controller);
-        boatFrame.setController(controller);
-        orderFrame.setController(controller);
-        goodsFrame.setController(controller);
+        this.customerFrame.setController(controller);
+        this.boatFrame.setController(controller);
+        this.orderFrame.setController(controller);
+        this.orderHistoryFrame.setController(controller);
+        this.goodsFrame.setController(controller);
 
     }
 

@@ -1,10 +1,9 @@
 
 package is.gui;
 
-import is.controller.ListItem;
-import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
 import is.controller.Controller;
+import is.controller.ListItem;
+import javax.swing.ListModel;
 
 
 /**
@@ -32,8 +31,8 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
     }
     // TODO: Få funktionen att hämta korrekt list-model. 
     public void initFrame(int customerID) {
-        //ListModel<ListItem> lm = controller.getOrderListByCustomer(1); 
-        //this.lstOrderHistory.setModel(lm);
+        ListModel<ListItem> lm = controller.getOrderListByCustomer(customerID); 
+        this.lstOrderHistory.setModel(lm);
     }
     
 private void addActionListenerToButtons() 
@@ -139,4 +138,8 @@ private void addActionListenerToButtons()
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList lstOrderHistory;
     // End of variables declaration//GEN-END:variables
+
+    void setController(Controller controller) {
+        this.controller = controller;
+    }
 }

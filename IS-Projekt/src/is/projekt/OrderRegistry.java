@@ -166,11 +166,33 @@ public class OrderRegistry {
         return lm;
     }
     
-    public ListModel<ListItem> getOrderHistory(int orderID) {
+    public ListModel<ListItem> getOrderListByCustomer(int customerID) {
 
-        ListModel<ListItem> lm = this.getOrder(orderID).getOrderRowListModel();
+        HashMap<Integer, Order> hm = this.getOrderList();
+
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
+
+        Iterator it = hm.entrySet().iterator();
+
+        while (it.hasNext()) {
+
+            Map.Entry e = (Map.Entry) it.next();
+            
+            Order o = (Order) e.getValue();
+
+            if (o.getCustomerID() == customerID) {
+
+                int orderID = o.getOrderID();
+
+                ListItem item = this.createListItem(orderID);
+
+                lm.addElement(item);
+            }
+
+        }
 
         return lm;
+
     }
 
     public boolean isBuyOrder(int orderID) {

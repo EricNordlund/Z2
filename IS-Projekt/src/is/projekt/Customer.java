@@ -93,7 +93,7 @@ public class Customer {
         dataArray[0] = this.getName();
         dataArray[1] = this.getPhone();
         dataArray[2] = this.getMail();
-        
+
         dataArray[3] = this.getAddress().getStreetName();
         dataArray[4] = this.getAddress().getPostCode();
         dataArray[5] = this.getAddress().getCity();
@@ -107,6 +107,18 @@ public class Customer {
 
         return getName() + " (" + getMail() + ")";
 
+
+    }
+
+    public boolean hasOrders() {
+
+        if (this.getOrderList().size() > 0) {
+
+            return true;
+        } else {
+
+            return false;
+        }
 
     }
 }
