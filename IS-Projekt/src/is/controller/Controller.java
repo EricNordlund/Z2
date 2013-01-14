@@ -154,6 +154,11 @@ public class Controller implements ControllerInterface {
     public ListModel<ListItem> getSellOrderListModel() {
         return this.getOrderRegistry().getSellOrderListModel();
     }
+    
+    @Override
+    public ListModel<ListItem> getOrderListByCustomer(int customerID) {
+        return this.getOrderRegistry().getOrderHistory(customerID);
+    }
 
     @Override
     public String[] getOrderData(int orderID) {

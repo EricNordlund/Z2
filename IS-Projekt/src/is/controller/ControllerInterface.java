@@ -40,6 +40,8 @@ public interface ControllerInterface {
     public abstract ListModel<ListItem> getSellOrderListModel();
 
     public abstract ListModel<ListItem> getOrderRowListModel(int orderID);
+    
+    public abstract ListModel<ListItem> getOrderListByCustomer(int CustomerID);
 
     public abstract GoodsListItem getGoodsListItem(int orderID);
 

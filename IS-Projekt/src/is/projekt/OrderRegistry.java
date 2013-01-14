@@ -165,6 +165,13 @@ public class OrderRegistry {
 
         return lm;
     }
+    
+    public ListModel<ListItem> getOrderHistory(int orderID) {
+
+        ListModel<ListItem> lm = this.getOrder(orderID).getOrderRowListModel();
+
+        return lm;
+    }
 
     public boolean isBuyOrder(int orderID) {
         Order o;

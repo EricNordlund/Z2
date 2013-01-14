@@ -25,6 +25,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     CustomerFrame customerFrame;
     GoodsFrame goodsFrame;
     OrderFrame orderFrame;
+    OrderHistoryFrame orderHistoryFrame;
 
     public MainWindow() {
 
@@ -54,6 +55,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         btnEditCustomer = new javax.swing.JButton();
         btnNewOrder = new javax.swing.JButton();
         btnRemoveCustomer = new javax.swing.JButton();
+        btnOrderHistory = new javax.swing.JButton();
         pnlBoats = new javax.swing.JPanel();
         jScrollPaneBoats = new javax.swing.JScrollPane();
         lstBoats = new javax.swing.JList<ListItem>();
@@ -114,6 +116,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         btnRemoveCustomer.setText("Ta bort kund");
         btnRemoveCustomer.setName("Ta bort kund"); // NOI18N
 
+        btnOrderHistory.setText("Orderhistorik");
+
         javax.swing.GroupLayout jPanelCustomerToolsLayout = new javax.swing.GroupLayout(jPanelCustomerTools);
         jPanelCustomerTools.setLayout(jPanelCustomerToolsLayout);
         jPanelCustomerToolsLayout.setHorizontalGroup(
@@ -124,7 +128,8 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                     .addComponent(btnAddCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNewOrder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRemoveCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEditCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                    .addComponent(btnEditCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(btnOrderHistory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelCustomerToolsLayout.setVerticalGroup(
@@ -136,9 +141,11 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 .addComponent(btnAddCustomer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRemoveCustomer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewOrder)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnOrderHistory)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlCustomersLayout = new javax.swing.GroupLayout(pnlCustomers);
@@ -438,6 +445,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         boatFrame = new BoatFrame(this);
         orderFrame = new OrderFrame(this);
         goodsFrame = new GoodsFrame(this);
+        orderHistoryFrame = new OrderHistoryFrame(this);
 
     }
 
@@ -479,6 +487,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.btnRemoveCustomer.addActionListener(this);
         //Order i Customer
         this.btnNewOrder.addActionListener(this);
+        this.btnOrderHistory.addActionListener(this);
 
         //Goods
         this.btnAddGoods.addActionListener(this);
@@ -525,7 +534,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         }//If, debugutskrift
 
 
-        //Kunder
+        //Kundknapparna
         if (e.getSource() == this.btnAddCustomer) {
             customerFrame.clearTextFields();
             customerFrame.setNewCustomer(true);
@@ -567,6 +576,14 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
                 orderFrame.newOrderMode(customerID);
 
             }//else if
+            
+            //Öppnar orderhistoriken för en viss kund
+            else if(this.lstCustomers.getSelectedValue() instanceof ListItem && e.getSource() == this.btnOrderHistory && !this.orderFrame.isVisible()) 
+            {
+                System.out.println("Öppnar kund " + customerID);
+                this.orderHistoryFrame.initFrame(customerID);
+                this.orderHistoryFrame.setVisible(true);
+            }
 
         }
 
@@ -706,6 +723,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton btnEditOrder;
     private javax.swing.ButtonGroup btnGroupOrderType;
     private javax.swing.JButton btnNewOrder;
+    private javax.swing.JButton btnOrderHistory;
     private javax.swing.JButton btnRemoveBoat;
     private javax.swing.JButton btnRemoveCustomer;
     private javax.swing.JButton btnRemoveOrder;

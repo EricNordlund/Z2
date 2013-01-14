@@ -137,6 +137,7 @@
                               <Component id="btnNewOrder" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnRemoveCustomer" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnEditCustomer" alignment="0" pref="183" max="32767" attributes="0"/>
+                              <Component id="btnOrderHistory" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -151,9 +152,11 @@
                           <Component id="btnAddCustomer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnRemoveCustomer" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="btnNewOrder" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnOrderHistory" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -187,6 +190,11 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ta bort kund"/>
                     <Property name="name" type="java.lang.String" value="Ta bort kund" noResource="true"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="btnOrderHistory">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Orderhistorik"/>
                   </Properties>
                 </Component>
               </SubComponents>
