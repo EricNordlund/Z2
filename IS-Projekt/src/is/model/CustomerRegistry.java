@@ -5,6 +5,7 @@ import is.model.tools.ArraySearcher;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
@@ -79,13 +80,13 @@ public class CustomerRegistry {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Customer>> it = hm.entrySet().iterator();
 
         while (it.hasNext()) {
 
-            Map.Entry e = (Map.Entry) it.next();
+            Map.Entry<Integer, Customer> e = it.next();
 
-            Customer c = (Customer) e.getValue();
+            Customer c = e.getValue();
 
             ListItem item = c.getListItem();
 
@@ -103,13 +104,13 @@ public class CustomerRegistry {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Customer>> it = hm.entrySet().iterator();
 
         while (it.hasNext()) {
 
-            Map.Entry e = (Map.Entry) it.next();
+            Map.Entry<Integer, Customer> e = it.next();
 
-            Customer c = (Customer) e.getValue();
+            Customer c = e.getValue();
 
             String[] customerData = c.getDataArray();
 

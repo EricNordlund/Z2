@@ -5,6 +5,7 @@ import is.model.listitems.ListItem;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
@@ -78,15 +79,13 @@ public class GoodsRegistry {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Goods>> it = hm.entrySet().iterator();
 
         while (it.hasNext()) {
 
-            Map.Entry e = (Map.Entry) it.next();
+            Map.Entry<Integer, Goods> e = it.next();
 
-            int key = (Integer) e.getKey();
-
-            Goods g = (Goods) e.getValue();
+            Goods g = e.getValue();
 
             ListItem listItem = g.getSimpleListItem();
 

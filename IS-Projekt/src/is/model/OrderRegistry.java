@@ -8,6 +8,7 @@ import is.model.listitems.ListItem;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 
@@ -28,7 +29,15 @@ public class OrderRegistry {
     }
 
     private HashMap<Integer, Order> getOrderList() {
-        return orderList;
+        
+        return this.orderList;
+        
+    }
+    
+    private Iterator<Entry<Integer, Order>> getOrderListIterator(){
+        
+        return this.orderList.entrySet().iterator();
+        
     }
 
     private int getNewOrderKey() {
@@ -116,19 +125,17 @@ public class OrderRegistry {
 
     public ListModel<ListItem> getOrderListModel() {
 
-        HashMap<Integer, Order> hm = this.getOrderList();
-
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Order>> it = this.getOrderListIterator();
 
         while (it.hasNext()) {
 
-            Map.Entry e = (Map.Entry) it.next();
+            Map.Entry<Integer, Order> e = it.next();
 
-            int key = (Integer) e.getKey();
+            int idNumber = e.getKey();
 
-            ListItem item = this.createListItem(key);
+            ListItem item = this.createListItem(idNumber);
 
             lm.addElement(item);
 
@@ -172,13 +179,13 @@ public class OrderRegistry {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Order>> it = hm.entrySet().iterator();
 
         while (it.hasNext()) {
 
-            Map.Entry e = (Map.Entry) it.next();
+            Map.Entry<Integer, Order> e = it.next();
 
-            Order o = (Order) e.getValue();
+            Order o = e.getValue();
 
             if (o.getCustomerID() == customerID) {
 
@@ -213,15 +220,15 @@ public class OrderRegistry {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Order>> it = hm.entrySet().iterator();
 
         while (it.hasNext()) {
 
-            Map.Entry e = (Map.Entry) it.next();
+            Map.Entry<Integer, Order> e = it.next();
 
             if (e.getValue() instanceof BuyOrder) {
 
-                int key = (Integer) e.getKey();
+                int key = e.getKey();
 
                 ListItem item = this.createListItem(key);
 
@@ -238,15 +245,15 @@ public class OrderRegistry {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Order>> it = hm.entrySet().iterator();
 
         while (it.hasNext()) {
 
-            Map.Entry e = (Map.Entry) it.next();
+            Map.Entry<Integer, Order> e = it.next();
 
             if (e.getValue() instanceof SellOrder) {
 
-                int key = (Integer) e.getKey();
+                int key = e.getKey();
 
                 ListItem item = this.createListItem(key);
 
