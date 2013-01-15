@@ -50,6 +50,8 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     private void addActionListenerToButtons() {
         this.btnSaveBoat.addActionListener(this);
         this.btnExitBoat.addActionListener(this);
+        
+        this.btnInputConfirm.addActionListener(this);
     }
 
     protected void clearTextFields() {
@@ -112,7 +114,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
         if (e.getSource() == this.btnSaveBoat) {
 
-            //TODO: Inputcheck metod
             if (checkInput()) {
                 
                 String priceString = this.txtBoatPrice.getText();
@@ -156,6 +157,11 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
             this.setVisible(false);
 
         }//if e.getSource() == this.btnCancel
+        
+        if (e.getSource() == this.btnInputConfirm){
+            
+            this.inputConfirm.setVisible(false);
+        }
 
     }
 
@@ -330,9 +336,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_txtBoatPriceActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
-        // TODO LÖSA DETTA! (OM VI HINNER!)
-
-        inputConfirm.setVisible(false);
+ 
     }//GEN-LAST:event_btnInputConfirmActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExitBoat;

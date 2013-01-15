@@ -788,7 +788,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_btnEditGoodsActionPerformed
 
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
