@@ -175,11 +175,9 @@ public class OrderRegistry {
 
     public ListModel<ListItem> getOrderListByCustomer(int customerID) {
 
-        HashMap<Integer, Order> hm = this.getOrderList();
-
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator<Entry<Integer, Order>> it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Order>> it = this.getOrderListIterator();
 
         while (it.hasNext()) {
 
@@ -216,11 +214,10 @@ public class OrderRegistry {
     }
 
     public ListModel<ListItem> getBuyOrderListModel() {
-        HashMap<Integer, Order> hm = this.getOrderList();
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator<Entry<Integer, Order>> it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Order>> it = this.getOrderListIterator();
 
         while (it.hasNext()) {
 
@@ -241,11 +238,10 @@ public class OrderRegistry {
     }
 
     public ListModel<ListItem> getSellOrderListModel() {
-        HashMap<Integer, Order> hm = this.getOrderList();
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator<Entry<Integer, Order>> it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Order>> it = this.getOrderListIterator();
 
         while (it.hasNext()) {
 

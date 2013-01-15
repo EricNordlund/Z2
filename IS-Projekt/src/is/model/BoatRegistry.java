@@ -30,6 +30,12 @@ public class BoatRegistry {
         return boatList;
     }
 
+    private Iterator<Entry<Integer, Boat>> getBoatListIterator() {
+
+        return this.boatList.entrySet().iterator();
+
+    }
+
     private int getNewBoatKey() {
         boatKeyCount++;
         return boatKeyCount;
@@ -68,11 +74,9 @@ public class BoatRegistry {
      */
     public ListModel<ListItem> getListModel() {
 
-        HashMap<Integer, Boat> hm = this.getBoatList();
-
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator<Entry<Integer, Boat>> it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Boat>> it = this.getBoatListIterator();
 
         while (it.hasNext()) {
 

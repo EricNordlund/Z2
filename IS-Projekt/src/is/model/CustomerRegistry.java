@@ -28,7 +28,14 @@ public class CustomerRegistry {
     }
 
     private HashMap<Integer, Customer> getCustomerList() {
+        
         return customerList;
+        
+    }
+
+    private Iterator<Entry<Integer, Customer>> getCustomerListIterator() {
+
+        return this.customerList.entrySet().iterator();
     }
 
     /*
@@ -100,11 +107,9 @@ public class CustomerRegistry {
 
     public ListModel<ListItem> getListModel(String searchString) {
 
-        HashMap<Integer, Customer> hm = this.getCustomerList();
-
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator<Entry<Integer, Customer>> it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Customer>> it = this.getCustomerListIterator();
 
         while (it.hasNext()) {
 

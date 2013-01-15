@@ -21,14 +21,22 @@ public class GoodsRegistry {
     private int goodsKeyCount = 0;
     private ReferenceHandler referenceHandler;
 
-    private HashMap<Integer, Goods> getGoodsList() {
-        return goodsList;
-    }
-
     private int getNewGoodsKey() {
         goodsKeyCount++;
         return goodsKeyCount;
     }
+    
+    private HashMap<Integer, Goods> getGoodsList() {
+        return goodsList;
+    }
+
+    private Iterator<Entry<Integer, Goods>> getGoodsListIterator() {
+
+        return this.goodsList.entrySet().iterator();
+
+    }
+
+
 
     protected Goods getGoods(int goodsID) {
 
@@ -75,11 +83,9 @@ public class GoodsRegistry {
 
     public ListModel<ListItem> getSimpleGoodsListModel() {
 
-        HashMap<Integer, Goods> hm = this.getGoodsList();
-
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator<Entry<Integer, Goods>> it = hm.entrySet().iterator();
+        Iterator<Entry<Integer, Goods>> it = this.getGoodsListIterator();
 
         while (it.hasNext()) {
 
