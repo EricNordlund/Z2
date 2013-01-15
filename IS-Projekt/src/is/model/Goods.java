@@ -24,7 +24,7 @@ public class Goods extends Product {
 
     }
 
-    public String[] getDataArray() {
+    protected String[] getDataArray() {
 
         String[] a = new String[3];
 

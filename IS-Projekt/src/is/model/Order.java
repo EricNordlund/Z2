@@ -21,7 +21,7 @@ public abstract class Order {
     private int orderID;
     private int billingDate;
     private Address billingAddress;
-    private List<OrderRow> orderRows = new ArrayList<>();
+    private List<OrderRow> orderRows = new ArrayList<>(10);
     private Customer customer;
 
     protected Order(int orderID, int billingDate, Address billingAddress, Customer customer) {
@@ -50,20 +50,20 @@ public abstract class Order {
 
     }
 
-    public Address getBillingAddress() {
+    protected Address getBillingAddress() {
         return billingAddress;
     }
 
     //Setsetset
-    public void setBillingAddress(Address billingAddress) {
+    protected void setBillingAddress(Address billingAddress) {
         this.billingAddress = billingAddress;
     }
 
-    public List<OrderRow> getOrderRows() {
+    protected List<OrderRow> getOrderRows() {
         return orderRows;
     }
 
-    public void setOrderRows(List<OrderRow> orderRows) {
+    protected void setOrderRows(List<OrderRow> orderRows) {
         this.orderRows = orderRows;
     }
 
@@ -71,15 +71,15 @@ public abstract class Order {
         return this.getCustomer().getID();
     }
 
-    public void setBillingDate(int billingDate) {
+    protected void setBillingDate(int billingDate) {
         this.billingDate = billingDate;
     }
 
-    public int getBillingDate() {
+    protected int getBillingDate() {
         return billingDate;
     }
 
-    public String[] getDataArray() {
+    protected String[] getDataArray() {
 
         String[] dataArray = new String[5];
 
@@ -105,17 +105,10 @@ public abstract class Order {
 
         this.getOrderRows().add(or);
 
-        System.out.println("Sparar OrderRow för " + product.toString());
-
     }
 
     protected int getOrderID() {
         return orderID;
-    }
-
-    @Override
-    public String toString() {
-        return "Order: " + orderID + " (Kund: " + this.getCustomer().getID() + ")";
     }
 
     protected void clearOrderRows() {
@@ -131,11 +124,11 @@ public abstract class Order {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
-        Iterator it = rowList.iterator();
+        Iterator<OrderRow> it = rowList.iterator();
 
         while (it.hasNext()) {
 
-            OrderRow orderRow = (OrderRow) it.next();
+            OrderRow orderRow = it.next();
             ListItem item;
 
             double price = orderRow.getPrice();

@@ -37,11 +37,11 @@ public class Customer {
         return orderList;
     }
 
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
-    public Address getAddress() {
+    protected Address getAddress() {
         return address;
     }
 
@@ -51,45 +51,45 @@ public class Customer {
 
     }
 
-    public String getPhone() {
+    protected String getPhone() {
         return phone;
     }
 
-    public String getMail() {
+    protected String getMail() {
         return mail;
     }
 
     //Setters
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public void setAddress(Address address) {
+    protected void setAddress(Address address) {
         this.address = address;
     }
 
-    public void setPhone(String phone) {
+    protected void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public void setMail(String mail) {
+    protected void setMail(String mail) {
         this.mail = mail;
     }
 
-    public void addOrder(Order order) {
+    protected void addOrder(Order order) {
         int orderID = order.getOrderID();
 
         this.getOrderList().put(orderID, order);
     }
 
-    public void removeOrder(Order order) {
+    protected void removeOrder(Order order) {
 
         int orderID = order.getOrderID();
 
         this.getOrderList().remove(orderID);
     }
 
-    public String[] getDataArray() {
+    protected String[] getDataArray() {
 
         String[] dataArray = new String[6];
 
@@ -105,7 +105,7 @@ public class Customer {
 
     }
 
-    public String getDisplayString() {
+    protected String getDisplayString() {
 
         String nameString = StringFormatter.rightPad(this.getName(), 25);
 
@@ -116,7 +116,7 @@ public class Customer {
 
     }
 
-    public boolean hasOrders() {
+    protected boolean hasOrders() {
 
         if (this.getOrderList().size() > 0) {
 
@@ -128,7 +128,7 @@ public class Customer {
 
     }
 
-    ListItem getListItem() {
+    protected ListItem getListItem() {
 
         ListItem li = new ListItem(this.getID(), this.getDisplayString());
 

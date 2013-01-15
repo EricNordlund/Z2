@@ -29,31 +29,31 @@ public class Boat extends Product {
 
     }
 
-    public String getRegnr() {
+    private String getRegnr() {
         return regNr;
     }
 
-    public void setRegnr(String regnr) {
+    private void setRegnr(String regnr) {
         this.regNr = regnr;
     }
 
-    public String getModel() {
+    private String getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    private void setModel(String model) {
         this.model = model;
     }
 
-    public String getLocation() {
+    private String getLocation() {
         return this.location;
     }
 
-    public void setLocation(String location) {
+    private void setLocation(String location) {
         this.location = location;
     }
 
-    public String[] getDataArray() {
+    protected String[] getDataArray() {
 
         String[] boatDataArray = new String[6];
 

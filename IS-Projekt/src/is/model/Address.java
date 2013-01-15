@@ -21,15 +21,15 @@ public class Address {
         this.city = city;
     }
 
-    public String getStreetName() {
+    protected String getStreetName() {
         return this.street;
     }
 
-    public String getPostCode() {
+    protected String getPostCode() {
         return this.postCode;
     }
 
-    public String getCity() {
+    protected String getCity() {
         return this.city;
     }
 }

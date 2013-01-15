@@ -24,7 +24,7 @@ public class OrderRegistry {
     private int orderKeyCount = 0;
     private ReferenceHandler referenceHandler;
 
-    public ReferenceHandler getReferenceHandler() {
+    private ReferenceHandler getReferenceHandler() {
         return referenceHandler;
     }
 

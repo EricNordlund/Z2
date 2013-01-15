@@ -19,15 +19,15 @@ public class OrderRow {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    protected double getPrice() {
         return price;
     }
 
-    public int getQuantity() {
+    protected int getQuantity() {
         return quantity;
     }
 
-    public Product getProduct() {
+    protected Product getProduct() {
         return product;
     }
 
