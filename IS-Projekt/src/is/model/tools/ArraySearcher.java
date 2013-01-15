@@ -6,13 +6,19 @@ package is.model.tools;
 
 /**
  *
- * @author Viktor
+ * @author Viktor Voigt
  */
 public class ArraySearcher {
+    
+     /**
+     * Privat konstruktor förhindrar instanser av misstag.
+     */
+    private ArraySearcher() {
+    }
 
-    public static boolean searchStringArray(String[] array, String searchString) {
+    public static boolean searchStringArray(String[] array, String s) {
 
-        searchString = searchString.toLowerCase();
+        String searchString = s.toLowerCase();
 
         for (int j = 0; j < array.length; j++) {
 
@@ -29,4 +35,6 @@ public class ArraySearcher {
 
 
     }
+
+
 }

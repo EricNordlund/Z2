@@ -4,7 +4,6 @@
  */
 package is.model.listitems;
 
-import is.model.listitems.ListItem;
 import java.text.DecimalFormat;
 
 /**

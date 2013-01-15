@@ -106,8 +106,7 @@ public class InputChecker {
 
         } catch (ParseException ex) {
 
-            System.out.println("Felaktig konvertering av String till double.");
-
+                System.out.println("Felaktig konvertering av String till double.");
         }
 
         return d;

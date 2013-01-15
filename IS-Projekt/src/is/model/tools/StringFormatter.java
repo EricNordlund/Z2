@@ -5,7 +5,6 @@
 package is.model.tools;
 
 import java.text.DecimalFormat;
-import java.util.Locale;
 
 /**
  * En klass som formaterar strängar så vi slipper ha dubblettkod för de
@@ -15,6 +14,12 @@ import java.util.Locale;
  */
 public class StringFormatter {
 
+    /**
+     * Privat konstruktor förhindrar instanser.
+     */
+        private StringFormatter() {
+    }
+    
     public static String leftPad(String stringIn, int paddedSize, String paddingCharacter) {
 
         String paddingString = CreatePadding(stringIn, paddedSize, paddingCharacter);
@@ -53,7 +58,7 @@ public class StringFormatter {
 
         while (stringIn.length() + paddingString.length() < paddedSize) {
 
-            paddingString = paddingString + paddingCharacter;
+            paddingString += paddingCharacter;
 
         }
 
@@ -69,4 +74,5 @@ public class StringFormatter {
         return priceString;
 
     }
+
 }
