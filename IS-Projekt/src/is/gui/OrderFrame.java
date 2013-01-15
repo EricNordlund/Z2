@@ -41,6 +41,24 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
 
     }
+    
+        protected void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    private Controller getController() {
+
+        return this.controller;
+    }
+
+
+    void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    void setOrderID(int orderID) {
+        this.orderID = orderID;
+    }
 
     private void addActionListenerToButtons() {
         this.btnAddProduct.addActionListener(this);
@@ -54,6 +72,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         this.rbtnBuyOrder.addActionListener(this);
         this.rbtnSellOrder.addActionListener(this);
+        
+        this.btnInputConfirm.addActionListener(this);
 
     }
 
@@ -103,24 +123,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         }
 
-    }
-
-    protected void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-    private Controller getController() {
-
-        return this.controller;
-    }
-
-    //Setters för customerID och orderID
-    void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-
-    void setOrderID(int orderID) {
-        this.orderID = orderID;
     }
 
     //Efter att en produkt lagts till eller tagis bort uppdateras listorna beroende på om man är i båtläge eller tillbehörsläge
@@ -197,16 +199,11 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 if (goodsID == li.getID()) {
 
                     li.addQuantity(toAdd);
-                    System.out.println(li.toString() + " added " + toAdd);
-
 
                 }
-
-
             }
 
         }
-
 
     }
 
@@ -302,6 +299,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     }
 
+    /*
+     * Försätter fönstret i ett läge för att spara en ny order.
+     */
     void newOrderMode(int customerID) {
 
         this.newOrder = true;
@@ -313,6 +313,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     }
 
+    /**
+     * Försätter fönstret i ett läge för att redigera en viss order.
+     */
     void editOrderMode(int orderID) {
 
         this.newOrder = false;
@@ -328,8 +331,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         initInterface();
 
         updateProductList();
-
-        System.out.println("Öppnar order för kund ID: " + orderID);
 
     }
 
@@ -364,8 +365,9 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         }
 
         if (e.getSource() == this.btnInputConfirm) {
-            System.out.println("OK tryckt");
+
             this.inputConfirm.setVisible(false);
+            
         }
 
 
@@ -391,8 +393,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
                 ListItem selectedProduct = lstProducts.getSelectedValue();
 
                 int productID = selectedProduct.getID();
-
-                System.out.println("Editing " + productID);
 
                 if (boatMode) {
 
@@ -429,6 +429,12 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
             }
 
+        }
+        
+        if (e.getSource() == this.btnInputConfirm){
+            
+            this.inputConfirm.setVisible(false);
+            
         }
 
     }
@@ -786,8 +792,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     }//GEN-LAST:event_rbtnBoatActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
-        inputConfirm.setVisible(false);
-        //TODO inputConfirm
+
     }//GEN-LAST:event_btnInputConfirmActionPerformed
 
     private void rbtnGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnGoodsActionPerformed
