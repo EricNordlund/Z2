@@ -4,10 +4,6 @@ package is.model;
  * Klassen saknar setmetoder. Vill man ändra en address skapar man en ny och
  * skriver över den gamla.
  *
- * @param street Gatuadress inklusive lägenehetsnummer.
- * @param postCode Postnummer.
- * @param city Stad.
- *
  * @author Viktor Voigt
  * @author Eric Nordlund
  * @author Anna Thernfrid

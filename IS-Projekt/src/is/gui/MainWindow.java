@@ -9,7 +9,6 @@ import is.model.listitems.ListItem;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
@@ -192,9 +191,6 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                     this.updateLists();
 
-                    System.out.println("Kund borttagen");
-
-
                 }
             } else if (e.getSource() == this.btnNewOrder) {
 
@@ -203,7 +199,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
             }//else if
             //Öppnar orderhistoriken för en viss kund
             else if (e.getSource() == this.btnOrderHistory && !this.orderFrame.isVisible()) {
-                System.out.println("Öppnar kund " + customerID);
+
                 this.orderHistoryFrame.initFrame(customerID);
                 this.orderHistoryFrame.setVisible(true);
             }
@@ -230,10 +226,9 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                 if (confirmButton == JOptionPane.YES_OPTION) {
 
-
                     controller.removeBuyOrder(orderID);
                     this.updateLists();
-                    System.out.println("Order borttagen");
+
                 }
             }
         }
@@ -284,7 +279,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                     getController().removeBoat(boatID);
                     this.updateLists();
-                    System.out.println("Båt borttagen.");
+
                 }
 
             }
@@ -320,7 +315,7 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
                     getController().removeGoods(goodsID);
                     this.updateLists();
-                    System.out.println("Tillbehör borttagen.");
+
                 }
             }
         }

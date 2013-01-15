@@ -17,7 +17,7 @@ import javax.swing.ListModel;
  */
 public class CustomerRegistry {
 
-    private HashMap<Integer, Customer> customerList = new HashMap<>();
+    private HashMap<Integer, Customer> customerList = new HashMap<>(100);
     private int customerKeyCount = 0;
     private ReferenceHandler referenceHandler;
 
@@ -81,6 +81,14 @@ public class CustomerRegistry {
         return customerData;
     }
 
+     /**
+     * Denna metod returnerar en DefaultListModel som håller värden från den
+     * HashMap som lagrar kunderna. En DefaultListModel kan användas av en
+     * JList.
+     * 
+     * @return DefaultListModel som håller värden från den HashMap som lagrar 
+     * kunderna.
+     */
     public ListModel<ListItem> getListModel() {
 
         HashMap<Integer, Customer> hm = this.getCustomerList();

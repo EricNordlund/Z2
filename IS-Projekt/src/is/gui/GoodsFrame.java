@@ -21,7 +21,7 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
     private boolean newGoods;
 
     /**
-     * Creates new form GoodsFrame
+     * @param parent Det fönster som är logiskt överordnat detta fönster.
      */
     public GoodsFrame(MainWindow parent) {
 

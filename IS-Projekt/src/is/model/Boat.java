@@ -86,6 +86,8 @@ public class Boat extends Product {
      * Returnerar ett ListItem som bara har ett produktID samt en sträng som
      * visas i listor
      *
+     * @return Ett enkelt ListItem som bara bär en visningssträng och ett
+     * produktnummer.
      */
     protected ListItem getSimpleListItem() {
 
@@ -105,6 +107,10 @@ public class Boat extends Product {
 
     }
 
+    /**
+     * @return Ett ListItem som representerar en orderrad för en båt, d.v.s.
+     * det kan bära på prisuppgifter.
+     */
     protected BoatListItem getBoatListItem() {
 
         String displayName = this.getDisplayName();

@@ -11,6 +11,14 @@ package is.controller;
  * @author svalan
  */
 public class ControllerTest {
+    
+    /*
+     * Privat konstruktor enligt Netbeans inbyggda tipsfunktion.
+     * Förhindrar instanser då metoderna är statiska.
+     */
+    private ControllerTest() {
+        
+    }
 
     static void runTest(Controller controller) {
 
@@ -68,4 +76,5 @@ public class ControllerTest {
         controller.addGoods("Utombordare Honda 55", 1999.90, "Prima lack till din båt.");
 
     }
+
 }

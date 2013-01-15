@@ -17,7 +17,7 @@ import javax.swing.ListModel;
  */
 public class GoodsRegistry {
 
-    private HashMap<Integer, Goods> goodsList = new HashMap<>();
+    private HashMap<Integer, Goods> goodsList = new HashMap<>(100);
     private int goodsKeyCount = 0;
     private ReferenceHandler referenceHandler;
 

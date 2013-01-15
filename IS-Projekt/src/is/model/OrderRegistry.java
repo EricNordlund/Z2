@@ -20,7 +20,7 @@ import javax.swing.ListModel;
  */
 public class OrderRegistry {
 
-    private HashMap<Integer, Order> orderList = new HashMap<>();
+    private HashMap<Integer, Order> orderList = new HashMap<>(100);
     private int orderKeyCount = 0;
     private ReferenceHandler referenceHandler;
 

@@ -26,6 +26,7 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form EditBoat
+     * @param parent Det fönster som är logiskt överordnat detta fönster.
      */
     protected BoatFrame(MainWindow parent) {
 

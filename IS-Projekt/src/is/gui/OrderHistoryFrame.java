@@ -82,7 +82,6 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
                     controller.removeBuyOrder(orderID);
                     ListModel<ListItem> lm = controller.getOrderListByCustomer(customerID);
                     this.lstOrderHistory.setModel(lm);
-                    System.out.println("Order borttagen");
                 }
             }
 

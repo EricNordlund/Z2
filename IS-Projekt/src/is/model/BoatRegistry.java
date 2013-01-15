@@ -15,11 +15,15 @@ import javax.swing.ListModel;
  */
 public class BoatRegistry {
 
-    private HashMap<Integer, Boat> boatList = new HashMap<>();
+    private HashMap<Integer, Boat> boatList = new HashMap<>(100);
     private int boatKeyCount = 0;
     private ReferenceHandler referenceHandler;
-    private ListItem createListItem;
 
+    
+    protected void setReferenceHandler(ReferenceHandler aThis) {
+        referenceHandler = aThis;
+    }
+    
     protected Boat getBoat(int boatID) {
 
         return getBoatList().get(boatID);
@@ -27,7 +31,7 @@ public class BoatRegistry {
     }
 
     private HashMap<Integer, Boat> getBoatList() {
-        return boatList;
+        return this.boatList;
     }
 
     private Iterator<Entry<Integer, Boat>> getBoatListIterator() {
@@ -68,10 +72,6 @@ public class BoatRegistry {
 
     }
 
-    /**
-     *
-     * @return
-     */
     public ListModel<ListItem> getListModel() {
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
@@ -91,10 +91,6 @@ public class BoatRegistry {
         }
 
         return lm;
-    }
-
-    protected void setReferenceHandler(ReferenceHandler aThis) {
-        referenceHandler = aThis;
     }
 
     public BoatListItem getBoatListItem(int boatID) {

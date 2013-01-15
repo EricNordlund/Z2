@@ -22,6 +22,9 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     private int customerKey;
     private boolean newCustomer;
 
+    /**
+     * @param parent Det fönster som är logiskt överordnat detta fönster.
+     */
     protected CustomerFrame(MainWindow parent) {
 
         initComponents();//Autogenererad metod

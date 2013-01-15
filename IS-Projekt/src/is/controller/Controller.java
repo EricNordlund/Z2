@@ -12,10 +12,6 @@ import javax.swing.ListModel;
 
 /**
  * This class handles input from the user interface to the model.
- *
- * @param mainWindow The user interface.
- * @param model The model.
- *
  */
 public class Controller implements ControllerInterface {
 
@@ -110,17 +106,7 @@ public class Controller implements ControllerInterface {
 
     }
 
-    /**
-     * Denna metod returnerar en DefaultListModel som håller värden från den
-     * HashMap som lagrar kunderna. En DefaultListModel kan användas av en
-     * JList.
-     *
-     * @param it En iterator går igenom samtliga objekt i HashMap för kunderna.
-     * @param e Ett objekt som plockas fram ur HashMap som innehåller nyckeln
-     * och kundobjektet.
-     *
-     *
-     */
+
     @Override
     public ListModel<ListItem> getCustomerListModel() {
 
