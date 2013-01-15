@@ -3,6 +3,10 @@ package is.gui;
 
 import is.controller.Controller;
 import is.model.listitems.ListItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
 
@@ -10,7 +14,7 @@ import javax.swing.ListModel;
  *
  * @author Eric, Viktor, Anna
  */
-public class OrderHistoryFrame extends javax.swing.JFrame {
+public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListener {
 
     private MainWindow parent;
     private int customerID;
@@ -29,16 +33,66 @@ public class OrderHistoryFrame extends javax.swing.JFrame {
         
 
     }
-    // TODO: Få funktionen att hämta korrekt list-model. 
+     
     public void initFrame(int customerID) {
-        ListModel<ListItem> lm = controller.getOrderListByCustomer(customerID); 
+        ListModel<ListItem> lm = controller.getOrderListByCustomer(customerID);
         this.lstOrderHistory.setModel(lm);
+        this.setTitle("Orderhistorik för kundnummer: " + customerID);
     }
-    
-private void addActionListenerToButtons() 
-{
-    
-}
+
+    private void addActionListenerToButtons() {
+        this.btnOpen.addActionListener(this);
+        this.btnRemove.addActionListener(this);
+        this.btnCancel.addActionListener(this);
+    }
+
+    private int getSelectedKey(JList jlist) {
+
+        int key;
+
+        ListItem li;
+        li = (ListItem) jlist.getSelectedValue();
+
+        key = li.getID();
+
+        return key;
+
+    }
+
+    public void actionPerformed(ActionEvent ae) {
+
+        if (this.lstOrderHistory.getSelectedValue() instanceof ListItem) {
+            int orderID = this.getSelectedKey(this.lstOrderHistory);
+
+            if (ae.getSource() == btnOpen) {
+
+                parent.orderFrame.editOrderMode(orderID);
+                parent.orderFrame.setVisible(true);
+                
+            } 
+            
+            if (ae.getSource() == btnRemove) {
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av order", "Ta bort order",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+
+                    controller.removeBuyOrder(orderID);
+                    ListModel<ListItem> lm = controller.getOrderListByCustomer(customerID);
+                    this.lstOrderHistory.setModel(lm);
+                    System.out.println("Order borttagen");
+                }
+            }
+
+        }
+        
+        if(ae.getSource() == btnCancel)
+        {
+            this.setVisible(false);
+        }
+    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -50,23 +104,28 @@ private void addActionListenerToButtons()
         customerOrderPane = new javax.swing.JScrollPane();
         lstOrderHistory = new javax.swing.JList<ListItem>();
         customerOrderTools = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnOpen = new javax.swing.JButton();
+        btnRemove = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnCancel = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Orderhistorik för");
 
         customerOrderPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         customerOrderPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         customerOrderPane.setViewportView(lstOrderHistory);
 
-        jButton2.setText("Öppna");
+        customerOrderTools.setBorder(javax.swing.BorderFactory.createTitledBorder("Verktyg"));
 
-        jButton3.setText("Ta bort");
+        btnOpen.setText("Öppna");
+
+        btnRemove.setText("Ta bort");
 
         javax.swing.GroupLayout customerOrderToolsLayout = new javax.swing.GroupLayout(customerOrderTools);
         customerOrderTools.setLayout(customerOrderToolsLayout);
@@ -75,18 +134,36 @@ private void addActionListenerToButtons()
             .addGroup(customerOrderToolsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(customerOrderToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                    .addComponent(btnOpen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
                 .addContainerGap())
         );
         customerOrderToolsLayout.setVerticalGroup(
             customerOrderToolsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerOrderToolsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
+                .addComponent(btnOpen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
+                .addComponent(btnRemove)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnCancel.setText("Avbryt");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 22, Short.MAX_VALUE)
+                .addComponent(btnCancel))
         );
 
         javax.swing.GroupLayout customerOrderHistoryLayout = new javax.swing.GroupLayout(customerOrderHistory);
@@ -96,18 +173,23 @@ private void addActionListenerToButtons()
             .addGroup(customerOrderHistoryLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(customerOrderPane, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(customerOrderTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerOrderHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(customerOrderTools, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         customerOrderHistoryLayout.setVerticalGroup(
             customerOrderHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerOrderHistoryLayout.createSequentialGroup()
-                .addComponent(customerOrderTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerOrderHistoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(customerOrderPane, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addGroup(customerOrderHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(customerOrderPane, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                    .addGroup(customerOrderHistoryLayout.createSequentialGroup()
+                        .addComponent(customerOrderTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)))
                 .addContainerGap())
         );
 
@@ -129,13 +211,15 @@ private void addActionListenerToButtons()
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnOpen;
+    private javax.swing.JButton btnRemove;
     private javax.swing.JPanel customerOrderHistory;
     private javax.swing.JScrollPane customerOrderPane;
     private javax.swing.JPanel customerOrderTools;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JList<ListItem> lstOrderHistory;
     // End of variables declaration//GEN-END:variables
 
