@@ -8,6 +8,7 @@ import is.controller.Controller;
 import is.model.listitems.BoatListItem;
 import is.model.listitems.GoodsListItem;
 import is.model.listitems.ListItem;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
@@ -25,6 +26,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private int orderID;
     private boolean boatMode = false;
     private boolean newOrder;
+    
 
     protected OrderFrame(MainWindow parent) {
 
@@ -40,6 +42,8 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
 
     }
+    
+    
 
     private void addActionListenerToButtons() {
         this.btnAddProduct.addActionListener(this);
