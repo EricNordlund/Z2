@@ -84,7 +84,7 @@ public class CustomerRegistry {
         while (it.hasNext()) {
 
             Map.Entry e = (Map.Entry) it.next();
-            
+
             Customer c = (Customer) e.getValue();
 
             ListItem item = c.getListItem();
@@ -99,7 +99,7 @@ public class CustomerRegistry {
 
     public ListModel<ListItem> getListModel(String searchString) {
 
-       HashMap<Integer, Customer> hm = this.getCustomerList();
+        HashMap<Integer, Customer> hm = this.getCustomerList();
 
         DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
@@ -116,9 +116,9 @@ public class CustomerRegistry {
             boolean found = ArraySearcher.searchStringArray(customerData, searchString);
 
             if (found) {
-                
+
                 ListItem li = c.getListItem();
-                
+
                 lm.addElement(li);
             }
 

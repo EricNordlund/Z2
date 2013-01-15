@@ -41,16 +41,16 @@ public abstract class Product {
 
         return this.productID;
     }
-    
-       protected String getProductIDString() {
+
+    protected String getProductIDString() {
 
         return Integer.toString(this.getProductID());
     }
 
     protected String getPriceString() {
 
-        DecimalFormat df = new DecimalFormat ("##.00");
-        
+        DecimalFormat df = new DecimalFormat("##.00");
+
         String priceString = df.format(this.getPrice());
 
         return priceString;

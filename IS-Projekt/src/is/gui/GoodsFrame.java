@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
  */
 public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
     private Controller controller;
     private MainWindow parent;
     private int goodsID;
@@ -31,6 +32,95 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
         this.parent = parent;
         this.setLocationRelativeTo(null);
 
+    }
+
+    void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    void clearTextFields() {
+        this.txtName.setText("");
+        this.txtPrice.setText("");
+        this.txtDescription.setText("");
+    }
+
+    private void addActionListenerToButton() {
+        this.btnCancel.addActionListener(this);
+        this.btnSave.addActionListener(this);
+    }
+
+    void fillTextFields(String[] goodsData) {
+        this.txtName.setText(goodsData[0]);
+        this.txtPrice.setText(goodsData[1]);
+        this.txtDescription.setText(goodsData[2]);
+    }
+
+    void newGoodsMode() {
+        setTitle("Lägg till tillbehör");
+        clearTextFields();
+        this.newGoods = true;
+    }
+
+    void editGoodsMode(int goodsID) {
+
+        this.goodsID = goodsID;
+
+        this.setTitle("Redigera tillbehör");
+        String[] goodsData = controller.getGoodsData(goodsID);
+        fillTextFields(goodsData);
+        this.newGoods = false;
+    }
+
+    private Controller getController() {
+
+        return this.controller;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this.btnCancel) {
+
+            this.setVisible(false);
+        } else if (e.getSource() == this.btnSave) {
+
+
+            if (this.controller.inputCheckString(this.txtPrice.getText())
+                    && this.controller.inputCheckString(this.txtDescription.getText())
+                    && this.controller.inputCheckString(this.txtName.getText())) {
+
+                String name = this.txtName.getText();
+
+                String priceString = this.txtPrice.getText();
+
+                double price = this.getController().getDouble(priceString);
+
+                String description = this.txtDescription.getText();
+
+                if (newGoods) {
+
+                    controller.addGoods(name, price, description);
+                } else if (!newGoods) {
+
+                    controller.editGoods(goodsID, name, price, description);
+                }
+                this.setVisible(false);
+                parent.updateLists();
+
+            } //Öppnar felmeddelandet om det inte redan är öppet. 
+            else if (!inputConfirm.isVisible()) {
+                inputConfirm.setBounds(0, 0, 300, 125);
+                inputConfirm.setVisible(true);
+                inputConfirm.setLocationRelativeTo(null);
+
+            }
+
+        }//if (e.getSource() == this.btnSave)
+
+        if (e.getSource() == this.btnInputConfirm) {
+
+            this.inputConfirm.setVisible(false);
+
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -153,14 +243,14 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="Genererade ActionEvent-metioder">
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
-        inputConfirm.setVisible(false);
     }//GEN-LAST:event_btnInputConfirmActionPerformed
-
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Generade deklarationer">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnInputConfirm;
@@ -175,94 +265,5 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.btnCancel) {
-
-            this.setVisible(false);
-        } else if (e.getSource() == this.btnSave) {
-
-            
-            if(this.controller.inputCheckString(this.txtPrice.getText())
-              && this.controller.inputCheckString(this.txtDescription.getText())
-              && this.controller.inputCheckString(this.txtName.getText())
-              )
-                
-            {
-            
-                String name = this.txtName.getText();
-                
-                String priceString = this.txtPrice.getText();
-                
-                double price = this.getController().getDouble(priceString);
-                
-                String description = this.txtDescription.getText();
-                
-                if (newGoods) {
-
-                    controller.addGoods(name, price, description);
-                } else if (!newGoods) {
-
-                    controller.editGoods(goodsID, name, price, description);
-                }
-                this.setVisible(false);
-                parent.updateLists();
-            
-            } //Öppnar felmeddelandet om det inte redan är öppet. 
-            else if (!inputConfirm.isVisible()) {
-                inputConfirm.setBounds(0, 0, 300, 125);
-                inputConfirm.setVisible(true);
-                inputConfirm.setLocationRelativeTo(null);
-
-            }
-            
-            
-
-        }
-
-        
-    }
-
-    void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-    void clearTextFields() {
-        this.txtName.setText("");
-        this.txtPrice.setText("");
-        this.txtDescription.setText("");
-    }
-
-    private void addActionListenerToButton() {
-        this.btnCancel.addActionListener(this);
-        this.btnSave.addActionListener(this);
-    }
-
-    void fillTextFields(String[] goodsData) {
-        this.txtName.setText(goodsData[0]);
-        this.txtPrice.setText(goodsData[1]);
-        this.txtDescription.setText(goodsData[2]);
-    }
-
-    void newGoodsMode() {
-        setTitle("Lägg till tillbehör");
-        clearTextFields();
-        this.newGoods = true;
-    }
-
-    void editGoodsMode(int goodsID) {
-
-        this.goodsID = goodsID;
-
-        this.setTitle("Redigera tillbehör");
-        String[] goodsData = controller.getGoodsData(goodsID);
-        fillTextFields(goodsData);
-        this.newGoods = false;
-    }
-    
-    private Controller getController(){
-        
-        return this.controller;
-    }
+    // </editor-fold> 
 }

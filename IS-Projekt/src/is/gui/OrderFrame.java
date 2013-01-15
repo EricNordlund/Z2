@@ -8,7 +8,6 @@ import is.controller.Controller;
 import is.model.listitems.BoatListItem;
 import is.model.listitems.GoodsListItem;
 import is.model.listitems.ListItem;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultListModel;
@@ -20,13 +19,13 @@ import javax.swing.ListModel;
  */
 public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
-    Controller controller;
+    private static final long serialVersionUID = 1L;
+    private Controller controller;
     private MainWindow parent;
     private int customerID;
     private int orderID;
     private boolean boatMode = false;
     private boolean newOrder;
-    
 
     protected OrderFrame(MainWindow parent) {
 
@@ -42,8 +41,6 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
 
     }
-    
-    
 
     private void addActionListenerToButtons() {
         this.btnAddProduct.addActionListener(this);
@@ -54,7 +51,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         this.rbtnBoat.addActionListener(this);
         this.rbtnGoods.addActionListener(this);
-        
+
         this.rbtnBuyOrder.addActionListener(this);
         this.rbtnSellOrder.addActionListener(this);
 
@@ -70,7 +67,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         if (!newOrder) {
 
             String[] orderData = getController().getOrderData(orderID);
-            
+
             this.txtBillingDate.setText(orderData[0]);
             this.txtOrderNr.setText(Integer.toString(orderID));
 
@@ -81,12 +78,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             ListModel<ListItem> lm = controller.getOrderRowListModel(orderID);
 
             this.lstOrderRows.setModel(lm);
-            
-            if (this.getController().isBuyorder(orderID))
-            {
+
+            if (this.getController().isBuyorder(orderID)) {
                 this.rbtnBuyOrder.setSelected(true);
-            }
-            else {
+            } else {
                 this.rbtnSellOrder.setSelected(true);
             }
             this.rbtnBuyOrder.setEnabled(false);
@@ -102,7 +97,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
             this.txtBillingDate.setText("130112");
 
             this.lstOrderRows.setModel(new DefaultListModel<ListItem>());
-            
+
             this.rbtnBuyOrder.setEnabled(true);
             this.rbtnSellOrder.setEnabled(true);
 
@@ -118,7 +113,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         return this.controller;
     }
-    
+
     //Setters för customerID och orderID
     void setCustomerID(int customerID) {
         this.customerID = customerID;
@@ -149,7 +144,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private void addNewGoodsListItem(int goodsID) {
 
         GoodsListItem gli;
-        
+
         DefaultListModel<ListItem> lm;
 
         lm = (DefaultListModel<ListItem>) this.lstOrderRows.getModel();
@@ -164,7 +159,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         boolean hasItem = false;
 
-        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+        DefaultListModel<ListItem> lm = (DefaultListModel<ListItem>) lstOrderRows.getModel();
 
         Object[] lmArray = lm.toArray();
 
@@ -189,7 +184,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     //Om tillbehöret redan finns läggs det till. 
     private void addGoodsListItem(int goodsID, int toAdd) {
 
-        DefaultListModel lm = (DefaultListModel) lstOrderRows.getModel();
+        DefaultListModel<ListItem> lm = (DefaultListModel<ListItem>) lstOrderRows.getModel();
 
         Object[] lmArray = lm.toArray();
 
@@ -217,7 +212,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     //Lägger till båt i orderrad
     private void addBoatListItem(int productID) {
-        
+
         DefaultListModel<ListItem> lm = (DefaultListModel<ListItem>) lstOrderRows.getModel();
 
         BoatListItem bli;
@@ -231,33 +226,33 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
     //Sparar och lägger till en ny order till slut. 
     private void saveOrder() {
-        
+
         boolean isBuyOrder = this.rbtnBuyOrder.isSelected();
 
         int billingDate = Integer.valueOf(this.txtBillingDate.getText());
-        
+
         String billingAddressStreet = this.txtStreet.getText();
         String billingAddressCity = this.txtCity.getText();
         String billingAddressPostCode = this.txtPostCode.getText();
 
         if (!newOrder) {
 
-            
+
             this.getController().editOrder(billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity, customerID, isBuyOrder, orderID);
 
         } else if (newOrder) {
-            
-            if(isBuyOrder){
 
-            this.orderID = this.getController().addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
-            
+            if (isBuyOrder) {
+
+                this.orderID = this.getController().addBuyOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
+
             } else {
-                
+
                 this.orderID = this.getController().addSellOrder(customerID, billingDate, billingAddressStreet, billingAddressPostCode, billingAddressCity);
-                
+
             }
-            
-            
+
+
 
         }
 
@@ -273,7 +268,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
         this.getController().clearOrderRows(orderID);
 
-        DefaultListModel lm = (DefaultListModel) this.lstOrderRows.getModel();
+        DefaultListModel<ListItem> lm = (DefaultListModel<ListItem>) this.lstOrderRows.getModel();
 
         Object[] lmArray = lm.toArray();
 
@@ -337,7 +332,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         System.out.println("Öppnar order för kund ID: " + orderID);
 
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -393,10 +388,10 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
             if (e.getSource() == this.btnAddProduct) {
 
-                ListItem selectedProduct = (ListItem) lstProducts.getSelectedValue();
+                ListItem selectedProduct = lstProducts.getSelectedValue();
 
                 int productID = selectedProduct.getID();
-                
+
                 System.out.println("Editing " + productID);
 
                 if (boatMode) {
@@ -426,7 +421,7 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
 
                 int index = this.lstOrderRows.getSelectedIndex();
 
-                DefaultListModel lm = (DefaultListModel) this.lstOrderRows.getModel();
+                DefaultListModel<ListItem> lm = (DefaultListModel<ListItem>) this.lstOrderRows.getModel();
 
                 lm.remove(index);
 
@@ -768,41 +763,37 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="Genererade ActionEvent-metoder">
     private void btnAddProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddProductActionPerformed
-
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void btnRemoveProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveProductActionPerformed
-
     }//GEN-LAST:event_btnRemoveProductActionPerformed
 
     private void txtCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerActionPerformed
-
     }//GEN-LAST:event_txtCustomerActionPerformed
 
     private void txtBillingDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBillingDateActionPerformed
-
     }//GEN-LAST:event_txtBillingDateActionPerformed
 
     private void txtOrderNrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrderNrActionPerformed
-
     }//GEN-LAST:event_txtOrderNrActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void rbtnBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnBoatActionPerformed
-
     }//GEN-LAST:event_rbtnBoatActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
         inputConfirm.setVisible(false);
+        //TODO inputConfirm
     }//GEN-LAST:event_btnInputConfirmActionPerformed
 
     private void rbtnGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnGoodsActionPerformed
-
     }//GEN-LAST:event_rbtnGoodsActionPerformed
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Genererade deklarationer">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnCancel;
@@ -837,4 +828,5 @@ public class OrderFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField txtPostCode;
     private javax.swing.JTextField txtStreet;
     // End of variables declaration//GEN-END:variables
+//</editor-fold>
 }

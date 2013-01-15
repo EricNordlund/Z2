@@ -13,7 +13,7 @@ public class ArraySearcher {
     public static boolean searchStringArray(String[] array, String searchString) {
 
         searchString = searchString.toLowerCase();
-        
+
         for (int j = 0; j < array.length; j++) {
 
             String customerString = array[j].toLowerCase();

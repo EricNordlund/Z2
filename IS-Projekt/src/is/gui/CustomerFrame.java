@@ -9,12 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Först konstruktor, sist autogenrerad kod.
+ * Först våra egna metoder. Sedan hantering av Action Events. Sist autogenererad
+ * kod.
  *
- * @author svalan
+ * @author Viktor Voigt
  */
 public class CustomerFrame extends javax.swing.JFrame implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
     private Controller controller;
     private MainWindow parent;
     private int customerKey;
@@ -35,20 +37,38 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     public void setController(Controller controller) {
 
         this.controller = controller;
+
     }
 
     private Controller getController() {
 
         return controller;
+
     }//Metod
 
+    void setCustomerKey(int key) {
+
+        this.customerKey = key;
+        this.txtCustomerNumber.setText(Integer.toString(key));
+
+    }
+
+    void setNewCustomer(boolean b) {
+
+        this.newCustomer = b;
+
+    }
+
     private void addActionListenerToButtons() {
+
         this.btnSave.addActionListener(this);
         this.btnCancel.addActionListener(this);
+
+        this.btnInputConfirm.addActionListener(this);
+
     }//Metod
 
     public void clearTextFields() {
-
 
         this.txtCustomerNumber.setText("");
         this.txtCustomerName.setText("");
@@ -58,8 +78,18 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
         this.txtCustomerPostCode.setText("");
         this.txtCustomerCity.setText("");
 
-
     }//Metod
+
+    void fillTextBoxes(String[] customerData) {
+
+        this.txtCustomerName.setText(customerData[0]);
+        this.txtCustomerPhone.setText(customerData[1]);
+        this.txtCustomerMail.setText(customerData[2]);
+        this.txtCustomerStreet.setText(customerData[3]);
+        this.txtCustomerPostCode.setText(customerData[4]);
+        this.txtCustomerCity.setText(customerData[5]);
+
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -67,15 +97,13 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
 
         if (e.getSource() == this.btnSave) {
 
-            if(this.controller.inputCheckString(this.txtCustomerName.getText())
-            && this.controller.inputCheckString(this.txtCustomerStreet.getText())
-            && this.controller.inputCheckString(this.txtCustomerPostCode.getText()) 
-            && this.controller.inputCheckString(this.txtCustomerCity.getText())
-            && this.controller.inputCheckString(this.txtCustomerPhone.getText())
-            && this.controller.inputCheckString(this.txtCustomerMail.getText())
-                    )
-            {
-            
+            if (this.controller.inputCheckString(this.txtCustomerName.getText())
+                    && this.controller.inputCheckString(this.txtCustomerStreet.getText())
+                    && this.controller.inputCheckString(this.txtCustomerPostCode.getText())
+                    && this.controller.inputCheckString(this.txtCustomerCity.getText())
+                    && this.controller.inputCheckString(this.txtCustomerPhone.getText())
+                    && this.controller.inputCheckString(this.txtCustomerMail.getText())) {
+
                 if (newCustomer) {
 
                     getController().addNewCustomer(
@@ -95,20 +123,18 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
                             this.txtCustomerPhone.getText(),
                             this.txtCustomerMail.getText());
                 }//else
-                
+
                 parent.updateLists();
 
                 this.setVisible(false);
-                
-            } 
-            else if (!inputConfirm.isVisible())
-            {
+
+            } else if (!inputConfirm.isVisible()) {
                 inputConfirm.setBounds(0, 0, 300, 125);
                 inputConfirm.setVisible(true);
                 //inputConfirm.setLocationRelativeTo(null);
             }
 
-            
+
         }//if e.getSource() == this.btnSave
 
         if (e.getSource() == this.btnCancel) {
@@ -116,27 +142,12 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
             this.setVisible(false);
 
         }//if e.getSource() == this.btnCancel
-        
 
-    }
+        if (e.getSource() == this.btnInputConfirm) {
 
-    void fillTextBoxes(String[] customerData) {
-        this.txtCustomerName.setText(customerData[0]);
-        this.txtCustomerPhone.setText(customerData[1]);
-        this.txtCustomerMail.setText(customerData[2]);
-        this.txtCustomerStreet.setText(customerData[3]);
-        this.txtCustomerPostCode.setText(customerData[4]);
-        this.txtCustomerCity.setText(customerData[5]);
+            inputConfirm.setVisible(false);
+        }
 
-    }
-
-    void setCustomerKey(int key) {
-        this.customerKey = key;
-        this.txtCustomerNumber.setText(Integer.toString(key));
-    }
-
-    void setNewCustomer(boolean b) {
-        this.newCustomer = b;
     }
 
     @SuppressWarnings("unchecked")
@@ -337,8 +348,8 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // <editor-fold defaultstate="collapsed" desc="Autogenererade ActionEvent-metoder"> 
     private void txtCustomerNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerNumberActionPerformed
-
     }//GEN-LAST:event_txtCustomerNumberActionPerformed
 
     private void txtCustomerPostCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerPostCodeActionPerformed
@@ -351,9 +362,9 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnInputConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputConfirmActionPerformed
-        inputConfirm.setVisible(false);
     }//GEN-LAST:event_btnInputConfirmActionPerformed
-
+    //</editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Autogenererade deklarationer"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnInputConfirm;
@@ -376,4 +387,5 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
     private javax.swing.JTextField txtCustomerPostCode;
     private javax.swing.JTextField txtCustomerStreet;
     // End of variables declaration//GEN-END:variables
+    // </editor-fold>
 }

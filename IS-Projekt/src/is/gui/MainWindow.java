@@ -20,12 +20,13 @@ import javax.swing.ListModel;
  */
 public class MainWindow extends javax.swing.JFrame implements ActionListener {
 
-    Controller controller;
-    BoatFrame boatFrame;
-    CustomerFrame customerFrame;
-    GoodsFrame goodsFrame;
-    OrderFrame orderFrame;
-    OrderHistoryFrame orderHistoryFrame;
+    private static final long serialVersionUID = 1L;
+    private Controller controller;
+    private BoatFrame boatFrame;
+    private CustomerFrame customerFrame;
+    private GoodsFrame goodsFrame;
+    private OrderFrame orderFrame;
+    private OrderHistoryFrame orderHistoryFrame;
 
     public MainWindow() {
 
@@ -41,7 +42,290 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
     }
 
-    
+    //Väljer ikon för det övre vänstra hörnet
+    private void setIcon() {
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("boat.png")));
+    }
+
+    /**
+     * Intialiserar de övriga JFrames som senare kommer att användas och skickat
+     * med en referens till den här JFramen.
+     */
+    private void initFrames() {
+
+        customerFrame = new CustomerFrame(this);
+        boatFrame = new BoatFrame(this);
+        orderFrame = new OrderFrame(this);
+        goodsFrame = new GoodsFrame(this);
+        orderHistoryFrame = new OrderHistoryFrame(this);
+
+    }
+
+    public void setController(Controller controller) {
+
+        this.controller = controller;
+        this.customerFrame.setController(controller);
+        this.boatFrame.setController(controller);
+        this.orderFrame.setController(controller);
+        this.orderHistoryFrame.setController(controller);
+        this.goodsFrame.setController(controller);
+
+    }
+
+    private Controller getController() {
+
+        return controller;
+
+    }
+
+    public void updateLists() {
+
+        this.lstCustomers.setModel(getController().getCustomerListModel());
+        this.lstGoods.setModel(getController().getGoodsListModel());
+        this.lstBoats.setModel(getController().getBoatListModel());
+        this.lstOrders.setModel(getController().getOrderListModel());
+
+    }
+
+    private void addActionListenerToButtons() {
+
+        //Boats
+        this.btnAddBoat.addActionListener(this);
+        this.btnEditBoat.addActionListener(this);
+        this.btnRemoveBoat.addActionListener(this);
+
+        //Customer
+        this.btnSearchCustomer.addActionListener(this);
+        this.btnAddCustomer.addActionListener(this);
+        this.btnEditCustomer.addActionListener(this);
+        this.btnRemoveCustomer.addActionListener(this);
+
+        //Order i CustomerFliken
+        this.btnNewOrder.addActionListener(this);
+        this.btnOrderHistory.addActionListener(this);
+
+        //Goods
+        this.btnAddGoods.addActionListener(this);
+        this.btnEditGoods.addActionListener(this);
+        this.btnRemoveGoods.addActionListener(this);
+
+        //Order
+        this.btnEditOrder.addActionListener(this);
+        this.btnRemoveOrder.addActionListener(this);
+        this.rbtnShowBuyOrders.addActionListener(this);
+        this.rbtnShowSellOrders.addActionListener(this);
+        this.rbtnShowAllOrders.addActionListener(this);
+    }
+
+    /**
+     * Denna metod hämtar valt ListItem och returnerar den nyckel som finns i
+     * objektet.
+     */
+    private int getSelectedKey(JList<ListItem> jlist) {
+
+        int key;
+
+        ListItem li;
+        li = jlist.getSelectedValue();
+
+        key = li.getID();
+
+        return key;
+
+    }
+
+    protected void editOrder(int orderID) {
+
+        orderFrame.editOrderMode(orderID);
+        orderFrame.setVisible(true);
+
+    }
+
+    /**
+     * Actionlistener, sköter alla knappar.
+     *
+     * @param e Händelsen som skickas från den aktuella knappen.
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == this.btnSearchCustomer) {
+
+            String searchString = this.txtSearchCustomer.getText();
+
+            ListModel<ListItem> lm = this.getController().getCustomerListModel(searchString);
+
+            this.lstCustomers.setModel(lm);
+
+        }
+
+        //Kundknapparna
+        if (e.getSource() == this.btnAddCustomer) {
+            customerFrame.clearTextFields();
+            customerFrame.setNewCustomer(true);
+            customerFrame.setTitle("Lägg till kund");
+            customerFrame.setVisible(true);
+        }//if
+
+        if (this.lstCustomers.getSelectedValue() instanceof ListItem) {
+
+            int customerID = this.getSelectedKey(this.lstCustomers);
+
+            if (e.getSource() == this.btnEditCustomer) {
+
+                this.customerFrame.setNewCustomer(false);
+                this.customerFrame.setCustomerKey(customerID);
+                String[] customerData = this.getController().getCustomerData(customerID);
+                this.customerFrame.fillTextBoxes(customerData);
+
+                this.customerFrame.setVisible(true);
+
+            } else if (e.getSource() == this.btnRemoveCustomer) {
+
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av kund?", "Ta bort kund",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+
+                    getController().removeCustomer(customerID);
+
+                    this.updateLists();
+
+                    System.out.println("Kund borttagen");
+
+
+                }
+            } else if (e.getSource() == this.btnNewOrder) {
+
+                orderFrame.newOrderMode(customerID);
+
+            }//else if
+            //Öppnar orderhistoriken för en viss kund
+            else if (e.getSource() == this.btnOrderHistory && !this.orderFrame.isVisible()) {
+                System.out.println("Öppnar kund " + customerID);
+                this.orderHistoryFrame.initFrame(customerID);
+                this.orderHistoryFrame.setVisible(true);
+            }
+
+
+
+
+        }//Slut på "något valt i listan" - if
+
+
+        //Orderdel (Lägg till order finns i kunddelen)
+        if (this.lstOrders.getSelectedValue() instanceof ListItem) {
+
+            int orderID = this.getSelectedKey(this.lstOrders);
+
+            if (e.getSource() == this.btnEditOrder) {
+
+                this.editOrder(orderID);
+
+            } else if (e.getSource() == this.btnRemoveOrder) {
+
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av order?", "Ta bort order",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+
+                    controller.removeBuyOrder(orderID);
+                    this.updateLists();
+                    System.out.println("Order borttagen");
+                }
+            }
+        }
+
+        if (e.getSource() == this.rbtnShowAllOrders) {
+
+            this.lstOrders.setModel(getController().getOrderListModel());
+
+        } else if (e.getSource() == this.rbtnShowBuyOrders) {
+
+            this.lstOrders.setModel(getController().getBuyOrderListModel());
+
+        } else if (e.getSource() == this.rbtnShowSellOrders) {
+
+            this.lstOrders.setModel(getController().getSellOrderListModel());
+        }
+
+        //Hantering av knappar i båtdelen
+        if (e.getSource()
+                == this.btnAddBoat) {
+            boatFrame.clearTextFields();
+            boatFrame.setNewBoat(true);
+            boatFrame.setTitle("Lägg till båt");
+            boatFrame.setVisible(true);
+        }
+
+        if (this.lstBoats.getSelectedValue() instanceof ListItem) {
+
+            int boatID = this.getSelectedKey(this.lstBoats);
+
+            if (e.getSource() == this.btnEditBoat) {
+
+
+                this.boatFrame.setNewBoat(false);
+                this.boatFrame.setBoatID(boatID);
+                String[] boatData = this.getController().getBoatData(boatID);
+                this.boatFrame.fillTextBoxes(boatData);
+
+                this.boatFrame.setVisible(true);
+
+            } else if (e.getSource() == this.btnRemoveBoat) {
+
+
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av båt?", "Ta bort båt",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+                    getController().removeBoat(boatID);
+                    this.updateLists();
+                    System.out.println("Båt borttagen.");
+                }
+
+            }
+
+        }
+
+        //Hantering av knappar i tillbehörsdelen
+        if (e.getSource()
+                == this.btnAddGoods) {
+
+            goodsFrame.newGoodsMode();
+            goodsFrame.setVisible(true);
+
+        }
+
+        if (this.lstGoods.getSelectedValue() instanceof ListItem) {
+
+            int goodsID = this.getSelectedKey(this.lstGoods);
+
+            if (e.getSource() == this.btnEditGoods) {
+
+                goodsFrame.editGoodsMode(goodsID);
+                goodsFrame.setVisible(true);
+
+
+            } else if (e.getSource() == this.btnRemoveGoods) {
+
+
+                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av tillbehör?", "Ta bort tillbehör",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmButton == JOptionPane.YES_OPTION) {
+
+                    getController().removeGoods(goodsID);
+                    this.updateLists();
+                    System.out.println("Tillbehör borttagen.");
+                }
+            }
+        }
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -473,324 +757,35 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Väljer ikon för det övre vänstra hörnet
-    private void setIcon() {
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("boat.png")));
-    }
-
-    /**
-     * Intialiserar de övriga JFrames som senare kommer att användas och skickat
-     * med en referens till den här JFramen.
-     */
-    private void initFrames() {
-
-        customerFrame = new CustomerFrame(this);
-        boatFrame = new BoatFrame(this);
-        orderFrame = new OrderFrame(this);
-        goodsFrame = new GoodsFrame(this);
-        orderHistoryFrame = new OrderHistoryFrame(this);
-
-    }
-
-    public void setController(Controller controller) {
-
-        this.controller = controller;
-        this.customerFrame.setController(controller);
-        this.boatFrame.setController(controller);
-        this.orderFrame.setController(controller);
-        this.orderHistoryFrame.setController(controller);
-        this.goodsFrame.setController(controller);
-
-    }
-
-    private Controller getController() {
-
-        return controller;
-
-    }
-
-    public void updateLists() {
-
-        this.lstCustomers.setModel(getController().getCustomerListModel());
-        this.lstGoods.setModel(getController().getGoodsListModel());
-        this.lstBoats.setModel(getController().getBoatListModel());
-        this.lstOrders.setModel(getController().getOrderListModel());
-
-    }
-
-    private void addActionListenerToButtons() {
-
-        //Boats
-        this.btnAddBoat.addActionListener(this);
-        this.btnEditBoat.addActionListener(this);
-        this.btnRemoveBoat.addActionListener(this);
-
-        //Customer
-        this.btnSearchCustomer.addActionListener(this);
-        this.btnAddCustomer.addActionListener(this);
-        this.btnEditCustomer.addActionListener(this);
-        this.btnRemoveCustomer.addActionListener(this);
-        
-        //Order i CustomerFliken
-        this.btnNewOrder.addActionListener(this);
-        this.btnOrderHistory.addActionListener(this);
-
-        //Goods
-        this.btnAddGoods.addActionListener(this);
-        this.btnEditGoods.addActionListener(this);
-        this.btnRemoveGoods.addActionListener(this);
-
-        //Order
-        this.btnEditOrder.addActionListener(this);
-        this.btnRemoveOrder.addActionListener(this);
-        this.rbtnShowBuyOrders.addActionListener(this);
-        this.rbtnShowSellOrders.addActionListener(this);
-        this.rbtnShowAllOrders.addActionListener(this);
-    }
-
-    /**
-     * Denna metod hämtar valt ListItem och returnerar den nyckel som finns i
-     * objektet.
-     */
-    private int getSelectedKey(JList jlist) {
-
-        int key;
-
-        ListItem li;
-        li = (ListItem) jlist.getSelectedValue();
-
-        key = li.getID();
-
-        return key;
-
-    }
-
-    /**
-     * Actionlistener, sköter alla knappar.
-     *
-     * @param e Händelsen som skickas från den aktuella knappen.
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-        if (e.getSource() instanceof JButton) {
-            JButton btn = (JButton) e.getSource();
-            String btnName = btn.getText();
-            System.out.println("Du tryckte på knappen " + btnName + ".");
-
-        }//If, debugutskrift
-
-
-        if (e.getSource() == this.btnSearchCustomer){
-            
-            String searchString = this.txtSearchCustomer.getText();
-            
-            ListModel<ListItem> lm = this.getController().getCustomerListModel(searchString);
-            
-            this.lstCustomers.setModel(lm);
-            
-        }
-        
-        //Kundknapparna
-        if (e.getSource() == this.btnAddCustomer) {
-            customerFrame.clearTextFields();
-            customerFrame.setNewCustomer(true);
-            customerFrame.setTitle("Lägg till kund");
-            customerFrame.setVisible(true);
-        }//if
-
-        if (this.lstCustomers.getSelectedValue() instanceof ListItem) {
-
-            int customerID = this.getSelectedKey(this.lstCustomers);
-
-            if (e.getSource() == this.btnEditCustomer) {
-
-                this.customerFrame.setNewCustomer(false);
-                this.customerFrame.setCustomerKey(customerID);
-                String[] customerData = this.getController().getCustomerData(customerID);
-                this.customerFrame.fillTextBoxes(customerData);
-
-                this.customerFrame.setVisible(true);
-
-            } else if (e.getSource() == this.btnRemoveCustomer) {
-
-                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av kund?", "Ta bort kund",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (confirmButton == JOptionPane.YES_OPTION) {
-
-
-                    getController().removeCustomer(customerID);
-
-                    this.updateLists();
-
-                    System.out.println("Kund borttagen");
-
-
-                }
-            } else if (e.getSource() == this.btnNewOrder) {
-
-                orderFrame.newOrderMode(customerID);
-
-            }//else if
-            
-            //Öppnar orderhistoriken för en viss kund
-            else if(e.getSource() == this.btnOrderHistory && !this.orderFrame.isVisible()) 
-            {
-                System.out.println("Öppnar kund " + customerID);
-                this.orderHistoryFrame.initFrame(customerID);
-                this.orderHistoryFrame.setVisible(true);
-            }
-            
-            
-            
-
-        }//Slut på "något valt i listan" - if
-
-
-        //Orderdel (Lägg till order finns i kunddelen)
-        if (this.lstOrders.getSelectedValue() instanceof ListItem) {
-
-            int orderID = this.getSelectedKey(this.lstOrders);
-
-            if (e.getSource() == this.btnEditOrder) {
-
-                orderFrame.editOrderMode(orderID);
-
-                orderFrame.setVisible(true);
-
-            } else if (e.getSource() == this.btnRemoveOrder) {
-
-                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av order?", "Ta bort order",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (confirmButton == JOptionPane.YES_OPTION) {
-
-
-                    controller.removeBuyOrder(orderID);
-                    this.updateLists();
-                    System.out.println("Order borttagen");
-                }
-            }
-        }
-
-        if (e.getSource() == this.rbtnShowAllOrders) {
-            this.lstOrders.setModel(getController().getOrderListModel());
-        } else if (e.getSource() == this.rbtnShowBuyOrders) {
-            this.lstOrders.setModel(getController().getBuyOrderListModel());
-        } else if (e.getSource() == this.rbtnShowSellOrders) {
-            this.lstOrders.setModel(getController().getSellOrderListModel());
-        }
-
-        //Hantering av knappar i båtdelen
-        if (e.getSource()
-                == this.btnAddBoat) {
-            boatFrame.clearTextFields();
-            boatFrame.setNewBoat(true);
-            boatFrame.setTitle("Lägg till båt");
-            boatFrame.setVisible(true);
-        }
-
-        if (this.lstBoats.getSelectedValue() instanceof ListItem) {
-
-            int boatID = this.getSelectedKey(this.lstBoats);
-
-            if (e.getSource() == this.btnEditBoat) {
-
-
-                this.boatFrame.setNewBoat(false);
-                this.boatFrame.setBoatID(boatID);
-                String[] boatData = this.getController().getBoatData(boatID);
-                this.boatFrame.fillTextBoxes(boatData);
-
-                this.boatFrame.setVisible(true);
-
-            } else if (e.getSource() == this.btnRemoveBoat) {
-
-
-                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av båt?", "Ta bort båt",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (confirmButton == JOptionPane.YES_OPTION) {
-
-                    getController().removeBoat(boatID);
-                    this.updateLists();
-                    System.out.println("Båt borttagen.");
-                }
-
-            }
-
-        }
-
-        //Hantering av knappar i tillbehörsdelen
-        if (e.getSource()
-                == this.btnAddGoods) {
-
-            goodsFrame.newGoodsMode();
-            goodsFrame.setVisible(true);
-
-        }
-
-        if (this.lstGoods.getSelectedValue() instanceof ListItem) {
-
-            int goodsID = this.getSelectedKey(this.lstGoods);
-
-            if (e.getSource() == this.btnEditGoods) {
-
-                goodsFrame.editGoodsMode(goodsID);
-                goodsFrame.setVisible(true);
-
-            
-            } else if (e.getSource() == this.btnRemoveGoods) {
-
-
-                int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av tillbehör?", "Ta bort tillbehör",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (confirmButton == JOptionPane.YES_OPTION) {
-
-                    getController().removeGoods(goodsID);
-                    this.updateLists();
-                    System.out.println("Tillbehör borttagen.");
-        }
-            }
-            }
-    }
+    // <editor-fold defaultstate="collapsed" desc="Genererade ActionEvent-metoder"> 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
     }//GEN-LAST:event_btnAddCustomerActionPerformed
 
     private void rbtnShowSellOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnShowSellOrdersActionPerformed
-
     }//GEN-LAST:event_rbtnShowSellOrdersActionPerformed
 
     private void btnNewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewOrderActionPerformed
-
     }//GEN-LAST:event_btnNewOrderActionPerformed
 
     private void btnEditCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCustomerActionPerformed
-
     }//GEN-LAST:event_btnEditCustomerActionPerformed
 
     private void btnAddBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBoatActionPerformed
-
     }//GEN-LAST:event_btnAddBoatActionPerformed
 
     private void btnEditBoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditBoatActionPerformed
-
     }//GEN-LAST:event_btnEditBoatActionPerformed
 
     private void btnAddGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGoodsActionPerformed
-
     }//GEN-LAST:event_btnAddGoodsActionPerformed
 
     private void btnEditGoodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditGoodsActionPerformed
-
     }//GEN-LAST:event_btnEditGoodsActionPerformed
 
     private void txtSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchCustomerActionPerformed
-
     }//GEN-LAST:event_txtSearchCustomerActionPerformed
-
+// </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Genererade Deklarationer"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBoat;
     private javax.swing.JButton btnAddCustomer;
@@ -831,4 +826,5 @@ public class MainWindow extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTabbedPane tabbedPaneMainWindow;
     private javax.swing.JTextField txtSearchCustomer;
     // End of variables declaration//GEN-END:variables
+// </editor-fold>
 }

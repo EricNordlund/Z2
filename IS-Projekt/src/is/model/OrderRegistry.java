@@ -54,7 +54,7 @@ public class OrderRegistry {
         } else {
             o = new SellOrder(orderID, billingDate, address, customer);
         }
-        
+
         this.getOrderList().put(orderID, o);
 
 
@@ -165,7 +165,7 @@ public class OrderRegistry {
 
         return lm;
     }
-    
+
     public ListModel<ListItem> getOrderListByCustomer(int customerID) {
 
         HashMap<Integer, Order> hm = this.getOrderList();
@@ -177,7 +177,7 @@ public class OrderRegistry {
         while (it.hasNext()) {
 
             Map.Entry e = (Map.Entry) it.next();
-            
+
             Order o = (Order) e.getValue();
 
             if (o.getCustomerID() == customerID) {

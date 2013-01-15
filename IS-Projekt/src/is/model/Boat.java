@@ -83,9 +83,9 @@ public class Boat extends Product {
     }
 
     /**
-     * Returnerar ett ListItem som bara har ett produktID samt en sträng 
-     * som visas i listor
-     * 
+     * Returnerar ett ListItem som bara har ett produktID samt en sträng som
+     * visas i listor
+     *
      */
     protected ListItem getSimpleListItem() {
 
@@ -105,17 +105,17 @@ public class Boat extends Product {
 
     }
 
-    protected BoatListItem getBoatListItem(){
+    protected BoatListItem getBoatListItem() {
 
         String displayName = this.getDisplayName();
 
         double price = this.getPrice();
-        
+
         int boatID = this.getProductID();
 
         //Skapar ett BoatListItem
         BoatListItem bli = new BoatListItem(boatID, displayName, price);
-        
+
         return bli;
     }
 }

@@ -17,11 +17,11 @@ public class Goods extends Product {
         this.name = name;
 
     }
-    
-    private String getName(){
-        
+
+    private String getName() {
+
         return this.name;
-        
+
     }
 
     public String[] getDataArray() {
@@ -43,36 +43,36 @@ public class Goods extends Product {
     }
 
     protected ListItem getSimpleListItem() {
-        
-            String nameString = this.getDisplayName();
 
-            nameString = StringFormatter.rightPad(nameString, 35);
-            
-            String priceString = StringFormatter.formatPriceString(this.getPrice());
+        String nameString = this.getDisplayName();
 
-            priceString = StringFormatter.leftPad(priceString, 10);
+        nameString = StringFormatter.rightPad(nameString, 35);
 
-            String displayString = nameString + " " + priceString;
+        String priceString = StringFormatter.formatPriceString(this.getPrice());
 
-            ListItem listItem = new ListItem(this.getProductID(), displayString);
-            
-            return listItem;
-        
+        priceString = StringFormatter.leftPad(priceString, 10);
+
+        String displayString = nameString + " " + priceString;
+
+        ListItem listItem = new ListItem(this.getProductID(), displayString);
+
+        return listItem;
+
     }
 
     GoodsListItem getGoodsListItem() {
-        
+
         int goodsID = this.getProductID();
-        
+
         String displayName = this.getDisplayName();
-        
+
         double price = this.getPrice();
 
         //Skapar ett GoodsListItem
         GoodsListItem gli = new GoodsListItem(goodsID, displayName, price, 1);
-        
+
         return gli;
 
-        
+
     }
 }

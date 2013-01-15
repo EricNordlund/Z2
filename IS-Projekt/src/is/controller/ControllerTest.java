@@ -15,15 +15,15 @@ public class ControllerTest {
     static void runTest(Controller controller) {
 
         addBoats(controller);
-        
+
         addCustomers(controller);
 
         addGoods(controller);
 
     }
-    
-    private static void addBoats(Controller controller){
-        
+
+    private static void addBoats(Controller controller) {
+
         controller.addBoat("31233131", "Cascade 29", "Lomma", "En stabil segelbåt.", 500000.00);
         controller.addBoat("55542342", "Cascade 42", "Lomma", "En stabil segelbåt.", 150000.00);
         controller.addBoat("87686677", "Cascade 36", "Lomma", "En stabil segelbåt.", 510000.00);
@@ -52,7 +52,7 @@ public class ControllerTest {
         controller.addNewCustomer("Roald Andersson", "Stockholmsvägen 12", "24533", "Vetlanda", "0736631577", "r.andersson@skatteverket.se");
         controller.addNewCustomer("Sven Höög", "Kringlegatan 1", "21552", "Hässleholm", "0739231566", "sven.hoog@hassleholm.se");
         controller.addNewCustomer("Lisa Persson", "Kung Oscars Väg 127b", "24152", "Ödåkra", "0739266577", "babsi123@gmail.com");
-        
+
     }
 
     private static void addGoods(Controller controller) {

@@ -73,10 +73,10 @@ public class GoodsRegistry {
     }
 
     public ListModel<ListItem> getSimpleGoodsListModel() {
-        
+
         HashMap<Integer, Goods> hm = this.getGoodsList();
 
-        DefaultListModel<ListItem>  lm = new DefaultListModel<>();
+        DefaultListModel<ListItem> lm = new DefaultListModel<>();
 
         Iterator it = hm.entrySet().iterator();
 
@@ -87,7 +87,7 @@ public class GoodsRegistry {
             int key = (Integer) e.getKey();
 
             Goods g = (Goods) e.getValue();
-            
+
             ListItem listItem = g.getSimpleListItem();
 
             lm.addElement(listItem);
@@ -98,13 +98,12 @@ public class GoodsRegistry {
     }
 
     public GoodsListItem getGoodsListItem(int goodsID) {
-        
-        Goods g = this.getGoods(goodsID);
-        
-        GoodsListItem gli = g.getGoodsListItem();
-                
-        return gli;
-        
-    }
 
+        Goods g = this.getGoods(goodsID);
+
+        GoodsListItem gli = g.getGoodsListItem();
+
+        return gli;
+
+    }
 }

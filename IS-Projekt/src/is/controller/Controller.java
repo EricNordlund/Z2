@@ -23,7 +23,7 @@ public class Controller implements ControllerInterface {
     private OrderRegistry orderRegistry;
     private CustomerRegistry customerRegistry;
     private GoodsRegistry goodsRegistry;
-    public InputChecker inputChecker;
+    private InputChecker inputChecker;
 
     public Controller(BoatRegistry br, CustomerRegistry cr, GoodsRegistry gr, OrderRegistry or) {
 
@@ -31,43 +31,48 @@ public class Controller implements ControllerInterface {
         this.customerRegistry = cr;
         this.goodsRegistry = gr;
         this.orderRegistry = or;
-        
+
         this.inputChecker = new InputChecker();
 
     }
 
     //Getters för registren
     private BoatRegistry getBoatRegistry() {
+
         return this.boatRegistry;
+
     }
 
     private OrderRegistry getOrderRegistry() {
+
         return this.orderRegistry;
+
     }
 
     private CustomerRegistry getCustomerRegistry() {
+
         return this.customerRegistry;
+
     }
 
     private GoodsRegistry getGoodsRegistry() {
+
         return this.goodsRegistry;
+
     }
-    
-    private InputChecker getInputChecker(){
-        
+
+    private InputChecker getInputChecker() {
+
         return this.inputChecker;
+
     }
-    
-    
-    
-    
 
     //#######################################################################
     //############## CUSTOMER ###############################################
     //#######################################################################
     @Override
-    public void addNewCustomer(String name, String addressStreet, String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-
+    public void addNewCustomer(String name, String addressStreet, String addressPostCode,
+            String addressCity, String phoneNumber, String eMail) {
 
         this.getCustomerRegistry().addCustomer(name, addressStreet, addressPostCode, addressCity, phoneNumber, eMail);
 
@@ -76,7 +81,6 @@ public class Controller implements ControllerInterface {
     @Override
     public void editCustomer(int customerID, String name, String addressStreet,
             String addressPostCode, String addressCity, String phoneNumber, String eMail) {
-
 
         getCustomerRegistry().editCustomer(customerID, name, addressStreet,
                 addressPostCode, addressCity, phoneNumber, eMail);
@@ -94,13 +98,16 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void removeCustomer(int customerID) {
+
         getCustomerRegistry().removeCustomer(customerID);
 
-        System.out.println("Removing customer " + customerID + ".");
     }
-    
+
+    @Override
     public ListModel<ListItem> getCustomerListModel(String searchString) {
+
         return this.getCustomerRegistry().getListModel(searchString);
+
     }
 
     /**
@@ -135,14 +142,16 @@ public class Controller implements ControllerInterface {
     public void editOrder(int billingDate, String billingAddressStreet, String billingAddressPostCode,
             String billingAddressCity, int customerID, boolean isBuyOrder, int orderID) {
 
-
         getOrderRegistry().editOrder(billingDate, billingAddressStreet, billingAddressPostCode,
                 billingAddressCity, customerID, isBuyOrder, orderID);
+
     }
 
     @Override
     public void removeBuyOrder(int orderID) {
+
         getOrderRegistry().removeBuyOrder(orderID);
+
     }
 
     @Override
@@ -156,22 +165,27 @@ public class Controller implements ControllerInterface {
 
         return this.getOrderRegistry().getOrderListModel();
 
-
     }
 
     @Override
     public ListModel<ListItem> getBuyOrderListModel() {
+
         return this.getOrderRegistry().getBuyOrderListModel();
+
     }
 
     @Override
     public ListModel<ListItem> getSellOrderListModel() {
+
         return this.getOrderRegistry().getSellOrderListModel();
+
     }
-    
+
     @Override
     public ListModel<ListItem> getOrderListByCustomer(int customerID) {
+
         return this.getOrderRegistry().getOrderListByCustomer(customerID);
+
     }
 
     @Override
@@ -183,7 +197,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public int addSellOrder(int customerID, int billingDate, String billingAdressStreet, String billingAdressPostCode, String billingAdressCity) {
+    public int addSellOrder(int customerID, int billingDate, String billingAdressStreet,
+            String billingAdressPostCode, String billingAdressCity) {
 
         return this.getOrderRegistry().addSellOrder(customerID, billingDate, billingAdressStreet, billingAdressPostCode, billingAdressCity);
 
@@ -192,28 +207,28 @@ public class Controller implements ControllerInterface {
     @Override
     public boolean isBuyorder(int orderID) {
 
-        boolean b;
+        return this.getOrderRegistry().isBuyOrder(orderID);
 
-        b = this.getOrderRegistry().isBuyOrder(orderID);
-
-        return b;
     }
 
     @Override
     public void addGoodsOrderRow(int orderID, double price, int quantity, int productID) {
 
         this.getOrderRegistry().addGoodsOrderRow(orderID, price, quantity, productID);
-
     }
 
     @Override
     public void clearOrderRows(int orderID) {
+
         this.getOrderRegistry().clearOrderRows(orderID);
+
     }
 
     @Override
     public void addBoatOrderRow(int orderID, double price, int boatID) {
+
         this.getOrderRegistry().addBoatOrderRow(orderID, price, boatID);
+
     }
 
     //######################################################################
@@ -229,18 +244,15 @@ public class Controller implements ControllerInterface {
     @Override
     public void editBoat(int boatID, String regnr, String model, String location, String description, double price) {
 
-
-
-
         getBoatRegistry().editBoat(boatID, regnr, model, location, description, price);
 
     }
 
     @Override
     public void removeBoat(int boatID) {
+
         getBoatRegistry().removeBoat(boatID);
 
-        System.out.println("Removing boat " + boatID + ".");
     }
 
     @Override
@@ -260,9 +272,7 @@ public class Controller implements ControllerInterface {
     @Override
     public BoatListItem getBoatListItem(int boatID) {
 
-        BoatListItem bli = this.getBoatRegistry().getBoatListItem(boatID);
-
-        return bli;
+        return this.getBoatRegistry().getBoatListItem(boatID);
 
     }
 
@@ -271,12 +281,16 @@ public class Controller implements ControllerInterface {
     //########################################################################
     @Override
     public void editGoods(int goodsID, String name, double price, String description) {
+
         this.getGoodsRegistry().editGoods(goodsID, name, price, description);
+
     }
 
     @Override
     public void removeGoods(int goodsID) {
+
         this.getGoodsRegistry().removeGoods(goodsID);
+
     }
 
     @Override
@@ -293,10 +307,9 @@ public class Controller implements ControllerInterface {
 
     @Override
     public GoodsListItem getGoodsListItem(int goodsID) {
-        
-        GoodsListItem gli = this.getGoodsRegistry().getGoodsListItem(goodsID);
 
-        return gli;
+        return this.getGoodsRegistry().getGoodsListItem(goodsID);
+
     }
 
     @Override
@@ -311,25 +324,29 @@ public class Controller implements ControllerInterface {
     //#######################################################################
     @Override
     public boolean inputCheckString(String s) {
+
         return this.getInputChecker().checkString(s);
+
     }
 
     @Override
     public boolean inputCheckDate(String s) {
+
         return this.getInputChecker().checkDate(s);
+
     }
 
     @Override
     public boolean inputCheckPrice(String s) {
+
         return this.getInputChecker().checkStringToDouble(s);
+
     }
-    
+
     @Override
-    public double getDouble(String s){
-        
+    public double getDouble(String s) {
+
         return this.getInputChecker().parseStringToDouble(s);
-        
+
     }
-
-
 }

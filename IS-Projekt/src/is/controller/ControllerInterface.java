@@ -25,7 +25,7 @@ public interface ControllerInterface {
     public abstract void removeCustomer(int customerID);
 
     public abstract ListModel<ListItem> getCustomerListModel();
-    
+
     public abstract ListModel<ListItem> getCustomerListModel(String searchString);
 
     //Orderhantering
@@ -44,7 +44,7 @@ public interface ControllerInterface {
     public abstract ListModel<ListItem> getSellOrderListModel();
 
     public abstract ListModel<ListItem> getOrderRowListModel(int orderID);
-    
+
     public abstract ListModel<ListItem> getOrderListByCustomer(int CustomerID);
 
     public abstract GoodsListItem getGoodsListItem(int orderID);
@@ -87,8 +87,8 @@ public interface ControllerInterface {
     public abstract boolean inputCheckString(String s);
 
     public abstract boolean inputCheckDate(String s);
-    
+
     public abstract boolean inputCheckPrice(String s);
-    
+
     public abstract double getDouble(String s);
 }

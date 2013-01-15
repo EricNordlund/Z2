@@ -1,4 +1,3 @@
-
 package is.gui;
 
 import is.controller.Controller;
@@ -9,31 +8,33 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
-
 /**
  *
  * @author Eric, Viktor, Anna
  */
 public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
     private MainWindow parent;
     private int customerID;
-    Controller controller;
-    
-    public void setCustomerID(int customerID) {
-        this.customerID = customerID;
-    }
-    
+    private Controller controller;
+
     public OrderHistoryFrame(MainWindow parent) {
         initComponents();
         addActionListenerToButtons();
         this.parent = parent;
         this.setLocationRelativeTo(null);
-        
-        
 
     }
-     
+
+    void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
     public void initFrame(int customerID) {
         ListModel<ListItem> lm = controller.getOrderListByCustomer(customerID);
         this.lstOrderHistory.setModel(lm);
@@ -46,12 +47,12 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
         this.btnCancel.addActionListener(this);
     }
 
-    private int getSelectedKey(JList jlist) {
+    private int getSelectedKey(JList<ListItem> jlist) {
 
         int key;
 
         ListItem li;
-        li = (ListItem) jlist.getSelectedValue();
+        li = jlist.getSelectedValue();
 
         key = li.getID();
 
@@ -59,6 +60,7 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
 
     }
 
+    @Override
     public void actionPerformed(ActionEvent ae) {
 
         if (this.lstOrderHistory.getSelectedValue() instanceof ListItem) {
@@ -66,11 +68,10 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
 
             if (ae.getSource() == btnOpen) {
 
-                parent.orderFrame.editOrderMode(orderID);
-                parent.orderFrame.setVisible(true);
-                
-            } 
-            
+                parent.editOrder(orderID);
+
+            }
+
             if (ae.getSource() == btnRemove) {
                 int confirmButton = JOptionPane.showConfirmDialog(this, "Bekräfta borttagnig av order", "Ta bort order",
                         JOptionPane.YES_NO_OPTION);
@@ -86,13 +87,11 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
             }
 
         }
-        
-        if(ae.getSource() == btnCancel)
-        {
+
+        if (ae.getSource() == btnCancel) {
             this.setVisible(false);
         }
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -208,8 +207,7 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
+    // <editor-fold defaultstate="collapsed" desc="Genererade variabler">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnOpen;
@@ -222,8 +220,5 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
     private javax.swing.JPanel jPanel1;
     private javax.swing.JList<ListItem> lstOrderHistory;
     // End of variables declaration//GEN-END:variables
-
-    void setController(Controller controller) {
-        this.controller = controller;
-    }
+// </editor-fold>
 }

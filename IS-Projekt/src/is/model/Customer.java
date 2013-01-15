@@ -103,13 +103,12 @@ public class Customer {
 
     }
 
-
     public String getDisplayString() {
 
         String nameString = StringFormatter.rightPad(this.getName(), 25);
-        
+
         String displayString = nameString + " (" + this.getMail() + ")";
-        
+
         return displayString;
 
 
@@ -128,10 +127,10 @@ public class Customer {
     }
 
     ListItem getListItem() {
-        
+
         ListItem li = new ListItem(this.getID(), this.getDisplayString());
-        
+
         return li;
-        
+
     }
 }

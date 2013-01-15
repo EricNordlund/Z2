@@ -20,53 +20,53 @@ public class StringFormatter {
         String paddingString = CreatePadding(stringIn, paddedSize, paddingCharacter);
 
         String stringOut = paddingString + stringIn;
-    
+
         return stringOut;
 
     }
-    
-   public static String leftPad(String stringIn, int paddedSize) {
+
+    public static String leftPad(String stringIn, int paddedSize) {
 
         return leftPad(stringIn, paddedSize, " ");
 
     }
-    
+
     public static String rightPad(String stringIn, int paddedSize, String paddingCharacter) {
 
         String paddingString = CreatePadding(stringIn, paddedSize, " ");
 
         String stringOut = stringIn + paddingString;
-    
+
         return stringOut;
 
     }
-    
-   public static String rightPad(String stringIn, int paddedSize) {
+
+    public static String rightPad(String stringIn, int paddedSize) {
 
         return rightPad(stringIn, paddedSize, " ");
 
     }
-    
-    private static String CreatePadding (String stringIn, int paddedSize, String paddingCharacter) {
-       
-       String paddingString = "";
-       
-       while (stringIn.length() + paddingString.length() < paddedSize){
-           
-           paddingString = paddingString + paddingCharacter;
-           
-       }
 
-       return paddingString; 
+    private static String CreatePadding(String stringIn, int paddedSize, String paddingCharacter) {
+
+        String paddingString = "";
+
+        while (stringIn.length() + paddingString.length() < paddedSize) {
+
+            paddingString = paddingString + paddingCharacter;
+
+        }
+
+        return paddingString;
     }
-    
-    public static String formatPriceString(double price){
-        
+
+    public static String formatPriceString(double price) {
+
         DecimalFormat decimalFormat = new DecimalFormat("00.00");
-        
+
         String priceString = decimalFormat.format(price);
-        
+
         return priceString;
-        
+
     }
 }

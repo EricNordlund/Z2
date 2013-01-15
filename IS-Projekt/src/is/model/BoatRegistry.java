@@ -2,7 +2,6 @@ package is.model;
 
 import is.model.listitems.BoatListItem;
 import is.model.listitems.ListItem;
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -13,7 +12,7 @@ import javax.swing.ListModel;
  *
  * @author anna_thernfrid, Viktor Voigt
  */
-public class BoatRegistry implements Serializable {
+public class BoatRegistry {
 
     private HashMap<Integer, Boat> boatList = new HashMap<>();
     private int boatKeyCount = 0;
@@ -63,8 +62,8 @@ public class BoatRegistry implements Serializable {
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public ListModel<ListItem> getListModel() {
 
@@ -79,7 +78,7 @@ public class BoatRegistry implements Serializable {
             Map.Entry e = (Map.Entry) it.next();
 
             Boat b = (Boat) e.getValue();
-            
+
             ListItem listItem = b.getSimpleListItem();
 
             lm.addElement(listItem);
@@ -94,13 +93,12 @@ public class BoatRegistry implements Serializable {
     }
 
     public BoatListItem getBoatListItem(int boatID) {
-        
-        Boat b = this.getBoat(boatID);
-        
-        BoatListItem bli = b.getBoatListItem();
-        
-        return bli;
-        
-    }
 
+        Boat b = this.getBoat(boatID);
+
+        BoatListItem bli = b.getBoatListItem();
+
+        return bli;
+
+    }
 }

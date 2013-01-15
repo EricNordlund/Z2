@@ -95,22 +95,22 @@ public class InputChecker {
         NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
 
         Number number;
-        
+
         double d = 0;
-        
+
         try {
-            
-         number = format.parse(s);
-         
-         d = number.doubleValue();
-        
-        } catch (ParseException ex){
-            
+
+            number = format.parse(s);
+
+            d = number.doubleValue();
+
+        } catch (ParseException ex) {
+
             System.out.println("Felaktig konvertering av String till double.");
-            
+
         }
-   
+
         return d;
-        
+
     }
 }
