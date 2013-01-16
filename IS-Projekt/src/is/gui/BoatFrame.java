@@ -229,8 +229,6 @@ public class BoatFrame extends javax.swing.JFrame implements ActionListener {
                 .add(22, 22, 22))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         btnSaveBoat.setText("Spara");
         btnSaveBoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

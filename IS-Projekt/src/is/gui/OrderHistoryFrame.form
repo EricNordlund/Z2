@@ -14,7 +14,6 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="title" type="java.lang.String" value="Orderhistorik f&#xf6;r"/>
   </Properties>
   <SyntheticProperties>

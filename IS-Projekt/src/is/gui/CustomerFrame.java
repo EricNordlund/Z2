@@ -213,7 +213,6 @@ public class CustomerFrame extends javax.swing.JFrame implements ActionListener 
                 .add(22, 22, 22))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
 
         lblCustomerPhoneNumber.setText("Telenr:");

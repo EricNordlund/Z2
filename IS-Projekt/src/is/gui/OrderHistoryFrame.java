@@ -112,7 +112,6 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
 
         jLabel1.setText("jLabel1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Orderhistorik för");
 
         customerOrderPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -191,8 +190,6 @@ public class OrderHistoryFrame extends javax.swing.JFrame implements ActionListe
                         .addGap(5, 5, 5)))
                 .addContainerGap())
         );
-
-        customerOrderTools.getAccessibleContext().setAccessibleName("Verktyg");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

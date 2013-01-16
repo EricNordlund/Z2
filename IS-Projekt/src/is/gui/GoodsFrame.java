@@ -177,8 +177,6 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
                 .addGap(22, 22, 22))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         btnSave.setText("Spara");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
