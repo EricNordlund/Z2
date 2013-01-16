@@ -3,8 +3,6 @@ package is.model;
 import is.model.listitems.ListItem;
 import is.model.tools.StringFormatter;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Klassen ansvarar för att lagra information om företagets kunder.
