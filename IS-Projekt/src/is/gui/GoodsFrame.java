@@ -47,6 +47,8 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
     private void addActionListenerToButton() {
         this.btnCancel.addActionListener(this);
         this.btnSave.addActionListener(this);
+        
+        this.btnInputConfirm.addActionListener(this);
     }
 
     void fillTextFields(String[] goodsData) {
@@ -84,7 +86,7 @@ public class GoodsFrame extends javax.swing.JFrame implements ActionListener {
         } else if (e.getSource() == this.btnSave) {
 
 
-            if (this.controller.inputCheckString(this.txtPrice.getText())
+            if (this.controller.inputCheckPrice(this.txtPrice.getText())
                     && this.controller.inputCheckString(this.txtDescription.getText())
                     && this.controller.inputCheckString(this.txtName.getText())) {
 
